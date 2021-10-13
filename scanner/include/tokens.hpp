@@ -1,3 +1,6 @@
+#ifndef _TOKENS_
+#define _TOKENS_
+
 #define ID                  1
 #define VOID                2
 #define INT                 3
@@ -42,3 +45,5 @@
 #define SEMICOLON           42
 #define OPENPARANTHESES     43
 #define CLOSEPARANTHESES    44
+
+#endif
