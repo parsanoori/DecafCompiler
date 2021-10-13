@@ -63,5 +63,4 @@ void scan(istream& i,ostream& o)
             
         }
     }
-    return 0;
 }

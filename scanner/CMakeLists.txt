@@ -1,5 +1,5 @@
 add_library(scanner
-src/lexer.cpp
+src/lex.cpp
 src/scanner.cpp)
 
 add_custom_command ( OUTPUT src/lexer.cpp

@@ -2,7 +2,9 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include "scanner.hpp"
 #include "preprocessor.hpp"
+#include <sstream>
 using namespace std ;
 
 string stream_to_string(istream& i){
@@ -22,9 +24,11 @@ int main(int argc, char* argv[]){
 
     ofstream output_file(argv[4]);
     ifstream input_file(argv[2]);
-    
+        
     string i = stream_to_string(input_file);
-    cout << scan(i) << endl;
+    string preprocessed = preprocess(i);
+    istringstream ss(preprocessed);
+    scan(ss,cout);
 
     return 0;
 }
