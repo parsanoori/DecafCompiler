@@ -20,14 +20,11 @@ int main(int argc, char* argv[]){
         return 1;
     }
 
-    string input_file_name = argv[2];
-    string output_file_name = argv[4];
-
-    ofstream output_file(output_file_name);
-    ifstream input_file(input_file_name);
+    ofstream output_file(argv[4]);
+    ifstream input_file(argv[2]);
     
     string i = stream_to_string(input_file);
-    cout << preprocess(i) << endl;
+    cout << scan(i) << endl;
 
     return 0;
 }
