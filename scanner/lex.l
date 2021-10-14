@@ -66,6 +66,10 @@ assign              =
 semicolon           ;
 
 boolean             true|false
+
+import              import
+line                __line__
+func                __func__
 %%
 
 {boolean}         return BOOLEAN;
@@ -89,6 +93,10 @@ boolean             true|false
 {Print}           return PRINT;
 {ReadInteger}     return READINTEGER;
 {ReadLine}        return READLINE;
+{import}          return IMPORT;
+{line}            return LINE;
+{func}            return FUNC;
+
 
 {integer}         return INTEGER;
 

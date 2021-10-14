@@ -45,5 +45,8 @@
 #define SEMICOLON           42
 #define OPENPARANTHESES     43
 #define CLOSEPARANTHESES    44
+#define IMPORT              45
+#define LINE                46
+#define FUNC                47
 
 #endif

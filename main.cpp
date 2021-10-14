@@ -28,7 +28,7 @@ int main(int argc, char* argv[]){
     string i = stream_to_string(input_file);
     string preprocessed = preprocess(i);
     istringstream ss(preprocessed);
-    scan(ss,cout);
+    scan(ss,output_file);
 
     return 0;
 }

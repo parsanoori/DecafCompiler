@@ -55,7 +55,10 @@ void scan(istream& i,ostream& o)
             case ASSIGN:              o << "=" << endl; break;
             case SEMICOLON:           o << ";" << endl; break;
 
-            case STRING:                 
+            case IMPORT:              o << "import" << endl; break; 
+            case LINE:                o << "__line__" << endl; break;
+            case FUNC:                o << "__func__" << endl; break; 
+            case STRING:                               
              o << "T_STRINGLITERAL " << lexer->YYText() << endl; break;
 
             case BOOLEAN: 
