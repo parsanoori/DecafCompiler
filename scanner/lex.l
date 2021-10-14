@@ -16,9 +16,7 @@ dig                 [0-9]
 
 id                  ({alpha}|_)({alpha}|{dig}|_)*
 
-float1              {dig}+\.{dig}*([eE][-+]?{dig}+)?
-float2              {dig}*\.{dig}+([eE][-+]?{dig}+)?
-float               {float1}|{float2}
+float               {dig}+\.{dig}*([eE][-+]?{dig}+)?
 
 integerd            {dig}+
 integerx            0x({dig}|[ABCDEFabcdef])+
