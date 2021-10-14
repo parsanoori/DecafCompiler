@@ -1,3 +1,5 @@
 .DS_Store
 build/
 compiler.zip
+out/
+report/
