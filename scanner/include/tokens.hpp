@@ -48,5 +48,9 @@
 #define IMPORT              45
 #define LINE                46
 #define FUNC                47
+#define PLUSEQUAL           48
+#define MINUSEQUAL          49
+#define STAREQUAL           50
+#define SLASHEQUAL          51
 
 #endif

@@ -23,6 +23,9 @@ def main(argv):
 		elif opt in ("-o", "--output"):
 			outputfile = arg
 
+	print(inputfile1)
+	print(inputfile2)
+	print(outputfile)
 	input1_lines = []
 	input2_lines = []
 	with open(inputfile1, "r") as input_file:

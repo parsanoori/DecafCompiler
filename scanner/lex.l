@@ -64,6 +64,11 @@ closeparantheses    \)
 comma               ,
 assign              =
 semicolon           ;
+plusequal           \+=
+minusequal          -=
+starequal           \*=
+slashqual           \/=
+
 
 boolean             true|false
 
@@ -143,6 +148,10 @@ func                __func__
 {comma}               return COMMA;
 {assign}              return ASSIGN;
 {semicolon}           return SEMICOLON;
+{plusequal}           return PLUSEQUAL;
+{minusequal}          return MINUSEQUAL;
+{starequal}           return STAREQUAL;
+{slashqual}           return SLASHEQUAL;
 
 {string}              return STRING;
 %%

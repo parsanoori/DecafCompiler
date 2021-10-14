@@ -10,7 +10,7 @@ void scan(istream& i,ostream& o)
         switch(res){
             case ID: o << "T_ID " << lexer->YYText() << endl; break;
             case VOID:          o << "void"          << endl; break;
-            case INT:           o << "ing"           << endl; break;
+            case INT:           o << "int"           << endl; break;
             case DOUBLE:        o << "double"        << endl; break;
             case BOOL:          o << "bool"          << endl; break; 
             case STRING_KW:     o << "string"        << endl; break; 
@@ -63,7 +63,14 @@ void scan(istream& i,ostream& o)
 
             case BOOLEAN: 
              o << "T_BOOLEANLITERAL " << lexer->YYText() << endl; break;
-            
+            case PLUSEQUAL:           o << "+=" << endl; break;
+            case MINUSEQUAL:          o << "-=" << endl; break;
+            case STAREQUAL:           o << "*=" << endl; break;
+            case SLASHEQUAL:           o << "/=" << endl; break;
+
+
+
+
         }
     }
 }
