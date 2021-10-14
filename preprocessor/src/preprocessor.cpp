@@ -9,15 +9,17 @@ void string_change_newlines(string& i){ // shitty windows new lines
 }
 
 bool should_be_changed(const string& i,size_t begin,size_t length){ // is it bastard
+    size_t i_length = i.length();
+
     size_t end = begin + length;
-    if (i[begin - 1] == '"' && i[end + 1] == '"')
+    if (begin > 0 && i[begin - 1] == '"' && end < i_length - 1 && i[end + 1] == '"')
         return true;
 
-    while(i[end] != '\n')
+    while(end < i_length && i[end] != '\n')
         if (i[++end] == '"')
             return false;
 
-    while(i[begin] != '\n')
+    while(begin >= 0 && i[begin] != '\n')
         if (i[--begin] == '"')
             return false;
 
