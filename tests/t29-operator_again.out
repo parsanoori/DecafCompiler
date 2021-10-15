@@ -1,8 +1,4 @@
-T_STRINGLITERAL " a + b "
-T_STRINGLITERAL "a+b"
-T_ID a
-+
 T_ID b
-T_ID a
-+
+T_ID b
+T_ID b
 T_ID b
