@@ -28,9 +28,9 @@ bool should_be_changed(const string& i,size_t begin,size_t length){ // is it bas
 
 void replace_if_it_should_be(string& i,const string& r,const string& s){ // replace it it is bastard
     smatch m;
-    const regex& re = regex("([^_a-zA-Z\\d]+\\d*)(" + r + ")(\\d*[^_a-zA-Z\\d]+)");
+    const regex& re = regex("([^_a-zA-Z]+\\d*)(" + r + ")(\\d*[^_a-zA-Z]+)");
     while(regex_search(i,m,re)){
-        if(should_be_changed(i,m.position() + m[1].length(),m[2].length()))
+        //if(should_be_changed(i,m.position() + m[1].length(),m[2].length()))
             i.replace(m.position() + m[1].length(),m[2].length(),s);
     }
 }
