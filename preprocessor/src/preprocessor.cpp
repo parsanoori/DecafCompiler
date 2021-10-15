@@ -3,6 +3,11 @@
 #include <string>
 using namespace std;
 
+void remove_comments(string& i){
+    i = regex_replace(i,regex("/\\*(.|\n)*?\\*/"),"");
+    i = regex_replace(i,regex("//.*"),"");
+}
+
 void string_change_newlines(string& i){ // shitty windows new lines
     i = regex_replace(i,regex("\r\n"),"\n");
     i = regex_replace(i,regex("\r"),"\n");
@@ -47,6 +52,7 @@ void replace_if_it_should_be(string& i,const string& r,const string& s){ // repl
 string preprocess(string i){
 
     string_change_newlines(i);
+    remove_comments(i);
 
     smatch m;
     regex e("define[^\\S\\n]+([A-Za-z_]\\w*)[^\\S\\n]+(.*)\n"); // find all defines
