@@ -42,6 +42,15 @@ Print               Print
 ReadInteger         ReadInteger
 ReadLine            ReadLine
 
+btoi                btoi    
+continue            continue
+dtoi                dtoi    
+itob                itob    
+itod                itod    
+private             private   
+public              public   
+
+
 plus                \+
 minus               -
 star                \*
@@ -164,6 +173,12 @@ func                __func__
 {minusminus}          return MINUSMINUS;
 {not}                 return NOT;
 {dot}                 return DOT;
-{dot}                 return DOT;
 
+{btoi}                return BTOI    
+{continue}            return CONTINUE
+{dtoi}                return DTOI    
+{itob}                return ITOB    
+{itod}                return ITOD    
+{private}             return PRIVATE 
+{public}              return PUBLIC  
 %%

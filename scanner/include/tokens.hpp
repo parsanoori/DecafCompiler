@@ -59,12 +59,12 @@
 #define DIVISION            56
 #define PERCENT             57
 
-#define BTOI
-#define CONTINUE
-#define DTOI
-#define ITOB
-#define ITOD
-#define PRIVATE 
-#define PUBLIC
+#define BTOI                58
+#define CONTINUE            59
+#define DTOI                60
+#define ITOB                61
+#define ITOD                62
+#define PRIVATE             63
+#define PUBLIC              64
 
 #endif
