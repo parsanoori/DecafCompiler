@@ -35,12 +35,12 @@ void replace_if_it_should_be(string& i,const string& r,const string& s){ // repl
         before_tmp = i.length() - tmp.length();
         size_t start = m.position() + m[1].length();
         size_t length = m[2].length();
-        if(should_be_changed(tmp,start,length)) {
+        //if(should_be_changed(tmp,start,length)) {
             i.replace(before_tmp + start,  length, s);
             tmp = i.substr(before_tmp + start + s.length(), i.length() - before_tmp - start - s.length());
-        } else{
-            tmp = i.substr(before_tmp + length,length);
-        }
+        //} else{
+        //    tmp = i.substr(before_tmp + length,length);
+        //}
     }
 }
 
