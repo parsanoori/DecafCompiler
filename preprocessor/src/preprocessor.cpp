@@ -12,7 +12,7 @@ bool should_be_changed(const string& i,size_t begin,size_t length){ // is it bas
     size_t i_length = i.length();
 
     size_t end = begin + length;
-    if (begin > 0 && i[begin - 1] == '"' && end < i_length - 1 && i[end + 1] == '"')
+    if (begin > 0 && i[begin - 1] == '"' && end < i_length - 1 && i[end] == '"')
         return true;
 
     while(end < i_length && i[end] != '\n')
@@ -27,11 +27,21 @@ bool should_be_changed(const string& i,size_t begin,size_t length){ // is it bas
 }
 
 void replace_if_it_should_be(string& i,const string& r,const string& s){ // replace it it is bastard
+    string tmp = i;
+    size_t before_tmp;
     smatch m;
-    const regex& re = regex("([^_a-zA-Z\\d]+\\d*)(" + r + ")(\\d*[^_a-zA-Z\\d]+)");
-    while(regex_search(i,m,re)){
-        if(should_be_changed(i,m.position() + m[1].length(),m[2].length()))
-            i.replace(m.position() + m[1].length(),m[2].length(),s);
+    const regex& re = regex("([^_a-zA-Z]+\\d*)(" + r + ")(\\d*[^_a-zA-Z]+)");
+    while(regex_search(tmp,m,re)){
+        before_tmp = i.length() - tmp.length();
+        //cout << m[2] << endl;
+        size_t start = m.position() + m[1].length();
+        size_t length = m[2].length();
+        if(should_be_changed(tmp,start,length)) {
+            i.replace(before_tmp + start,  length, s);
+            tmp = i.substr(before_tmp + start + s.length(), i.length() - before_tmp - start - s.length());
+        } else{
+            tmp = i.substr(before_tmp + length,length);
+        }
     }
 }
 

@@ -74,7 +74,7 @@ void scan(istream& i,ostream& o)
             case DIVISION:            o << "/" << endl; break;
             case PERCENT:             o << "%" << endl; break;
 
-            case BTOI;                o << "btoi"      << endl; break; 
+            case BTOI:                o << "btoi"      << endl; break; 
             case CONTINUE:            o << "continue:" << endl; break;
             case DTOI:                o << "dtoi"      << endl; break;
             case ITOB:                o << "itob"      << endl; break;

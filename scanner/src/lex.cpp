@@ -1049,37 +1049,37 @@ return DOT;
 case 62:
 YY_RULE_SETUP
 #line 177 "lex.l"
-return BTOI    
+return BTOI;
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
 #line 178 "lex.l"
-return CONTINUE
+return CONTINUE;
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
 #line 179 "lex.l"
-return DTOI    
+return DTOI;    
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
 #line 180 "lex.l"
-return ITOB    
+return ITOB;    
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
 #line 181 "lex.l"
-return ITOD    
+return ITOD;    
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
 #line 182 "lex.l"
-return PRIVATE 
+return PRIVATE;
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
 #line 183 "lex.l"
-return PUBLIC  
+return PUBLIC;  
 	YY_BREAK
 case 69:
 YY_RULE_SETUP

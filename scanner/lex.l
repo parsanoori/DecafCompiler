@@ -174,11 +174,11 @@ func                __func__
 {not}                 return NOT;
 {dot}                 return DOT;
 
-{btoi}                return BTOI    
-{continue}            return CONTINUE
-{dtoi}                return DTOI    
-{itob}                return ITOB    
-{itod}                return ITOD    
-{private}             return PRIVATE 
-{public}              return PUBLIC  
+{btoi}                return BTOI;
+{continue}            return CONTINUE;
+{dtoi}                return DTOI;    
+{itob}                return ITOB;    
+{itod}                return ITOD;    
+{private}             return PRIVATE;
+{public}              return PUBLIC;  
 %%
