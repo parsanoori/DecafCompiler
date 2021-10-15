@@ -4,7 +4,7 @@
 using namespace std;
 
 void remove_comments(string& i){
-    i = regex_replace(i,regex("/\\*(.|\n)*?\\*/"),"");
+    i = regex_replace(i,regex("/\\*(.|\n)*?\\*/")," ");
     i = regex_replace(i,regex("//.*"),"");
 }
 
