@@ -49,7 +49,7 @@ string preprocess(string i){
     string_change_newlines(i);
 
     smatch m;
-    regex e("define\\s+([A-Za-z_]\\w*)\\s+(.*)\n"); // find all defines
+    regex e("define[^\\S\\n]+([A-Za-z_]\\w*)[^\\S\\n]+(.*)\n"); // find all defines
     while(regex_search(i,m,e)) { // search for pattern
         string r = m[1].str(),s=m[2].str(); // store before it messes up
         i.erase(m.position(),m[0].length()); // erase the shit

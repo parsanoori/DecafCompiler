@@ -50,6 +50,8 @@ itod                itod
 private             private   
 public              public   
 
+define              define
+
 
 plus                \+
 minus               -
@@ -116,7 +118,15 @@ func                __func__
 {import}          return IMPORT;
 {line}            return LINE;
 {func}            return FUNC;
+{btoi}                return BTOI;
+{continue}            return CONTINUE;
+{dtoi}                return DTOI;    
+{itob}                return ITOB;    
+{itod}                return ITOD;    
+{private}             return PRIVATE;
+{public}              return PUBLIC;  
 
+{define}              return DEFINE;
 
 {integer}         return INTEGER;
 
@@ -174,11 +184,4 @@ func                __func__
 {not}                 return NOT;
 {dot}                 return DOT;
 
-{btoi}                return BTOI;
-{continue}            return CONTINUE;
-{dtoi}                return DTOI;    
-{itob}                return ITOB;    
-{itod}                return ITOD;    
-{private}             return PRIVATE;
-{public}              return PUBLIC;  
 %%

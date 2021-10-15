@@ -66,5 +66,6 @@
 #define ITOD                62
 #define PRIVATE             63
 #define PUBLIC              64
+#define DEFINE              65
 
 #endif

@@ -75,17 +75,15 @@ void scan(istream& i,ostream& o)
             case PERCENT:             o << "%" << endl; break;
 
             case BTOI:                o << "btoi"      << endl; break; 
-            case CONTINUE:            o << "continue:" << endl; break;
+            case CONTINUE:            o << "continue" << endl; break;
             case DTOI:                o << "dtoi"      << endl; break;
             case ITOB:                o << "itob"      << endl; break;
             case ITOD:                o << "itod"      << endl; break;
             case PRIVATE:             o << "private"   << endl; break; 
             case PUBLIC:              o << "public"    << endl; break; 
-
-
+            case DEFINE:              o << "define"    << endl; break;
  
  
          }
      }
- }
- 
+}
