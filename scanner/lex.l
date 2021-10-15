@@ -79,8 +79,6 @@ plusequal           \+=
 minusequal          -=
 starequal           \*=
 slashqual           \/=
-plusplus            \+\+
-minusminus          \-\-
 not                 !
 dot                 \.
 
@@ -179,8 +177,6 @@ func                __func__
 {minusequal}          return MINUSEQUAL;
 {starequal}           return STAREQUAL;
 {slashqual}           return SLASHEQUAL;
-{plusplus}            return PLUSPLUS;
-{minusminus}          return MINUSMINUS;
 {not}                 return NOT;
 {dot}                 return DOT;
 

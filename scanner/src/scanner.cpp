@@ -67,8 +67,8 @@ void scan(istream& i,ostream& o)
             case MINUSEQUAL:          o << "-=" << endl; break;
             case STAREQUAL:           o << "*=" << endl; break;
             case SLASHEQUAL:          o << "/=" << endl; break;
-            case PLUSPLUS:            o << "++" << endl; break;
-            case MINUSMINUS:          o << "--" << endl; break;
+            //case PLUSPLUS:            o << "++" << endl; break;
+            //case MINUSMINUS:          o << "--" << endl; break;
             case NOT:                 o << "!" << endl; break;
             case DOT:                 o << "." << endl; break;
             case DIVISION:            o << "/" << endl; break;
