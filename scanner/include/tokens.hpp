@@ -52,5 +52,11 @@
 #define MINUSEQUAL          49
 #define STAREQUAL           50
 #define SLASHEQUAL          51
+#define PLUSPLUS            52
+#define MINUSMINUS          53
+#define NOT                 54
+#define DOT                 55
+#define DIVISION            56
+#define PERCENT             57
 
 #endif

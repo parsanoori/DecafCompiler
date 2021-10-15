@@ -45,6 +45,8 @@ ReadLine            ReadLine
 plus                \+
 minus               -
 star                \*
+div                 \/
+percent             %
 lessthan            <
 greaterthan         >
 lessthanequal       <=
@@ -66,6 +68,10 @@ plusequal           \+=
 minusequal          -=
 starequal           \*=
 slashqual           \/=
+plusplus            \+\+
+minusminus          \-\-
+not                 !
+dot                 \.
 
 
 boolean             true|false
@@ -74,6 +80,8 @@ import              import
 line                __line__
 func                __func__
 %%
+
+{string}          return STRING;
 
 {boolean}         return BOOLEAN;
 
@@ -129,6 +137,8 @@ func                __func__
 {plus}                return PLUS;
 {minus}               return MINUS;
 {star}                return STAR;
+{div}                 return DIVISION;
+{percent}             return PERCENT;
 {lessthan}            return LESSTHAN;
 {greaterthan}         return GREATERTHAN;
 {lessthanequal}       return LESSTHANEQUAL;
@@ -150,6 +160,10 @@ func                __func__
 {minusequal}          return MINUSEQUAL;
 {starequal}           return STAREQUAL;
 {slashqual}           return SLASHEQUAL;
+{plusplus}            return PLUSPLUS;
+{minusminus}          return MINUSMINUS;
+{not}                 return NOT;
+{dot}                 return DOT;
+{dot}                 return DOT;
 
-{string}              return STRING;
 %%
