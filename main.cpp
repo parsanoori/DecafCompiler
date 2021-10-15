@@ -27,6 +27,7 @@ int main(int argc, char* argv[]){
         
     string i = stream_to_string(input_file);
     string preprocessed = preprocess(i);
+    cout << preprocessed << endl;
     istringstream ss(preprocessed);
     scan(ss,output_file);
 

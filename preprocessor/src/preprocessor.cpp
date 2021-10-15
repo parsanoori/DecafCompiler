@@ -26,11 +26,12 @@ bool should_be_changed(const string& i,size_t begin,size_t length){ // is it bas
     return true;
 }
 
-void replace_if_it_should_be(string& i,const regex& r,const string& s){ // replace it it is bastard
+void replace_if_it_should_be(string& i,const string& r,const string& s){ // replace it it is bastard
     smatch m;
-    while(regex_search(i,m,regex(r))){
-        if(should_be_changed(i,m.position(),m[0].length()))
-                i.replace(m.position(),m[0].length(),s);
+    const regex& re = regex("([^_a-zA-Z]+\\d*)(" + r + ")(\\d*[^_a-zA-Z]+)");
+    while(regex_search(i,m,re)){
+        if(should_be_changed(i,m.position() + m[1].length(),m[2].length()))
+            i.replace(m.position() + m[1].length(),m[2].length(),s);
     }
 }
 
@@ -42,8 +43,8 @@ string preprocess(string i){
     regex e("define\\s+([A-Za-z_]\\w*)\\s+(.*)\n"); // find all defines
     while(regex_search(i,m,e)) { // search for pattern
         string r = m[1].str(),s=m[2].str(); // store before it messes up
-        i.erase(m.position(),m.position()+m[0].length()); // erase the shit
-        replace_if_it_should_be(i,regex(r),s); // replace thos bastards
+        i.erase(m.position(),m[0].length()); // erase the shit
+        replace_if_it_should_be(i,r,s); // replace thos bastards
     }
     return i;
-} 
+}
