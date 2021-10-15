@@ -33,7 +33,6 @@ void replace_if_it_should_be(string& i,const string& r,const string& s){ // repl
     const regex& re = regex("([^_a-zA-Z]+\\d*)(" + r + ")(\\d*[^_a-zA-Z]+)");
     while(regex_search(tmp,m,re)){
         before_tmp = i.length() - tmp.length();
-        //cout << m[2] << endl;
         size_t start = m.position() + m[1].length();
         size_t length = m[2].length();
         if(should_be_changed(tmp,start,length)) {
