@@ -1,6 +1,6 @@
-#line 1 "src/lex.cpp"
+#line 2 "src/lex.cpp"
 
-#line 3 "src/lex.cpp"
+#line 4 "src/lex.cpp"
 
 #define  YY_INT_ALIGNED short int
 
@@ -516,8 +516,8 @@ static const flex_int16_t yy_chk[283] =
 #line 4 "lex.l"
 #include "tokens.hpp"
 using namespace std;
-#line 519 "src/lex.cpp"
 #line 520 "src/lex.cpp"
+#line 521 "src/lex.cpp"
 
 #define INITIAL 0
 
@@ -652,7 +652,7 @@ YY_DECL
 #line 82 "lex.l"
 
 
-#line 655 "src/lex.cpp"
+#line 656 "src/lex.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1038,7 +1038,7 @@ YY_RULE_SETUP
 #line 169 "lex.l"
 ECHO;
 	YY_BREAK
-#line 1041 "src/lex.cpp"
+#line 1042 "src/lex.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 

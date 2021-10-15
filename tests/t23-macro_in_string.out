@@ -1,0 +1,23 @@
+import
+T_STRINGLITERAL "temp"
+void
+T_ID main
+(
+)
+{
+Print
+(
+void
+)
+;
+T_ID zyx
+T_ID xxyz
+T_ID xyzz
+Print
+(
+T_STRINGLITERAL "zyx"
+)
+;
+T_STRINGLITERAL "xxyz"
+;
+}

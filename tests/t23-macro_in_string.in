@@ -1,0 +1,11 @@
+import "temp"
+define int void
+define xyz zyx
+void main(){
+    Print(int);
+    xyz
+    xxyz
+    xyzz
+    Print("xyz");
+    "xxyz";
+}
