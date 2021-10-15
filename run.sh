@@ -16,13 +16,13 @@ mkdir -p build
 cd build
 
 cmake ..
-if [$? -neq 0]; then
+if [ $? -ne 0 ]; then
     echo "CMake Failed"
     return 1
 fi
 
 make
-if [$? -neq 0]; then
+if [[ $? -ne 0 ]]; then
     echo "Make Failed"
     return 1
 fi
