@@ -23,8 +23,11 @@
 # include <cstdlib>
 # include <cstring> // strerror
 # include <string>
+# include <cctype>
 # include "driver.hh"
 # include "parser.hh"
+
+    using namespace std;
 %}
 
 %{
@@ -108,7 +111,7 @@ dig                 [0-9]
 
 string              \"([^\n"\\]|\\[^\n\r])*\"
 
-id                  ({alpha}|_)({alpha}|{dig}|_)*
+id                  {alpha}({alpha}|{dig}|_)*
 
 float               {dig}+\.{dig}*([eE][-+]?{dig}+)?
 
@@ -239,9 +242,14 @@ func                __func__
 
 {comment}             loc.step();
 
-{id}              return yy::parser::make_id(yytext,loc);
+
+{id}              { return yy::parser::make_id(yytext,loc);}
 
 {ws}              loc.step();
+
+
+
+
 
 "/*"              { /* comment e hamintori */
                   int c;
@@ -260,7 +268,7 @@ func                __func__
 {plus}                return yy::parser::make_plus(loc);
 {minus}               return yy::parser::make_minus(loc);
 {star}                return yy::parser::make_star(loc);
-{slash}                 return yy::parser::make_slash(loc);
+{slash}               return yy::parser::make_slash(loc);
 {percent}             return yy::parser::make_percent(loc);
 {lessthan}            return yy::parser::make_lessthan(loc);
 {greaterthan}         return yy::parser::make_greaterthan(loc);
@@ -286,6 +294,14 @@ func                __func__
 {not}                 return yy::parser::make_not(loc);
 {dot}                 return yy::parser::make_dot(loc);
 
+"_"             {
+                  int c;
+                  while(!isspace(c = yyinput())){
+                    loc.step();
+                    //cout << (char) c << endl;
+                  }
+                }
+                 
 %%
 
 //yy::parser::symbol_type

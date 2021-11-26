@@ -73,7 +73,7 @@ program: macro program { }
        | declerations {  }
 
 macro: import string { }
-     | define id { }
+     | define id id { }
 
 declerations: declaration declerations { }
             | declaration {  }
@@ -206,7 +206,7 @@ expr:
     |   func                    {}
     
 lvalue:
-        id                       {}
+        id                       { cout << "id e too lvalue: " << $1 << endl;}
     |   expr  dot  id                {}
     |   expr openbracket expr closebracket               {}
     
