@@ -1066,7 +1066,7 @@ YY_DECL
   yy::location& loc = drv.location;
   // Code run each time yylex is called.
   loc.step ();
-  //std::cout << yytext << std::endl;
+  // std::cout << yytext << std::endl;
 
 #line 1071 "src/scanner.cc"
 

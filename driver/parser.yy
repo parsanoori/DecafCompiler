@@ -141,7 +141,7 @@ elsestmt: else stmt { }
 
 whilestmt: while openparantheses expr closeparantheses stmt { }
 
-forstmt: for openparantheses nexpr semicolon nexpr semicolon nexpr closeparantheses stmt { }
+forstmt: for openparantheses nexpr semicolon expr semicolon nexpr closeparantheses stmt { }
 
 returnstmt: return nexpr semicolon { }
 
@@ -198,10 +198,10 @@ expr:
     |   readline openparantheses  closeparantheses                 {}
     |   new id                   {}
     |   newarray openparantheses expr comma expr  closeparantheses    {}
-    |   itod openparantheses expr comma expr  closeparantheses        {}
-    |   dtoi openparantheses expr comma expr  closeparantheses        {}
-    |   itob openparantheses expr comma expr  closeparantheses        {}
-    |   btoi openparantheses expr comma expr  closeparantheses        {}
+    |   itod openparantheses expr   closeparantheses        {}
+    |   dtoi openparantheses expr   closeparantheses        {}
+    |   itob openparantheses expr   closeparantheses        {}
+    |   btoi openparantheses expr   closeparantheses        {}
     |   line                    {}
     |   func                    {}
     

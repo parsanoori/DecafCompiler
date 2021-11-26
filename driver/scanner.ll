@@ -198,7 +198,7 @@ func                __func__
   yy::location& loc = drv.location;
   // Code run each time yylex is called.
   loc.step ();
-  //std::cout << yytext << std::endl;
+  // std::cout << yytext << std::endl;
 %}
 <<EOF>>    return yy::parser::make_YYEOF (loc);
 {ws}        loc.step();
