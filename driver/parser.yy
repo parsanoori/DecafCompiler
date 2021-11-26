@@ -197,7 +197,7 @@ expr:
     |   readinteger openparantheses  closeparantheses             {}
     |   readline openparantheses  closeparantheses                 {}
     |   new id                   {}
-    |   newarray openparantheses expr comma expr  closeparantheses    {}
+    |   newarray openparantheses expr comma type  closeparantheses    {}
     |   itod openparantheses expr   closeparantheses        {}
     |   dtoi openparantheses expr   closeparantheses        {}
     |   itob openparantheses expr   closeparantheses        {}

@@ -651,7 +651,7 @@
           <symbol>openparantheses</symbol>
           <symbol>expr</symbol>
           <symbol>comma</symbol>
-          <symbol>expr</symbol>
+          <symbol>type</symbol>
           <symbol>closeparantheses</symbol>
         </rhs>
       </rule>
@@ -8414,79 +8414,22 @@
 
     <state number="185">
       <itemset>
-        <item rule-number="60" dot="0"/>
-        <item rule-number="61" dot="0"/>
-        <item rule-number="62" dot="0"/>
-        <item rule-number="63" dot="0"/>
-        <item rule-number="64" dot="0"/>
-        <item rule-number="65" dot="0"/>
-        <item rule-number="66" dot="0"/>
-        <item rule-number="67" dot="0"/>
-        <item rule-number="68" dot="0"/>
-        <item rule-number="69" dot="0"/>
-        <item rule-number="70" dot="0"/>
-        <item rule-number="71" dot="0"/>
-        <item rule-number="72" dot="0"/>
-        <item rule-number="73" dot="0"/>
-        <item rule-number="74" dot="0"/>
-        <item rule-number="75" dot="0"/>
-        <item rule-number="76" dot="0"/>
-        <item rule-number="77" dot="0"/>
-        <item rule-number="78" dot="0"/>
-        <item rule-number="79" dot="0"/>
-        <item rule-number="80" dot="0"/>
-        <item rule-number="81" dot="0"/>
-        <item rule-number="82" dot="0"/>
-        <item rule-number="83" dot="0"/>
-        <item rule-number="84" dot="0"/>
-        <item rule-number="85" dot="0"/>
-        <item rule-number="86" dot="0"/>
-        <item rule-number="87" dot="0"/>
-        <item rule-number="88" dot="0"/>
+        <item rule-number="12" dot="0"/>
+        <item rule-number="13" dot="0"/>
+        <item rule-number="14" dot="0"/>
+        <item rule-number="15" dot="0"/>
+        <item rule-number="16" dot="0"/>
+        <item rule-number="17" dot="0"/>
         <item rule-number="88" dot="4"/>
-        <item rule-number="89" dot="0"/>
-        <item rule-number="90" dot="0"/>
-        <item rule-number="91" dot="0"/>
-        <item rule-number="92" dot="0"/>
-        <item rule-number="93" dot="0"/>
-        <item rule-number="94" dot="0"/>
-        <item rule-number="95" dot="0"/>
-        <item rule-number="96" dot="0"/>
-        <item rule-number="97" dot="0"/>
-        <item rule-number="98" dot="0"/>
-        <item rule-number="99" dot="0"/>
-        <item rule-number="102" dot="0"/>
-        <item rule-number="103" dot="0"/>
-        <item rule-number="104" dot="0"/>
-        <item rule-number="105" dot="0"/>
-        <item rule-number="106" dot="0"/>
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="id" state="103"/>
-          <transition type="shift" symbol="string" state="56"/>
-          <transition type="shift" symbol="integer" state="58"/>
-          <transition type="shift" symbol="boolean" state="62"/>
-          <transition type="shift" symbol="nullkw" state="63"/>
-          <transition type="shift" symbol="new" state="66"/>
-          <transition type="shift" symbol="this" state="67"/>
-          <transition type="shift" symbol="newarray" state="68"/>
-          <transition type="shift" symbol="readinteger" state="70"/>
-          <transition type="shift" symbol="readline" state="71"/>
-          <transition type="shift" symbol="line" state="72"/>
-          <transition type="shift" symbol="func" state="73"/>
-          <transition type="shift" symbol="btoi" state="74"/>
-          <transition type="shift" symbol="dtoi" state="76"/>
-          <transition type="shift" symbol="itob" state="77"/>
-          <transition type="shift" symbol="itod" state="78"/>
-          <transition type="shift" symbol="float" state="79"/>
-          <transition type="shift" symbol="minus" state="80"/>
-          <transition type="shift" symbol="openparantheses" state="81"/>
-          <transition type="shift" symbol="not" state="82"/>
-          <transition type="goto" symbol="expr" state="198"/>
-          <transition type="goto" symbol="lvalue" state="96"/>
-          <transition type="goto" symbol="call" state="97"/>
-          <transition type="goto" symbol="constant" state="98"/>
+          <transition type="shift" symbol="id" state="1"/>
+          <transition type="shift" symbol="double" state="4"/>
+          <transition type="shift" symbol="bool" state="5"/>
+          <transition type="shift" symbol="string_kw" state="6"/>
+          <transition type="shift" symbol="int" state="8"/>
+          <transition type="goto" symbol="type" state="198"/>
         </transitions>
         <errors/>
         <reductions/>
@@ -8880,42 +8823,13 @@
 
     <state number="198">
       <itemset>
-        <item rule-number="70" dot="1"/>
-        <item rule-number="71" dot="1"/>
-        <item rule-number="72" dot="1"/>
-        <item rule-number="73" dot="1"/>
-        <item rule-number="74" dot="1"/>
-        <item rule-number="76" dot="1"/>
-        <item rule-number="77" dot="1"/>
-        <item rule-number="78" dot="1"/>
-        <item rule-number="79" dot="1"/>
-        <item rule-number="80" dot="1"/>
-        <item rule-number="81" dot="1"/>
-        <item rule-number="82" dot="1"/>
-        <item rule-number="83" dot="1"/>
+        <item rule-number="17" dot="1"/>
         <item rule-number="88" dot="5"/>
-        <item rule-number="96" dot="1"/>
-        <item rule-number="97" dot="1"/>
-        <item rule-number="99" dot="1"/>
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="124"/>
-          <transition type="shift" symbol="slash" state="125"/>
-          <transition type="shift" symbol="percent" state="126"/>
-          <transition type="shift" symbol="plus" state="127"/>
-          <transition type="shift" symbol="minus" state="128"/>
-          <transition type="shift" symbol="star" state="129"/>
-          <transition type="shift" symbol="lessthanequal" state="130"/>
-          <transition type="shift" symbol="greaterthanequal" state="131"/>
-          <transition type="shift" symbol="lessthan" state="132"/>
-          <transition type="shift" symbol="greaterthan" state="133"/>
-          <transition type="shift" symbol="equal" state="134"/>
-          <transition type="shift" symbol="notequal" state="135"/>
-          <transition type="shift" symbol="and" state="136"/>
-          <transition type="shift" symbol="or" state="137"/>
+          <transition type="shift" symbol="openclosebracket" state="28"/>
           <transition type="shift" symbol="closeparantheses" state="205"/>
-          <transition type="shift" symbol="dot" state="138"/>
         </transitions>
         <errors/>
         <reductions/>

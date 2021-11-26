@@ -180,7 +180,7 @@
   <a name="rule_85" id="rule_85"> 85</a>      | <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a name="rule_86" id="rule_86"> 86</a>      | <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a name="rule_87" id="rule_87"> 87</a>      | <b>new</b> <b>id</b>
-  <a name="rule_88" id="rule_88"> 88</a>      | <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a name="rule_88" id="rule_88"> 88</a>      | <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a name="rule_89" id="rule_89"> 89</a>      | <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a name="rule_90" id="rule_90"> 90</a>      | <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a name="rule_91" id="rule_91"> 91</a>      | <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -324,7 +324,7 @@
   <li><b>type</b> (75)
     <ul>
       <li>on left: <a href="#rule_12">12</a> <a href="#rule_13">13</a> <a href="#rule_14">14</a> <a href="#rule_15">15</a> <a href="#rule_16">16</a> <a href="#rule_17">17</a></li>
-      <li>on right: <a href="#rule_11">11</a> <a href="#rule_17">17</a> <a href="#rule_18">18</a></li>
+      <li>on right: <a href="#rule_11">11</a> <a href="#rule_17">17</a> <a href="#rule_18">18</a> <a href="#rule_88">88</a></li>
     </ul>
   </li>
   <li><b>functiondecl</b> (76)
@@ -1149,7 +1149,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -1340,7 +1340,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -1411,7 +1411,7 @@
 
 <h3><a name="state_68" id="state_68"></a>State 68</h3>
 
-<p class="pre">  <a href="#rule_88"> 88</a> <span class="i">expr</span> → <b>newarray</b> <span class="dot">•</span> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+<p class="pre">  <a href="#rule_88"> 88</a> <span class="i">expr</span> → <b>newarray</b> <span class="dot">•</span> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
 
     openparantheses  <a href="#state_108">shift, and go to state 108</a>
 </p>
@@ -1524,7 +1524,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -1600,7 +1600,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -1676,7 +1676,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -1783,7 +1783,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -1930,7 +1930,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -2145,7 +2145,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -2228,7 +2228,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -2304,7 +2304,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -2382,7 +2382,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -2530,8 +2530,8 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
-  <a href="#rule_88"> 88</a>      | <b>newarray</b> <b>openparantheses</b> <span class="dot">•</span> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <b>newarray</b> <b>openparantheses</b> <span class="dot">•</span> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -2609,7 +2609,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -2699,7 +2699,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -2782,7 +2782,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <b>dtoi</b> <b>openparantheses</b> <span class="dot">•</span> <span class="i">expr</span> <b>closeparantheses</b>
@@ -2858,7 +2858,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -2934,7 +2934,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <b>itod</b> <b>openparantheses</b> <span class="dot">•</span> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -3164,7 +3164,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -3241,7 +3241,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -3317,7 +3317,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -3393,7 +3393,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -3469,7 +3469,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -3545,7 +3545,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -3621,7 +3621,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -3697,7 +3697,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -3773,7 +3773,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -3849,7 +3849,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -3925,7 +3925,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -4001,7 +4001,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -4077,7 +4077,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -4153,7 +4153,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -4237,7 +4237,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -4313,7 +4313,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -4389,7 +4389,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -4465,7 +4465,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -4541,7 +4541,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -4736,7 +4736,7 @@
   <a href="#rule_81"> 81</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>notequal</b> <span class="i">expr</span>
   <a href="#rule_82"> 82</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>and</b> <span class="i">expr</span>
   <a href="#rule_83"> 83</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>or</b> <span class="i">expr</span>
-  <a href="#rule_88"> 88</a>      | <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <span class="dot">•</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <span class="dot">•</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_96"> 96</a> <span class="i">lvalue</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b>
   <a href="#rule_97"> 97</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_99"> 99</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
@@ -5890,7 +5890,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -5995,7 +5995,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -6108,7 +6108,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -6202,7 +6202,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -6249,78 +6249,21 @@
 
 <h3><a name="state_185" id="state_185"></a>State 185</h3>
 
-<p class="pre">  <a href="#rule_60"> 60</a> <span class="i">expr</span> → <span class="dot">•</span> <span class="i">lvalue</span> <b>assign</b> <span class="i">expr</span>
-  <a href="#rule_61"> 61</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>plusequal</b> <span class="i">expr</span>
-  <a href="#rule_62"> 62</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>minusequal</b> <span class="i">expr</span>
-  <a href="#rule_63"> 63</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>starequal</b> <span class="i">expr</span>
-  <a href="#rule_64"> 64</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>slashequal</b> <span class="i">expr</span>
-  <a href="#rule_65"> 65</a>      | <span class="dot">•</span> <span class="i">constant</span>
-  <a href="#rule_66"> 66</a>      | <span class="dot">•</span> <span class="i">lvalue</span>
-  <a href="#rule_67"> 67</a>      | <span class="dot">•</span> <b>this</b>
-  <a href="#rule_68"> 68</a>      | <span class="dot">•</span> <span class="i">call</span>
-  <a href="#rule_69"> 69</a>      | <span class="dot">•</span> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
-  <a href="#rule_70"> 70</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>plus</b> <span class="i">expr</span>
-  <a href="#rule_71"> 71</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>minus</b> <span class="i">expr</span>
-  <a href="#rule_72"> 72</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>star</b> <span class="i">expr</span>
-  <a href="#rule_73"> 73</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>slash</b> <span class="i">expr</span>
-  <a href="#rule_74"> 74</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>percent</b> <span class="i">expr</span>
-  <a href="#rule_75"> 75</a>      | <span class="dot">•</span> <b>minus</b> <span class="i">expr</span>
-  <a href="#rule_76"> 76</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>lessthan</b> <span class="i">expr</span>
-  <a href="#rule_77"> 77</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>lessthanequal</b> <span class="i">expr</span>
-  <a href="#rule_78"> 78</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>greaterthan</b> <span class="i">expr</span>
-  <a href="#rule_79"> 79</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>greaterthanequal</b> <span class="i">expr</span>
-  <a href="#rule_80"> 80</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>equal</b> <span class="i">expr</span>
-  <a href="#rule_81"> 81</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>notequal</b> <span class="i">expr</span>
-  <a href="#rule_82"> 82</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>and</b> <span class="i">expr</span>
-  <a href="#rule_83"> 83</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>or</b> <span class="i">expr</span>
-  <a href="#rule_84"> 84</a>      | <span class="dot">•</span> <b>not</b> <span class="i">expr</span>
-  <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
-  <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
-  <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
-  <a href="#rule_88"> 88</a>      | <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="dot">•</span> <span class="i">expr</span> <b>closeparantheses</b>
-  <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
-  <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
-  <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
-  <a href="#rule_92"> 92</a>      | <span class="dot">•</span> <b>btoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
-  <a href="#rule_93"> 93</a>      | <span class="dot">•</span> <b>line</b>
-  <a href="#rule_94"> 94</a>      | <span class="dot">•</span> <b>func</b>
-  <a href="#rule_95"> 95</a> <span class="i">lvalue</span> → <span class="dot">•</span> <b>id</b>
-  <a href="#rule_96"> 96</a>        | <span class="dot">•</span> <span class="i">expr</span> <b>dot</b> <b>id</b>
-  <a href="#rule_97"> 97</a>        | <span class="dot">•</span> <span class="i">expr</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
-  <a href="#rule_98"> 98</a> <span class="i">call</span> → <span class="dot">•</span> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
-  <a href="#rule_99"> 99</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
-  <a href="#rule_102">102</a> <span class="i">constant</span> → <span class="dot">•</span> <b>integer</b>
-  <a href="#rule_103">103</a>          | <span class="dot">•</span> <b>float</b>
-  <a href="#rule_104">104</a>          | <span class="dot">•</span> <b>boolean</b>
-  <a href="#rule_105">105</a>          | <span class="dot">•</span> <b>string</b>
-  <a href="#rule_106">106</a>          | <span class="dot">•</span> <b>nullkw</b>
+<p class="pre">  <a href="#rule_12"> 12</a> <span class="i">type</span> → <span class="dot">•</span> <b>int</b>
+  <a href="#rule_13"> 13</a>      | <span class="dot">•</span> <b>double</b>
+  <a href="#rule_14"> 14</a>      | <span class="dot">•</span> <b>bool</b>
+  <a href="#rule_15"> 15</a>      | <span class="dot">•</span> <b>string_kw</b>
+  <a href="#rule_16"> 16</a>      | <span class="dot">•</span> <b>id</b>
+  <a href="#rule_17"> 17</a>      | <span class="dot">•</span> <span class="i">type</span> <b>openclosebracket</b>
+  <a href="#rule_88"> 88</a> <span class="i">expr</span> → <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="dot">•</span> <span class="i">type</span> <b>closeparantheses</b>
 
-    id               <a href="#state_103">shift, and go to state 103</a>
-    string           <a href="#state_56">shift, and go to state 56</a>
-    integer          <a href="#state_58">shift, and go to state 58</a>
-    boolean          <a href="#state_62">shift, and go to state 62</a>
-    nullkw           <a href="#state_63">shift, and go to state 63</a>
-    new              <a href="#state_66">shift, and go to state 66</a>
-    this             <a href="#state_67">shift, and go to state 67</a>
-    newarray         <a href="#state_68">shift, and go to state 68</a>
-    readinteger      <a href="#state_70">shift, and go to state 70</a>
-    readline         <a href="#state_71">shift, and go to state 71</a>
-    line             <a href="#state_72">shift, and go to state 72</a>
-    func             <a href="#state_73">shift, and go to state 73</a>
-    btoi             <a href="#state_74">shift, and go to state 74</a>
-    dtoi             <a href="#state_76">shift, and go to state 76</a>
-    itob             <a href="#state_77">shift, and go to state 77</a>
-    itod             <a href="#state_78">shift, and go to state 78</a>
-    float            <a href="#state_79">shift, and go to state 79</a>
-    minus            <a href="#state_80">shift, and go to state 80</a>
-    openparantheses  <a href="#state_81">shift, and go to state 81</a>
-    not              <a href="#state_82">shift, and go to state 82</a>
+    id         <a href="#state_1">shift, and go to state 1</a>
+    double     <a href="#state_4">shift, and go to state 4</a>
+    bool       <a href="#state_5">shift, and go to state 5</a>
+    string_kw  <a href="#state_6">shift, and go to state 6</a>
+    int        <a href="#state_8">shift, and go to state 8</a>
 
-    expr      <a href="#state_198">go to state 198</a>
-    lvalue    <a href="#state_96">go to state 96</a>
-    call      <a href="#state_97">go to state 97</a>
-    constant  <a href="#state_98">go to state 98</a>
+    type  <a href="#state_198">go to state 198</a>
 </p>
 
 <h3><a name="state_186" id="state_186"></a>State 186</h3>
@@ -6361,7 +6304,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -6471,7 +6414,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -6590,40 +6533,11 @@
 
 <h3><a name="state_198" id="state_198"></a>State 198</h3>
 
-<p class="pre">  <a href="#rule_70"> 70</a> <span class="i">expr</span> → <span class="i">expr</span> <span class="dot">•</span> <b>plus</b> <span class="i">expr</span>
-  <a href="#rule_71"> 71</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>minus</b> <span class="i">expr</span>
-  <a href="#rule_72"> 72</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>star</b> <span class="i">expr</span>
-  <a href="#rule_73"> 73</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>slash</b> <span class="i">expr</span>
-  <a href="#rule_74"> 74</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>percent</b> <span class="i">expr</span>
-  <a href="#rule_76"> 76</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthan</b> <span class="i">expr</span>
-  <a href="#rule_77"> 77</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthanequal</b> <span class="i">expr</span>
-  <a href="#rule_78"> 78</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthan</b> <span class="i">expr</span>
-  <a href="#rule_79"> 79</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthanequal</b> <span class="i">expr</span>
-  <a href="#rule_80"> 80</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>equal</b> <span class="i">expr</span>
-  <a href="#rule_81"> 81</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>notequal</b> <span class="i">expr</span>
-  <a href="#rule_82"> 82</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>and</b> <span class="i">expr</span>
-  <a href="#rule_83"> 83</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>or</b> <span class="i">expr</span>
-  <a href="#rule_88"> 88</a>      | <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <span class="dot">•</span> <b>closeparantheses</b>
-  <a href="#rule_96"> 96</a> <span class="i">lvalue</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b>
-  <a href="#rule_97"> 97</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
-  <a href="#rule_99"> 99</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
+<p class="pre">  <a href="#rule_17"> 17</a> <span class="i">type</span> → <span class="i">type</span> <span class="dot">•</span> <b>openclosebracket</b>
+  <a href="#rule_88"> 88</a> <span class="i">expr</span> → <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <span class="dot">•</span> <b>closeparantheses</b>
 
-    openbracket       <a href="#state_124">shift, and go to state 124</a>
-    slash             <a href="#state_125">shift, and go to state 125</a>
-    percent           <a href="#state_126">shift, and go to state 126</a>
-    plus              <a href="#state_127">shift, and go to state 127</a>
-    minus             <a href="#state_128">shift, and go to state 128</a>
-    star              <a href="#state_129">shift, and go to state 129</a>
-    lessthanequal     <a href="#state_130">shift, and go to state 130</a>
-    greaterthanequal  <a href="#state_131">shift, and go to state 131</a>
-    lessthan          <a href="#state_132">shift, and go to state 132</a>
-    greaterthan       <a href="#state_133">shift, and go to state 133</a>
-    equal             <a href="#state_134">shift, and go to state 134</a>
-    notequal          <a href="#state_135">shift, and go to state 135</a>
-    and               <a href="#state_136">shift, and go to state 136</a>
-    or                <a href="#state_137">shift, and go to state 137</a>
+    openclosebracket  <a href="#state_28">shift, and go to state 28</a>
     closeparantheses  <a href="#state_205">shift, and go to state 205</a>
-    dot               <a href="#state_138">shift, and go to state 138</a>
 </p>
 
 <h3><a name="state_199" id="state_199"></a>State 199</h3>
@@ -6729,7 +6643,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -6832,7 +6746,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
@@ -6882,7 +6796,7 @@
 
 <h3><a name="state_205" id="state_205"></a>State 205</h3>
 
-<p class="pre">  <a href="#rule_88"> 88</a> <span class="i">expr</span> → <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b> <span class="dot">•</span>
+<p class="pre">  <a href="#rule_88"> 88</a> <span class="i">expr</span> → <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b> <span class="dot">•</span>
 
     $default  <a href="#rule_88">reduce using rule 88</a> (expr)
 </p>
@@ -6958,7 +6872,7 @@
   <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
   <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
   <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
   <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
