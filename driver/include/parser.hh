@@ -1999,7 +1999,7 @@ switch (yykind)
     /// \param yyvalue   the value to check
     static bool yy_table_value_is_error_ (int yyvalue) YY_NOEXCEPT;
 
-    static const short yypact_ninf_;
+    static const signed char yypact_ninf_;
     static const signed char yytable_ninf_;
 
     /// Convert a scanner token kind \a t to a symbol kind.
@@ -2281,7 +2281,7 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 930,     ///< Last index in yytable_.
+      yylast_ = 929,     ///< Last index in yytable_.
       yynnts_ = 33,  ///< Number of nonterminal symbols.
       yyfinal_ = 23 ///< Termination state number.
     };

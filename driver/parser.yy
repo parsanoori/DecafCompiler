@@ -86,7 +86,7 @@ variabledecl: variable semicolon { }
 
 variable: type id { }
 
-type: integer { }
+type: int { }
     | double { }
     | bool { }
     | string_kw { }

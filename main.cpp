@@ -37,7 +37,10 @@ int main(int argc, char* argv[]){
 
     driver drv;
     int result = drv.parse("tmp.txt");
-    output_file << (result == 0 ? "OK" : "Syntax Error");
+    if (string("-") == argv[4])
+        cout << (result == 0 ? "OK" : "Syntax Error");
+    else
+        output_file << (result == 0 ? "OK" : "Syntax Error");
 
     return 0;
 }
