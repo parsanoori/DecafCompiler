@@ -8,8 +8,16 @@ set(CMAKE_BUILD_TYPE Debug)
 
 add_subdirectory(preprocessor)
 
-add_subdirectory(scanner)
+add_subdirectory(driver)
+
+#add_subdirectory(parser)
+#
+#add_subdirectory(scanner)
+
+#target_link_libraries(parser PUBLIC driver)
+
+#target_link_libraries(scanner PUBLIC parser)
 
 add_executable(compiler main.cpp)
 
-target_link_libraries(compiler PUBLIC preprocessor scanner) 
+target_link_libraries(compiler PUBLIC preprocessor driver) 

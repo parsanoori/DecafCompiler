@@ -2,7 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include "scanner.hpp"
+#include "driver.hh"
 #include "preprocessor.hpp"
 #include <sstream>
 using namespace std ;
@@ -22,13 +22,22 @@ int main(int argc, char* argv[]){
         return 1;
     }
 
+
     ofstream output_file(argv[4]);
     ifstream input_file(argv[2]);
-        
+
     string i = stream_to_string(input_file);
     string preprocessed = preprocess(i);
-    istringstream ss(preprocessed);
-    scan(ss,output_file);
+
+    ofstream tmp("tmp.txt");
+    tmp << preprocessed;
+    tmp.flush();
+    tmp.close();
+
+
+    driver drv;
+    int result = drv.parse("tmp.txt");
+    cout << result << endl;
 
     return 0;
 }
