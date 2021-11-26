@@ -1,6 +1,6 @@
 add_library(driver src/driver.cc src/parser.cc src/scanner.cc)
 
-execute_process(COMMAND bash -c "bison --html --graph -o src/parser.cc parser.yy -Wcounterexamples && 
+execute_process(COMMAND bash -c "bison --html --graph -o src/parser.cc parser.yy  && 
     mv src/location.hh include/location.hh &&
     mv src/parser.hh include/parser.hh &&
     mv src/parser.html parser_outs &&

@@ -643,11 +643,12 @@ namespace yy {
         S_nexpr = 93,                            // nexpr
         S_continuestmt = 94,                     // continuestmt
         S_printstmt = 95,                        // printstmt
-        S_expr = 96,                             // expr
-        S_lvalue = 97,                           // lvalue
-        S_call = 98,                             // call
-        S_actuals = 99,                          // actuals
-        S_constant = 100                         // constant
+        S_printcontent = 96,                     // printcontent
+        S_expr = 97,                             // expr
+        S_lvalue = 98,                           // lvalue
+        S_call = 99,                             // call
+        S_actuals = 100,                         // actuals
+        S_constant = 101                         // constant
       };
     };
 
@@ -2281,8 +2282,8 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 929,     ///< Last index in yytable_.
-      yynnts_ = 33,  ///< Number of nonterminal symbols.
+      yylast_ = 859,     ///< Last index in yytable_.
+      yynnts_ = 34,  ///< Number of nonterminal symbols.
       yyfinal_ = 23 ///< Termination state number.
     };
 
@@ -2415,7 +2416,7 @@ switch (yykind)
 
 
 } // yy
-#line 2419 "src/parser.hh"
+#line 2420 "src/parser.hh"
 
 
 

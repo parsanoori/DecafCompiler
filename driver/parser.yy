@@ -95,9 +95,9 @@ type: int { }
 
 functiondecl: type id openparantheses formals closeparantheses stmtblock { }
             | void id openparantheses formals closeparantheses stmtblock { }
-
+            
 formals: formalsp { }
-       | %empty { }
+       | %empty {  }
 
 formalsp: variable comma formalsp { }
         | variable { }
@@ -154,9 +154,11 @@ continuestmt: continue semicolon { }
 
 
 printstmt:
-        print openparantheses expr plus comma  closeparantheses semicolon       {}
+        print openparantheses printcontent  closeparantheses semicolon       {}
 
-printcontent: printcontent , expr {}
+
+
+printcontent: printcontent comma expr {}
             | expr {}
 
 %left assign plusequal slashequal lessthan greaterthan lessthanequal;
