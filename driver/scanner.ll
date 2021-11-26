@@ -109,6 +109,7 @@ ws                  [ \t\f]+
 alpha               [A-Za-z]
 dig                 [0-9]
 
+openclosebracket    \[{ws}*\]
 string              \"([^\n"\\]|\\[^\n\r])*\"
 
 id                  {alpha}({alpha}|{dig}|_)*
@@ -263,7 +264,7 @@ func                __func__
                       
                   }
 
-"[]"                  return yy::parser::make_openclosebracket(loc);
+{openclosebracket}                  return yy::parser::make_openclosebracket(loc);
 
 {plus}                return yy::parser::make_plus(loc);
 {minus}               return yy::parser::make_minus(loc);
