@@ -102,7 +102,7 @@ formals: formalsp { }
 formalsp: variable comma formalsp { }
         | variable { }
 
-classdecl: class id openbrace fields closebrace { cout << "dally"; }
+classdecl: class id openbrace fields closebrace {  }
 
 fields: field fields { }
       | %empty
@@ -206,7 +206,7 @@ expr:
     |   func                    {}
     
 lvalue:
-        id                       { cout << "id e too lvalue: " << $1 << endl;}
+        id                       {}
     |   expr  dot  id                {}
     |   expr openbracket expr closebracket               {}
     

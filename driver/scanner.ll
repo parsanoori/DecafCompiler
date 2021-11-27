@@ -199,7 +199,7 @@ func                __func__
   yy::location& loc = drv.location;
   // Code run each time yylex is called.
   loc.step ();
-  // std::cout << yytext << std::endl;
+  //std::cout << yytext << std::endl;
 %}
 <<EOF>>    return yy::parser::make_YYEOF (loc);
 {ws}        loc.step();
@@ -253,14 +253,17 @@ func                __func__
 
 
 "/*"              { /* comment e hamintori */
+                    loc.step();
                   int c;
                   while((c = yyinput()) != 0)
+                        loc.step();
                       if(c == '*'){
                           if((c = yyinput()) == '/')
                               break;
                           else
                               unput(c);
-                      }
+                      } else if (c == '\n')
+                          loc.lines(1);
                       
                   }
 

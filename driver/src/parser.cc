@@ -722,7 +722,7 @@ namespace yy {
 
   case 25: // classdecl: class id openbrace fields closebrace
 #line 105 "parser.yy"
-                                                { cout << "dally"; }
+                                                {  }
 #line 727 "src/parser.cc"
     break;
 
@@ -1142,7 +1142,7 @@ namespace yy {
 
   case 96: // lvalue: id
 #line 209 "parser.yy"
-                                 { cout << "id e too lvalue: " << yystack_[0].value.as < std::string > () << endl;}
+                                 {}
 #line 1147 "src/parser.cc"
     break;
 
