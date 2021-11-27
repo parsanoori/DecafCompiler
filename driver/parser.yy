@@ -215,9 +215,13 @@ call:
     |   expr  dot  id openparantheses actuals  closeparantheses    {}
     
 actuals:
-        expr plus comma                    {}
+        actualscontent                    {}
     |   %empty                      {}
     
+actualscontent:
+        expr comma actualscontent {}
+        | expr { }
+
 constant:
         integer                 {}
     |   float              {}
