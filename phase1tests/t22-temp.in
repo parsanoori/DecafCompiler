@@ -1,5 +1,0 @@
-import "temp"
-#define int void
-void main(){
-    Print(int);
-}

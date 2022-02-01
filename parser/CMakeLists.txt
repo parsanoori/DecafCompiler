@@ -1,4 +1,4 @@
-add_library(driver src/driver.cc src/parser.cc src/scanner.cc)
+add_library(parser src/driver.cc src/parser.cc src/scanner.cc)
 
 execute_process(COMMAND bash -c "bison --html --graph -o src/parser.cc parser.yy  && 
     mv src/location.hh include/location.hh &&
@@ -10,4 +10,4 @@ execute_process(COMMAND bash -c "bison --html --graph -o src/parser.cc parser.yy
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-target_include_directories(driver PUBLIC include)
+target_include_directories(parser PUBLIC include)
