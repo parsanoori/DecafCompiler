@@ -10,14 +10,8 @@ add_subdirectory(preprocessor)
 
 add_subdirectory(parser)
 
-#add_subdirectory(parser)
-#
-#add_subdirectory(scanner)
-
-#target_link_libraries(parser PUBLIC driver)
-
-#target_link_libraries(scanner PUBLIC parser)
+add_subdirectory(descriptor)
 
 add_executable(compiler main.cpp)
 
-target_link_libraries(compiler PUBLIC preprocessor parser) 
+target_link_libraries(compiler PUBLIC preprocessor parser descriptor) 
