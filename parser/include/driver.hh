@@ -35,7 +35,6 @@ class driver
 public:
   driver ();
 
-  std::map<std::string, int> variables;
 
   std::istream* i = nullptr;
 
@@ -47,7 +46,6 @@ public:
   std::string file;
   // Whether to generate parser debug traces.
   bool trace_parsing;
-
   // Handling the scanner.
   void scan_begin ();
   void scan_end ();
@@ -56,4 +54,5 @@ public:
   // The token's location used by the scanner.
   yy::location location;
 };
-#endif // ! DRIVER_HH
+
+#endif
