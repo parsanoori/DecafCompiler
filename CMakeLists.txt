@@ -12,6 +12,16 @@ add_subdirectory(parser)
 
 add_subdirectory(descriptor)
 
+add_subdirectory(symboltable)
+
+add_subdirectory(utilities)
+
+add_subdirectory(semanticstack)
+
 add_executable(compiler main.cpp)
 
-target_link_libraries(compiler PUBLIC preprocessor parser descriptor) 
+target_link_libraries(compiler PUBLIC
+        preprocessor parser descriptor
+        utilities symboltable
+        semanticstack
+)

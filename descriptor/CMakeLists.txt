@@ -6,6 +6,9 @@ add_library(descriptor src/descriptor.cpp)
 #    INTERFACE intrincl # descriptor
 #)
 
+target_link_libraries(descriptor utilities)
+
+
 target_include_directories(descriptor
     PRIVATE prvincl # id generator
 )

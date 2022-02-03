@@ -6,15 +6,19 @@
 
 using namespace std;
 
-class descriptor{
+class descriptor {
     string id;
     dtype t;
-    
-    dtype typefromstr(string s);
-    public:
-    descriptor(string type);
-    dtype getType() const;
-    string getID() const;
+
+//    dtype typefromstr(const string &s);
+
+public:
+    explicit descriptor(const string &type);
+
+
+    [[nodiscard]] dtype getType() const;
+
+    [[nodiscard]] string getID() const;
 
 };
 

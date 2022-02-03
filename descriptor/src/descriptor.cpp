@@ -1,25 +1,27 @@
 #include "descriptor.h"
+
+#include <utility>
 #include "dtype.h"
 #include "idgen.h"
 
-dtype descriptor::typefromstr(string s){
-     // handle type
-    if (s == "int")
-        return dtype::INT;
-    else if (s == "double")
-        return dtype::DOUBLE;
-    else if (s == "bool")
-        return dtype::BOOL;
-    else if (s == "string")
-        return dtype::STRING;
-    else if (s == "void")
-        return dtype::VOID;
-    else return dtype::OBJECT;
-}
+//dtype descriptor::typefromstr(const string& s){
+//     // handle type
+//    if (s == "int")
+//        return dtype::INT;
+//    else if (s == "double")
+//        return dtype::DOUBLE;
+//    else if (s == "bool")
+//        return dtype::BOOL;
+//    else if (s == "string")
+//        return dtype::STRING;
+//    else if (s == "void")
+//        return dtype::VOID;
+//    else return dtype::OBJECT;
+//}
 
-descriptor::descriptor(string typestr){
+descriptor::descriptor(const string& typestr){
     //handle type
-    this->t = typefromstr(typestr);
+    this->t = dtypefromstr(typestr);
 
     // handle id
     id = idgen::nextid();
