@@ -5,6 +5,8 @@ symboltable::symboltable() {
 }
 
 symboltable *symboltable::get() {
+    if (!instance)
+        instance = new symboltable();
     return instance;
 }
 

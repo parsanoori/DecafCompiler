@@ -7,3 +7,4 @@ driver-backup
 driver.zip
 tmp.txt
 .idea/
+cmake-build-debug/

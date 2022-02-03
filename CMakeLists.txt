@@ -18,10 +18,12 @@ add_subdirectory(utilities)
 
 add_subdirectory(semanticstack)
 
+add_subdirectory(writer)
+
 add_executable(compiler main.cpp)
 
 target_link_libraries(compiler PUBLIC
         preprocessor parser descriptor
         utilities symboltable
-        semanticstack
+        semanticstack writer
 )
