@@ -8,3 +8,6 @@ driver.zip
 tmp.txt
 .idea/
 cmake-build-debug/
+my_build.sh
+my_run.sh
+input.in

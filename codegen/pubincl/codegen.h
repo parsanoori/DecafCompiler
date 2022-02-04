@@ -42,6 +42,8 @@ public:
 
     void endfunction();
 
+    void printexpr(const pair<string,string> &expr);
+
 };
 
 

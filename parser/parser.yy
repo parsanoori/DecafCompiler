@@ -26,6 +26,7 @@
 # include "driver.hh"
 #include <iostream>
 #include "codegen.h"
+#include "dtype.h"
 #include <vector>
 using namespace std;
 
@@ -49,18 +50,18 @@ codegen &cg = *(codegen::get());
 %token <std::string> plusequal minusequal starequal slashequal not dot
 
 %nterm <std::string> program macro declaration declarations variabledecl type functiondecl
-%nterm <std::string>  classdecl fields field accessmode stmtblock stmt stmtblockcontent statements ifstmt elsestmt whilestmt
-%nterm <std::string> forstmt returnstmt breakstmt nexpr continuestmt printstmt printcontent expr lvalue call actuals
-%nterm <std::string> actualscontent constant
+%nterm <std::string> classdecl fields field accessmode stmtblock stmt stmtblockcontent statements ifstmt elsestmt whilestmt
+%nterm <std::string> forstmt returnstmt breakstmt nexpr continuestmt printstmt printcontent lvalue call actuals
+%nterm <std::string> actualscontent
 
-%nterm <std::pair<std::string,std::string>> variable
+%nterm <std::pair<std::string,std::string>> variable constant expr
 %nterm <std::vector<std::pair<std::string,std::string>>> formals formalsp
 
 
 %%
 %start sp;
 
-sp: program { cg.writestuff(); }
+sp: program { cout << "finished?" << endl; cg.writestuff(); }
 
 program: macro program { }
        | declarations { }
@@ -152,7 +153,7 @@ printstmt:
 
 
 printcontent: printcontent comma expr { cout << "$3 is: " << $3 << endl; }
-            | expr { cg.printstrliteral($1); }
+            | expr { cout<<"here"<<endl; cg.printexpr($1); }
 
 %left assign plusequal slashequal lessthan greaterthan lessthanequal;
 %left greaterthanequal equal slash percent plus minus star not dot ;
@@ -171,7 +172,7 @@ expr:
     |   lvalue                      {}
     |   this                        {}
     |   call                        {}
-    |   openparantheses expr closeparantheses                      {}
+    |   openparantheses expr closeparantheses                      { $$ = $2; }
     |   expr plus expr                 {}
     |   expr minus expr                 {}
     |   expr star expr                 {}
@@ -216,10 +217,10 @@ actualscontent:
         | expr { }
 
 constant:
-        integer                 {}
-    |   float              {}
-    |   boolean                {}
-    |   string              { $$ = $1; }
+        integer                 { $$ = {$1,"int"}; }
+    |   float              { $$ = {$1,"double"}; }
+    |   boolean                { $$ = {$1,"bool"}; }
+    |   string              { $$ = {$1,"string"}; }
     |   nullkw                        {}
 
 

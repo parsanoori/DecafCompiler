@@ -15,7 +15,6 @@ codegen *codegen::get() {
 }
 
 void codegen::printstrliteral(const string &exp) {
-    auto size = exp.length();
     descriptor d("string");
     string id = d.getID();
     w->appendData("    " + id + ": .asciiz " + exp + "\n");
@@ -85,6 +84,12 @@ void codegen::endfunction() {
     st->popscope(); // for stmtblock
     st->popscope(); // for formals
 
+}
+
+void codegen::printexpr(const pair<string, string> &expr) {
+    if(expr.second == "string"){
+        instance->printstrliteral(expr.first);
+    }
 }
 
 
