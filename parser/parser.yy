@@ -61,7 +61,7 @@ codegen &cg = *(codegen::get());
 %%
 %start sp;
 
-sp: program { cout << "finished?" << endl; cg.writestuff(); }
+sp: program { cg.writestuff(); }
 
 program: macro program { }
        | declarations { }
@@ -99,7 +99,7 @@ formalsp: variable comma formalsp { $3.push_back($1); $$ = $3; }
 classdecl: class id openbrace fields closebrace {  }
 
 fields: field fields { }
-      | %empty
+      | %empty { }
 
 field: accessmode variabledecl { }
      | accessmode functiondecl { }
@@ -129,7 +129,7 @@ stmt: expr semicolon { }
 
 %right else;
 ifstmt: if openparantheses expr closeparantheses stmt { }
-      | if openparantheses expr closeparantheses stmt elsestmt{ }
+      | if openparantheses expr closeparantheses stmt elsestmt { }
 
 elsestmt: else stmt { }
 
@@ -152,8 +152,8 @@ printstmt:
 
 
 
-printcontent: printcontent comma expr { cout << "$3 is: "  << endl; }
-            | expr { cout<<"here"<<endl; cg.printexpr($1); }
+printcontent: printcontent comma expr { cg.printexpr($3); }
+            | expr { cg.printexpr($1); }
 
 %left assign plusequal slashequal lessthan greaterthan lessthanequal;
 %left greaterthanequal equal slash percent plus minus star not dot ;
@@ -222,9 +222,6 @@ constant:
     |   boolean                { $$ = {$1,"bool"}; }
     |   string              { $$ = {$1,"string"}; }
     |   nullkw                        {}
-
-
-
 
 %%
 

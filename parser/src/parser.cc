@@ -1089,7 +1089,7 @@ namespace yy {
             {
   case 2: // sp: program
 #line 64 "parser.yy"
-            { cout << "finished?" << endl; cg.writestuff(); }
+            { cg.writestuff(); }
 #line 1094 "src/parser.cc"
     break;
 
@@ -1255,500 +1255,506 @@ namespace yy {
 #line 1256 "src/parser.cc"
     break;
 
+  case 30: // fields: %empty
+#line 102 "parser.yy"
+               { }
+#line 1262 "src/parser.cc"
+    break;
+
   case 31: // field: accessmode variabledecl
 #line 104 "parser.yy"
                                { }
-#line 1262 "src/parser.cc"
+#line 1268 "src/parser.cc"
     break;
 
   case 32: // field: accessmode functiondecl
 #line 105 "parser.yy"
                                { }
-#line 1268 "src/parser.cc"
+#line 1274 "src/parser.cc"
     break;
 
   case 33: // accessmode: private
 #line 107 "parser.yy"
                     { }
-#line 1274 "src/parser.cc"
+#line 1280 "src/parser.cc"
     break;
 
   case 34: // accessmode: public
 #line 108 "parser.yy"
                    { }
-#line 1280 "src/parser.cc"
+#line 1286 "src/parser.cc"
     break;
 
   case 35: // accessmode: %empty
 #line 109 "parser.yy"
                    { }
-#line 1286 "src/parser.cc"
+#line 1292 "src/parser.cc"
     break;
 
   case 36: // stmtblock: openbrace stmtblockcontent closebrace
 #line 111 "parser.yy"
                                                  { }
-#line 1292 "src/parser.cc"
+#line 1298 "src/parser.cc"
     break;
 
   case 37: // stmtblockcontent: variabledecl stmtblockcontent
 #line 113 "parser.yy"
                                                 { }
-#line 1298 "src/parser.cc"
+#line 1304 "src/parser.cc"
     break;
 
   case 38: // stmtblockcontent: statements
 #line 114 "parser.yy"
                              { }
-#line 1304 "src/parser.cc"
+#line 1310 "src/parser.cc"
     break;
 
   case 39: // statements: %empty
 #line 116 "parser.yy"
                    { }
-#line 1310 "src/parser.cc"
+#line 1316 "src/parser.cc"
     break;
 
   case 40: // statements: stmt statements
 #line 117 "parser.yy"
                             { }
-#line 1316 "src/parser.cc"
+#line 1322 "src/parser.cc"
     break;
 
   case 41: // stmt: expr semicolon
 #line 119 "parser.yy"
                      { }
-#line 1322 "src/parser.cc"
+#line 1328 "src/parser.cc"
     break;
 
   case 42: // stmt: semicolon
 #line 120 "parser.yy"
                      { }
-#line 1328 "src/parser.cc"
+#line 1334 "src/parser.cc"
     break;
 
   case 43: // stmt: ifstmt
 #line 121 "parser.yy"
                   { }
-#line 1334 "src/parser.cc"
+#line 1340 "src/parser.cc"
     break;
 
   case 44: // stmt: whilestmt
 #line 122 "parser.yy"
                      { }
-#line 1340 "src/parser.cc"
+#line 1346 "src/parser.cc"
     break;
 
   case 45: // stmt: forstmt
 #line 123 "parser.yy"
                    { }
-#line 1346 "src/parser.cc"
+#line 1352 "src/parser.cc"
     break;
 
   case 46: // stmt: breakstmt
 #line 124 "parser.yy"
                      { }
-#line 1352 "src/parser.cc"
+#line 1358 "src/parser.cc"
     break;
 
   case 47: // stmt: continuestmt
 #line 125 "parser.yy"
                         { }
-#line 1358 "src/parser.cc"
+#line 1364 "src/parser.cc"
     break;
 
   case 48: // stmt: returnstmt
 #line 126 "parser.yy"
                       { }
-#line 1364 "src/parser.cc"
+#line 1370 "src/parser.cc"
     break;
 
   case 49: // stmt: printstmt
 #line 127 "parser.yy"
                      { }
-#line 1370 "src/parser.cc"
+#line 1376 "src/parser.cc"
     break;
 
   case 50: // stmt: stmtblock
 #line 128 "parser.yy"
                      { }
-#line 1376 "src/parser.cc"
+#line 1382 "src/parser.cc"
     break;
 
   case 51: // ifstmt: if openparantheses expr closeparantheses stmt
 #line 131 "parser.yy"
                                                       { }
-#line 1382 "src/parser.cc"
+#line 1388 "src/parser.cc"
     break;
 
   case 52: // ifstmt: if openparantheses expr closeparantheses stmt elsestmt
 #line 132 "parser.yy"
-                                                              { }
-#line 1388 "src/parser.cc"
+                                                               { }
+#line 1394 "src/parser.cc"
     break;
 
   case 53: // elsestmt: else stmt
 #line 134 "parser.yy"
                     { }
-#line 1394 "src/parser.cc"
+#line 1400 "src/parser.cc"
     break;
 
   case 54: // whilestmt: while openparantheses expr closeparantheses stmt
 #line 136 "parser.yy"
                                                             { }
-#line 1400 "src/parser.cc"
+#line 1406 "src/parser.cc"
     break;
 
   case 55: // forstmt: for openparantheses nexpr semicolon expr semicolon nexpr closeparantheses stmt
 #line 138 "parser.yy"
                                                                                         { }
-#line 1406 "src/parser.cc"
+#line 1412 "src/parser.cc"
     break;
 
   case 56: // returnstmt: return nexpr semicolon
 #line 140 "parser.yy"
                                    { }
-#line 1412 "src/parser.cc"
+#line 1418 "src/parser.cc"
     break;
 
   case 57: // breakstmt: break semicolon
 #line 142 "parser.yy"
                            { }
-#line 1418 "src/parser.cc"
+#line 1424 "src/parser.cc"
     break;
 
   case 58: // nexpr: expr
 #line 144 "parser.yy"
             { }
-#line 1424 "src/parser.cc"
+#line 1430 "src/parser.cc"
     break;
 
   case 59: // nexpr: %empty
 #line 145 "parser.yy"
              { }
-#line 1430 "src/parser.cc"
+#line 1436 "src/parser.cc"
     break;
 
   case 60: // continuestmt: continue semicolon
 #line 147 "parser.yy"
                                  { }
-#line 1436 "src/parser.cc"
+#line 1442 "src/parser.cc"
     break;
 
   case 61: // printstmt: print openparantheses printcontent closeparantheses semicolon
 #line 151 "parser.yy"
                                                                        {  }
-#line 1442 "src/parser.cc"
+#line 1448 "src/parser.cc"
     break;
 
   case 62: // printcontent: printcontent comma expr
 #line 155 "parser.yy"
-                                      { cout << "$3 is: "  << endl; }
-#line 1448 "src/parser.cc"
+                                      { cg.printexpr(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
+#line 1454 "src/parser.cc"
     break;
 
   case 63: // printcontent: expr
 #line 156 "parser.yy"
-                   { cout<<"here"<<endl; cg.printexpr(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
-#line 1454 "src/parser.cc"
+                   { cg.printexpr(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
+#line 1460 "src/parser.cc"
     break;
 
   case 64: // expr: lvalue assign expr
 #line 166 "parser.yy"
                                          {}
-#line 1460 "src/parser.cc"
+#line 1466 "src/parser.cc"
     break;
 
   case 65: // expr: lvalue plusequal expr
 #line 167 "parser.yy"
                                           {}
-#line 1466 "src/parser.cc"
+#line 1472 "src/parser.cc"
     break;
 
   case 66: // expr: lvalue minusequal expr
 #line 168 "parser.yy"
                                            {}
-#line 1472 "src/parser.cc"
+#line 1478 "src/parser.cc"
     break;
 
   case 67: // expr: lvalue starequal expr
 #line 169 "parser.yy"
                                           {}
-#line 1478 "src/parser.cc"
+#line 1484 "src/parser.cc"
     break;
 
   case 68: // expr: lvalue slashequal expr
 #line 170 "parser.yy"
                                            {}
-#line 1484 "src/parser.cc"
+#line 1490 "src/parser.cc"
     break;
 
   case 69: // expr: constant
 #line 171 "parser.yy"
                                     { yylhs.value.as < std::pair<std::string,std::string> > () = yystack_[0].value.as < std::pair<std::string,std::string> > (); }
-#line 1490 "src/parser.cc"
+#line 1496 "src/parser.cc"
     break;
 
   case 70: // expr: lvalue
 #line 172 "parser.yy"
                                     {}
-#line 1496 "src/parser.cc"
+#line 1502 "src/parser.cc"
     break;
 
   case 71: // expr: this
 #line 173 "parser.yy"
                                     {}
-#line 1502 "src/parser.cc"
+#line 1508 "src/parser.cc"
     break;
 
   case 72: // expr: call
 #line 174 "parser.yy"
                                     {}
-#line 1508 "src/parser.cc"
+#line 1514 "src/parser.cc"
     break;
 
   case 73: // expr: openparantheses expr closeparantheses
 #line 175 "parser.yy"
                                                                    { yylhs.value.as < std::pair<std::string,std::string> > () = yystack_[1].value.as < std::pair<std::string,std::string> > (); }
-#line 1514 "src/parser.cc"
+#line 1520 "src/parser.cc"
     break;
 
   case 74: // expr: expr plus expr
 #line 176 "parser.yy"
                                        {}
-#line 1520 "src/parser.cc"
+#line 1526 "src/parser.cc"
     break;
 
   case 75: // expr: expr minus expr
 #line 177 "parser.yy"
                                         {}
-#line 1526 "src/parser.cc"
+#line 1532 "src/parser.cc"
     break;
 
   case 76: // expr: expr star expr
 #line 178 "parser.yy"
                                        {}
-#line 1532 "src/parser.cc"
+#line 1538 "src/parser.cc"
     break;
 
   case 77: // expr: expr slash expr
 #line 179 "parser.yy"
                                         {}
-#line 1538 "src/parser.cc"
+#line 1544 "src/parser.cc"
     break;
 
   case 78: // expr: expr percent expr
 #line 180 "parser.yy"
                                           {}
-#line 1544 "src/parser.cc"
+#line 1550 "src/parser.cc"
     break;
 
   case 79: // expr: minus expr
 #line 181 "parser.yy"
                                         {}
-#line 1550 "src/parser.cc"
+#line 1556 "src/parser.cc"
     break;
 
   case 80: // expr: expr lessthan expr
 #line 182 "parser.yy"
                                            {}
-#line 1556 "src/parser.cc"
+#line 1562 "src/parser.cc"
     break;
 
   case 81: // expr: expr lessthanequal expr
 #line 183 "parser.yy"
                                                {}
-#line 1562 "src/parser.cc"
+#line 1568 "src/parser.cc"
     break;
 
   case 82: // expr: expr greaterthan expr
 #line 184 "parser.yy"
                                               {}
-#line 1568 "src/parser.cc"
+#line 1574 "src/parser.cc"
     break;
 
   case 83: // expr: expr greaterthanequal expr
 #line 185 "parser.yy"
                                                   {}
-#line 1574 "src/parser.cc"
+#line 1580 "src/parser.cc"
     break;
 
   case 84: // expr: expr equal expr
 #line 186 "parser.yy"
                                        {}
-#line 1580 "src/parser.cc"
+#line 1586 "src/parser.cc"
     break;
 
   case 85: // expr: expr notequal expr
 #line 187 "parser.yy"
                                           {}
-#line 1586 "src/parser.cc"
+#line 1592 "src/parser.cc"
     break;
 
   case 86: // expr: expr and expr
 #line 188 "parser.yy"
                                      {}
-#line 1592 "src/parser.cc"
+#line 1598 "src/parser.cc"
     break;
 
   case 87: // expr: expr or expr
 #line 189 "parser.yy"
                                     {}
-#line 1598 "src/parser.cc"
+#line 1604 "src/parser.cc"
     break;
 
   case 88: // expr: not expr
 #line 190 "parser.yy"
                                       {}
-#line 1604 "src/parser.cc"
+#line 1610 "src/parser.cc"
     break;
 
   case 89: // expr: readinteger openparantheses closeparantheses
 #line 191 "parser.yy"
                                                                   {}
-#line 1610 "src/parser.cc"
+#line 1616 "src/parser.cc"
     break;
 
   case 90: // expr: readline openparantheses closeparantheses
 #line 192 "parser.yy"
                                                                    {}
-#line 1616 "src/parser.cc"
+#line 1622 "src/parser.cc"
     break;
 
   case 91: // expr: new id
 #line 193 "parser.yy"
                                  {}
-#line 1622 "src/parser.cc"
+#line 1628 "src/parser.cc"
     break;
 
   case 92: // expr: newarray openparantheses expr comma type closeparantheses
 #line 194 "parser.yy"
                                                                       {}
-#line 1628 "src/parser.cc"
+#line 1634 "src/parser.cc"
     break;
 
   case 93: // expr: itod openparantheses expr closeparantheses
 #line 195 "parser.yy"
                                                             {}
-#line 1634 "src/parser.cc"
+#line 1640 "src/parser.cc"
     break;
 
   case 94: // expr: dtoi openparantheses expr closeparantheses
 #line 196 "parser.yy"
                                                             {}
-#line 1640 "src/parser.cc"
+#line 1646 "src/parser.cc"
     break;
 
   case 95: // expr: itob openparantheses expr closeparantheses
 #line 197 "parser.yy"
                                                             {}
-#line 1646 "src/parser.cc"
+#line 1652 "src/parser.cc"
     break;
 
   case 96: // expr: btoi openparantheses expr closeparantheses
 #line 198 "parser.yy"
                                                             {}
-#line 1652 "src/parser.cc"
+#line 1658 "src/parser.cc"
     break;
 
   case 97: // expr: line
 #line 199 "parser.yy"
                                 {}
-#line 1658 "src/parser.cc"
+#line 1664 "src/parser.cc"
     break;
 
   case 98: // expr: func
 #line 200 "parser.yy"
                                 {}
-#line 1664 "src/parser.cc"
+#line 1670 "src/parser.cc"
     break;
 
   case 99: // lvalue: id
 #line 203 "parser.yy"
                                  {}
-#line 1670 "src/parser.cc"
+#line 1676 "src/parser.cc"
     break;
 
   case 100: // lvalue: expr dot id
 #line 204 "parser.yy"
                                      {}
-#line 1676 "src/parser.cc"
+#line 1682 "src/parser.cc"
     break;
 
   case 101: // lvalue: expr openbracket expr closebracket
 #line 205 "parser.yy"
                                                          {}
-#line 1682 "src/parser.cc"
+#line 1688 "src/parser.cc"
     break;
 
   case 102: // call: id openparantheses actuals closeparantheses
 #line 208 "parser.yy"
                                                                {}
-#line 1688 "src/parser.cc"
+#line 1694 "src/parser.cc"
     break;
 
   case 103: // call: expr dot id openparantheses actuals closeparantheses
 #line 209 "parser.yy"
                                                                    {}
-#line 1694 "src/parser.cc"
+#line 1700 "src/parser.cc"
     break;
 
   case 104: // actuals: actualscontent
 #line 212 "parser.yy"
                                           {}
-#line 1700 "src/parser.cc"
+#line 1706 "src/parser.cc"
     break;
 
   case 105: // actuals: %empty
 #line 213 "parser.yy"
                                     {}
-#line 1706 "src/parser.cc"
+#line 1712 "src/parser.cc"
     break;
 
   case 106: // actualscontent: expr comma actualscontent
 #line 216 "parser.yy"
                                   {}
-#line 1712 "src/parser.cc"
+#line 1718 "src/parser.cc"
     break;
 
   case 107: // actualscontent: expr
 #line 217 "parser.yy"
                { }
-#line 1718 "src/parser.cc"
+#line 1724 "src/parser.cc"
     break;
 
   case 108: // constant: integer
 #line 220 "parser.yy"
                                 { yylhs.value.as < std::pair<std::string,std::string> > () = {yystack_[0].value.as < std::string > (),"int"}; }
-#line 1724 "src/parser.cc"
+#line 1730 "src/parser.cc"
     break;
 
   case 109: // constant: float
 #line 221 "parser.yy"
                            { yylhs.value.as < std::pair<std::string,std::string> > () = {yystack_[0].value.as < std::string > (),"double"}; }
-#line 1730 "src/parser.cc"
+#line 1736 "src/parser.cc"
     break;
 
   case 110: // constant: boolean
 #line 222 "parser.yy"
                                { yylhs.value.as < std::pair<std::string,std::string> > () = {yystack_[0].value.as < std::string > (),"bool"}; }
-#line 1736 "src/parser.cc"
+#line 1742 "src/parser.cc"
     break;
 
   case 111: // constant: string
 #line 223 "parser.yy"
                             { yylhs.value.as < std::pair<std::string,std::string> > () = {yystack_[0].value.as < std::string > (),"string"}; }
-#line 1742 "src/parser.cc"
+#line 1748 "src/parser.cc"
     break;
 
   case 112: // constant: nullkw
 #line 224 "parser.yy"
                                       {}
-#line 1748 "src/parser.cc"
+#line 1754 "src/parser.cc"
     break;
 
 
-#line 1752 "src/parser.cc"
+#line 1758 "src/parser.cc"
 
             default:
               break;
@@ -2555,9 +2561,9 @@ namespace yy {
 
 
 } // yy
-#line 2559 "src/parser.cc"
+#line 2565 "src/parser.cc"
 
-#line 229 "parser.yy"
+#line 226 "parser.yy"
 
 
 void
