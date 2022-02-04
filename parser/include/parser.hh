@@ -410,6 +410,8 @@ namespace yy {
     union union_type
     {
       // variable
+      // expr
+      // constant
       char dummy1[sizeof (std::pair<std::string,std::string>)];
 
       // id
@@ -502,12 +504,10 @@ namespace yy {
       // continuestmt
       // printstmt
       // printcontent
-      // expr
       // lvalue
       // call
       // actuals
       // actualscontent
-      // constant
       char dummy2[sizeof (std::string)];
 
       // formals
@@ -791,6 +791,8 @@ namespace yy {
         switch (this->kind ())
     {
       case symbol_kind::S_variable: // variable
+      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_constant: // constant
         value.move< std::pair<std::string,std::string> > (std::move (that.value));
         break;
 
@@ -884,12 +886,10 @@ namespace yy {
       case symbol_kind::S_continuestmt: // continuestmt
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
-      case symbol_kind::S_expr: // expr
       case symbol_kind::S_lvalue: // lvalue
       case symbol_kind::S_call: // call
       case symbol_kind::S_actuals: // actuals
       case symbol_kind::S_actualscontent: // actualscontent
-      case symbol_kind::S_constant: // constant
         value.move< std::string > (std::move (that.value));
         break;
 
@@ -988,6 +988,8 @@ namespace yy {
 switch (yykind)
     {
       case symbol_kind::S_variable: // variable
+      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_constant: // constant
         value.template destroy< std::pair<std::string,std::string> > ();
         break;
 
@@ -1081,12 +1083,10 @@ switch (yykind)
       case symbol_kind::S_continuestmt: // continuestmt
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
-      case symbol_kind::S_expr: // expr
       case symbol_kind::S_lvalue: // lvalue
       case symbol_kind::S_call: // call
       case symbol_kind::S_actuals: // actuals
       case symbol_kind::S_actualscontent: // actualscontent
-      case symbol_kind::S_constant: // constant
         value.template destroy< std::string > ();
         break;
 
@@ -2648,6 +2648,8 @@ switch (yykind)
     switch (this->kind ())
     {
       case symbol_kind::S_variable: // variable
+      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_constant: // constant
         value.copy< std::pair<std::string,std::string> > (YY_MOVE (that.value));
         break;
 
@@ -2741,12 +2743,10 @@ switch (yykind)
       case symbol_kind::S_continuestmt: // continuestmt
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
-      case symbol_kind::S_expr: // expr
       case symbol_kind::S_lvalue: // lvalue
       case symbol_kind::S_call: // call
       case symbol_kind::S_actuals: // actuals
       case symbol_kind::S_actualscontent: // actualscontent
-      case symbol_kind::S_constant: // constant
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
@@ -2787,6 +2787,8 @@ switch (yykind)
     switch (this->kind ())
     {
       case symbol_kind::S_variable: // variable
+      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_constant: // constant
         value.move< std::pair<std::string,std::string> > (YY_MOVE (s.value));
         break;
 
@@ -2880,12 +2882,10 @@ switch (yykind)
       case symbol_kind::S_continuestmt: // continuestmt
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
-      case symbol_kind::S_expr: // expr
       case symbol_kind::S_lvalue: // lvalue
       case symbol_kind::S_call: // call
       case symbol_kind::S_actuals: // actuals
       case symbol_kind::S_actualscontent: // actualscontent
-      case symbol_kind::S_constant: // constant
         value.move< std::string > (YY_MOVE (s.value));
         break;
 

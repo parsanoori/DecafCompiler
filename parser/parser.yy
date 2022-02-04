@@ -152,7 +152,7 @@ printstmt:
 
 
 
-printcontent: printcontent comma expr { cout << "$3 is: " << $3 << endl; }
+printcontent: printcontent comma expr { cout << "$3 is: "  << endl; }
             | expr { cout<<"here"<<endl; cg.printexpr($1); }
 
 %left assign plusequal slashequal lessthan greaterthan lessthanequal;
