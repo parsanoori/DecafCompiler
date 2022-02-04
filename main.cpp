@@ -24,7 +24,6 @@ int main(int argc, char* argv[]){
         return 1;
     }
 
-
     ofstream output_file(argv[4]);
     ifstream input_file(argv[2]);
 
