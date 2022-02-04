@@ -925,7 +925,7 @@
       <nonterminal symbol-number="97" name="continuestmt" type="std::string" usefulness="useful"/>
       <nonterminal symbol-number="98" name="printstmt" type="std::string" usefulness="useful"/>
       <nonterminal symbol-number="99" name="printcontent" type="std::string" usefulness="useful"/>
-      <nonterminal symbol-number="100" name="expr" type="std::string" usefulness="useful"/>
+      <nonterminal symbol-number="100" name="expr" type="std::pair&lt;std::string,std::string&gt;" usefulness="useful"/>
       <nonterminal symbol-number="101" name="lvalue" type="std::string" usefulness="useful"/>
       <nonterminal symbol-number="102" name="call" type="std::string" usefulness="useful"/>
       <nonterminal symbol-number="103" name="actuals" type="std::string" usefulness="useful"/>

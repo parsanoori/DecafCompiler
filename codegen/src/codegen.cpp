@@ -15,7 +15,6 @@ codegen *codegen::get() {
 }
 
 void codegen::printstrliteral(const string &exp) {
-    auto size = exp.length();
     descriptor d("string");
     string id = d.getID();
     w->appendData("    " + id + ": .asciiz " + exp + "\n");

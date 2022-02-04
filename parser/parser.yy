@@ -51,17 +51,17 @@ codegen &cg = *(codegen::get());
 
 %nterm <std::string> program macro declaration declarations variabledecl type functiondecl
 %nterm <std::string> classdecl fields field accessmode stmtblock stmt stmtblockcontent statements ifstmt elsestmt whilestmt
-%nterm <std::string> forstmt returnstmt breakstmt nexpr continuestmt printstmt printcontent expr lvalue call actuals
+%nterm <std::string> forstmt returnstmt breakstmt nexpr continuestmt printstmt printcontent lvalue call actuals
 %nterm <std::string> actualscontent
 
-%nterm <std::pair<std::string,std::string>> variable constant
+%nterm <std::pair<std::string,std::string>> variable constant expr
 %nterm <std::vector<std::pair<std::string,std::string>>> formals formalsp
 
 
 %%
 %start sp;
 
-sp: program { cg.writestuff(); }
+sp: program { cout << "finished?" << endl; cg.writestuff(); }
 
 program: macro program { }
        | declarations { }
@@ -172,7 +172,7 @@ expr:
     |   lvalue                      {}
     |   this                        {}
     |   call                        {}
-    |   openparantheses expr closeparantheses                      {}
+    |   openparantheses expr closeparantheses                      { $$ = $2; }
     |   expr plus expr                 {}
     |   expr minus expr                 {}
     |   expr star expr                 {}
@@ -218,8 +218,8 @@ actualscontent:
 
 constant:
         integer                 { $$ = {$1,"int"}; }
-    |   float              { $$ = $1; }
-    |   boolean                { $$ = $1; }
+    |   float              { $$ = {$1,"double"}; }
+    |   boolean                { $$ = {$1,"bool"}; }
     |   string              { $$ = {$1,"string"}; }
     |   nullkw                        {}
 
