@@ -23,9 +23,9 @@ class codegen {
 
     static codegen *instance;
 
+public:
     void printnewline();
 
-public:
     static codegen *get();
 
     void operator=(codegen &) = delete;
@@ -34,7 +34,7 @@ public:
 
     void writestuff();
 
-    void printstrliteral(const string &exp);
+    void printconstliteral(const string &exp);
 
     void variable(const string &type, const string &id);
 
@@ -43,6 +43,10 @@ public:
     void endfunction();
 
     void printexpr(const pair<string,string> &expr);
+
+    pair<string,string> addconstant(const pair<string,string> &constant);
+
+    pair<string,string> assignexpr(const string &lefside,const pair<string,string> &expr);
 
 };
 

@@ -14,16 +14,12 @@ codegen *codegen::get() {
     return instance;
 }
 
-void codegen::printstrliteral(const string &exp) {
-    descriptor d("string");
-    string id = d.getID();
-    w->appendData("    " + id + ": .asciiz " + exp + "\n");
-    w->appendText("    # print " + exp.substr(0, 5) + "...\n"
+void codegen::printconstliteral(const string &id) {
+    w->appendText("    # print " + id + "...\n"
                   + "    li $v0, 4\n"
                   + "    la $a0, " + id + "\n"
                   + "    syscall\n\n"
     );
-    printnewline();
 }
 
 codegen::codegen() {
@@ -87,9 +83,30 @@ void codegen::endfunction() {
 }
 
 void codegen::printexpr(const pair<string, string> &expr) {
-    if(expr.second == "string"){
-        instance->printstrliteral(expr.first);
+    instance->printconstliteral(expr.first);
+}
+
+pair<string,string> codegen::addconstant(const pair<string,string> &constant) {
+    string id = idgen::nextid();
+    string value;
+    if(constant.second == "string"){
+        value = constant.first;
     }
+    else{
+        value = "\"" + constant.first + "\"";
+    }
+    w->appendData("    " + id + ": .asciiz " + value + "\n");
+    pair<string,string> temp(id,constant.second);
+    return temp;
+}
+
+pair<string, string> codegen::assignexpr(const string &lefside,const pair<string,string> &expr) {
+    auto d = st->getentry(lefside);
+    w->appendText(
+            "    li $t0, " + expr.first +"\n"
+            + ""
+            );
+    return pair<string, string>();
 }
 
 

@@ -27,7 +27,7 @@ public:
 
     descriptor addentry(const string& name,const string& type);
 
-    descriptor getentry(const string& name, const string& type);
+    descriptor getentry(const string& name/*, const string& type*/);
 
     symboltable(symboltable&) = delete;
 

@@ -1089,7 +1089,7 @@ namespace yy {
             {
   case 2: // sp: program
 #line 64 "parser.yy"
-            { cout << "finished?" << endl; cg.writestuff(); }
+            { cg.writestuff(); }
 #line 1094 "src/parser.cc"
     break;
 
@@ -1443,13 +1443,13 @@ namespace yy {
 
   case 62: // printcontent: printcontent comma expr
 #line 155 "parser.yy"
-                                      { cout << "$3 is: "  << endl; }
+                                      { cg.printexpr(yystack_[0].value.as < std::pair<std::string,std::string> > ()); cg.printnewline(); }
 #line 1448 "src/parser.cc"
     break;
 
   case 63: // printcontent: expr
 #line 156 "parser.yy"
-                   { cout<<"here"<<endl; cg.printexpr(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
+                   { cg.printexpr(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
 #line 1454 "src/parser.cc"
     break;
 
@@ -1485,7 +1485,7 @@ namespace yy {
 
   case 69: // expr: constant
 #line 171 "parser.yy"
-                                    { yylhs.value.as < std::pair<std::string,std::string> > () = yystack_[0].value.as < std::pair<std::string,std::string> > (); }
+                                    { yylhs.value.as < std::pair<std::string,std::string> > () = cg.addconstant(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
 #line 1490 "src/parser.cc"
     break;
 
