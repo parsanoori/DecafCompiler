@@ -163,7 +163,7 @@ printcontent: printcontent comma expr { cg.printexpr($3); cg.printnewline(); }
 %right openparantheses openbracket openbrace;
 
 expr:
-        lvalue assign expr               {}
+        lvalue assign expr               { $$ = cg.assignexpr($1,$3); }
     |   lvalue plusequal expr             {}
     |   lvalue minusequal expr             {}
     |   lvalue starequal expr             {}
@@ -200,7 +200,7 @@ expr:
     |   func                    {}
     
 lvalue:
-        id                       {}
+        id                       { $$ = $1; }
     |   expr  dot  id                {}
     |   expr openbracket expr closebracket               {}
     

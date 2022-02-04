@@ -100,6 +100,15 @@ pair<string,string> codegen::addconstant(const pair<string,string> &constant) {
     return temp;
 }
 
+pair<string, string> codegen::assignexpr(const string &lefside,const pair<string,string> &expr) {
+    auto d = st->getentry(lefside);
+    w->appendText(
+            "    li $t0, " + expr.first +"\n"
+            + ""
+            );
+    return pair<string, string>();
+}
+
 
 
 

@@ -46,6 +46,8 @@ public:
 
     pair<string,string> addconstant(const pair<string,string> &constant);
 
+    pair<string,string> assignexpr(const string &lefside,const pair<string,string> &expr);
+
 };
 
 
