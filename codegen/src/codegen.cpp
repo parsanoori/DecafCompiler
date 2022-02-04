@@ -67,7 +67,7 @@ void codegen::addfunction(const string &name, const std::vector<std::pair<std::s
 
 void codegen::endfunction() {
     string scopename = st->currentscopename();
-    cout << scopename << endl;
+
     if (scopename == "main_stmtblock")
         w->appendText(string("    # exit\n")
                       + "    li $v0, 10\n"
@@ -85,19 +85,19 @@ void codegen::endfunction() {
 
 void codegen::printexpr(const pair<string, string> &expr) {
     //instance->printconstliteral(expr.first);
-    if (expr.second == "string") {
+    if (expr.second == "string")
         w->appendText("    # print " + expr.first + "...\n"
                       + "    li $v0, 4\n"
                       + "    la $a0, " + expr.first + "\n"
                       + "    syscall\n\n"
         );
-    } else if (expr.second == "int") {
+    else if (expr.second == "int")
         w->appendText("    # print " + expr.first + "...\n"
                       + "    li $v0, 1\n"
                       + "    lw $a0, " + expr.first + "\n"
                       + "    syscall\n\n"
         );
-    }
+
 }
 
 pair<string, string> codegen::addconstant(const pair<string, string> &constant) {
@@ -107,19 +107,43 @@ pair<string, string> codegen::addconstant(const pair<string, string> &constant) 
     else if (constant.second == "double")
         w->appendData("    " + id + ": .word " +
                       to_string(floatToInt(stof(constant.first))) + "\n");
-    else
+    else if (constant.second == "bool") {
+        if (constant.first == "true")
+            w->appendText("    " + id + ": . word 1\n");
+        else if (constant.first == "false")
+            w->appendText("    " + id + ": . word 0\n");
+        else
+            throw runtime_error("something went wrogn"); // shouldn't be reached
+    } else if (constant.first == "int")
         w->appendData("    " + id + ": .word " + constant.first + "\n");
+    else
+        throw runtime_error("some thing went wrong"); // shouldn't be reached
 
     return {id, constant.second};
 }
 
 pair<string, string> codegen::assignexpr(const string &lefside, const pair<string, string> &expr) {
     auto d = st->getentry(lefside);
-    w->appendText(
-            "    lw $t0, " + expr.first + "\n"
-            + "    sw $t0, " + d.getID() + "\n"
-    );
-    return {d.getID(), expr.second};
+    w->appendText("    #assigning " + expr.first + " to " + d.getID() + "\n");
+    if (expr.second == "int")
+        w->appendText(
+                "    lw $t0, " + expr.first + "\n"
+                + "    sw $t0, " + d.getID() + "\n"
+        );
+    else if (expr.second == "double")
+        w->appendText("    lw $a," + expr.first + "\n"
+                      + "    mtc1 $a0, $f0\n"
+                      + "    la $a0, " + d.getID() + "\n"
+                      + "    swc1 $f0, 0($a0)\n"
+        );
+    else if (expr.second == "string")
+        w->appendText("    la $a0, " + expr.first + "\n"
+                      + "    la $a1, " + d.getID() + "\n"
+                      + "    sw $a0, 0($a1)\n"
+        );
+    else if (expr.second == "")
+
+        return {d.getID(), expr.second};
 }
 
 pair<string, string> codegen::findid(const string &id) {
@@ -148,7 +172,7 @@ pair<string, string> codegen::findid(const string &id) {
             type = "dummy";
             break;
     }
-    return pair<string, string>(d.getID(), type);
+    return {d.getID(), type};
 }
 
 
