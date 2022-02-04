@@ -99,7 +99,7 @@ formalsp: variable comma formalsp { $3.push_back($1); $$ = $3; }
 classdecl: class id openbrace fields closebrace {  }
 
 fields: field fields { }
-      | %empty
+      | %empty { }
 
 field: accessmode variabledecl { }
      | accessmode functiondecl { }
@@ -148,11 +148,11 @@ continuestmt: continue semicolon { }
 
 
 printstmt:
-        print openparantheses printcontent  closeparantheses semicolon {  }
+        print openparantheses printcontent  closeparantheses semicolon { cg.printnewline(); }
 
 
 
-printcontent: printcontent comma expr { cg.printexpr($3); cg.printnewline(); }
+printcontent: printcontent comma expr { cg.printexpr($3); }
             | expr { cg.printexpr($1); }
 
 %left assign plusequal slashequal lessthan greaterthan lessthanequal;
