@@ -124,14 +124,11 @@ pair<string, string> codegen::addconstant(const pair<string, string> &constant) 
 
 pair<string, string> codegen::assignexpr(const string &lefside, const pair<string, string> &expr) {
     auto d = st->getentry(lefside);
-    if (d.getType() != dtypefromstr(expr.second))
-        throw runtime_error("semantic error: invalid assignment");
     w->appendText("    #assigning " + expr.first + " to " + d.getID() + "\n");
-    if (expr.second == "int" || expr.second == "bool")
+    if (expr.second == "int")
         w->appendText(
                 "    lw $t0, " + expr.first + "\n"
-                + "    la $t1, " + d.getID() + "\n"
-                + "    sw $t0, 0($t1) \n"
+                + "    sw $t0, " + d.getID() + "\n"
         );
     else if (expr.second == "double")
         w->appendText("    lw $a," + expr.first + "\n"
@@ -144,10 +141,9 @@ pair<string, string> codegen::assignexpr(const string &lefside, const pair<strin
                       + "    la $a1, " + d.getID() + "\n"
                       + "    sw $a0, 0($a1)\n"
         );
-    else
-        throw runtime_error("something went wrong internally");
+    else if (expr.second == "")
 
-    return {d.getID(), expr.second};
+        return {d.getID(), expr.second};
 }
 
 pair<string, string> codegen::findid(const string &id) {
@@ -177,34 +173,6 @@ pair<string, string> codegen::findid(const string &id) {
             break;
     }
     return {d.getID(), type};
-}
-
-pair<string, string>
-codegen::assignexproperation(const string &lefside, const pair<string, string> &expr, const string &operation) {
-    auto d = st->getentry(lefside);
-    w->appendText(
-            "    # doing the " + operation +"\n"
-            + "    lw $t0, " + expr.first +"\n"
-            + "    lw $t1, " + d.getID() + "\n"
-    );
-    switch (operation[0]){
-        case '+':
-            w->appendText("    add $t0, $t0, $t1\n");
-            break;
-        case '-':
-            w->appendText("    sub $t0, $t1, $t0\n");
-            break;
-        case '*':
-            w->appendText("    mult $t0, $t1\n");
-            w->appendText("    mflo $t0\n");
-            break;
-        case '/':
-            w->appendText("    div $t1, $t0\n");
-            w->appendText("    mflo $t0\n");
-            break;
-    }
-    w->appendText("    sw $t0, " + d.getID() + "\n\n");
-    return {d.getID(),expr.second};
 }
 
 

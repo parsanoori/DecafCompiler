@@ -1467,25 +1467,25 @@ namespace yy {
 
   case 65: // expr: lvalue plusequal expr
 #line 166 "parser.yy"
-                                          {}
+                                          { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexproperation(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > (),yystack_[1].value.as < std::string > ()); }
 #line 1472 "src/parser.cc"
     break;
 
   case 66: // expr: lvalue minusequal expr
 #line 167 "parser.yy"
-                                           {}
+                                           { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexproperation(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > (),yystack_[1].value.as < std::string > ()); }
 #line 1478 "src/parser.cc"
     break;
 
   case 67: // expr: lvalue starequal expr
 #line 168 "parser.yy"
-                                          {}
+                                          { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexproperation(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > (),yystack_[1].value.as < std::string > ()); }
 #line 1484 "src/parser.cc"
     break;
 
   case 68: // expr: lvalue slashequal expr
 #line 169 "parser.yy"
-                                           {}
+                                           { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexproperation(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > (),yystack_[1].value.as < std::string > ()); }
 #line 1490 "src/parser.cc"
     break;
 

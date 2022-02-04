@@ -4,7 +4,6 @@
 
 #include "codegen.h"
 #include "idgen.h"
-#include "floatutils.h"
 
 codegen *codegen::instance;
 
@@ -51,13 +50,13 @@ void codegen::variable(const string &type, const string &id) {
 void codegen::addfunction(const string &name, const std::vector<std::pair<std::string, std::string>> &formals) {
     vector<dtype> types;
     types.reserve(formals.size());
-    for (const auto &p: formals)
+    for (const auto& p: formals)
         types.push_back(dtypefromstr(p.first));
     ft->add_function(name, types);
 
     st->pushscope(name);
 
-    for (const auto &p: formals)
+    for (const auto& p: formals)
         st->addentry(p.second, p.first);
 
     st->pushscope(name + "_stmtblock");
@@ -67,7 +66,7 @@ void codegen::addfunction(const string &name, const std::vector<std::pair<std::s
 
 void codegen::endfunction() {
     string scopename = st->currentscopename();
-
+    cout << scopename << endl;
     if (scopename == "main_stmtblock")
         w->appendText(string("    # exit\n")
                       + "    li $v0, 10\n"
@@ -85,75 +84,49 @@ void codegen::endfunction() {
 
 void codegen::printexpr(const pair<string, string> &expr) {
     //instance->printconstliteral(expr.first);
-    if (expr.second == "string")
+    if(expr.second == "string") {
         w->appendText("    # print " + expr.first + "...\n"
                       + "    li $v0, 4\n"
                       + "    la $a0, " + expr.first + "\n"
                       + "    syscall\n\n"
         );
-    else if (expr.second == "int")
+    }
+    else if(expr.second == "int"){
         w->appendText("    # print " + expr.first + "...\n"
                       + "    li $v0, 1\n"
                       + "    lw $a0, " + expr.first + "\n"
                       + "    syscall\n\n"
         );
-
+    }
 }
 
-pair<string, string> codegen::addconstant(const pair<string, string> &constant) {
+pair<string,string> codegen::addconstant(const pair<string,string> &constant) {
     string id = idgen::nextid();
-    if (constant.second == "string")
+    if(constant.second == "string"){
         w->appendData("    " + id + ": .asciiz " + constant.first + "\n");
-    else if (constant.second == "double")
-        w->appendData("    " + id + ": .word " +
-                      to_string(floatToInt(stof(constant.first))) + "\n");
-    else if (constant.second == "bool") {
-        if (constant.first == "true")
-            w->appendText("    " + id + ": . word 1\n");
-        else if (constant.first == "false")
-            w->appendText("    " + id + ": . word 0\n");
-        else
-            throw runtime_error("something went wrogn"); // shouldn't be reached
-    } else if (constant.first == "int")
+    }
+    else if(constant.second == "int"){
         w->appendData("    " + id + ": .word " + constant.first + "\n");
-    else
-        throw runtime_error("some thing went wrong"); // shouldn't be reached
-
-    return {id, constant.second};
+    }
+    else{
+        w->appendData("    " + id + ": .asciiz \"" + constant.first + "\"\n");
+    }
+    return {id,constant.second};
 }
 
-pair<string, string> codegen::assignexpr(const string &lefside, const pair<string, string> &expr) {
+pair<string, string> codegen::assignexpr(const string &lefside,const pair<string,string> &expr) {
     auto d = st->getentry(lefside);
-    if (d.getType() != dtypefromstr(expr.second))
-        throw runtime_error("semantic error: invalid assignment");
-    w->appendText("    #assigning " + expr.first + " to " + d.getID() + "\n");
-    if (expr.second == "int" || expr.second == "bool")
-        w->appendText(
-                "    lw $t0, " + expr.first + "\n"
-                + "    la $t1, " + d.getID() + "\n"
-                + "    sw $t0, 0($t1) \n"
-        );
-    else if (expr.second == "double")
-        w->appendText("    lw $a," + expr.first + "\n"
-                      + "    mtc1 $a0, $f0\n"
-                      + "    la $a0, " + d.getID() + "\n"
-                      + "    swc1 $f0, 0($a0)\n"
-        );
-    else if (expr.second == "string")
-        w->appendText("    la $a0, " + expr.first + "\n"
-                      + "    la $a1, " + d.getID() + "\n"
-                      + "    sw $a0, 0($a1)\n"
-        );
-    else
-        throw runtime_error("something went wrong internally");
-
-    return {d.getID(), expr.second};
+    w->appendText(
+            "    lw $t0, " + expr.first +"\n"
+            + "    sw $t0, " + d.getID() + "\n"
+            );
+    return {d.getID(),expr.second};
 }
 
 pair<string, string> codegen::findid(const string &id) {
     auto d = st->getentry(id);
     string type;
-    switch (d.getType()) {
+    switch(d.getType()){
         case dtype::INT:
             type = "int";
             break;
@@ -176,35 +149,7 @@ pair<string, string> codegen::findid(const string &id) {
             type = "dummy";
             break;
     }
-    return {d.getID(), type};
-}
-
-pair<string, string>
-codegen::assignexproperation(const string &lefside, const pair<string, string> &expr, const string &operation) {
-    auto d = st->getentry(lefside);
-    w->appendText(
-            "    # doing the " + operation +"\n"
-            + "    lw $t0, " + expr.first +"\n"
-            + "    lw $t1, " + d.getID() + "\n"
-    );
-    switch (operation[0]){
-        case '+':
-            w->appendText("    add $t0, $t0, $t1\n");
-            break;
-        case '-':
-            w->appendText("    sub $t0, $t1, $t0\n");
-            break;
-        case '*':
-            w->appendText("    mult $t0, $t1\n");
-            w->appendText("    mflo $t0\n");
-            break;
-        case '/':
-            w->appendText("    div $t1, $t0\n");
-            w->appendText("    mflo $t0\n");
-            break;
-    }
-    w->appendText("    sw $t0, " + d.getID() + "\n\n");
-    return {d.getID(),expr.second};
+    return pair<string, string>(d.getID(),type);
 }
 
 

@@ -163,10 +163,10 @@ printcontent: printcontent comma expr { cg.printexpr($3); }
 
 expr:
         lvalue assign expr               { $$ = cg.assignexpr($1,$3); }
-    |   lvalue plusequal expr             {}
-    |   lvalue minusequal expr             {}
-    |   lvalue starequal expr             {}
-    |   lvalue slashequal expr             {}
+    |   lvalue plusequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
+    |   lvalue minusequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
+    |   lvalue starequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
+    |   lvalue slashequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
     |   constant                    { $$ = cg.addconstant($1); }
     |   lvalue                      { $$ = cg.findid($1); }
     |   this                        {}
