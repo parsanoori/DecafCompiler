@@ -124,6 +124,14 @@ pair<string, string> codegen::addconstant(const pair<string, string> &constant) 
 
 pair<string, string> codegen::assignexpr(const string &lefside, const pair<string, string> &expr) {
     auto d = st->getentry(lefside);
+<<<<<<< HEAD
+    w->appendText("    # doing the assignment\n");
+    w->appendText(
+            "    lw $t0, " + expr.first +"\n"
+            + "    sw $t0, " + d.getID() + "\n\n"
+            );
+    return {d.getID(),expr.second};
+=======
     w->appendText("    #assigning " + expr.first + " to " + d.getID() + "\n");
     if (expr.second == "int")
         w->appendText(
@@ -144,6 +152,7 @@ pair<string, string> codegen::assignexpr(const string &lefside, const pair<strin
     else if (expr.second == "")
 
         return {d.getID(), expr.second};
+>>>>>>> 8f3af6e141c73c835432535b76d33832ecd898a2
 }
 
 pair<string, string> codegen::findid(const string &id) {
