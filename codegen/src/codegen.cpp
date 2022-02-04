@@ -105,7 +105,8 @@ pair<string, string> codegen::addconstant(const pair<string, string> &constant) 
     if (constant.second == "string")
         w->appendData("    " + id + ": .asciiz " + constant.first + "\n");
     else if (constant.second == "double")
-        w->appendData("    " + id + ": .word" + floatToInt(stof(constant.first)) + "\n");
+        w->appendData("    " + id + ": .word " +
+                      to_string(floatToInt(stof(constant.first))) + "\n");
     else
         w->appendData("    " + id + ": .word " + constant.first + "\n");
 
