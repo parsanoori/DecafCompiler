@@ -87,6 +87,12 @@ void codegen::endfunction() {
 
 }
 
+void codegen::printexpr(const pair<string, string> &expr) {
+    if(expr.second == "string"){
+        instance->printstrliteral(expr.first);
+    }
+}
+
 
 
 
