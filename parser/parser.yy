@@ -151,7 +151,6 @@ printstmt:
         print openparantheses printcontent  closeparantheses semicolon { cg.printnewline(); }
 
 
-
 printcontent: printcontent comma expr { cg.printexpr($3); }
             | expr { cg.printexpr($1); }
 
@@ -163,13 +162,13 @@ printcontent: printcontent comma expr { cg.printexpr($3); }
 %right openparantheses openbracket openbrace;
 
 expr:
-        lvalue assign expr               {}
+        lvalue assign expr               { $$ = cg.assignexpr($1,$3); }
     |   lvalue plusequal expr             {}
     |   lvalue minusequal expr             {}
     |   lvalue starequal expr             {}
     |   lvalue slashequal expr             {}
-    |   constant                    { $$ = $1; }
-    |   lvalue                      {}
+    |   constant                    { $$ = cg.addconstant($1); }
+    |   lvalue                      { $$ = cg.findid($1); }
     |   this                        {}
     |   call                        {}
     |   openparantheses expr closeparantheses                      { $$ = $2; }
@@ -200,7 +199,7 @@ expr:
     |   func                    {}
     
 lvalue:
-        id                       {}
+        id                       { $$ = $1; }
     |   expr  dot  id                {}
     |   expr openbracket expr closebracket               {}
     

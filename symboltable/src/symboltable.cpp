@@ -27,10 +27,10 @@ descriptor symboltable::addentry(const string &name, const string &type) {
     return d;
 }
 
-descriptor symboltable::getentry(const string &name, const string &type) {
+descriptor symboltable::getentry(const string &name/*, const string &type*/) {
     for (auto ri = st.rbegin(); ri != st.rend(); ++ri)
         for (const auto &p: ri->table)
-            if (p.first == name && p.second.getType() == dtypefromstr(type))
+            if (p.first == name /*&& p.second.getType() == dtypefromstr(type)*/)
                 return p.second;
     throw runtime_error("symbol not found");
 }
