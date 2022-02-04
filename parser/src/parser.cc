@@ -1443,7 +1443,7 @@ namespace yy {
 
   case 61: // printstmt: print openparantheses printcontent closeparantheses semicolon
 #line 151 "parser.yy"
-                                                                       {  }
+                                                                       { cg.printnewline(); }
 #line 1448 "src/parser.cc"
     break;
 

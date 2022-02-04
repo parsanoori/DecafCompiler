@@ -23,9 +23,10 @@ class codegen {
 
     static codegen *instance;
 
+public:
+
     void printnewline();
 
-public:
     static codegen *get();
 
     void operator=(codegen &) = delete;

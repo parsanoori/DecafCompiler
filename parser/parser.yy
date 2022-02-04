@@ -148,7 +148,7 @@ continuestmt: continue semicolon { }
 
 
 printstmt:
-        print openparantheses printcontent  closeparantheses semicolon {  }
+        print openparantheses printcontent  closeparantheses semicolon { cg.printnewline(); }
 
 
 

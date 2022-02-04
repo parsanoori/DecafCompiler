@@ -23,7 +23,6 @@ void codegen::printstrliteral(const string &exp) {
                   + "    la $a0, " + id + "\n"
                   + "    syscall\n\n"
     );
-    printnewline();
 }
 
 codegen::codegen() {
