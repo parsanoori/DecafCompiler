@@ -6,17 +6,20 @@
 #define COMPILER_WRITER_H
 
 #include <string>
+#include <fstream>
 
 using namespace std;
 
 class writer {
-    string data = ".data\n";
-    string text = ".text\n";
+    string data = "    .data\n";
+    string text = "    .text\n    .globl main\n";
     static writer *instance;
-
+    ofstream* of;
     writer() = default;
 
 public:
+    static void set(ofstream*);
+
     static writer *get();
 
     writer(writer &) = delete;
@@ -26,6 +29,8 @@ public:
     void appendData(const string& d);
 
     void appendText(string t);
+
+    void writestuff();
 
 };
 

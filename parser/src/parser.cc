@@ -46,9 +46,13 @@
 
 # include "driver.hh"
 #include <iostream>
+#include "codegen.h"
+#include <vector>
 using namespace std;
 
-#line 52 "src/parser.cc"
+codegen &cg = *(codegen::get());
+
+#line 56 "src/parser.cc"
 
 
 #ifndef YY_
@@ -140,7 +144,7 @@ using namespace std;
 #define YYRECOVERING()  (!!yyerrstatus_)
 
 namespace yy {
-#line 144 "src/parser.cc"
+#line 148 "src/parser.cc"
 
   /// Build a parser object.
   parser::parser (driver& drv_yyarg)
@@ -209,9 +213,112 @@ namespace yy {
   {
     switch (that.kind ())
     {
+      case symbol_kind::S_variable: // variable
+        value.YY_MOVE_OR_COPY< std::pair<std::string,std::string> > (YY_MOVE (that.value));
+        break;
+
       case symbol_kind::S_id: // id
       case symbol_kind::S_string: // string
+      case symbol_kind::S_define: // define
+      case symbol_kind::S_import: // import
+      case symbol_kind::S_semicolon: // semicolon
+      case symbol_kind::S_integer: // integer
+      case symbol_kind::S_double: // double
+      case symbol_kind::S_bool: // bool
+      case symbol_kind::S_string_kw: // string_kw
+      case symbol_kind::S_openclosebracket: // openclosebracket
+      case symbol_kind::S_openbracket: // openbracket
+      case symbol_kind::S_closebracket: // closebracket
+      case symbol_kind::S_private: // private
+      case symbol_kind::S_public: // public
+      case symbol_kind::S_if: // if
+      case symbol_kind::S_else: // else
+      case symbol_kind::S_while: // while
+      case symbol_kind::S_for: // for
+      case symbol_kind::S_boolean: // boolean
+      case symbol_kind::S_void: // void
+      case symbol_kind::S_int: // int
+      case symbol_kind::S_class: // class
+      case symbol_kind::S_nullkw: // nullkw
+      case symbol_kind::S_slash: // slash
+      case symbol_kind::S_percent: // percent
+      case symbol_kind::S_return: // return
+      case symbol_kind::S_break: // break
+      case symbol_kind::S_new: // new
+      case symbol_kind::S_this: // this
+      case symbol_kind::S_newarray: // newarray
+      case symbol_kind::S_print: // print
+      case symbol_kind::S_readinteger: // readinteger
+      case symbol_kind::S_readline: // readline
+      case symbol_kind::S_line: // line
+      case symbol_kind::S_func: // func
+      case symbol_kind::S_btoi: // btoi
+      case symbol_kind::S_continue: // continue
+      case symbol_kind::S_dtoi: // dtoi
+      case symbol_kind::S_itob: // itob
+      case symbol_kind::S_itod: // itod
+      case symbol_kind::S_float: // float
+      case symbol_kind::S_plus: // plus
+      case symbol_kind::S_minus: // minus
+      case symbol_kind::S_star: // star
+      case symbol_kind::S_div: // div
+      case symbol_kind::S_lessthanequal: // lessthanequal
+      case symbol_kind::S_greaterthanequal: // greaterthanequal
+      case symbol_kind::S_lessthan: // lessthan
+      case symbol_kind::S_greaterthan: // greaterthan
+      case symbol_kind::S_equal: // equal
+      case symbol_kind::S_notequal: // notequal
+      case symbol_kind::S_and: // and
+      case symbol_kind::S_or: // or
+      case symbol_kind::S_closebrace: // closebrace
+      case symbol_kind::S_openparantheses: // openparantheses
+      case symbol_kind::S_closeparantheses: // closeparantheses
+      case symbol_kind::S_comma: // comma
+      case symbol_kind::S_assign: // assign
+      case symbol_kind::S_openbrace: // openbrace
+      case symbol_kind::S_plusequal: // plusequal
+      case symbol_kind::S_minusequal: // minusequal
+      case symbol_kind::S_starequal: // starequal
+      case symbol_kind::S_slashequal: // slashequal
+      case symbol_kind::S_not: // not
+      case symbol_kind::S_dot: // dot
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_macro: // macro
+      case symbol_kind::S_declarations: // declarations
+      case symbol_kind::S_declaration: // declaration
+      case symbol_kind::S_variabledecl: // variabledecl
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_functiondecl: // functiondecl
+      case symbol_kind::S_classdecl: // classdecl
+      case symbol_kind::S_fields: // fields
+      case symbol_kind::S_field: // field
+      case symbol_kind::S_accessmode: // accessmode
+      case symbol_kind::S_stmtblock: // stmtblock
+      case symbol_kind::S_stmtblockcontent: // stmtblockcontent
+      case symbol_kind::S_statements: // statements
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_ifstmt: // ifstmt
+      case symbol_kind::S_elsestmt: // elsestmt
+      case symbol_kind::S_whilestmt: // whilestmt
+      case symbol_kind::S_forstmt: // forstmt
+      case symbol_kind::S_returnstmt: // returnstmt
+      case symbol_kind::S_breakstmt: // breakstmt
+      case symbol_kind::S_nexpr: // nexpr
+      case symbol_kind::S_continuestmt: // continuestmt
+      case symbol_kind::S_printstmt: // printstmt
+      case symbol_kind::S_printcontent: // printcontent
+      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_lvalue: // lvalue
+      case symbol_kind::S_call: // call
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
+      case symbol_kind::S_constant: // constant
         value.YY_MOVE_OR_COPY< std::string > (YY_MOVE (that.value));
+        break;
+
+      case symbol_kind::S_formals: // formals
+      case symbol_kind::S_formalsp: // formalsp
+        value.YY_MOVE_OR_COPY< std::vector<std::pair<std::string,std::string>> > (YY_MOVE (that.value));
         break;
 
       default:
@@ -229,9 +336,112 @@ namespace yy {
   {
     switch (that.kind ())
     {
+      case symbol_kind::S_variable: // variable
+        value.move< std::pair<std::string,std::string> > (YY_MOVE (that.value));
+        break;
+
       case symbol_kind::S_id: // id
       case symbol_kind::S_string: // string
+      case symbol_kind::S_define: // define
+      case symbol_kind::S_import: // import
+      case symbol_kind::S_semicolon: // semicolon
+      case symbol_kind::S_integer: // integer
+      case symbol_kind::S_double: // double
+      case symbol_kind::S_bool: // bool
+      case symbol_kind::S_string_kw: // string_kw
+      case symbol_kind::S_openclosebracket: // openclosebracket
+      case symbol_kind::S_openbracket: // openbracket
+      case symbol_kind::S_closebracket: // closebracket
+      case symbol_kind::S_private: // private
+      case symbol_kind::S_public: // public
+      case symbol_kind::S_if: // if
+      case symbol_kind::S_else: // else
+      case symbol_kind::S_while: // while
+      case symbol_kind::S_for: // for
+      case symbol_kind::S_boolean: // boolean
+      case symbol_kind::S_void: // void
+      case symbol_kind::S_int: // int
+      case symbol_kind::S_class: // class
+      case symbol_kind::S_nullkw: // nullkw
+      case symbol_kind::S_slash: // slash
+      case symbol_kind::S_percent: // percent
+      case symbol_kind::S_return: // return
+      case symbol_kind::S_break: // break
+      case symbol_kind::S_new: // new
+      case symbol_kind::S_this: // this
+      case symbol_kind::S_newarray: // newarray
+      case symbol_kind::S_print: // print
+      case symbol_kind::S_readinteger: // readinteger
+      case symbol_kind::S_readline: // readline
+      case symbol_kind::S_line: // line
+      case symbol_kind::S_func: // func
+      case symbol_kind::S_btoi: // btoi
+      case symbol_kind::S_continue: // continue
+      case symbol_kind::S_dtoi: // dtoi
+      case symbol_kind::S_itob: // itob
+      case symbol_kind::S_itod: // itod
+      case symbol_kind::S_float: // float
+      case symbol_kind::S_plus: // plus
+      case symbol_kind::S_minus: // minus
+      case symbol_kind::S_star: // star
+      case symbol_kind::S_div: // div
+      case symbol_kind::S_lessthanequal: // lessthanequal
+      case symbol_kind::S_greaterthanequal: // greaterthanequal
+      case symbol_kind::S_lessthan: // lessthan
+      case symbol_kind::S_greaterthan: // greaterthan
+      case symbol_kind::S_equal: // equal
+      case symbol_kind::S_notequal: // notequal
+      case symbol_kind::S_and: // and
+      case symbol_kind::S_or: // or
+      case symbol_kind::S_closebrace: // closebrace
+      case symbol_kind::S_openparantheses: // openparantheses
+      case symbol_kind::S_closeparantheses: // closeparantheses
+      case symbol_kind::S_comma: // comma
+      case symbol_kind::S_assign: // assign
+      case symbol_kind::S_openbrace: // openbrace
+      case symbol_kind::S_plusequal: // plusequal
+      case symbol_kind::S_minusequal: // minusequal
+      case symbol_kind::S_starequal: // starequal
+      case symbol_kind::S_slashequal: // slashequal
+      case symbol_kind::S_not: // not
+      case symbol_kind::S_dot: // dot
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_macro: // macro
+      case symbol_kind::S_declarations: // declarations
+      case symbol_kind::S_declaration: // declaration
+      case symbol_kind::S_variabledecl: // variabledecl
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_functiondecl: // functiondecl
+      case symbol_kind::S_classdecl: // classdecl
+      case symbol_kind::S_fields: // fields
+      case symbol_kind::S_field: // field
+      case symbol_kind::S_accessmode: // accessmode
+      case symbol_kind::S_stmtblock: // stmtblock
+      case symbol_kind::S_stmtblockcontent: // stmtblockcontent
+      case symbol_kind::S_statements: // statements
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_ifstmt: // ifstmt
+      case symbol_kind::S_elsestmt: // elsestmt
+      case symbol_kind::S_whilestmt: // whilestmt
+      case symbol_kind::S_forstmt: // forstmt
+      case symbol_kind::S_returnstmt: // returnstmt
+      case symbol_kind::S_breakstmt: // breakstmt
+      case symbol_kind::S_nexpr: // nexpr
+      case symbol_kind::S_continuestmt: // continuestmt
+      case symbol_kind::S_printstmt: // printstmt
+      case symbol_kind::S_printcontent: // printcontent
+      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_lvalue: // lvalue
+      case symbol_kind::S_call: // call
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
+      case symbol_kind::S_constant: // constant
         value.move< std::string > (YY_MOVE (that.value));
+        break;
+
+      case symbol_kind::S_formals: // formals
+      case symbol_kind::S_formalsp: // formalsp
+        value.move< std::vector<std::pair<std::string,std::string>> > (YY_MOVE (that.value));
         break;
 
       default:
@@ -249,9 +459,112 @@ namespace yy {
     state = that.state;
     switch (that.kind ())
     {
+      case symbol_kind::S_variable: // variable
+        value.copy< std::pair<std::string,std::string> > (that.value);
+        break;
+
       case symbol_kind::S_id: // id
       case symbol_kind::S_string: // string
+      case symbol_kind::S_define: // define
+      case symbol_kind::S_import: // import
+      case symbol_kind::S_semicolon: // semicolon
+      case symbol_kind::S_integer: // integer
+      case symbol_kind::S_double: // double
+      case symbol_kind::S_bool: // bool
+      case symbol_kind::S_string_kw: // string_kw
+      case symbol_kind::S_openclosebracket: // openclosebracket
+      case symbol_kind::S_openbracket: // openbracket
+      case symbol_kind::S_closebracket: // closebracket
+      case symbol_kind::S_private: // private
+      case symbol_kind::S_public: // public
+      case symbol_kind::S_if: // if
+      case symbol_kind::S_else: // else
+      case symbol_kind::S_while: // while
+      case symbol_kind::S_for: // for
+      case symbol_kind::S_boolean: // boolean
+      case symbol_kind::S_void: // void
+      case symbol_kind::S_int: // int
+      case symbol_kind::S_class: // class
+      case symbol_kind::S_nullkw: // nullkw
+      case symbol_kind::S_slash: // slash
+      case symbol_kind::S_percent: // percent
+      case symbol_kind::S_return: // return
+      case symbol_kind::S_break: // break
+      case symbol_kind::S_new: // new
+      case symbol_kind::S_this: // this
+      case symbol_kind::S_newarray: // newarray
+      case symbol_kind::S_print: // print
+      case symbol_kind::S_readinteger: // readinteger
+      case symbol_kind::S_readline: // readline
+      case symbol_kind::S_line: // line
+      case symbol_kind::S_func: // func
+      case symbol_kind::S_btoi: // btoi
+      case symbol_kind::S_continue: // continue
+      case symbol_kind::S_dtoi: // dtoi
+      case symbol_kind::S_itob: // itob
+      case symbol_kind::S_itod: // itod
+      case symbol_kind::S_float: // float
+      case symbol_kind::S_plus: // plus
+      case symbol_kind::S_minus: // minus
+      case symbol_kind::S_star: // star
+      case symbol_kind::S_div: // div
+      case symbol_kind::S_lessthanequal: // lessthanequal
+      case symbol_kind::S_greaterthanequal: // greaterthanequal
+      case symbol_kind::S_lessthan: // lessthan
+      case symbol_kind::S_greaterthan: // greaterthan
+      case symbol_kind::S_equal: // equal
+      case symbol_kind::S_notequal: // notequal
+      case symbol_kind::S_and: // and
+      case symbol_kind::S_or: // or
+      case symbol_kind::S_closebrace: // closebrace
+      case symbol_kind::S_openparantheses: // openparantheses
+      case symbol_kind::S_closeparantheses: // closeparantheses
+      case symbol_kind::S_comma: // comma
+      case symbol_kind::S_assign: // assign
+      case symbol_kind::S_openbrace: // openbrace
+      case symbol_kind::S_plusequal: // plusequal
+      case symbol_kind::S_minusequal: // minusequal
+      case symbol_kind::S_starequal: // starequal
+      case symbol_kind::S_slashequal: // slashequal
+      case symbol_kind::S_not: // not
+      case symbol_kind::S_dot: // dot
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_macro: // macro
+      case symbol_kind::S_declarations: // declarations
+      case symbol_kind::S_declaration: // declaration
+      case symbol_kind::S_variabledecl: // variabledecl
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_functiondecl: // functiondecl
+      case symbol_kind::S_classdecl: // classdecl
+      case symbol_kind::S_fields: // fields
+      case symbol_kind::S_field: // field
+      case symbol_kind::S_accessmode: // accessmode
+      case symbol_kind::S_stmtblock: // stmtblock
+      case symbol_kind::S_stmtblockcontent: // stmtblockcontent
+      case symbol_kind::S_statements: // statements
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_ifstmt: // ifstmt
+      case symbol_kind::S_elsestmt: // elsestmt
+      case symbol_kind::S_whilestmt: // whilestmt
+      case symbol_kind::S_forstmt: // forstmt
+      case symbol_kind::S_returnstmt: // returnstmt
+      case symbol_kind::S_breakstmt: // breakstmt
+      case symbol_kind::S_nexpr: // nexpr
+      case symbol_kind::S_continuestmt: // continuestmt
+      case symbol_kind::S_printstmt: // printstmt
+      case symbol_kind::S_printcontent: // printcontent
+      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_lvalue: // lvalue
+      case symbol_kind::S_call: // call
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
+      case symbol_kind::S_constant: // constant
         value.copy< std::string > (that.value);
+        break;
+
+      case symbol_kind::S_formals: // formals
+      case symbol_kind::S_formalsp: // formalsp
+        value.copy< std::vector<std::pair<std::string,std::string>> > (that.value);
         break;
 
       default:
@@ -268,9 +581,112 @@ namespace yy {
     state = that.state;
     switch (that.kind ())
     {
+      case symbol_kind::S_variable: // variable
+        value.move< std::pair<std::string,std::string> > (that.value);
+        break;
+
       case symbol_kind::S_id: // id
       case symbol_kind::S_string: // string
+      case symbol_kind::S_define: // define
+      case symbol_kind::S_import: // import
+      case symbol_kind::S_semicolon: // semicolon
+      case symbol_kind::S_integer: // integer
+      case symbol_kind::S_double: // double
+      case symbol_kind::S_bool: // bool
+      case symbol_kind::S_string_kw: // string_kw
+      case symbol_kind::S_openclosebracket: // openclosebracket
+      case symbol_kind::S_openbracket: // openbracket
+      case symbol_kind::S_closebracket: // closebracket
+      case symbol_kind::S_private: // private
+      case symbol_kind::S_public: // public
+      case symbol_kind::S_if: // if
+      case symbol_kind::S_else: // else
+      case symbol_kind::S_while: // while
+      case symbol_kind::S_for: // for
+      case symbol_kind::S_boolean: // boolean
+      case symbol_kind::S_void: // void
+      case symbol_kind::S_int: // int
+      case symbol_kind::S_class: // class
+      case symbol_kind::S_nullkw: // nullkw
+      case symbol_kind::S_slash: // slash
+      case symbol_kind::S_percent: // percent
+      case symbol_kind::S_return: // return
+      case symbol_kind::S_break: // break
+      case symbol_kind::S_new: // new
+      case symbol_kind::S_this: // this
+      case symbol_kind::S_newarray: // newarray
+      case symbol_kind::S_print: // print
+      case symbol_kind::S_readinteger: // readinteger
+      case symbol_kind::S_readline: // readline
+      case symbol_kind::S_line: // line
+      case symbol_kind::S_func: // func
+      case symbol_kind::S_btoi: // btoi
+      case symbol_kind::S_continue: // continue
+      case symbol_kind::S_dtoi: // dtoi
+      case symbol_kind::S_itob: // itob
+      case symbol_kind::S_itod: // itod
+      case symbol_kind::S_float: // float
+      case symbol_kind::S_plus: // plus
+      case symbol_kind::S_minus: // minus
+      case symbol_kind::S_star: // star
+      case symbol_kind::S_div: // div
+      case symbol_kind::S_lessthanequal: // lessthanequal
+      case symbol_kind::S_greaterthanequal: // greaterthanequal
+      case symbol_kind::S_lessthan: // lessthan
+      case symbol_kind::S_greaterthan: // greaterthan
+      case symbol_kind::S_equal: // equal
+      case symbol_kind::S_notequal: // notequal
+      case symbol_kind::S_and: // and
+      case symbol_kind::S_or: // or
+      case symbol_kind::S_closebrace: // closebrace
+      case symbol_kind::S_openparantheses: // openparantheses
+      case symbol_kind::S_closeparantheses: // closeparantheses
+      case symbol_kind::S_comma: // comma
+      case symbol_kind::S_assign: // assign
+      case symbol_kind::S_openbrace: // openbrace
+      case symbol_kind::S_plusequal: // plusequal
+      case symbol_kind::S_minusequal: // minusequal
+      case symbol_kind::S_starequal: // starequal
+      case symbol_kind::S_slashequal: // slashequal
+      case symbol_kind::S_not: // not
+      case symbol_kind::S_dot: // dot
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_macro: // macro
+      case symbol_kind::S_declarations: // declarations
+      case symbol_kind::S_declaration: // declaration
+      case symbol_kind::S_variabledecl: // variabledecl
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_functiondecl: // functiondecl
+      case symbol_kind::S_classdecl: // classdecl
+      case symbol_kind::S_fields: // fields
+      case symbol_kind::S_field: // field
+      case symbol_kind::S_accessmode: // accessmode
+      case symbol_kind::S_stmtblock: // stmtblock
+      case symbol_kind::S_stmtblockcontent: // stmtblockcontent
+      case symbol_kind::S_statements: // statements
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_ifstmt: // ifstmt
+      case symbol_kind::S_elsestmt: // elsestmt
+      case symbol_kind::S_whilestmt: // whilestmt
+      case symbol_kind::S_forstmt: // forstmt
+      case symbol_kind::S_returnstmt: // returnstmt
+      case symbol_kind::S_breakstmt: // breakstmt
+      case symbol_kind::S_nexpr: // nexpr
+      case symbol_kind::S_continuestmt: // continuestmt
+      case symbol_kind::S_printstmt: // printstmt
+      case symbol_kind::S_printcontent: // printcontent
+      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_lvalue: // lvalue
+      case symbol_kind::S_call: // call
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
+      case symbol_kind::S_constant: // constant
         value.move< std::string > (that.value);
+        break;
+
+      case symbol_kind::S_formals: // formals
+      case symbol_kind::S_formalsp: // formalsp
+        value.move< std::vector<std::pair<std::string,std::string>> > (that.value);
         break;
 
       default:
@@ -307,23 +723,7 @@ namespace yy {
         yyo << (yykind < YYNTOKENS ? "token" : "nterm")
             << ' ' << yysym.name () << " ("
             << yysym.location << ": ";
-        switch (yykind)
-    {
-      case symbol_kind::S_id: // id
-#line 49 "parser.yy"
-                 { yyo << yysym.value.template as < std::string > (); }
-#line 316 "src/parser.cc"
-        break;
-
-      case symbol_kind::S_string: // string
-#line 49 "parser.yy"
-                 { yyo << yysym.value.template as < std::string > (); }
-#line 322 "src/parser.cc"
-        break;
-
-      default:
-        break;
-    }
+        YY_USE (yykind);
         yyo << ')';
       }
   }
@@ -558,9 +958,112 @@ namespace yy {
          when using variants.  */
       switch (yyr1_[yyn])
     {
+      case symbol_kind::S_variable: // variable
+        yylhs.value.emplace< std::pair<std::string,std::string> > ();
+        break;
+
       case symbol_kind::S_id: // id
       case symbol_kind::S_string: // string
+      case symbol_kind::S_define: // define
+      case symbol_kind::S_import: // import
+      case symbol_kind::S_semicolon: // semicolon
+      case symbol_kind::S_integer: // integer
+      case symbol_kind::S_double: // double
+      case symbol_kind::S_bool: // bool
+      case symbol_kind::S_string_kw: // string_kw
+      case symbol_kind::S_openclosebracket: // openclosebracket
+      case symbol_kind::S_openbracket: // openbracket
+      case symbol_kind::S_closebracket: // closebracket
+      case symbol_kind::S_private: // private
+      case symbol_kind::S_public: // public
+      case symbol_kind::S_if: // if
+      case symbol_kind::S_else: // else
+      case symbol_kind::S_while: // while
+      case symbol_kind::S_for: // for
+      case symbol_kind::S_boolean: // boolean
+      case symbol_kind::S_void: // void
+      case symbol_kind::S_int: // int
+      case symbol_kind::S_class: // class
+      case symbol_kind::S_nullkw: // nullkw
+      case symbol_kind::S_slash: // slash
+      case symbol_kind::S_percent: // percent
+      case symbol_kind::S_return: // return
+      case symbol_kind::S_break: // break
+      case symbol_kind::S_new: // new
+      case symbol_kind::S_this: // this
+      case symbol_kind::S_newarray: // newarray
+      case symbol_kind::S_print: // print
+      case symbol_kind::S_readinteger: // readinteger
+      case symbol_kind::S_readline: // readline
+      case symbol_kind::S_line: // line
+      case symbol_kind::S_func: // func
+      case symbol_kind::S_btoi: // btoi
+      case symbol_kind::S_continue: // continue
+      case symbol_kind::S_dtoi: // dtoi
+      case symbol_kind::S_itob: // itob
+      case symbol_kind::S_itod: // itod
+      case symbol_kind::S_float: // float
+      case symbol_kind::S_plus: // plus
+      case symbol_kind::S_minus: // minus
+      case symbol_kind::S_star: // star
+      case symbol_kind::S_div: // div
+      case symbol_kind::S_lessthanequal: // lessthanequal
+      case symbol_kind::S_greaterthanequal: // greaterthanequal
+      case symbol_kind::S_lessthan: // lessthan
+      case symbol_kind::S_greaterthan: // greaterthan
+      case symbol_kind::S_equal: // equal
+      case symbol_kind::S_notequal: // notequal
+      case symbol_kind::S_and: // and
+      case symbol_kind::S_or: // or
+      case symbol_kind::S_closebrace: // closebrace
+      case symbol_kind::S_openparantheses: // openparantheses
+      case symbol_kind::S_closeparantheses: // closeparantheses
+      case symbol_kind::S_comma: // comma
+      case symbol_kind::S_assign: // assign
+      case symbol_kind::S_openbrace: // openbrace
+      case symbol_kind::S_plusequal: // plusequal
+      case symbol_kind::S_minusequal: // minusequal
+      case symbol_kind::S_starequal: // starequal
+      case symbol_kind::S_slashequal: // slashequal
+      case symbol_kind::S_not: // not
+      case symbol_kind::S_dot: // dot
+      case symbol_kind::S_program: // program
+      case symbol_kind::S_macro: // macro
+      case symbol_kind::S_declarations: // declarations
+      case symbol_kind::S_declaration: // declaration
+      case symbol_kind::S_variabledecl: // variabledecl
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_functiondecl: // functiondecl
+      case symbol_kind::S_classdecl: // classdecl
+      case symbol_kind::S_fields: // fields
+      case symbol_kind::S_field: // field
+      case symbol_kind::S_accessmode: // accessmode
+      case symbol_kind::S_stmtblock: // stmtblock
+      case symbol_kind::S_stmtblockcontent: // stmtblockcontent
+      case symbol_kind::S_statements: // statements
+      case symbol_kind::S_stmt: // stmt
+      case symbol_kind::S_ifstmt: // ifstmt
+      case symbol_kind::S_elsestmt: // elsestmt
+      case symbol_kind::S_whilestmt: // whilestmt
+      case symbol_kind::S_forstmt: // forstmt
+      case symbol_kind::S_returnstmt: // returnstmt
+      case symbol_kind::S_breakstmt: // breakstmt
+      case symbol_kind::S_nexpr: // nexpr
+      case symbol_kind::S_continuestmt: // continuestmt
+      case symbol_kind::S_printstmt: // printstmt
+      case symbol_kind::S_printcontent: // printcontent
+      case symbol_kind::S_expr: // expr
+      case symbol_kind::S_lvalue: // lvalue
+      case symbol_kind::S_call: // call
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
+      case symbol_kind::S_constant: // constant
         yylhs.value.emplace< std::string > ();
+        break;
+
+      case symbol_kind::S_formals: // formals
+      case symbol_kind::S_formalsp: // formalsp
+        yylhs.value.emplace< std::vector<std::pair<std::string,std::string>> > ();
         break;
 
       default:
@@ -583,650 +1086,668 @@ namespace yy {
         {
           switch (yyn)
             {
-  case 2: // program: macro program
-#line 54 "parser.yy"
-                       { }
-#line 590 "src/parser.cc"
-    break;
-
-  case 3: // program: declerations
-#line 55 "parser.yy"
-                      {  }
-#line 596 "src/parser.cc"
-    break;
-
-  case 4: // macro: import string
-#line 57 "parser.yy"
-                     { }
-#line 602 "src/parser.cc"
-    break;
-
-  case 5: // macro: define id id
-#line 58 "parser.yy"
-                    { }
-#line 608 "src/parser.cc"
-    break;
-
-  case 6: // declerations: declaration declerations
-#line 60 "parser.yy"
-                                       { }
-#line 614 "src/parser.cc"
-    break;
-
-  case 7: // declerations: declaration
-#line 61 "parser.yy"
-                          {  }
-#line 620 "src/parser.cc"
-    break;
-
-  case 8: // declaration: variabledecl
+  case 2: // sp: program
 #line 63 "parser.yy"
-                          { }
-#line 626 "src/parser.cc"
+            { cg.writestuff(); }
+#line 1093 "src/parser.cc"
     break;
 
-  case 9: // declaration: functiondecl
-#line 64 "parser.yy"
-                          { }
-#line 632 "src/parser.cc"
-    break;
-
-  case 10: // declaration: classdecl
+  case 3: // program: macro program
 #line 65 "parser.yy"
                        { }
-#line 638 "src/parser.cc"
+#line 1099 "src/parser.cc"
     break;
 
-  case 11: // variabledecl: variable semicolon
-#line 67 "parser.yy"
-                                 { }
-#line 644 "src/parser.cc"
-    break;
-
-  case 12: // variable: type id
-#line 69 "parser.yy"
-                  { }
-#line 650 "src/parser.cc"
-    break;
-
-  case 13: // type: int
-#line 71 "parser.yy"
-          { }
-#line 656 "src/parser.cc"
-    break;
-
-  case 14: // type: double
-#line 72 "parser.yy"
-             { }
-#line 662 "src/parser.cc"
-    break;
-
-  case 15: // type: bool
-#line 73 "parser.yy"
-           { }
-#line 668 "src/parser.cc"
-    break;
-
-  case 16: // type: string_kw
-#line 74 "parser.yy"
-                { }
-#line 674 "src/parser.cc"
-    break;
-
-  case 17: // type: id
-#line 75 "parser.yy"
-         { }
-#line 680 "src/parser.cc"
-    break;
-
-  case 18: // type: type openclosebracket
-#line 76 "parser.yy"
-                            { }
-#line 686 "src/parser.cc"
-    break;
-
-  case 19: // functiondecl: type id openparantheses formals closeparantheses stmtblock
-#line 78 "parser.yy"
-                                                                         { }
-#line 692 "src/parser.cc"
-    break;
-
-  case 20: // functiondecl: void id openparantheses formals closeparantheses stmtblock
-#line 79 "parser.yy"
-                                                                         { }
-#line 698 "src/parser.cc"
-    break;
-
-  case 21: // formals: formalsp
-#line 81 "parser.yy"
-                  { }
-#line 704 "src/parser.cc"
-    break;
-
-  case 22: // formals: %empty
-#line 82 "parser.yy"
-                {  }
-#line 710 "src/parser.cc"
-    break;
-
-  case 23: // formalsp: variable comma formalsp
-#line 84 "parser.yy"
-                                  { }
-#line 716 "src/parser.cc"
-    break;
-
-  case 24: // formalsp: variable
-#line 85 "parser.yy"
-                   { }
-#line 722 "src/parser.cc"
-    break;
-
-  case 25: // classdecl: class id openbrace fields closebrace
-#line 87 "parser.yy"
-                                                {  }
-#line 728 "src/parser.cc"
-    break;
-
-  case 26: // fields: field fields
-#line 89 "parser.yy"
-                     { }
-#line 734 "src/parser.cc"
-    break;
-
-  case 28: // field: accessmode variabledecl
-#line 92 "parser.yy"
-                               { }
-#line 740 "src/parser.cc"
-    break;
-
-  case 29: // field: accessmode functiondecl
-#line 93 "parser.yy"
-                               { }
-#line 746 "src/parser.cc"
-    break;
-
-  case 30: // accessmode: private
-#line 95 "parser.yy"
-                    { }
-#line 752 "src/parser.cc"
-    break;
-
-  case 31: // accessmode: public
-#line 96 "parser.yy"
-                   { }
-#line 758 "src/parser.cc"
-    break;
-
-  case 32: // accessmode: %empty
-#line 97 "parser.yy"
-                   { }
-#line 764 "src/parser.cc"
-    break;
-
-  case 33: // stmtblock: openbrace stmtblockcontent closebrace
-#line 99 "parser.yy"
-                                                 { }
-#line 770 "src/parser.cc"
-    break;
-
-  case 34: // stmtblockcontent: variabledecl stmtblockcontent
-#line 101 "parser.yy"
-                                                { }
-#line 776 "src/parser.cc"
-    break;
-
-  case 35: // stmtblockcontent: statements
-#line 102 "parser.yy"
-                             { }
-#line 782 "src/parser.cc"
-    break;
-
-  case 36: // statements: %empty
-#line 104 "parser.yy"
-                   { }
-#line 788 "src/parser.cc"
-    break;
-
-  case 37: // statements: stmt statements
-#line 105 "parser.yy"
-                            { }
-#line 794 "src/parser.cc"
-    break;
-
-  case 38: // stmt: expr semicolon
-#line 107 "parser.yy"
-                     { }
-#line 800 "src/parser.cc"
-    break;
-
-  case 39: // stmt: semicolon
-#line 108 "parser.yy"
-                     { }
-#line 806 "src/parser.cc"
-    break;
-
-  case 40: // stmt: ifstmt
-#line 109 "parser.yy"
-                  { }
-#line 812 "src/parser.cc"
-    break;
-
-  case 41: // stmt: whilestmt
-#line 110 "parser.yy"
-                     { }
-#line 818 "src/parser.cc"
-    break;
-
-  case 42: // stmt: forstmt
-#line 111 "parser.yy"
-                   { }
-#line 824 "src/parser.cc"
-    break;
-
-  case 43: // stmt: breakstmt
-#line 112 "parser.yy"
-                     { }
-#line 830 "src/parser.cc"
-    break;
-
-  case 44: // stmt: continuestmt
-#line 113 "parser.yy"
-                        { }
-#line 836 "src/parser.cc"
-    break;
-
-  case 45: // stmt: returnstmt
-#line 114 "parser.yy"
+  case 4: // program: declarations
+#line 66 "parser.yy"
                       { }
-#line 842 "src/parser.cc"
+#line 1105 "src/parser.cc"
     break;
 
-  case 46: // stmt: printstmt
-#line 115 "parser.yy"
+  case 5: // macro: import string
+#line 68 "parser.yy"
                      { }
-#line 848 "src/parser.cc"
+#line 1111 "src/parser.cc"
     break;
 
-  case 47: // stmt: stmtblock
-#line 116 "parser.yy"
-                     { }
-#line 854 "src/parser.cc"
-    break;
-
-  case 48: // ifstmt: if openparantheses expr closeparantheses stmt
-#line 119 "parser.yy"
-                                                      { }
-#line 860 "src/parser.cc"
-    break;
-
-  case 49: // ifstmt: if openparantheses expr closeparantheses stmt elsestmt
-#line 120 "parser.yy"
-                                                              { }
-#line 866 "src/parser.cc"
-    break;
-
-  case 50: // elsestmt: else stmt
-#line 122 "parser.yy"
+  case 6: // macro: define id id
+#line 69 "parser.yy"
                     { }
-#line 872 "src/parser.cc"
+#line 1117 "src/parser.cc"
     break;
 
-  case 51: // whilestmt: while openparantheses expr closeparantheses stmt
-#line 124 "parser.yy"
-                                                            { }
-#line 878 "src/parser.cc"
+  case 7: // declarations: declaration declarations
+#line 71 "parser.yy"
+                                       { }
+#line 1123 "src/parser.cc"
     break;
 
-  case 52: // forstmt: for openparantheses nexpr semicolon expr semicolon nexpr closeparantheses stmt
-#line 126 "parser.yy"
-                                                                                        { }
-#line 884 "src/parser.cc"
+  case 8: // declarations: declaration
+#line 72 "parser.yy"
+                          {  }
+#line 1129 "src/parser.cc"
     break;
 
-  case 53: // returnstmt: return nexpr semicolon
-#line 128 "parser.yy"
-                                   { }
-#line 890 "src/parser.cc"
+  case 9: // declaration: variabledecl
+#line 74 "parser.yy"
+                          { }
+#line 1135 "src/parser.cc"
     break;
 
-  case 54: // breakstmt: break semicolon
-#line 130 "parser.yy"
-                           { }
-#line 896 "src/parser.cc"
+  case 10: // declaration: functiondecl
+#line 75 "parser.yy"
+                          { }
+#line 1141 "src/parser.cc"
     break;
 
-  case 55: // nexpr: expr
-#line 132 "parser.yy"
-            { }
-#line 902 "src/parser.cc"
+  case 11: // declaration: classdecl
+#line 76 "parser.yy"
+                       { }
+#line 1147 "src/parser.cc"
     break;
 
-  case 56: // nexpr: %empty
-#line 133 "parser.yy"
-             { }
-#line 908 "src/parser.cc"
-    break;
-
-  case 57: // continuestmt: continue semicolon
-#line 135 "parser.yy"
+  case 12: // variabledecl: variable semicolon
+#line 78 "parser.yy"
                                  { }
-#line 914 "src/parser.cc"
+#line 1153 "src/parser.cc"
     break;
 
-  case 58: // printstmt: print openparantheses printcontent closeparantheses semicolon
+  case 13: // variable: type id
+#line 80 "parser.yy"
+                  { cg.variable(yystack_[1].value.as < std::string > (),yystack_[0].value.as < std::string > ()); yylhs.value.as < std::pair<std::string,std::string> > () = {yystack_[1].value.as < std::string > (),yystack_[0].value.as < std::string > ()}; }
+#line 1159 "src/parser.cc"
+    break;
+
+  case 14: // type: int
+#line 82 "parser.yy"
+          { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1165 "src/parser.cc"
+    break;
+
+  case 15: // type: double
+#line 83 "parser.yy"
+             { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1171 "src/parser.cc"
+    break;
+
+  case 16: // type: bool
+#line 84 "parser.yy"
+           { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1177 "src/parser.cc"
+    break;
+
+  case 17: // type: string_kw
+#line 85 "parser.yy"
+                {  yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1183 "src/parser.cc"
+    break;
+
+  case 18: // type: id
+#line 86 "parser.yy"
+         {  yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1189 "src/parser.cc"
+    break;
+
+  case 19: // type: type openclosebracket
+#line 87 "parser.yy"
+                            {  yylhs.value.as < std::string > () = yystack_[1].value.as < std::string > (); }
+#line 1195 "src/parser.cc"
+    break;
+
+  case 20: // $@1: %empty
+#line 89 "parser.yy"
+                                                               { cg.addfunction(yystack_[3].value.as < std::string > (),yystack_[1].value.as < std::vector<std::pair<std::string,std::string>> > ()); }
+#line 1201 "src/parser.cc"
+    break;
+
+  case 21: // functiondecl: type id openparantheses formals closeparantheses $@1 stmtblock
+#line 89 "parser.yy"
+                                                                                                    { cg.endfunction(); }
+#line 1207 "src/parser.cc"
+    break;
+
+  case 22: // $@2: %empty
+#line 90 "parser.yy"
+                                                               { cg.addfunction(yystack_[3].value.as < std::string > (),yystack_[1].value.as < std::vector<std::pair<std::string,std::string>> > ()); }
+#line 1213 "src/parser.cc"
+    break;
+
+  case 23: // functiondecl: void id openparantheses formals closeparantheses $@2 stmtblock
+#line 90 "parser.yy"
+                                                                                                    { cg.endfunction(); }
+#line 1219 "src/parser.cc"
+    break;
+
+  case 24: // formals: formalsp
+#line 92 "parser.yy"
+                  {  yylhs.value.as < std::vector<std::pair<std::string,std::string>> > () = yystack_[0].value.as < std::vector<std::pair<std::string,std::string>> > (); }
+#line 1225 "src/parser.cc"
+    break;
+
+  case 25: // formals: %empty
+#line 93 "parser.yy"
+                {  }
+#line 1231 "src/parser.cc"
+    break;
+
+  case 26: // formalsp: variable comma formalsp
+#line 95 "parser.yy"
+                                  { yystack_[0].value.as < std::vector<std::pair<std::string,std::string>> > ().push_back(yystack_[2].value.as < std::pair<std::string,std::string> > ()); yylhs.value.as < std::vector<std::pair<std::string,std::string>> > () = yystack_[0].value.as < std::vector<std::pair<std::string,std::string>> > (); }
+#line 1237 "src/parser.cc"
+    break;
+
+  case 27: // formalsp: variable
+#line 96 "parser.yy"
+                   { yylhs.value.as < std::vector<std::pair<std::string,std::string>> > () = {yystack_[0].value.as < std::pair<std::string,std::string> > ()}; }
+#line 1243 "src/parser.cc"
+    break;
+
+  case 28: // classdecl: class id openbrace fields closebrace
+#line 98 "parser.yy"
+                                                {  }
+#line 1249 "src/parser.cc"
+    break;
+
+  case 29: // fields: field fields
+#line 100 "parser.yy"
+                     { }
+#line 1255 "src/parser.cc"
+    break;
+
+  case 31: // field: accessmode variabledecl
+#line 103 "parser.yy"
+                               { }
+#line 1261 "src/parser.cc"
+    break;
+
+  case 32: // field: accessmode functiondecl
+#line 104 "parser.yy"
+                               { }
+#line 1267 "src/parser.cc"
+    break;
+
+  case 33: // accessmode: private
+#line 106 "parser.yy"
+                    { }
+#line 1273 "src/parser.cc"
+    break;
+
+  case 34: // accessmode: public
+#line 107 "parser.yy"
+                   { }
+#line 1279 "src/parser.cc"
+    break;
+
+  case 35: // accessmode: %empty
+#line 108 "parser.yy"
+                   { }
+#line 1285 "src/parser.cc"
+    break;
+
+  case 36: // stmtblock: openbrace stmtblockcontent closebrace
+#line 110 "parser.yy"
+                                                 { }
+#line 1291 "src/parser.cc"
+    break;
+
+  case 37: // stmtblockcontent: variabledecl stmtblockcontent
+#line 112 "parser.yy"
+                                                { }
+#line 1297 "src/parser.cc"
+    break;
+
+  case 38: // stmtblockcontent: statements
+#line 113 "parser.yy"
+                             { }
+#line 1303 "src/parser.cc"
+    break;
+
+  case 39: // statements: %empty
+#line 115 "parser.yy"
+                   { }
+#line 1309 "src/parser.cc"
+    break;
+
+  case 40: // statements: stmt statements
+#line 116 "parser.yy"
+                            { }
+#line 1315 "src/parser.cc"
+    break;
+
+  case 41: // stmt: expr semicolon
+#line 118 "parser.yy"
+                     { }
+#line 1321 "src/parser.cc"
+    break;
+
+  case 42: // stmt: semicolon
+#line 119 "parser.yy"
+                     { }
+#line 1327 "src/parser.cc"
+    break;
+
+  case 43: // stmt: ifstmt
+#line 120 "parser.yy"
+                  { }
+#line 1333 "src/parser.cc"
+    break;
+
+  case 44: // stmt: whilestmt
+#line 121 "parser.yy"
+                     { }
+#line 1339 "src/parser.cc"
+    break;
+
+  case 45: // stmt: forstmt
+#line 122 "parser.yy"
+                   { }
+#line 1345 "src/parser.cc"
+    break;
+
+  case 46: // stmt: breakstmt
+#line 123 "parser.yy"
+                     { }
+#line 1351 "src/parser.cc"
+    break;
+
+  case 47: // stmt: continuestmt
+#line 124 "parser.yy"
+                        { }
+#line 1357 "src/parser.cc"
+    break;
+
+  case 48: // stmt: returnstmt
+#line 125 "parser.yy"
+                      { }
+#line 1363 "src/parser.cc"
+    break;
+
+  case 49: // stmt: printstmt
+#line 126 "parser.yy"
+                     { }
+#line 1369 "src/parser.cc"
+    break;
+
+  case 50: // stmt: stmtblock
+#line 127 "parser.yy"
+                     { }
+#line 1375 "src/parser.cc"
+    break;
+
+  case 51: // ifstmt: if openparantheses expr closeparantheses stmt
+#line 130 "parser.yy"
+                                                      { }
+#line 1381 "src/parser.cc"
+    break;
+
+  case 52: // ifstmt: if openparantheses expr closeparantheses stmt elsestmt
+#line 131 "parser.yy"
+                                                              { }
+#line 1387 "src/parser.cc"
+    break;
+
+  case 53: // elsestmt: else stmt
+#line 133 "parser.yy"
+                    { }
+#line 1393 "src/parser.cc"
+    break;
+
+  case 54: // whilestmt: while openparantheses expr closeparantheses stmt
+#line 135 "parser.yy"
+                                                            { }
+#line 1399 "src/parser.cc"
+    break;
+
+  case 55: // forstmt: for openparantheses nexpr semicolon expr semicolon nexpr closeparantheses stmt
+#line 137 "parser.yy"
+                                                                                        { }
+#line 1405 "src/parser.cc"
+    break;
+
+  case 56: // returnstmt: return nexpr semicolon
 #line 139 "parser.yy"
-                                                                             {}
-#line 920 "src/parser.cc"
+                                   { }
+#line 1411 "src/parser.cc"
     break;
 
-  case 59: // printcontent: printcontent comma expr
+  case 57: // breakstmt: break semicolon
+#line 141 "parser.yy"
+                           { }
+#line 1417 "src/parser.cc"
+    break;
+
+  case 58: // nexpr: expr
 #line 143 "parser.yy"
-                                      {}
-#line 926 "src/parser.cc"
+            { }
+#line 1423 "src/parser.cc"
     break;
 
-  case 60: // printcontent: expr
+  case 59: // nexpr: %empty
 #line 144 "parser.yy"
-                   {}
-#line 932 "src/parser.cc"
+             { }
+#line 1429 "src/parser.cc"
     break;
 
-  case 61: // expr: lvalue assign expr
+  case 60: // continuestmt: continue semicolon
+#line 146 "parser.yy"
+                                 { }
+#line 1435 "src/parser.cc"
+    break;
+
+  case 61: // printstmt: print openparantheses printcontent closeparantheses semicolon
+#line 150 "parser.yy"
+                                                                       {  }
+#line 1441 "src/parser.cc"
+    break;
+
+  case 62: // printcontent: printcontent comma expr
 #line 154 "parser.yy"
-                                         {}
-#line 938 "src/parser.cc"
+                                      { cout << "$3 is: " << yystack_[0].value.as < std::string > () << endl; }
+#line 1447 "src/parser.cc"
     break;
 
-  case 62: // expr: lvalue plusequal expr
+  case 63: // printcontent: expr
 #line 155 "parser.yy"
-                                          {}
-#line 944 "src/parser.cc"
+                   { cg.printstrliteral(yystack_[0].value.as < std::string > ()); }
+#line 1453 "src/parser.cc"
     break;
 
-  case 63: // expr: lvalue minusequal expr
-#line 156 "parser.yy"
-                                           {}
-#line 950 "src/parser.cc"
-    break;
-
-  case 64: // expr: lvalue starequal expr
-#line 157 "parser.yy"
-                                          {}
-#line 956 "src/parser.cc"
-    break;
-
-  case 65: // expr: lvalue slashequal expr
-#line 158 "parser.yy"
-                                           {}
-#line 962 "src/parser.cc"
-    break;
-
-  case 66: // expr: constant
-#line 159 "parser.yy"
-                                    {}
-#line 968 "src/parser.cc"
-    break;
-
-  case 67: // expr: lvalue
-#line 160 "parser.yy"
-                                    {}
-#line 974 "src/parser.cc"
-    break;
-
-  case 68: // expr: this
-#line 161 "parser.yy"
-                                    {}
-#line 980 "src/parser.cc"
-    break;
-
-  case 69: // expr: call
-#line 162 "parser.yy"
-                                    {}
-#line 986 "src/parser.cc"
-    break;
-
-  case 70: // expr: openparantheses expr closeparantheses
-#line 163 "parser.yy"
-                                                                   {}
-#line 992 "src/parser.cc"
-    break;
-
-  case 71: // expr: expr plus expr
-#line 164 "parser.yy"
-                                       {}
-#line 998 "src/parser.cc"
-    break;
-
-  case 72: // expr: expr minus expr
+  case 64: // expr: lvalue assign expr
 #line 165 "parser.yy"
-                                        {}
-#line 1004 "src/parser.cc"
+                                         {}
+#line 1459 "src/parser.cc"
     break;
 
-  case 73: // expr: expr star expr
+  case 65: // expr: lvalue plusequal expr
 #line 166 "parser.yy"
-                                       {}
-#line 1010 "src/parser.cc"
+                                          {}
+#line 1465 "src/parser.cc"
     break;
 
-  case 74: // expr: expr slash expr
+  case 66: // expr: lvalue minusequal expr
 #line 167 "parser.yy"
-                                        {}
-#line 1016 "src/parser.cc"
+                                           {}
+#line 1471 "src/parser.cc"
     break;
 
-  case 75: // expr: expr percent expr
+  case 67: // expr: lvalue starequal expr
 #line 168 "parser.yy"
                                           {}
-#line 1022 "src/parser.cc"
+#line 1477 "src/parser.cc"
     break;
 
-  case 76: // expr: minus expr
+  case 68: // expr: lvalue slashequal expr
 #line 169 "parser.yy"
-                                        {}
-#line 1028 "src/parser.cc"
-    break;
-
-  case 77: // expr: expr lessthan expr
-#line 170 "parser.yy"
                                            {}
-#line 1034 "src/parser.cc"
+#line 1483 "src/parser.cc"
     break;
 
-  case 78: // expr: expr lessthanequal expr
+  case 69: // expr: constant
+#line 170 "parser.yy"
+                                    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1489 "src/parser.cc"
+    break;
+
+  case 70: // expr: lvalue
 #line 171 "parser.yy"
-                                               {}
-#line 1040 "src/parser.cc"
+                                    {}
+#line 1495 "src/parser.cc"
     break;
 
-  case 79: // expr: expr greaterthan expr
+  case 71: // expr: this
 #line 172 "parser.yy"
-                                              {}
-#line 1046 "src/parser.cc"
+                                    {}
+#line 1501 "src/parser.cc"
     break;
 
-  case 80: // expr: expr greaterthanequal expr
+  case 72: // expr: call
 #line 173 "parser.yy"
-                                                  {}
-#line 1052 "src/parser.cc"
+                                    {}
+#line 1507 "src/parser.cc"
     break;
 
-  case 81: // expr: expr equal expr
+  case 73: // expr: openparantheses expr closeparantheses
 #line 174 "parser.yy"
-                                       {}
-#line 1058 "src/parser.cc"
+                                                                   {}
+#line 1513 "src/parser.cc"
     break;
 
-  case 82: // expr: expr notequal expr
+  case 74: // expr: expr plus expr
 #line 175 "parser.yy"
-                                          {}
-#line 1064 "src/parser.cc"
+                                       {}
+#line 1519 "src/parser.cc"
     break;
 
-  case 83: // expr: expr and expr
+  case 75: // expr: expr minus expr
 #line 176 "parser.yy"
-                                     {}
-#line 1070 "src/parser.cc"
+                                        {}
+#line 1525 "src/parser.cc"
     break;
 
-  case 84: // expr: expr or expr
+  case 76: // expr: expr star expr
 #line 177 "parser.yy"
-                                    {}
-#line 1076 "src/parser.cc"
+                                       {}
+#line 1531 "src/parser.cc"
     break;
 
-  case 85: // expr: not expr
+  case 77: // expr: expr slash expr
 #line 178 "parser.yy"
-                                      {}
-#line 1082 "src/parser.cc"
+                                        {}
+#line 1537 "src/parser.cc"
     break;
 
-  case 86: // expr: readinteger openparantheses closeparantheses
+  case 78: // expr: expr percent expr
 #line 179 "parser.yy"
-                                                                  {}
-#line 1088 "src/parser.cc"
-    break;
-
-  case 87: // expr: readline openparantheses closeparantheses
-#line 180 "parser.yy"
-                                                                   {}
-#line 1094 "src/parser.cc"
-    break;
-
-  case 88: // expr: new id
-#line 181 "parser.yy"
-                                 {}
-#line 1100 "src/parser.cc"
-    break;
-
-  case 89: // expr: newarray openparantheses expr comma type closeparantheses
-#line 182 "parser.yy"
-                                                                      {}
-#line 1106 "src/parser.cc"
-    break;
-
-  case 90: // expr: itod openparantheses expr closeparantheses
-#line 183 "parser.yy"
-                                                            {}
-#line 1112 "src/parser.cc"
-    break;
-
-  case 91: // expr: dtoi openparantheses expr closeparantheses
-#line 184 "parser.yy"
-                                                            {}
-#line 1118 "src/parser.cc"
-    break;
-
-  case 92: // expr: itob openparantheses expr closeparantheses
-#line 185 "parser.yy"
-                                                            {}
-#line 1124 "src/parser.cc"
-    break;
-
-  case 93: // expr: btoi openparantheses expr closeparantheses
-#line 186 "parser.yy"
-                                                            {}
-#line 1130 "src/parser.cc"
-    break;
-
-  case 94: // expr: line
-#line 187 "parser.yy"
-                                {}
-#line 1136 "src/parser.cc"
-    break;
-
-  case 95: // expr: func
-#line 188 "parser.yy"
-                                {}
-#line 1142 "src/parser.cc"
-    break;
-
-  case 96: // lvalue: id
-#line 191 "parser.yy"
-                                 {}
-#line 1148 "src/parser.cc"
-    break;
-
-  case 97: // lvalue: expr dot id
-#line 192 "parser.yy"
-                                     {}
-#line 1154 "src/parser.cc"
-    break;
-
-  case 98: // lvalue: expr openbracket expr closebracket
-#line 193 "parser.yy"
-                                                         {}
-#line 1160 "src/parser.cc"
-    break;
-
-  case 99: // call: id openparantheses actuals closeparantheses
-#line 196 "parser.yy"
-                                                               {}
-#line 1166 "src/parser.cc"
-    break;
-
-  case 100: // call: expr dot id openparantheses actuals closeparantheses
-#line 197 "parser.yy"
-                                                                   {}
-#line 1172 "src/parser.cc"
-    break;
-
-  case 101: // actuals: actualscontent
-#line 200 "parser.yy"
                                           {}
-#line 1178 "src/parser.cc"
+#line 1543 "src/parser.cc"
     break;
 
-  case 102: // actuals: %empty
-#line 201 "parser.yy"
+  case 79: // expr: minus expr
+#line 180 "parser.yy"
+                                        {}
+#line 1549 "src/parser.cc"
+    break;
+
+  case 80: // expr: expr lessthan expr
+#line 181 "parser.yy"
+                                           {}
+#line 1555 "src/parser.cc"
+    break;
+
+  case 81: // expr: expr lessthanequal expr
+#line 182 "parser.yy"
+                                               {}
+#line 1561 "src/parser.cc"
+    break;
+
+  case 82: // expr: expr greaterthan expr
+#line 183 "parser.yy"
+                                              {}
+#line 1567 "src/parser.cc"
+    break;
+
+  case 83: // expr: expr greaterthanequal expr
+#line 184 "parser.yy"
+                                                  {}
+#line 1573 "src/parser.cc"
+    break;
+
+  case 84: // expr: expr equal expr
+#line 185 "parser.yy"
+                                       {}
+#line 1579 "src/parser.cc"
+    break;
+
+  case 85: // expr: expr notequal expr
+#line 186 "parser.yy"
+                                          {}
+#line 1585 "src/parser.cc"
+    break;
+
+  case 86: // expr: expr and expr
+#line 187 "parser.yy"
+                                     {}
+#line 1591 "src/parser.cc"
+    break;
+
+  case 87: // expr: expr or expr
+#line 188 "parser.yy"
                                     {}
-#line 1184 "src/parser.cc"
+#line 1597 "src/parser.cc"
     break;
 
-  case 103: // actualscontent: expr comma actualscontent
-#line 204 "parser.yy"
-                                  {}
-#line 1190 "src/parser.cc"
-    break;
-
-  case 104: // actualscontent: expr
-#line 205 "parser.yy"
-               { }
-#line 1196 "src/parser.cc"
-    break;
-
-  case 105: // constant: integer
-#line 208 "parser.yy"
-                                {}
-#line 1202 "src/parser.cc"
-    break;
-
-  case 106: // constant: float
-#line 209 "parser.yy"
-                           {}
-#line 1208 "src/parser.cc"
-    break;
-
-  case 107: // constant: boolean
-#line 210 "parser.yy"
-                               {}
-#line 1214 "src/parser.cc"
-    break;
-
-  case 108: // constant: string
-#line 211 "parser.yy"
-                            {}
-#line 1220 "src/parser.cc"
-    break;
-
-  case 109: // constant: nullkw
-#line 212 "parser.yy"
+  case 88: // expr: not expr
+#line 189 "parser.yy"
                                       {}
-#line 1226 "src/parser.cc"
+#line 1603 "src/parser.cc"
+    break;
+
+  case 89: // expr: readinteger openparantheses closeparantheses
+#line 190 "parser.yy"
+                                                                  {}
+#line 1609 "src/parser.cc"
+    break;
+
+  case 90: // expr: readline openparantheses closeparantheses
+#line 191 "parser.yy"
+                                                                   {}
+#line 1615 "src/parser.cc"
+    break;
+
+  case 91: // expr: new id
+#line 192 "parser.yy"
+                                 {}
+#line 1621 "src/parser.cc"
+    break;
+
+  case 92: // expr: newarray openparantheses expr comma type closeparantheses
+#line 193 "parser.yy"
+                                                                      {}
+#line 1627 "src/parser.cc"
+    break;
+
+  case 93: // expr: itod openparantheses expr closeparantheses
+#line 194 "parser.yy"
+                                                            {}
+#line 1633 "src/parser.cc"
+    break;
+
+  case 94: // expr: dtoi openparantheses expr closeparantheses
+#line 195 "parser.yy"
+                                                            {}
+#line 1639 "src/parser.cc"
+    break;
+
+  case 95: // expr: itob openparantheses expr closeparantheses
+#line 196 "parser.yy"
+                                                            {}
+#line 1645 "src/parser.cc"
+    break;
+
+  case 96: // expr: btoi openparantheses expr closeparantheses
+#line 197 "parser.yy"
+                                                            {}
+#line 1651 "src/parser.cc"
+    break;
+
+  case 97: // expr: line
+#line 198 "parser.yy"
+                                {}
+#line 1657 "src/parser.cc"
+    break;
+
+  case 98: // expr: func
+#line 199 "parser.yy"
+                                {}
+#line 1663 "src/parser.cc"
+    break;
+
+  case 99: // lvalue: id
+#line 202 "parser.yy"
+                                 {}
+#line 1669 "src/parser.cc"
+    break;
+
+  case 100: // lvalue: expr dot id
+#line 203 "parser.yy"
+                                     {}
+#line 1675 "src/parser.cc"
+    break;
+
+  case 101: // lvalue: expr openbracket expr closebracket
+#line 204 "parser.yy"
+                                                         {}
+#line 1681 "src/parser.cc"
+    break;
+
+  case 102: // call: id openparantheses actuals closeparantheses
+#line 207 "parser.yy"
+                                                               {}
+#line 1687 "src/parser.cc"
+    break;
+
+  case 103: // call: expr dot id openparantheses actuals closeparantheses
+#line 208 "parser.yy"
+                                                                   {}
+#line 1693 "src/parser.cc"
+    break;
+
+  case 104: // actuals: actualscontent
+#line 211 "parser.yy"
+                                          {}
+#line 1699 "src/parser.cc"
+    break;
+
+  case 105: // actuals: %empty
+#line 212 "parser.yy"
+                                    {}
+#line 1705 "src/parser.cc"
+    break;
+
+  case 106: // actualscontent: expr comma actualscontent
+#line 215 "parser.yy"
+                                  {}
+#line 1711 "src/parser.cc"
+    break;
+
+  case 107: // actualscontent: expr
+#line 216 "parser.yy"
+               { }
+#line 1717 "src/parser.cc"
+    break;
+
+  case 108: // constant: integer
+#line 219 "parser.yy"
+                                {}
+#line 1723 "src/parser.cc"
+    break;
+
+  case 109: // constant: float
+#line 220 "parser.yy"
+                           {}
+#line 1729 "src/parser.cc"
+    break;
+
+  case 110: // constant: boolean
+#line 221 "parser.yy"
+                               {}
+#line 1735 "src/parser.cc"
+    break;
+
+  case 111: // constant: string
+#line 222 "parser.yy"
+                            { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1741 "src/parser.cc"
+    break;
+
+  case 112: // constant: nullkw
+#line 223 "parser.yy"
+                                      {}
+#line 1747 "src/parser.cc"
     break;
 
 
-#line 1230 "src/parser.cc"
+#line 1751 "src/parser.cc"
 
             default:
               break;
@@ -1420,14 +1941,14 @@ namespace yy {
   "div", "lessthanequal", "greaterthanequal", "lessthan", "greaterthan",
   "equal", "notequal", "and", "or", "closebrace", "openparantheses",
   "closeparantheses", "comma", "assign", "openbrace", "plusequal",
-  "minusequal", "starequal", "slashequal", "not", "dot", "$accept",
-  "program", "macro", "declerations", "declaration", "variabledecl",
-  "variable", "type", "functiondecl", "formals", "formalsp", "classdecl",
-  "fields", "field", "accessmode", "stmtblock", "stmtblockcontent",
-  "statements", "stmt", "ifstmt", "elsestmt", "whilestmt", "forstmt",
-  "returnstmt", "breakstmt", "nexpr", "continuestmt", "printstmt",
-  "printcontent", "expr", "lvalue", "call", "actuals", "actualscontent",
-  "constant", YY_NULLPTR
+  "minusequal", "starequal", "slashequal", "not", "dot", "$accept", "sp",
+  "program", "macro", "declarations", "declaration", "variabledecl",
+  "variable", "type", "functiondecl", "$@1", "$@2", "formals", "formalsp",
+  "classdecl", "fields", "field", "accessmode", "stmtblock",
+  "stmtblockcontent", "statements", "stmt", "ifstmt", "elsestmt",
+  "whilestmt", "forstmt", "returnstmt", "breakstmt", "nexpr",
+  "continuestmt", "printstmt", "printcontent", "expr", "lvalue", "call",
+  "actuals", "actualscontent", "constant", YY_NULLPTR
     };
     return yy_sname[yysymbol];
   }
@@ -1696,181 +2217,181 @@ namespace yy {
   }
 
 
-  const short parser::yypact_ninf_ = -176;
+  const short parser::yypact_ninf_ = -182;
 
-  const signed char parser::yytable_ninf_ = -28;
+  const signed char parser::yytable_ninf_ = -31;
 
   const short
   parser::yypact_[] =
   {
-      78,  -176,    18,    -1,  -176,  -176,  -176,    26,  -176,    37,
-      42,    78,  -176,    87,  -176,    41,    22,  -176,  -176,    57,
-    -176,    -2,    14,  -176,  -176,  -176,  -176,    28,  -176,  -176,
-      83,    -9,    83,    36,    79,    45,  -176,  -176,  -176,    43,
-      -9,    21,    46,    83,  -176,    47,  -176,  -176,  -176,  -176,
-      47,  -176,   126,  -176,  -176,     2,  -176,  -176,  -176,    50,
-      56,    62,  -176,  -176,   217,   113,   118,  -176,    66,    67,
-      69,    70,  -176,  -176,    71,   125,    81,    82,    84,  -176,
-     217,   217,   217,   126,  -176,    88,  -176,   174,  -176,  -176,
-    -176,  -176,  -176,  -176,  -176,   243,    52,  -176,  -176,   217,
-     217,   217,   217,    91,   133,   616,  -176,  -176,   217,   217,
-      92,    94,   217,  -176,   217,   217,   217,     3,   303,     3,
-    -176,  -176,  -176,  -176,   217,   217,   217,   217,   217,   217,
-     217,   217,   217,   217,   217,   217,   217,   217,   150,   217,
-     217,   217,   217,   217,   333,   112,  -176,   363,   393,   165,
-    -176,   423,   -32,   616,  -176,  -176,   453,   483,   513,   543,
-    -176,   586,     3,     3,     3,     3,     3,   632,     3,   632,
-     632,     3,   160,   160,   160,   117,   632,   632,     3,     3,
-     632,   217,  -176,   174,   174,   217,    83,   168,   217,  -176,
-    -176,  -176,  -176,  -176,   217,  -176,   158,  -176,   273,    -8,
-    -176,   616,   121,   174,  -176,   217,  -176,  -176,  -176,   122,
-     174,  -176
+      78,  -182,     4,     7,  -182,  -182,  -182,    41,  -182,    45,
+      59,  -182,    78,  -182,    87,  -182,    53,    23,  -182,  -182,
+      72,  -182,    25,    24,  -182,  -182,  -182,  -182,    34,  -182,
+    -182,    83,    -6,    83,    36,    31,    46,  -182,  -182,  -182,
+      43,    -6,    18,    49,    83,  -182,  -182,  -182,  -182,  -182,
+    -182,  -182,  -182,    42,    42,   126,  -182,  -182,     1,  -182,
+    -182,  -182,    51,    56,    62,  -182,  -182,   217,   113,   118,
+    -182,    66,    67,    69,    70,  -182,  -182,    71,   125,    81,
+      82,    84,  -182,   217,   217,   217,   126,  -182,    88,  -182,
+     174,  -182,  -182,  -182,  -182,  -182,  -182,  -182,   243,    52,
+    -182,  -182,   217,   217,   217,   217,    91,   133,   616,  -182,
+    -182,   217,   217,    92,    94,   217,  -182,   217,   217,   217,
+       2,   303,     2,  -182,  -182,  -182,  -182,   217,   217,   217,
+     217,   217,   217,   217,   217,   217,   217,   217,   217,   217,
+     217,   150,   217,   217,   217,   217,   217,   333,   112,  -182,
+     363,   393,   165,  -182,   423,   -35,   616,  -182,  -182,   453,
+     483,   513,   543,  -182,   586,     2,     2,     2,     2,     2,
+     632,     2,   632,   632,     2,   160,   160,   160,   117,   632,
+     632,     2,     2,   632,   217,  -182,   174,   174,   217,    83,
+     168,   217,  -182,  -182,  -182,  -182,  -182,   217,  -182,   158,
+    -182,   273,    -4,  -182,   616,   121,   174,  -182,   217,  -182,
+    -182,  -182,   122,   174,  -182
   };
 
   const signed char
   parser::yydefact_[] =
   {
-       0,    17,     0,     0,    14,    15,    16,     0,    13,     0,
-       0,     0,     3,     7,     8,     0,     0,     9,    10,     0,
-       4,     0,     0,     1,     2,     6,    11,    12,    18,     5,
-      22,    32,    22,    24,     0,     0,    21,    30,    31,     0,
-      32,     0,     0,     0,    12,     0,    25,    26,    28,    29,
-       0,    23,    36,    20,    19,    96,   108,    39,   105,     0,
-       0,     0,   107,   109,    56,     0,     0,    68,     0,     0,
-       0,     0,    94,    95,     0,     0,     0,     0,     0,   106,
-       0,     0,     0,    36,    47,     0,    35,    36,    40,    41,
-      42,    45,    43,    44,    46,     0,    67,    69,    66,   102,
-       0,     0,    56,    96,     0,    55,    54,    88,     0,     0,
-       0,     0,     0,    57,     0,     0,     0,    76,     0,    85,
-      34,    33,    37,    38,     0,     0,     0,     0,     0,     0,
+       0,    18,     0,     0,    15,    16,    17,     0,    14,     0,
+       0,     2,     0,     4,     8,     9,     0,     0,    10,    11,
+       0,     5,     0,     0,     1,     3,     7,    12,    13,    19,
+       6,    25,    35,    25,    27,     0,     0,    24,    33,    34,
+       0,    35,     0,     0,     0,    13,    22,    28,    29,    31,
+      32,    20,    26,     0,     0,    39,    23,    21,    99,   111,
+      42,   108,     0,     0,     0,   110,   112,    59,     0,     0,
+      71,     0,     0,     0,     0,    97,    98,     0,     0,     0,
+       0,     0,   109,     0,     0,     0,    39,    50,     0,    38,
+      39,    43,    44,    45,    48,    46,    47,    49,     0,    70,
+      72,    69,   105,     0,     0,    59,    99,     0,    58,    57,
+      91,     0,     0,     0,     0,     0,    60,     0,     0,     0,
+      79,     0,    88,    37,    36,    40,    41,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,   104,     0,   101,     0,     0,     0,
-      53,     0,     0,    60,    86,    87,     0,     0,     0,     0,
-      70,     0,    74,    75,    71,    72,    73,    78,    80,    77,
-      79,    81,    82,    83,    84,    97,    61,    62,    63,    64,
-      65,     0,    99,     0,     0,     0,     0,     0,     0,    93,
-      91,    92,    90,    98,   102,   103,    48,    51,     0,     0,
-      58,    59,     0,     0,    49,    56,    89,   100,    50,     0,
-       0,    52
+       0,     0,     0,     0,     0,     0,     0,   107,     0,   104,
+       0,     0,     0,    56,     0,     0,    63,    89,    90,     0,
+       0,     0,     0,    73,     0,    77,    78,    74,    75,    76,
+      81,    83,    80,    82,    84,    85,    86,    87,   100,    64,
+      65,    66,    67,    68,     0,   102,     0,     0,     0,     0,
+       0,     0,    96,    94,    95,    93,   101,   105,   106,    51,
+      54,     0,     0,    61,    62,     0,     0,    52,    59,    92,
+     103,    53,     0,     0,    55
   };
 
   const short
   parser::yypgoto_[] =
   {
-    -176,   173,  -176,   172,  -176,   -29,   -10,     0,   147,   157,
-     153,  -176,   161,  -176,  -176,   -35,   107,   110,  -175,  -176,
-    -176,  -176,  -176,  -176,  -176,  -100,  -176,  -176,  -176,   -63,
-    -176,  -176,     4,    19,  -176
+    -182,  -182,   172,  -182,   171,  -182,   -39,   -11,     0,   144,
+    -182,  -182,   155,   146,  -182,   156,  -182,  -182,   -23,   110,
+     108,  -181,  -182,  -182,  -182,  -182,  -182,  -182,  -103,  -182,
+    -182,  -182,   -66,  -182,  -182,     3,    17,  -182
   };
 
   const unsigned char
   parser::yydefgoto_[] =
   {
-       0,    10,    11,    12,    13,    14,    15,    34,    17,    35,
-      36,    18,    39,    40,    41,    84,    85,    86,    87,    88,
-     204,    89,    90,    91,    92,   104,    93,    94,   152,    95,
-      96,    97,   145,   146,    98
+       0,    10,    11,    12,    13,    14,    15,    16,    35,    18,
+      54,    53,    36,    37,    19,    40,    41,    42,    87,    88,
+      89,    90,    91,   207,    92,    93,    94,    95,   107,    96,
+      97,   155,    98,    99,   100,   148,   149,   101
   };
 
   const short
   parser::yytable_[] =
   {
-      16,   105,   149,    20,    28,   -17,    37,    38,   196,   197,
-      53,    16,    48,    16,   -17,    54,   124,   117,   118,   119,
-      33,    19,    33,    83,     1,    27,   187,   188,   208,    21,
-       4,     5,     6,    33,    28,   211,   144,   147,   148,   105,
-      22,    16,    23,     7,     8,   151,   153,   -27,    26,   156,
-     206,   157,   158,   159,    83,    30,   135,   136,   137,    99,
-      29,   161,   162,   163,   164,   165,   166,   167,   168,   169,
-     170,   171,   172,   173,   174,    31,   176,   177,   178,   179,
-     180,     1,    44,     2,     3,    32,     1,     4,     5,     6,
-       1,    28,     4,     5,     6,    43,     4,     5,     6,    46,
-       7,     8,     9,    45,    50,   209,     8,   100,    52,     7,
-       8,     9,   139,   101,   140,   141,   142,   143,   144,   102,
-     106,   107,   198,   108,   109,   201,   110,   111,   112,    55,
-      56,   144,   113,    57,    58,     4,     5,     6,   114,   115,
-     150,   116,   105,    59,   121,    60,    61,    62,    99,     8,
-     154,    63,   155,   175,    64,    65,    66,    67,    68,    69,
-      70,    71,    72,    73,    74,    75,    76,    77,    78,    79,
-     182,    80,   185,   124,   194,   200,   203,   103,    56,   207,
-     210,    57,    58,    81,    24,    25,   199,    52,    49,    42,
-     120,    59,    82,    60,    61,    62,    51,   122,   202,    63,
-     195,    47,    64,    65,    66,    67,    68,    69,    70,    71,
-      72,    73,    74,    75,    76,    77,    78,    79,     0,    80,
-     103,    56,     0,     0,     0,    58,     0,     0,     0,     0,
-       0,    81,     0,     0,     0,    52,     0,     0,    62,     0,
-      82,     0,    63,     0,     0,     0,     0,    66,    67,    68,
-     123,    70,    71,    72,    73,    74,   124,    76,    77,    78,
-      79,     0,    80,     0,     0,     0,     0,     0,     0,   125,
-     126,     0,     0,     0,    81,     0,     0,     0,     0,     0,
-     205,     0,     0,    82,     0,     0,   124,   127,   128,   129,
-       0,   130,   131,   132,   133,   134,   135,   136,   137,   125,
-     126,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-     138,     0,     0,     0,     0,     0,   124,   127,   128,   129,
-       0,   130,   131,   132,   133,   134,   135,   136,   137,   125,
-     126,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-     138,     0,     0,     0,     0,     0,   124,   127,   128,   129,
-       0,   130,   131,   132,   133,   134,   135,   136,   137,   125,
-     126,   160,     0,     0,     0,     0,     0,     0,     0,     0,
-     138,     0,     0,     0,     0,     0,   124,   127,   128,   129,
-       0,   130,   131,   132,   133,   134,   135,   136,   137,   125,
-     126,     0,   181,     0,     0,     0,     0,     0,     0,     0,
-     138,     0,     0,     0,     0,     0,   124,   127,   128,   129,
-       0,   130,   131,   132,   133,   134,   135,   136,   137,   125,
-     126,   183,     0,     0,     0,     0,     0,     0,     0,     0,
-     138,     0,     0,     0,     0,     0,   124,   127,   128,   129,
-       0,   130,   131,   132,   133,   134,   135,   136,   137,   125,
-     126,   184,     0,     0,     0,     0,     0,     0,     0,     0,
-     138,     0,     0,     0,     0,     0,   124,   127,   128,   129,
-       0,   130,   131,   132,   133,   134,   135,   136,   137,   125,
-     126,     0,   186,     0,     0,     0,     0,     0,     0,     0,
-     138,     0,     0,     0,     0,     0,   124,   127,   128,   129,
-       0,   130,   131,   132,   133,   134,   135,   136,   137,   125,
-     126,   189,     0,     0,     0,     0,     0,     0,     0,     0,
-     138,     0,     0,     0,     0,     0,   124,   127,   128,   129,
-       0,   130,   131,   132,   133,   134,   135,   136,   137,   125,
-     126,   190,     0,     0,     0,     0,     0,     0,     0,     0,
-     138,     0,     0,     0,     0,     0,   124,   127,   128,   129,
-       0,   130,   131,   132,   133,   134,   135,   136,   137,   125,
-     126,   191,     0,     0,     0,     0,     0,     0,     0,     0,
-     138,     0,     0,     0,     0,     0,     0,   127,   128,   129,
-       0,   130,   131,   132,   133,   134,   135,   136,   137,   124,
-     193,   192,     0,     0,     0,     0,     0,     0,     0,     0,
-     138,     0,   125,   126,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,   124,
-     127,   128,   129,     0,   130,   131,   132,   133,   134,   135,
-     136,   137,   125,   126,     0,   124,     0,     0,     0,     0,
-       0,     0,     0,   138,     0,     0,     0,     0,   125,   126,
-     127,   128,   129,     0,   130,   131,   132,   133,   134,   135,
-     136,   137,     0,     0,     0,     0,   127,   128,   129,     0,
-       0,   131,     0,   138,   134,   135,   136,   137,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,   138
+      17,   108,   152,    49,   -18,   199,   200,    20,    29,    38,
+      39,    21,    17,   -18,    17,   127,    86,   120,   121,   122,
+      34,     1,    34,   190,   191,   211,    28,     4,     5,     6,
+      56,    57,   214,    34,    45,    29,   147,   150,   151,   108,
+       7,     8,    17,    29,    22,   154,   156,    86,    23,   159,
+     -30,   160,   161,   162,   209,   138,   139,   140,   102,    24,
+      27,   164,   165,   166,   167,   168,   169,   170,   171,   172,
+     173,   174,   175,   176,   177,    30,   179,   180,   181,   182,
+     183,     1,    31,     2,     3,    32,     1,     4,     5,     6,
+       1,    33,     4,     5,     6,    44,     4,     5,     6,    47,
+       7,     8,     9,    55,    46,   212,     8,    51,   103,     7,
+       8,     9,   142,   104,   143,   144,   145,   146,   147,   105,
+     109,   110,   201,   111,   112,   204,   113,   114,   115,    58,
+      59,   147,   116,    60,    61,     4,     5,     6,   117,   118,
+     153,   119,   108,    62,   124,    63,    64,    65,   102,     8,
+     157,    66,   158,   178,    67,    68,    69,    70,    71,    72,
+      73,    74,    75,    76,    77,    78,    79,    80,    81,    82,
+     185,    83,   188,   127,   197,   203,   206,   106,    59,   210,
+     213,    60,    61,    84,    25,    26,    50,    55,    43,   202,
+      52,    62,    85,    63,    64,    65,   123,    48,   125,    66,
+     205,   198,    67,    68,    69,    70,    71,    72,    73,    74,
+      75,    76,    77,    78,    79,    80,    81,    82,     0,    83,
+     106,    59,     0,     0,     0,    61,     0,     0,     0,     0,
+       0,    84,     0,     0,     0,    55,     0,     0,    65,     0,
+      85,     0,    66,     0,     0,     0,     0,    69,    70,    71,
+     126,    73,    74,    75,    76,    77,   127,    79,    80,    81,
+      82,     0,    83,     0,     0,     0,     0,     0,     0,   128,
+     129,     0,     0,     0,    84,     0,     0,     0,     0,     0,
+     208,     0,     0,    85,     0,     0,   127,   130,   131,   132,
+       0,   133,   134,   135,   136,   137,   138,   139,   140,   128,
+     129,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+     141,     0,     0,     0,     0,     0,   127,   130,   131,   132,
+       0,   133,   134,   135,   136,   137,   138,   139,   140,   128,
+     129,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+     141,     0,     0,     0,     0,     0,   127,   130,   131,   132,
+       0,   133,   134,   135,   136,   137,   138,   139,   140,   128,
+     129,   163,     0,     0,     0,     0,     0,     0,     0,     0,
+     141,     0,     0,     0,     0,     0,   127,   130,   131,   132,
+       0,   133,   134,   135,   136,   137,   138,   139,   140,   128,
+     129,     0,   184,     0,     0,     0,     0,     0,     0,     0,
+     141,     0,     0,     0,     0,     0,   127,   130,   131,   132,
+       0,   133,   134,   135,   136,   137,   138,   139,   140,   128,
+     129,   186,     0,     0,     0,     0,     0,     0,     0,     0,
+     141,     0,     0,     0,     0,     0,   127,   130,   131,   132,
+       0,   133,   134,   135,   136,   137,   138,   139,   140,   128,
+     129,   187,     0,     0,     0,     0,     0,     0,     0,     0,
+     141,     0,     0,     0,     0,     0,   127,   130,   131,   132,
+       0,   133,   134,   135,   136,   137,   138,   139,   140,   128,
+     129,     0,   189,     0,     0,     0,     0,     0,     0,     0,
+     141,     0,     0,     0,     0,     0,   127,   130,   131,   132,
+       0,   133,   134,   135,   136,   137,   138,   139,   140,   128,
+     129,   192,     0,     0,     0,     0,     0,     0,     0,     0,
+     141,     0,     0,     0,     0,     0,   127,   130,   131,   132,
+       0,   133,   134,   135,   136,   137,   138,   139,   140,   128,
+     129,   193,     0,     0,     0,     0,     0,     0,     0,     0,
+     141,     0,     0,     0,     0,     0,   127,   130,   131,   132,
+       0,   133,   134,   135,   136,   137,   138,   139,   140,   128,
+     129,   194,     0,     0,     0,     0,     0,     0,     0,     0,
+     141,     0,     0,     0,     0,     0,     0,   130,   131,   132,
+       0,   133,   134,   135,   136,   137,   138,   139,   140,   127,
+     196,   195,     0,     0,     0,     0,     0,     0,     0,     0,
+     141,     0,   128,   129,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,   127,
+     130,   131,   132,     0,   133,   134,   135,   136,   137,   138,
+     139,   140,   128,   129,     0,   127,     0,     0,     0,     0,
+       0,     0,     0,   141,     0,     0,     0,     0,   128,   129,
+     130,   131,   132,     0,   133,   134,   135,   136,   137,   138,
+     139,   140,     0,     0,     0,     0,   130,   131,   132,     0,
+       0,   134,     0,   141,   137,   138,   139,   140,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,   141
   };
 
   const short
   parser::yycheck_[] =
   {
-       0,    64,   102,     4,    12,     3,    15,    16,   183,   184,
-      45,    11,    41,    13,    12,    50,    13,    80,    81,    82,
-      30,     3,    32,    52,     3,     3,    58,    59,   203,     3,
-       9,    10,    11,    43,    12,   210,    99,   100,   101,   102,
-       3,    41,     0,    22,    23,   108,   109,    56,     7,   112,
-      58,   114,   115,   116,    83,    57,    53,    54,    55,    57,
-       3,   124,   125,   126,   127,   128,   129,   130,   131,   132,
-     133,   134,   135,   136,   137,    61,   139,   140,   141,   142,
-     143,     3,     3,     5,     6,    57,     3,     9,    10,    11,
-       3,    12,     9,    10,    11,    59,     9,    10,    11,    56,
-      22,    23,    24,    58,    58,   205,    23,    57,    61,    22,
-      23,    24,    60,    57,    62,    63,    64,    65,   181,    57,
-       7,     3,   185,    57,    57,   188,    57,    57,    57,     3,
-       4,   194,     7,     7,     8,     9,    10,    11,    57,    57,
-       7,    57,   205,    17,    56,    19,    20,    21,    57,    23,
+       0,    67,   105,    42,     3,   186,   187,     3,    12,    15,
+      16,     4,    12,    12,    14,    13,    55,    83,    84,    85,
+      31,     3,    33,    58,    59,   206,     3,     9,    10,    11,
+      53,    54,   213,    44,     3,    12,   102,   103,   104,   105,
+      22,    23,    42,    12,     3,   111,   112,    86,     3,   115,
+      56,   117,   118,   119,    58,    53,    54,    55,    57,     0,
+       7,   127,   128,   129,   130,   131,   132,   133,   134,   135,
+     136,   137,   138,   139,   140,     3,   142,   143,   144,   145,
+     146,     3,    57,     5,     6,    61,     3,     9,    10,    11,
+       3,    57,     9,    10,    11,    59,     9,    10,    11,    56,
+      22,    23,    24,    61,    58,   208,    23,    58,    57,    22,
+      23,    24,    60,    57,    62,    63,    64,    65,   184,    57,
+       7,     3,   188,    57,    57,   191,    57,    57,    57,     3,
+       4,   197,     7,     7,     8,     9,    10,    11,    57,    57,
+       7,    57,   208,    17,    56,    19,    20,    21,    57,    23,
       58,    25,    58,     3,    28,    29,    30,    31,    32,    33,
       34,    35,    36,    37,    38,    39,    40,    41,    42,    43,
       58,    45,     7,    13,    57,     7,    18,     3,     4,    58,
-      58,     7,     8,    57,    11,    13,   186,    61,    41,    32,
-      83,    17,    66,    19,    20,    21,    43,    87,   194,    25,
-     181,    40,    28,    29,    30,    31,    32,    33,    34,    35,
+      58,     7,     8,    57,    12,    14,    42,    61,    33,   189,
+      44,    17,    66,    19,    20,    21,    86,    41,    90,    25,
+     197,   184,    28,    29,    30,    31,    32,    33,    34,    35,
       36,    37,    38,    39,    40,    41,    42,    43,    -1,    45,
        3,     4,    -1,    -1,    -1,     8,    -1,    -1,    -1,    -1,
       -1,    57,    -1,    -1,    -1,    61,    -1,    -1,    21,    -1,
@@ -1926,59 +2447,61 @@ namespace yy {
   parser::yystos_[] =
   {
        0,     3,     5,     6,     9,    10,    11,    22,    23,    24,
-      69,    70,    71,    72,    73,    74,    75,    76,    79,     3,
-       4,     3,     3,     0,    69,    71,     7,     3,    12,     3,
-      57,    61,    57,    74,    75,    77,    78,    15,    16,    80,
-      81,    82,    77,    59,     3,    58,    56,    80,    73,    76,
-      58,    78,    61,    83,    83,     3,     4,     7,     8,    17,
-      19,    20,    21,    25,    28,    29,    30,    31,    32,    33,
-      34,    35,    36,    37,    38,    39,    40,    41,    42,    43,
-      45,    57,    66,    73,    83,    84,    85,    86,    87,    89,
-      90,    91,    92,    94,    95,    97,    98,    99,   102,    57,
-      57,    57,    57,     3,    93,    97,     7,     3,    57,    57,
-      57,    57,    57,     7,    57,    57,    57,    97,    97,    97,
-      84,    56,    85,     7,    13,    26,    27,    44,    45,    46,
-      48,    49,    50,    51,    52,    53,    54,    55,    67,    60,
-      62,    63,    64,    65,    97,   100,   101,    97,    97,    93,
-       7,    97,    96,    97,    58,    58,    97,    97,    97,    97,
-      58,    97,    97,    97,    97,    97,    97,    97,    97,    97,
-      97,    97,    97,    97,    97,     3,    97,    97,    97,    97,
-      97,    59,    58,    58,    58,     7,    59,    58,    59,    58,
-      58,    58,    58,    14,    57,   101,    86,    86,    97,    75,
-       7,    97,   100,    18,    88,     7,    58,    58,    86,    93,
-      58,    86
+      69,    70,    71,    72,    73,    74,    75,    76,    77,    82,
+       3,     4,     3,     3,     0,    70,    72,     7,     3,    12,
+       3,    57,    61,    57,    75,    76,    80,    81,    15,    16,
+      83,    84,    85,    80,    59,     3,    58,    56,    83,    74,
+      77,    58,    81,    79,    78,    61,    86,    86,     3,     4,
+       7,     8,    17,    19,    20,    21,    25,    28,    29,    30,
+      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
+      41,    42,    43,    45,    57,    66,    74,    86,    87,    88,
+      89,    90,    92,    93,    94,    95,    97,    98,   100,   101,
+     102,   105,    57,    57,    57,    57,     3,    96,   100,     7,
+       3,    57,    57,    57,    57,    57,     7,    57,    57,    57,
+     100,   100,   100,    87,    56,    88,     7,    13,    26,    27,
+      44,    45,    46,    48,    49,    50,    51,    52,    53,    54,
+      55,    67,    60,    62,    63,    64,    65,   100,   103,   104,
+     100,   100,    96,     7,   100,    99,   100,    58,    58,   100,
+     100,   100,   100,    58,   100,   100,   100,   100,   100,   100,
+     100,   100,   100,   100,   100,   100,   100,   100,     3,   100,
+     100,   100,   100,   100,    59,    58,    58,    58,     7,    59,
+      58,    59,    58,    58,    58,    58,    14,    57,   104,    89,
+      89,   100,    76,     7,   100,   103,    18,    91,     7,    58,
+      58,    89,    96,    58,    89
   };
 
   const signed char
   parser::yyr1_[] =
   {
-       0,    68,    69,    69,    70,    70,    71,    71,    72,    72,
-      72,    73,    74,    75,    75,    75,    75,    75,    75,    76,
-      76,    77,    77,    78,    78,    79,    80,    80,    81,    81,
-      82,    82,    82,    83,    84,    84,    85,    85,    86,    86,
-      86,    86,    86,    86,    86,    86,    86,    86,    87,    87,
-      88,    89,    90,    91,    92,    93,    93,    94,    95,    96,
-      96,    97,    97,    97,    97,    97,    97,    97,    97,    97,
-      97,    97,    97,    97,    97,    97,    97,    97,    97,    97,
-      97,    97,    97,    97,    97,    97,    97,    97,    97,    97,
-      97,    97,    97,    97,    97,    97,    98,    98,    98,    99,
-      99,   100,   100,   101,   101,   102,   102,   102,   102,   102
+       0,    68,    69,    70,    70,    71,    71,    72,    72,    73,
+      73,    73,    74,    75,    76,    76,    76,    76,    76,    76,
+      78,    77,    79,    77,    80,    80,    81,    81,    82,    83,
+      83,    84,    84,    85,    85,    85,    86,    87,    87,    88,
+      88,    89,    89,    89,    89,    89,    89,    89,    89,    89,
+      89,    90,    90,    91,    92,    93,    94,    95,    96,    96,
+      97,    98,    99,    99,   100,   100,   100,   100,   100,   100,
+     100,   100,   100,   100,   100,   100,   100,   100,   100,   100,
+     100,   100,   100,   100,   100,   100,   100,   100,   100,   100,
+     100,   100,   100,   100,   100,   100,   100,   100,   100,   101,
+     101,   101,   102,   102,   103,   103,   104,   104,   105,   105,
+     105,   105,   105
   };
 
   const signed char
   parser::yyr2_[] =
   {
-       0,     2,     2,     1,     2,     3,     2,     1,     1,     1,
-       1,     2,     2,     1,     1,     1,     1,     1,     2,     6,
-       6,     1,     0,     3,     1,     5,     2,     0,     2,     2,
-       1,     1,     0,     3,     2,     1,     0,     2,     2,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     5,     6,
-       2,     5,     9,     3,     2,     1,     0,     2,     5,     3,
-       1,     3,     3,     3,     3,     3,     1,     1,     1,     1,
-       3,     3,     3,     3,     3,     3,     2,     3,     3,     3,
-       3,     3,     3,     3,     3,     2,     3,     3,     2,     6,
-       4,     4,     4,     4,     1,     1,     1,     3,     4,     4,
-       6,     1,     0,     3,     1,     1,     1,     1,     1,     1
+       0,     2,     1,     2,     1,     2,     3,     2,     1,     1,
+       1,     1,     2,     2,     1,     1,     1,     1,     1,     2,
+       0,     7,     0,     7,     1,     0,     3,     1,     5,     2,
+       0,     2,     2,     1,     1,     0,     3,     2,     1,     0,
+       2,     2,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     5,     6,     2,     5,     9,     3,     2,     1,     0,
+       2,     5,     3,     1,     3,     3,     3,     3,     3,     1,
+       1,     1,     1,     3,     3,     3,     3,     3,     3,     2,
+       3,     3,     3,     3,     3,     3,     3,     3,     2,     3,
+       3,     2,     6,     4,     4,     4,     4,     1,     1,     1,
+       3,     4,     4,     6,     1,     0,     3,     1,     1,     1,
+       1,     1,     1
   };
 
 
@@ -1988,17 +2511,18 @@ namespace yy {
   const unsigned char
   parser::yyrline_[] =
   {
-       0,    54,    54,    55,    57,    58,    60,    61,    63,    64,
-      65,    67,    69,    71,    72,    73,    74,    75,    76,    78,
-      79,    81,    82,    84,    85,    87,    89,    90,    92,    93,
-      95,    96,    97,    99,   101,   102,   104,   105,   107,   108,
-     109,   110,   111,   112,   113,   114,   115,   116,   119,   120,
-     122,   124,   126,   128,   130,   132,   133,   135,   139,   143,
-     144,   154,   155,   156,   157,   158,   159,   160,   161,   162,
-     163,   164,   165,   166,   167,   168,   169,   170,   171,   172,
-     173,   174,   175,   176,   177,   178,   179,   180,   181,   182,
-     183,   184,   185,   186,   187,   188,   191,   192,   193,   196,
-     197,   200,   201,   204,   205,   208,   209,   210,   211,   212
+       0,    63,    63,    65,    66,    68,    69,    71,    72,    74,
+      75,    76,    78,    80,    82,    83,    84,    85,    86,    87,
+      89,    89,    90,    90,    92,    93,    95,    96,    98,   100,
+     101,   103,   104,   106,   107,   108,   110,   112,   113,   115,
+     116,   118,   119,   120,   121,   122,   123,   124,   125,   126,
+     127,   130,   131,   133,   135,   137,   139,   141,   143,   144,
+     146,   150,   154,   155,   165,   166,   167,   168,   169,   170,
+     171,   172,   173,   174,   175,   176,   177,   178,   179,   180,
+     181,   182,   183,   184,   185,   186,   187,   188,   189,   190,
+     191,   192,   193,   194,   195,   196,   197,   198,   199,   202,
+     203,   204,   207,   208,   211,   212,   215,   216,   219,   220,
+     221,   222,   223
   };
 
   void
@@ -2030,9 +2554,9 @@ namespace yy {
 
 
 } // yy
-#line 2034 "src/parser.cc"
+#line 2558 "src/parser.cc"
 
-#line 217 "parser.yy"
+#line 228 "parser.yy"
 
 
 void

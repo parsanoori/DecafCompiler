@@ -20,10 +20,14 @@ add_subdirectory(semanticstack)
 
 add_subdirectory(writer)
 
+add_subdirectory(codegen)
+
+add_subdirectory(functiontable)
+
 add_executable(compiler main.cpp)
 
 target_link_libraries(compiler PUBLIC
         preprocessor parser descriptor
-        utilities symboltable
-        semanticstack writer
+        utilities symboltable codegen
+        semanticstack writer functiontable
 )

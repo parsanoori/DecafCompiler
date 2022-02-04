@@ -8,7 +8,7 @@ target_link_libraries(symboltable
 )
 
 target_include_directories(symboltable
-    PRIVATE prvincl
+    PUBLIC prvincl
 )
 
 target_include_directories(symboltable

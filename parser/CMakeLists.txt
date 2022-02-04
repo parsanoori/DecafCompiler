@@ -1,3 +1,5 @@
+project(parser)
+
 add_library(parser src/driver.cc src/parser.cc src/scanner.cc)
 
 execute_process(COMMAND bash -c "bison --html --graph -o src/parser.cc parser.yy  && 
@@ -11,3 +13,5 @@ execute_process(COMMAND bash -c "bison --html --graph -o src/parser.cc parser.yy
 )
 
 target_include_directories(parser PUBLIC include)
+
+target_link_libraries(parser PUBLIC codegen)

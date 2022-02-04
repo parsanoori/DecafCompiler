@@ -1,5 +1,7 @@
 #include "symboltable.h"
 
+symboltable* symboltable::instance;
+
 symboltable::symboltable() {
     st.emplace_back("root");
 }
@@ -18,10 +20,11 @@ void symboltable::popscope() {
     st.pop_back();
 }
 
-void symboltable::addentry(const string &name, const string &type) {
+descriptor symboltable::addentry(const string &name, const string &type) {
     descriptor d(type);
     st.back().table.emplace(name, d);
     st.back().count += sizeofdtype(dtypefromstr(type));
+    return d;
 }
 
 descriptor symboltable::getentry(const string &name, const string &type) {
@@ -30,6 +33,11 @@ descriptor symboltable::getentry(const string &name, const string &type) {
             if (p.first == name && p.second.getType() == dtypefromstr(type))
                 return p.second;
     throw runtime_error("symbol not found");
+}
+
+string symboltable::currentscopename() {
+    return st.back().name;
+
 }
 
 

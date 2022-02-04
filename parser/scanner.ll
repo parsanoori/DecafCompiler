@@ -207,39 +207,39 @@ func                __func__
 
 {string}              return yy::parser::make_string(yytext,loc);
 
-{boolean}             return yy::parser::make_boolean(loc);
-{void}                return yy::parser::make_void(loc);
-{int}                 return yy::parser::make_int(loc);
-{double}              return yy::parser::make_double(loc);
-{bool}                return yy::parser::make_bool(loc);
-{string_kw}           return yy::parser::make_string_kw(loc);
-{class}               return yy::parser::make_class(loc);
-{null}                return yy::parser::make_nullkw(loc);
-{for}                 return yy::parser::make_for(loc);
-{while}               return yy::parser::make_while(loc);
-{if}                  return yy::parser::make_if(loc);
-{else}                return yy::parser::make_else(loc);
-{return}              return yy::parser::make_return(loc);
-{break}               return yy::parser::make_break(loc);
-{new}                 return yy::parser::make_new(loc);
-{this}                return yy::parser::make_this(loc);
-{NewArray}            return yy::parser::make_newarray(loc);
-{Print}               return yy::parser::make_print(loc);
-{ReadInteger}         return yy::parser::make_readinteger(loc);
-{ReadLine}            return yy::parser::make_readline(loc);
-{import}              return yy::parser::make_import(loc);
-{line}                return yy::parser::make_line(loc);
-{func}                return yy::parser::make_func(loc);
-{btoi}                return yy::parser::make_btoi(loc);
-{continue}            return yy::parser::make_continue(loc);
-{dtoi}                return yy::parser::make_dtoi(loc);    
-{itob}                return yy::parser::make_itob(loc);    
-{itod}                return yy::parser::make_itod(loc);    
-{private}             return yy::parser::make_private(loc);
-{public}              return yy::parser::make_public(loc);  
-{define}              return yy::parser::make_define(loc);
-{integer}             return yy::parser::make_integer(loc);
-{float}               return yy::parser::make_float(loc);
+{boolean}             return yy::parser::make_boolean(yytext,loc);
+{void}                return yy::parser::make_void(yytext,loc);
+{int}                 return yy::parser::make_int(yytext,loc);
+{double}              return yy::parser::make_double(yytext,loc);
+{bool}                return yy::parser::make_bool(yytext,loc);
+{string_kw}           return yy::parser::make_string_kw(yytext,loc);
+{class}               return yy::parser::make_class(yytext,loc);
+{null}                return yy::parser::make_nullkw(yytext,loc);
+{for}                 return yy::parser::make_for(yytext,loc);
+{while}               return yy::parser::make_while(yytext,loc);
+{if}                  return yy::parser::make_if(yytext,loc);
+{else}                return yy::parser::make_else(yytext,loc);
+{return}              return yy::parser::make_return(yytext,loc);
+{break}               return yy::parser::make_break(yytext,loc);
+{new}                 return yy::parser::make_new(yytext,loc);
+{this}                return yy::parser::make_this(yytext,loc);
+{NewArray}            return yy::parser::make_newarray(yytext,loc);
+{Print}               return yy::parser::make_print(yytext,loc);
+{ReadInteger}         return yy::parser::make_readinteger(yytext,loc);
+{ReadLine}            return yy::parser::make_readline(yytext,loc);
+{import}              return yy::parser::make_import(yytext,loc);
+{line}                return yy::parser::make_line(yytext,loc);
+{func}                return yy::parser::make_func(yytext,loc);
+{btoi}                return yy::parser::make_btoi(yytext,loc);
+{continue}            return yy::parser::make_continue(yytext,loc);
+{dtoi}                return yy::parser::make_dtoi(yytext,loc);
+{itob}                return yy::parser::make_itob(yytext,loc);
+{itod}                return yy::parser::make_itod(yytext,loc);
+{private}             return yy::parser::make_private(yytext,loc);
+{public}              return yy::parser::make_public(yytext,loc);
+{define}              return yy::parser::make_define(yytext,loc);
+{integer}             return yy::parser::make_integer(yytext,loc);
+{float}               return yy::parser::make_float(yytext,loc);
 
 {comment}             loc.step();
 
@@ -267,36 +267,36 @@ func                __func__
                       
                   }
 
-{openclosebracket}                  return yy::parser::make_openclosebracket(loc);
+{openclosebracket}                  return yy::parser::make_openclosebracket(yytext,loc);
 
-{plus}                return yy::parser::make_plus(loc);
-{minus}               return yy::parser::make_minus(loc);
-{star}                return yy::parser::make_star(loc);
-{slash}               return yy::parser::make_slash(loc);
-{percent}             return yy::parser::make_percent(loc);
-{lessthan}            return yy::parser::make_lessthan(loc);
-{greaterthan}         return yy::parser::make_greaterthan(loc);
-{lessthanequal}       return yy::parser::make_lessthanequal(loc);
-{greaterthanequal}    return yy::parser::make_greaterthanequal(loc);
-{equal}               return yy::parser::make_equal(loc);
-{notequal}            return yy::parser::make_notequal(loc);
-{and}                 return yy::parser::make_and(loc);
-{or}                  return yy::parser::make_or(loc);
-{openbrace}           return yy::parser::make_openbrace(loc);
-{closebrace}          return yy::parser::make_closebrace(loc);
-{openbracket}         return yy::parser::make_openbracket(loc);
-{closebracket}        return yy::parser::make_closebracket(loc);
-{openparantheses}     return yy::parser::make_openparantheses(loc);
-{closeparantheses}    return yy::parser::make_closeparantheses(loc);
-{comma}               return yy::parser::make_comma(loc);
-{assign}              return yy::parser::make_assign(loc);
-{semicolon}           return yy::parser::make_semicolon(loc);
-{plusequal}           return yy::parser::make_plusequal(loc);
-{minusequal}          return yy::parser::make_minusequal(loc);
-{starequal}           return yy::parser::make_starequal(loc);
-{slashqual}           return yy::parser::make_slashequal(loc);
-{not}                 return yy::parser::make_not(loc);
-{dot}                 return yy::parser::make_dot(loc);
+{plus}                return yy::parser::make_plus(yytext,loc);
+{minus}               return yy::parser::make_minus(yytext,loc);
+{star}                return yy::parser::make_star(yytext,loc);
+{slash}               return yy::parser::make_slash(yytext,loc);
+{percent}             return yy::parser::make_percent(yytext,loc);
+{lessthan}            return yy::parser::make_lessthan(yytext,loc);
+{greaterthan}         return yy::parser::make_greaterthan(yytext,loc);
+{lessthanequal}       return yy::parser::make_lessthanequal(yytext,loc);
+{greaterthanequal}    return yy::parser::make_greaterthanequal(yytext,loc);
+{equal}               return yy::parser::make_equal(yytext,loc);
+{notequal}            return yy::parser::make_notequal(yytext,loc);
+{and}                 return yy::parser::make_and(yytext,loc);
+{or}                  return yy::parser::make_or(yytext,loc);
+{openbrace}           return yy::parser::make_openbrace(yytext,loc);
+{closebrace}          return yy::parser::make_closebrace(yytext,loc);
+{openbracket}         return yy::parser::make_openbracket(yytext,loc);
+{closebracket}        return yy::parser::make_closebracket(yytext,loc);
+{openparantheses}     return yy::parser::make_openparantheses(yytext,loc);
+{closeparantheses}    return yy::parser::make_closeparantheses(yytext,loc);
+{comma}               return yy::parser::make_comma(yytext,loc);
+{assign}              return yy::parser::make_assign(yytext,loc);
+{semicolon}           return yy::parser::make_semicolon(yytext,loc);
+{plusequal}           return yy::parser::make_plusequal(yytext,loc);
+{minusequal}          return yy::parser::make_minusequal(yytext,loc);
+{starequal}           return yy::parser::make_starequal(yytext,loc);
+{slashqual}           return yy::parser::make_slashequal(yytext,loc);
+{not}                 return yy::parser::make_not(yytext,loc);
+{dot}                 return yy::parser::make_dot(yytext,loc);
 
 "_"             {
                   int c;
@@ -309,7 +309,7 @@ func                __func__
 %%
 
 //yy::parser::symbol_type
-//make_NUMBER (const std::string &s, const yy::parser::location_type& loc)
+//make_NUMBER (const std::string &s, const yy::parser::location_type& yytext,loc)
 //{
 //  errno = 0;
 //  long n = strtol (s.c_str(), NULL, 10);

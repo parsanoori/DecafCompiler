@@ -23,7 +23,9 @@ public:
 
     void popscope();
 
-    void addentry(const string& name,const string& type);
+    string currentscopename();
+
+    descriptor addentry(const string& name,const string& type);
 
     descriptor getentry(const string& name, const string& type);
 

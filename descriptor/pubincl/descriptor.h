@@ -15,7 +15,6 @@ class descriptor {
 public:
     explicit descriptor(const string &type);
 
-
     [[nodiscard]] dtype getType() const;
 
     [[nodiscard]] string getID() const;

@@ -25,7 +25,11 @@
 %code {
 # include "driver.hh"
 #include <iostream>
+#include "codegen.h"
+#include <vector>
 using namespace std;
+
+codegen &cg = *(codegen::get());
 }
 
 %define api.token.prefix {TOK_}
@@ -33,31 +37,38 @@ using namespace std;
 
 %token <std::string> id
 %token <std::string> string
-%token define import semicolon integer double bool string_kw
-%token openclosebracket;
-%token openbracket closebracket private public if else while for
-%token boolean void int class nullkw slash percent
-%token return break new this newarray print readinteger readline
-%token line func btoi continue dtoi itob itod 
-%token  float plus minus star div  lessthanequal greaterthanequal
-%token lessthan greaterthan equal notequal and or  closebrace
-%token openparantheses closeparantheses comma assign openbrace
-%token plusequal minusequal starequal slashequal not dot
+%token <std::string> define import semicolon integer double bool string_kw
+%token <std::string> openclosebracket;
+%token <std::string> openbracket closebracket private public if else while for
+%token <std::string> boolean void int class nullkw slash percent
+%token <std::string> return break new this newarray print readinteger readline
+%token <std::string> line func btoi continue dtoi itob itod
+%token <std::string> float plus minus star div  lessthanequal greaterthanequal
+%token <std::string> lessthan greaterthan equal notequal and or  closebrace
+%token <std::string> openparantheses closeparantheses comma assign openbrace
+%token <std::string> plusequal minusequal starequal slashequal not dot
 
+%nterm <std::string> program macro declaration declarations variabledecl type functiondecl
+%nterm <std::string>  classdecl fields field accessmode stmtblock stmt stmtblockcontent statements ifstmt elsestmt whilestmt
+%nterm <std::string> forstmt returnstmt breakstmt nexpr continuestmt printstmt printcontent expr lvalue call actuals
+%nterm <std::string> actualscontent constant
 
+%nterm <std::pair<std::string,std::string>> variable
+%nterm <std::vector<std::pair<std::string,std::string>>> formals formalsp
 
-%printer { yyo << $$; } <*>;
 
 %%
-%start program;
+%start sp;
+
+sp: program { cg.writestuff(); }
 
 program: macro program { }
-       | declerations {  }
+       | declarations { }
 
 macro: import string { }
      | define id id { }
 
-declerations: declaration declerations { }
+declarations: declaration declarations { }
             | declaration {  }
 
 declaration: variabledecl { }
@@ -66,23 +77,23 @@ declaration: variabledecl { }
 
 variabledecl: variable semicolon { }
 
-variable: type id { }
+variable: type id { cg.variable($1,$2); $$ = {$1,$2}; }
 
-type: int { }
-    | double { }
-    | bool { }
-    | string_kw { }
-    | id { }
-    | type openclosebracket { }
+type: int { $$ = $1; }
+    | double { $$ = $1; }
+    | bool { $$ = $1; }
+    | string_kw {  $$ = $1; }
+    | id {  $$ = $1; }
+    | type openclosebracket {  $$ = $1; }
 
-functiondecl: type id openparantheses formals closeparantheses stmtblock { }
-            | void id openparantheses formals closeparantheses stmtblock { }
+functiondecl: type id openparantheses formals closeparantheses { cg.addfunction($2,$4); } stmtblock { cg.endfunction(); }
+            | void id openparantheses formals closeparantheses { cg.addfunction($2,$4); } stmtblock { cg.endfunction(); }
             
-formals: formalsp { }
+formals: formalsp {  $$ = $1; }
        | %empty {  }
 
-formalsp: variable comma formalsp { }
-        | variable { }
+formalsp: variable comma formalsp { $3.push_back($1); $$ = $3; }
+        | variable { $$ = {$1}; }
 
 classdecl: class id openbrace fields closebrace {  }
 
@@ -136,12 +147,12 @@ continuestmt: continue semicolon { }
 
 
 printstmt:
-        print openparantheses printcontent  closeparantheses semicolon       {}
+        print openparantheses printcontent  closeparantheses semicolon {  }
 
 
 
-printcontent: printcontent comma expr {}
-            | expr {}
+printcontent: printcontent comma expr { cout << "$3 is: " << $3 << endl; }
+            | expr { cg.printstrliteral($1); }
 
 %left assign plusequal slashequal lessthan greaterthan lessthanequal;
 %left greaterthanequal equal slash percent plus minus star not dot ;
@@ -156,7 +167,7 @@ expr:
     |   lvalue minusequal expr             {}
     |   lvalue starequal expr             {}
     |   lvalue slashequal expr             {}
-    |   constant                    {}
+    |   constant                    { $$ = $1; }
     |   lvalue                      {}
     |   this                        {}
     |   call                        {}
@@ -208,7 +219,7 @@ constant:
         integer                 {}
     |   float              {}
     |   boolean                {}
-    |   string              {}
+    |   string              { $$ = $1; }
     |   nullkw                        {}
 
 

@@ -8,7 +8,7 @@ class idgen{
     public:
     static string nextid(){
         static int current = 28; // first one is aa
-        string r;
+        string r = "_";
         int tmp = current;
         while(tmp > 0){
             r = (char) ('a' + tmp % 27 - 1) + r; 

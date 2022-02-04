@@ -5,6 +5,8 @@
 #include "driver.hh"
 #include "preprocessor.hpp"
 #include <sstream>
+#include "writer.h"
+
 using namespace std ;
 
 string stream_to_string(istream& i){
@@ -34,13 +36,14 @@ int main(int argc, char* argv[]){
     tmp.flush();
     tmp.close();
 
+    writer::set(&output_file);
 
     driver drv;
     int result = drv.parse("tmp.txt");
-    if (string("-") == argv[4])
-        cout << (result == 0 ? "OK" : "Syntax Error");
+    if (!result)
+        cout << "OK" << endl;
     else
-        output_file << (result == 0 ? "OK" : "Syntax Error");
+        cerr << "Syntax Error" << endl;
 
     return 0;
 }
