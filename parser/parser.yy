@@ -61,7 +61,7 @@ codegen &cg = *(codegen::get());
 %%
 %start sp;
 
-sp: program { cout << "finished?" << endl; cg.writestuff(); }
+sp: program { cg.writestuff(); }
 
 program: macro program { }
        | declarations { }
@@ -152,8 +152,8 @@ printstmt:
 
 
 
-printcontent: printcontent comma expr { cout << "$3 is: "  << endl; }
-            | expr { cout<<"here"<<endl; cg.printexpr($1); }
+printcontent: printcontent comma expr { cg.printexpr($3); cg.printnewline(); }
+            | expr { cg.printexpr($1); }
 
 %left assign plusequal slashequal lessthan greaterthan lessthanequal;
 %left greaterthanequal equal slash percent plus minus star not dot ;
@@ -168,7 +168,7 @@ expr:
     |   lvalue minusequal expr             {}
     |   lvalue starequal expr             {}
     |   lvalue slashequal expr             {}
-    |   constant                    { $$ = $1; }
+    |   constant                    { $$ = cg.addconstant($1); }
     |   lvalue                      {}
     |   this                        {}
     |   call                        {}

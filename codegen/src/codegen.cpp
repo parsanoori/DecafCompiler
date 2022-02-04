@@ -23,7 +23,6 @@ void codegen::printstrliteral(const string &exp) {
                   + "    la $a0, " + id + "\n"
                   + "    syscall\n\n"
     );
-    printnewline();
 }
 
 codegen::codegen() {
@@ -87,9 +86,26 @@ void codegen::endfunction() {
 }
 
 void codegen::printexpr(const pair<string, string> &expr) {
-    //if(expr.second == "string"){
+    if(expr.second == "string"){
         instance->printstrliteral(expr.first);
-    //}
+    }
+    else{
+        instance->printstrliteral("\"" + expr.first+ "\"");
+    }
+}
+
+pair<string,string> codegen::addconstant(const pair<string,string> &constant) {
+    string id = idgen::nextid();
+    string value;
+    if(constant.second == "string"){
+        value = constant.first;
+    }
+    else{
+        value = "\"" + constant.first + "\"";
+    }
+    w->appendData("    " + id + ": .asciiz " + value + "\n");
+    pair<string,string> temp(id,constant.second);
+    return temp;
 }
 
 
