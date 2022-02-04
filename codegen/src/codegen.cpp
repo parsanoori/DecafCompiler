@@ -38,7 +38,7 @@ void codegen::printnewline() {
             string("    # Printing new line\n") +
             "    li $a0, 0xA\n" +
             "    li $v0, 0xB\n" +
-            "    syscall\n"
+            "    syscall\n\n"
     );
 
 }
