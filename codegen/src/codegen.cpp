@@ -4,6 +4,7 @@
 
 #include "codegen.h"
 #include "idgen.h"
+#include "floatutils.h"
 
 codegen *codegen::instance;
 
@@ -50,13 +51,13 @@ void codegen::variable(const string &type, const string &id) {
 void codegen::addfunction(const string &name, const std::vector<std::pair<std::string, std::string>> &formals) {
     vector<dtype> types;
     types.reserve(formals.size());
-    for (const auto& p: formals)
+    for (const auto &p: formals)
         types.push_back(dtypefromstr(p.first));
     ft->add_function(name, types);
 
     st->pushscope(name);
 
-    for (const auto& p: formals)
+    for (const auto &p: formals)
         st->addentry(p.second, p.first);
 
     st->pushscope(name + "_stmtblock");
@@ -84,14 +85,13 @@ void codegen::endfunction() {
 
 void codegen::printexpr(const pair<string, string> &expr) {
     //instance->printconstliteral(expr.first);
-    if(expr.second == "string") {
+    if (expr.second == "string") {
         w->appendText("    # print " + expr.first + "...\n"
                       + "    li $v0, 4\n"
                       + "    la $a0, " + expr.first + "\n"
                       + "    syscall\n\n"
         );
-    }
-    else if(expr.second == "int"){
+    } else if (expr.second == "int") {
         w->appendText("    # print " + expr.first + "...\n"
                       + "    li $v0, 1\n"
                       + "    lw $a0, " + expr.first + "\n"
@@ -100,33 +100,31 @@ void codegen::printexpr(const pair<string, string> &expr) {
     }
 }
 
-pair<string,string> codegen::addconstant(const pair<string,string> &constant) {
+pair<string, string> codegen::addconstant(const pair<string, string> &constant) {
     string id = idgen::nextid();
-    if(constant.second == "string"){
+    if (constant.second == "string")
         w->appendData("    " + id + ": .asciiz " + constant.first + "\n");
-    }
-    else if(constant.second == "int"){
+    else if (constant.second == "double")
+        w->appendData("    " + id + ": .word" + floatToInt(stof(constant.first)) + "\n");
+    else
         w->appendData("    " + id + ": .word " + constant.first + "\n");
-    }
-    else{
-        w->appendData("    " + id + ": .asciiz \"" + constant.first + "\"\n");
-    }
-    return {id,constant.second};
+
+    return {id, constant.second};
 }
 
-pair<string, string> codegen::assignexpr(const string &lefside,const pair<string,string> &expr) {
+pair<string, string> codegen::assignexpr(const string &lefside, const pair<string, string> &expr) {
     auto d = st->getentry(lefside);
     w->appendText(
-            "    lw $t0, " + expr.first +"\n"
+            "    lw $t0, " + expr.first + "\n"
             + "    sw $t0, " + d.getID() + "\n"
-            );
-    return {d.getID(),expr.second};
+    );
+    return {d.getID(), expr.second};
 }
 
 pair<string, string> codegen::findid(const string &id) {
     auto d = st->getentry(id);
     string type;
-    switch(d.getType()){
+    switch (d.getType()) {
         case dtype::INT:
             type = "int";
             break;
@@ -149,7 +147,7 @@ pair<string, string> codegen::findid(const string &id) {
             type = "dummy";
             break;
     }
-    return pair<string, string>(d.getID(),type);
+    return pair<string, string>(d.getID(), type);
 }
 
 
