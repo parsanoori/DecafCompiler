@@ -88,25 +88,25 @@ void codegen::printexpr(const pair<string, string> &expr) {
 
 pair<string,string> codegen::addconstant(const pair<string,string> &constant) {
     string id = idgen::nextid();
-    string value;
     if(constant.second == "string"){
-        value = constant.first;
+        w->appendData("    " + id + ": .asciiz " + constant.first + "\n");
+    }
+    else if(constant.second == "int"){
+        w->appendData("    " + id + ": .word " + constant.first + "\n");
     }
     else{
-        value = "\"" + constant.first + "\"";
+        w->appendData("    " + id + ": .word \"" + constant.first + "\"\n");
     }
-    w->appendData("    " + id + ": .asciiz " + value + "\n");
-    pair<string,string> temp(id,constant.second);
-    return temp;
+    return {id,constant.second};
 }
 
 pair<string, string> codegen::assignexpr(const string &lefside,const pair<string,string> &expr) {
     auto d = st->getentry(lefside);
     w->appendText(
             "    li $t0, " + expr.first +"\n"
-            + ""
+            + "    sw $t0, " + d.getID() + "\n"
             );
-    return pair<string, string>();
+    return {d.getID(),expr.second};
 }
 
 
