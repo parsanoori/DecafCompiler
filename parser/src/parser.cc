@@ -1455,7 +1455,7 @@ namespace yy {
 
   case 64: // expr: lvalue assign expr
 #line 166 "parser.yy"
-                                         {}
+                                         { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexpr(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
 #line 1460 "src/parser.cc"
     break;
 
@@ -1665,7 +1665,7 @@ namespace yy {
 
   case 99: // lvalue: id
 #line 203 "parser.yy"
-                                 {}
+                                 { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
 #line 1670 "src/parser.cc"
     break;
 
