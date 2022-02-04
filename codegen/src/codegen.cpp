@@ -116,9 +116,10 @@ pair<string,string> codegen::addconstant(const pair<string,string> &constant) {
 
 pair<string, string> codegen::assignexpr(const string &lefside,const pair<string,string> &expr) {
     auto d = st->getentry(lefside);
+    w->appendText("    # doing the assignment\n");
     w->appendText(
             "    lw $t0, " + expr.first +"\n"
-            + "    sw $t0, " + d.getID() + "\n"
+            + "    sw $t0, " + d.getID() + "\n\n"
             );
     return {d.getID(),expr.second};
 }
@@ -150,6 +151,34 @@ pair<string, string> codegen::findid(const string &id) {
             break;
     }
     return pair<string, string>(d.getID(),type);
+}
+
+pair<string, string>
+codegen::assignexproperation(const string &lefside, const pair<string, string> &expr, const string &operation) {
+    auto d = st->getentry(lefside);
+    w->appendText(
+            "    # doing the " + operation +"\n"
+            + "    lw $t0, " + expr.first +"\n"
+            + "    lw $t1, " + d.getID() + "\n"
+    );
+    switch (operation[0]){
+        case '+':
+            w->appendText("    add $t0, $t0, $t1\n");
+            break;
+        case '-':
+            w->appendText("    sub $t0, $t1, $t0\n");
+            break;
+        case '*':
+            w->appendText("    mult $t0, $t1\n");
+            w->appendText("    mflo $t0\n");
+            break;
+        case '/':
+            w->appendText("    div $t1, $t0\n");
+            w->appendText("    mflo $t0\n");
+            break;
+    }
+    w->appendText("    sw $t0, " + d.getID() + "\n\n");
+    return {d.getID(),expr.second};
 }
 
 
