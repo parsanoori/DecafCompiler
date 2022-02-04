@@ -124,11 +124,14 @@ pair<string, string> codegen::addconstant(const pair<string, string> &constant) 
 
 pair<string, string> codegen::assignexpr(const string &lefside, const pair<string, string> &expr) {
     auto d = st->getentry(lefside);
+    if (d.getType() != dtypefromstr(expr.second))
+        throw runtime_error("semantic error: invalid assignment");
     w->appendText("    #assigning " + expr.first + " to " + d.getID() + "\n");
-    if (expr.second == "int")
+    if (expr.second == "int" || expr.second == "bool")
         w->appendText(
                 "    lw $t0, " + expr.first + "\n"
-                + "    sw $t0, " + d.getID() + "\n"
+                + "    la $t1, " + d.getID() + "\n"
+                + "    sw $t0, 0($t1) \n"
         );
     else if (expr.second == "double")
         w->appendText("    lw $a," + expr.first + "\n"
@@ -141,9 +144,10 @@ pair<string, string> codegen::assignexpr(const string &lefside, const pair<strin
                       + "    la $a1, " + d.getID() + "\n"
                       + "    sw $a0, 0($a1)\n"
         );
-    else if (expr.second == "")
+    else
+        throw runtime_error("something went wrong internally");
 
-        return {d.getID(), expr.second};
+    return {d.getID(), expr.second};
 }
 
 pair<string, string> codegen::findid(const string &id) {
