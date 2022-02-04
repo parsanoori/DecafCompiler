@@ -34,7 +34,7 @@ public:
 
     void writestuff();
 
-    void printstrliteral(const string &exp);
+    void printconstliteral(const string &exp);
 
     void variable(const string &type, const string &id);
 

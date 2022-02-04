@@ -1485,7 +1485,7 @@ namespace yy {
 
   case 69: // expr: constant
 #line 171 "parser.yy"
-                                    { yylhs.value.as < std::pair<std::string,std::string> > () = yystack_[0].value.as < std::pair<std::string,std::string> > (); }
+                                    { yylhs.value.as < std::pair<std::string,std::string> > () = cg.addconstant(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
 #line 1490 "src/parser.cc"
     break;
 
