@@ -169,7 +169,7 @@ expr:
     |   lvalue starequal expr             {}
     |   lvalue slashequal expr             {}
     |   constant                    { $$ = cg.addconstant($1); }
-    |   lvalue                      {}
+    |   lvalue                      { $$ = cg.findid($1); }
     |   this                        {}
     |   call                        {}
     |   openparantheses expr closeparantheses                      { $$ = $2; }

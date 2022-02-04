@@ -1491,7 +1491,7 @@ namespace yy {
 
   case 70: // expr: lvalue
 #line 172 "parser.yy"
-                                    {}
+                                    { yylhs.value.as < std::pair<std::string,std::string> > () = cg.findid(yystack_[0].value.as < std::string > ()); }
 #line 1496 "src/parser.cc"
     break;
 

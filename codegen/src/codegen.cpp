@@ -83,7 +83,21 @@ void codegen::endfunction() {
 }
 
 void codegen::printexpr(const pair<string, string> &expr) {
-    instance->printconstliteral(expr.first);
+    //instance->printconstliteral(expr.first);
+    if(expr.second == "string") {
+        w->appendText("    # print " + expr.first + "...\n"
+                      + "    li $v0, 4\n"
+                      + "    la $a0, " + expr.first + "\n"
+                      + "    syscall\n\n"
+        );
+    }
+    else if(expr.second == "int"){
+        w->appendText("    # print " + expr.first + "...\n"
+                      + "    li $v0, 1\n"
+                      + "    lw $a0, " + expr.first + "\n"
+                      + "    syscall\n\n"
+        );
+    }
 }
 
 pair<string,string> codegen::addconstant(const pair<string,string> &constant) {
@@ -95,7 +109,7 @@ pair<string,string> codegen::addconstant(const pair<string,string> &constant) {
         w->appendData("    " + id + ": .word " + constant.first + "\n");
     }
     else{
-        w->appendData("    " + id + ": .word \"" + constant.first + "\"\n");
+        w->appendData("    " + id + ": .asciiz \"" + constant.first + "\"\n");
     }
     return {id,constant.second};
 }
@@ -103,10 +117,39 @@ pair<string,string> codegen::addconstant(const pair<string,string> &constant) {
 pair<string, string> codegen::assignexpr(const string &lefside,const pair<string,string> &expr) {
     auto d = st->getentry(lefside);
     w->appendText(
-            "    li $t0, " + expr.first +"\n"
+            "    lw $t0, " + expr.first +"\n"
             + "    sw $t0, " + d.getID() + "\n"
             );
     return {d.getID(),expr.second};
+}
+
+pair<string, string> codegen::findid(const string &id) {
+    auto d = st->getentry(id);
+    string type;
+    switch(d.getType()){
+        case dtype::INT:
+            type = "int";
+            break;
+        case dtype::DOUBLE:
+            type = "double";
+            break;
+        case dtype::BOOL:
+            type = "bool";
+            break;
+        case dtype::STRING:
+            type = "string";
+            break;
+        case dtype::VOID:
+            type = "void";
+            break;
+        case dtype::OBJECT:
+            type = "object";
+            break;
+        case dtype::DUMMY:
+            type = "dummy";
+            break;
+    }
+    return pair<string, string>(d.getID(),type);
 }
 
 
