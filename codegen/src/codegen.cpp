@@ -307,33 +307,83 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
     string temp_id = idgen::nextid();
     string type_of_output;
     if(expr.second == "string"){
-        if(operation != "+"){
+        if(operation == "+") {
+            w->appendData("    " + temp_id + ": .space 1024\n");
+            w->appendText(
+                    "    # doing the " + operation + "\n"
+                    + "    la $t2, " + expr.first + "\n"
+                    + "    la $t1, " + lefside.first + "\n"
+                    + "    la $t3, " + temp_id + "\n"
+                    + "copyfirst" + temp_id + ":\n"
+                    + "    lb $t0, ($t1)\n"
+                    + "    beqz $t0, copysecond" + temp_id + "\n"
+                    + "    sb $t0, ($t3)\n"
+                    + "    addi $t1, $t1, 1\n"
+                    + "    addi $t3, $t3, 1\n"
+                    + "    j copyfirst" + temp_id + "\n"
+                    + "copysecond" + temp_id + ":\n"
+                    + "    lb $t0, ($t2)\n"
+                    + "    beqz $t0, copyend" + temp_id + "\n"
+                    + "    sb $t0, ($t3)\n"
+                    + "    addi $t2, $t2, 1\n"
+                    + "    addi $t3, $t3, 1\n"
+                    + "    j copysecond" + temp_id + "\n"
+                    + "copyend" + temp_id + ":\n"
+                    + "    sb $t0, ($t3)\n\n"
+            );
+            return {temp_id, "string"};
+        }
+        else if (operation == "=="){
+            w->appendData("    " + temp_id + ": .word 0\n");
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText(
+                    "    # doing the " + operation + "\n"
+                    + "    la $t0, " + expr.first + "\n"
+                    + "    la $t1, " + lefside.first + "\n"
+                    + "compare" + temp_id + ":\n"
+                    + "    lb $t2, ($t0)\n"
+                    + "    lb $t3, ($t1)\n"
+                    + "    bne $t2, $t3, " + label1 + "\n"
+                    + "    addi $t0, $t0, 1\n"
+                    + "    addi $t1, $t1, 1\n"
+                    + "    bne $t2, $zero, compare" + temp_id + "\n"
+                    + "    li $t0, 1\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 0\n"
+                    + label2 + ":\n\n"
+            );
+            w->appendText("    sw $t0, " + temp_id + "\n\n");
+            return {temp_id, "bool"};
+        }
+        else if (operation == "!="){
+            w->appendData("    " + temp_id + ": .word 0\n");
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText(
+                    "    # doing the " + operation + "\n"
+                    + "    la $t0, " + expr.first + "\n"
+                    + "    la $t1, " + lefside.first + "\n"
+                    + "compare" + temp_id + ":\n"
+                    + "    lb $t2, ($t0)\n"
+                    + "    lb $t3, ($t1)\n"
+                    + "    bne $t2, $t3, " + label1 + "\n"
+                    + "    addi $t0, $t0, 1\n"
+                    + "    addi $t1, $t1, 1\n"
+                    + "    bne $t2, $zero, compare" + temp_id + "\n"
+                    + "    li $t0, 0\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 1\n"
+                    + label2 + ":\n\n"
+            );
+            w->appendText("    sw $t0, " + temp_id + "\n\n");
+            return {temp_id, "bool"};
+        }
+        else{
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
-        w->appendData("    " + temp_id + ": .space 1024\n");
-        w->appendText(
-                "    # doing the " + operation + "\n"
-                + "    la $t2, " + expr.first + "\n"
-                + "    la $t1, " + lefside.first + "\n"
-                + "    la $t3, " + temp_id + "\n"
-                + "copyfirst" + temp_id + ":\n"
-                + "    lb $t0, ($t1)\n"
-                + "    beqz $t0, copysecond" + temp_id + "\n"
-                + "    sb $t0, ($t3)\n"
-                + "    addi $t1, $t1, 1\n"
-                + "    addi $t3, $t3, 1\n"
-                + "    j copyfirst" + temp_id + "\n"
-                + "copysecond" + temp_id + ":\n"
-                + "    lb $t0, ($t2)\n"
-                + "    beqz $t0, copyend" + temp_id + "\n"
-                + "    sb $t0, ($t3)\n"
-                + "    addi $t2, $t2, 1\n"
-                + "    addi $t3, $t3, 1\n"
-                + "    j copysecond" + temp_id + "\n"
-                + "copyend" + temp_id + ":\n"
-                + "    sb $t0, ($t3)\n\n"
-        );
-        return {temp_id, "string"};
     }
     w->appendData("    " + temp_id + ": .word 0\n");
     if(expr.second == "int" || expr.second == "bool") {
@@ -413,11 +463,13 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
         w->appendText("    or $t0, $t0, $t1\n");
+        type_of_output = expr.second;
     } else if (operation == "&&") {
         if (lefside.second != "bool") {
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
         w->appendText("    and $t0, $t0, $t1\n");
+        type_of_output = expr.second;v
     } else if (operation == "==") {
         if(expr.second == "int") {
             string label1 = idgen::nextlabel();
