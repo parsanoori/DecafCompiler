@@ -69,6 +69,12 @@ public:
     void elselabel();
 
     void endelse();
+
+    void forloopcond(const exprtype &);
+
+    void endsecnexpr();
+
+    void endforstmt();
 };
 
 

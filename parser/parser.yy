@@ -136,7 +136,7 @@ elsestmt: else { cg.elselabel(); } stmt { cg.endelse(); }
 
 whilestmt: while openparantheses expr closeparantheses stmt { }
 
-forstmt: for openparantheses nexpr semicolon expr semicolon nexpr closeparantheses stmt { }
+forstmt: for openparantheses nexpr semicolon expr { cg.forloopcond($5); } semicolon nexpr { cg.endsecnexpr(); } closeparantheses stmt { cg.endforstmt(); }
 
 returnstmt: return nexpr semicolon { }
 

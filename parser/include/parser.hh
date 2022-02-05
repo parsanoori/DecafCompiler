@@ -745,18 +745,20 @@ namespace yy {
         S_94_5 = 94,                             // $@5
         S_whilestmt = 95,                        // whilestmt
         S_forstmt = 96,                          // forstmt
-        S_returnstmt = 97,                       // returnstmt
-        S_breakstmt = 98,                        // breakstmt
-        S_nexpr = 99,                            // nexpr
-        S_continuestmt = 100,                    // continuestmt
-        S_printstmt = 101,                       // printstmt
-        S_printcontent = 102,                    // printcontent
-        S_expr = 103,                            // expr
-        S_lvalue = 104,                          // lvalue
-        S_call = 105,                            // call
-        S_actuals = 106,                         // actuals
-        S_actualscontent = 107,                  // actualscontent
-        S_constant = 108                         // constant
+        S_97_6 = 97,                             // $@6
+        S_98_7 = 98,                             // $@7
+        S_returnstmt = 99,                       // returnstmt
+        S_breakstmt = 100,                       // breakstmt
+        S_nexpr = 101,                           // nexpr
+        S_continuestmt = 102,                    // continuestmt
+        S_printstmt = 103,                       // printstmt
+        S_printcontent = 104,                    // printcontent
+        S_expr = 105,                            // expr
+        S_lvalue = 106,                          // lvalue
+        S_call = 107,                            // call
+        S_actuals = 108,                         // actuals
+        S_actualscontent = 109,                  // actualscontent
+        S_constant = 110                         // constant
       };
     };
 
@@ -2623,8 +2625,8 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 744,     ///< Last index in yytable_.
-      yynnts_ = 41,  ///< Number of nonterminal symbols.
+      yylast_ = 698,     ///< Last index in yytable_.
+      yynnts_ = 43,  ///< Number of nonterminal symbols.
       yyfinal_ = 24 ///< Termination state number.
     };
 
@@ -2963,7 +2965,7 @@ switch (yykind)
 
 
 } // yy
-#line 2967 "src/parser.hh"
+#line 2969 "src/parser.hh"
 
 
 

@@ -17,7 +17,11 @@ class writer {
     ofstream* of;
     writer() = default;
 
+    string databuffer = "";
+    string textbuffer = "";
 public:
+    bool to_buffer = false;
+
     static void set(ofstream*);
 
     static writer *get();
@@ -31,6 +35,8 @@ public:
     void appendText(string t);
 
     void writestuff();
+
+    void flushbuffers();
 
 };
 

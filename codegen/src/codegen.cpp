@@ -222,6 +222,7 @@ void codegen::endiflabel() {
         ss.pop();
     } catch (const std::bad_any_cast &e) {
         std::cerr << "bad any cast on end if:\n\t" << e.what() << '\n';
+        throw e;
     }
 }
 
@@ -239,7 +240,7 @@ void codegen::elseifstmt(const exprtype &expr) {
 void codegen::elselabel() {
     string endelselabel = "ENDELSELABEL" + idgen::nextid();
     w->appendText(
-        "    j " + endelselabel + "\n"
+            "    j " + endelselabel + "\n"
     );
     try {
         w->appendText(
@@ -249,6 +250,7 @@ void codegen::elselabel() {
         ss.push(endelselabel);
     } catch (const std::bad_any_cast &e) {
         std::cerr << "bad any cast on else:\n\t" << e.what() << '\n';
+        throw e;
     }
 }
 
@@ -260,6 +262,7 @@ void codegen::endelse() {
         ss.pop();
     } catch (const std::bad_any_cast &e) {
         std::cerr << "bad any cast on end else:\n\t" << e.what() << '\n';
+        throw e;
     }
 }
 
@@ -273,28 +276,63 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
             + "    lw $t0, " + expr.first + "\n"
             + "    lw $t1, " + lefside.first + "\n"
     );
-    if(operation == "+"){
+    if (operation == "+") {
         w->appendText("    add $t0, $t0, $t1\n");
-    }
-    else if (operation == "-"){
+    } else if (operation == "-") {
         w->appendText("    sub $t0, $t1, $t0\n");
-    }
-    else if (operation == "*"){
+    } else if (operation == "*") {
         w->appendText("    mult $t0, $t1\n");
         w->appendText("    mflo $t0\n");
-    }
-    else if (operation == "/"){
+    } else if (operation == "/") {
         w->appendText("    div $t1, $t0\n");
         w->appendText("    mflo $t0\n");
-    }
-    else if (operation == "%"){
+    } else if (operation == "%") {
         w->appendText("    div $t1, $t0\n");
         w->appendText("    mfhi $t0\n");
-    }
-    else{
+    } else {
         throw runtime_error("my error: the operation is not implemented yet: " + operation);
     }
     w->appendText("    sw $t0, " + temp_id + "\n\n");
     return {temp_id, expr.second};
 }
 
+void codegen::forloopcond(const exprtype &expr) {
+    if (!(expr.second == "bool"))
+        throw runtime_error("value for condition of loop must be bool");
+    string beginforlabel = "BEGINFOR_" + idgen::nextid();
+    string endforlabel = "ENDFOR_" + idgen::nextid();
+    w->appendText(
+            "    # begin for loop of " + beginforlabel + "\n"
+            + beginforlabel + ":\n"
+            + "    lw $t0, " + "0(" + expr.first + ")\n"
+            + "    beqz $t0, " + endforlabel + "\n"
+    );
+    w->to_buffer = true;
+    ss.push(beginforlabel);
+    ss.push(endforlabel);
+}
+
+void codegen::endsecnexpr() {
+    w->to_buffer = false;
+}
+
+void codegen::endforstmt() {
+    // for second nexpr
+    w->flushbuffers();
+
+    string endforlabel;
+    string beginforlabel;
+    try {
+        endforlabel = any_cast<string>(ss.top());
+        beginforlabel = any_cast<string>(ss.top());
+    } catch (const bad_any_cast &e) {
+        cerr << "bad any cast in endforstmt" << endl;
+        throw e;
+    }
+    w->appendText(
+        "    j " + beginforlabel + "\n"
+        + endforlabel + ":\n\n"
+    );
+
+
+}
