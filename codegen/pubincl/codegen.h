@@ -58,6 +58,8 @@ public:
 
     exprtype unaryminus(const exprtype &expr);
 
+    exprtype unarynot(const exprtype &expr);
+
     void openstmtblock();
 
     void closestmtblock();

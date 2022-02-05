@@ -1677,7 +1677,7 @@ namespace yy {
 
   case 100: // expr: not expr
 #line 204 "parser.yy"
-                                      {}
+                                      { yylhs.value.as < std::pair<std::string,std::string> > () = cg.unarynot(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
 #line 1682 "src/parser.cc"
     break;
 

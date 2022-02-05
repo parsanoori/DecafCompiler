@@ -201,7 +201,7 @@ expr:
     |   expr slash expr                 { $$ = cg.exproperation($1,$3,$2); }
     |   expr percent expr                 { $$ = cg.exproperation($1,$3,$2); }
     |   minus expr                      { $$ = cg.unaryminus($2); }
-    |   not expr                      {}
+    |   not expr                      { $$ = cg.unarynot($2); }
     |   openparantheses expr closeparantheses                      { $$ = $2; }
 
 lvalue:
