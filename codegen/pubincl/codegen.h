@@ -74,6 +74,8 @@ public:
 
     void endelse();
 
+    void beginfor();
+
     void forloopcond(const exprtype &);
 
     void endsecnexpr();

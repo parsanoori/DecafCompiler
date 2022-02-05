@@ -3,7 +3,6 @@
 //
 
 #include <iostream>
-#include <cstdarg>
 #include "codegen.h"
 #include "idgen.h"
 #include "floatutils.h"
@@ -47,7 +46,8 @@ void codegen::writestuff() {
 
 void codegen::variable(const string &type, const string &id) {
     auto d = st->addentry(id, type);
-    w->appendData("    " + d.getID() + ": .word " + "0\n");
+    w->appendData("    #" + id + "\n");
+    w->appendData("    " + d.getID() + ": .word " + "0\n\n");
 }
 
 void codegen::addfunction(const string &name, const std::vector<std::pair<std::string, std::string>> &formals) {
@@ -111,6 +111,7 @@ void codegen::printexpr(const exprtype &expr) {
 }
 
 exprtype codegen::addconstant(const pair<string, string> &constant) {
+    w->appendData("    #" + constant.first + "\n");
     string id = idgen::nextid();
     if (constant.second == "string")
         w->appendData("    " + id + ": .asciiz " + constant.first + "\n");
@@ -128,6 +129,8 @@ exprtype codegen::addconstant(const pair<string, string> &constant) {
         w->appendData("    " + id + ": .word " + constant.first + "\n");
     else
         throw runtime_error("some thing went wrong"); // shouldn't be reached
+
+    w->appendText("\n");
 
     return {id, constant.second};
 }
@@ -177,10 +180,10 @@ codegen::assignexproperation(const string &lefside, const exprtype &expr, const 
     );
     switch (operation[0]) {
         case '+':
-            w->appendText("    add $t0, $t0, $t1\n");
+            w->appendText("    addu $t0, $t0, $t1\n");
             break;
         case '-':
-            w->appendText("    sub $t0, $t1, $t0\n");
+            w->appendText("    subu $t0, $t1, $t0\n");
             break;
         case '*':
             w->appendText("    mult $t0, $t1\n");
@@ -280,100 +283,50 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
             + "    lw $t1, " + lefside.first + "\n"
     );
     if (operation == "+") {
-        w->appendText("    add $t0, $t0, $t1\n");
+        w->appendText("    addu $t0, $t0, $t1\n");
+        type_of_output = expr.second;
     } else if (operation == "-") {
-        w->appendText("    sub $t0, $t1, $t0\n");
+        w->appendText("    subu $t0, $t1, $t0\n");
+        type_of_output = expr.second;
     } else if (operation == "*") {
         w->appendText("    mult $t0, $t1\n");
         w->appendText("    mflo $t0\n");
+        type_of_output = expr.second;
     } else if (operation == "/") {
         w->appendText("    div $t1, $t0\n");
         w->appendText("    mflo $t0\n");
+        type_of_output = expr.second;
     } else if (operation == "%") {
         w->appendText("    div $t1, $t0\n");
         w->appendText("    mfhi $t0\n");
-    } else {
         type_of_output = expr.second;
-    }
-    else if (operation == "-"){
-        w->appendText("    sub $t0, $t1, $t0\n");
-        type_of_output = expr.second;
-    }
-    else if (operation == "*"){
-        w->appendText("    mult $t0, $t1\n");
-        w->appendText("    mflo $t0\n");
-        type_of_output = expr.second;
-    }
-    else if (operation == "/"){
-        w->appendText("    div $t1, $t0\n");
-        w->appendText("    mflo $t0\n");
-        type_of_output = expr.second;
-    }
-    else if (operation == "%"){
-        w->appendText("    div $t1, $t0\n");
-        w->appendText("    mfhi $t0\n");
-        type_of_output = expr.second;
-    }
-    else if (operation == "<"){
-        w->appendText("    slt $t0, $t1 , $t0\n");
-        type_of_output = "bool";
-    }
-    else if (operation == ">"){
-        w->appendText("    slt $t0, $t0 , $t1\n");
-        type_of_output = "bool";
-    }
-    else if (operation == "<"){
-        w->appendText("    slt $t0, $t1 , $t0\n");
-        type_of_output = "bool";
-    }
-    else if (operation == "<="){
-        w->appendText("    slt $t7, $t1 , $t0\n");
-        string ltequallabel = idgen::nextid() + "_op_lteq";
-        w->appendText("    bne $t7, $zero , " + ltequallabel + "_ok\n");
-        w->appendText("    beq $t0, $zero , " + ltequallabel + "_ok\n");
-        w->appendText("    add $t0, $zero , $zero\n");
-        w->appendText(ltequallabel + "_ok:\n");
-        type_of_output = "bool";
-    }
-    else if (operation == ">="){
-        w->appendText("    slt $t7, $t0 , $t1\n");
-        string gtequallabel = idgen::nextid() + "_op_gteq";
-        w->appendText("    bne $t7, $zero , " + gtequallabel + "_ok\n");
-        w->appendText("    beq $t0, $zero , " + gtequallabel + "_ok\n");
-        w->appendText("    add $t0, $zero , $zero\n");
-        w->appendText(gtequallabel + "_ok:\n");
-        type_of_output = "bool";
-    }
-    else if (operation == "||"){
-        if(lefside.second != "bool"){
+    } else if (operation == "||") {
+        if (lefside.second != "bool") {
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
         w->appendText("    or $t0, $t0, $t1\n");
-    }
-    else if (operation == "&&"){
-        if(lefside.second != "bool"){
+    } else if (operation == "&&") {
+        if (lefside.second != "bool") {
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
         w->appendText("    and $t0, $t0, $t1\n");
-    }
-    else if (operation == "=="){
-        if(lefside.second != "int"){
+    } else if (operation == "==") {
+        if (lefside.second != "int") {
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
         string label1 = idgen::nextlabel();
         string label2 = idgen::nextlabel();
         w->appendText(
-                    "    bne $t0, $t1, " + label1 + "\n"
-                      + "    li $t0, 1\n"
-                      + "    b " + label2 + "\n"
-                      + label1 + ":\n"
-                      + "    li $t0, 0\n"
-                      + label2 + ":\n"
+                "    bne $t0, $t1, " + label1 + "\n"
+                + "    li $t0, 1\n"
+                + "    b " + label2 + "\n"
+                + label1 + ":\n"
+                + "    li $t0, 0\n"
+                + label2 + ":\n"
         );
         type_of_output = "bool";
-    }
-    else if (operation == "!="){
-        if(lefside.second != "int"){
+    } else if (operation == "!=") {
+        if (lefside.second != "int") {
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
         string label1 = idgen::nextlabel();
@@ -387,9 +340,8 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
                 + label2 + ":\n"
         );
         type_of_output = "bool";
-    }
-    else if (operation == "<"){
-        if(lefside.second != "int"){
+    } else if (operation == "<") {
+        if (lefside.second != "int") {
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
         string label1 = idgen::nextlabel();
@@ -403,9 +355,8 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
                 + label2 + ":\n"
         );
         type_of_output = "bool";
-    }
-    else if (operation == "<="){
-        if(lefside.second != "int"){
+    } else if (operation == "<=") {
+        if (lefside.second != "int") {
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
         string label1 = idgen::nextlabel();
@@ -419,9 +370,8 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
                 + label2 + ":\n"
         );
         type_of_output = "bool";
-    }
-    else if (operation == ">"){
-        if(lefside.second != "int"){
+    } else if (operation == ">") {
+        if (lefside.second != "int") {
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
         string label1 = idgen::nextlabel();
@@ -435,9 +385,8 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
                 + label2 + ":\n"
         );
         type_of_output = "bool";
-    }
-    else if (operation == ">="){
-        if(lefside.second != "int"){
+    } else if (operation == ">=") {
+        if (lefside.second != "int") {
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
         string label1 = idgen::nextlabel();
@@ -451,8 +400,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
                 + label2 + ":\n"
         );
         type_of_output = "bool";
-    }
-    else{
+    } else {
         throw runtime_error("my error: the operation is not implemented yet: " + operation);
     }
     w->appendText("    sw $t0, " + temp_id + "\n\n");
@@ -467,7 +415,7 @@ exprtype codegen::unaryminus(const exprtype &expr) {
     w->appendText("    # doing the u-\n");
     w->appendText(
             "    lw $t0, " + expr.first + "\n"
-            + "    sub $t0, $zero, $t0\n"
+            + "    subu $t0, $zero, $t0\n"
             + "    sw $t0, " + temp_id + "\n\n"
     );
     return {temp_id, expr.second};
@@ -482,11 +430,12 @@ exprtype codegen::unarynot(const exprtype &expr) {
     w->appendText(
             "    lw $t0, " + expr.first + "\n"
             + "    li $t1, 1\n"
-            + "    sub $t0, $t1, $t0\n"
+            + "    subu $t0, $t1, $t0\n"
             + "    sw $t0, " + temp_id + "\n\n"
     );
     return {temp_id, expr.second};
 }
+
 void codegen::whilestmt1() {
     cout << "I am here . where are Uuuuuuuuuuuuu ?" << endl;
     string whilename = idgen::nextid() + "_while_loop";
@@ -500,7 +449,7 @@ void codegen::whilestmt2(const pair<string, string> &expr) {
         throw runtime_error("invalid type for while expression");
     string laftername = st->currentscopename() + "_after";
     w->appendText("    lw $t0, " + expr.first + "\n"
-                + "    beqz $t0, " + laftername + ":\n"
+                  + "    beqz $t0, " + laftername + ":\n"
     );
 }
 
@@ -508,23 +457,19 @@ void codegen::whilestmt3() {
     cout << "I am here . where are Uuuuuuuuuuuuu ?" << endl;
     string whilename = st->currentscopename();
     w->appendText("    j " + whilename + "_before\n"
-                + whilename + "_after:\n"
+                  + whilename + "_after:\n"
     );
 }
 
 void codegen::forloopcond(const exprtype &expr) {
     if (!(expr.second == "bool"))
         throw runtime_error("value for condition of loop must be bool");
-    string beginforlabel = "BEGINFOR_" + idgen::nextid();
     string endforlabel = "ENDFOR_" + idgen::nextid();
     w->appendText(
-            "    # begin for loop of " + beginforlabel + "\n"
-            + beginforlabel + ":\n"
-            + "    lw $t0, " + "0(" + expr.first + ")\n"
+            +"    lw $t0, " + expr.first + "\n"
             + "    beqz $t0, " + endforlabel + "\n"
     );
     w->to_buffer = true;
-    ss.push(beginforlabel);
     ss.push(endforlabel);
 }
 
@@ -540,15 +485,26 @@ void codegen::endforstmt() {
     string beginforlabel;
     try {
         endforlabel = any_cast<string>(ss.top());
+        ss.pop();
         beginforlabel = any_cast<string>(ss.top());
+        ss.pop();
     } catch (const bad_any_cast &e) {
         cerr << "bad any cast in endforstmt" << endl;
         throw e;
     }
     w->appendText(
-        "    j " + beginforlabel + "\n"
-        + endforlabel + ":\n\n"
+            "    j " + beginforlabel + "\n"
+            + endforlabel + ":\n\n"
     );
 
 
+}
+
+void codegen::beginfor() {
+    string beginforlabel = "BEGINFOR_" + idgen::nextid();
+    w->appendText(
+            "    # begin for loop of " + beginforlabel + "\n"
+            + beginforlabel + ":\n"
+    );
+    ss.push(beginforlabel);
 }

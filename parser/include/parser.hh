@@ -744,21 +744,24 @@ namespace yy {
         S_elsestmt = 93,                         // elsestmt
         S_94_5 = 94,                             // $@5
         S_whilestmt = 95,                        // whilestmt
-        S_forstmt = 96,                          // forstmt
-        S_97_6 = 97,                             // $@6
-        S_98_7 = 98,                             // $@7
-        S_returnstmt = 99,                       // returnstmt
-        S_breakstmt = 100,                       // breakstmt
-        S_nexpr = 101,                           // nexpr
-        S_continuestmt = 102,                    // continuestmt
-        S_printstmt = 103,                       // printstmt
-        S_printcontent = 104,                    // printcontent
-        S_expr = 105,                            // expr
-        S_lvalue = 106,                          // lvalue
-        S_call = 107,                            // call
-        S_actuals = 108,                         // actuals
-        S_actualscontent = 109,                  // actualscontent
-        S_constant = 110                         // constant
+        S_96_6 = 96,                             // $@6
+        S_97_7 = 97,                             // $@7
+        S_forstmt = 98,                          // forstmt
+        S_99_8 = 99,                             // $@8
+        S_100_9 = 100,                           // $@9
+        S_101_10 = 101,                          // $@10
+        S_returnstmt = 102,                      // returnstmt
+        S_breakstmt = 103,                       // breakstmt
+        S_nexpr = 104,                           // nexpr
+        S_continuestmt = 105,                    // continuestmt
+        S_printstmt = 106,                       // printstmt
+        S_printcontent = 107,                    // printcontent
+        S_expr = 108,                            // expr
+        S_lvalue = 109,                          // lvalue
+        S_call = 110,                            // call
+        S_actuals = 111,                         // actuals
+        S_actualscontent = 112,                  // actualscontent
+        S_constant = 113                         // constant
       };
     };
 
@@ -2343,7 +2346,7 @@ switch (yykind)
     /// \param yyvalue   the value to check
     static bool yy_table_value_is_error_ (int yyvalue) YY_NOEXCEPT;
 
-    static const signed char yypact_ninf_;
+    static const short yypact_ninf_;
     static const signed char yytable_ninf_;
 
     /// Convert a scanner token kind \a t to a symbol kind.
@@ -2625,8 +2628,8 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 698,     ///< Last index in yytable_.
-      yynnts_ = 43,  ///< Number of nonterminal symbols.
+      yylast_ = 715,     ///< Last index in yytable_.
+      yynnts_ = 46,  ///< Number of nonterminal symbols.
       yyfinal_ = 24 ///< Termination state number.
     };
 
@@ -2965,7 +2968,7 @@ switch (yykind)
 
 
 } // yy
-#line 2969 "src/parser.hh"
+#line 2972 "src/parser.hh"
 
 
 
