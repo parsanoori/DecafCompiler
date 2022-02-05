@@ -1477,213 +1477,213 @@ namespace yy {
 #line 1478 "src/parser.cc"
     break;
 
-  case 67: // expr: lvalue assign expr
+  case 67: // expr: constant
 #line 166 "parser.yy"
-                                         { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexpr(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
+                                    { yylhs.value.as < std::pair<std::string,std::string> > () = cg.addconstant(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
 #line 1484 "src/parser.cc"
     break;
 
-  case 68: // expr: lvalue plusequal expr
+  case 68: // expr: lvalue
 #line 167 "parser.yy"
-                                          { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexproperation(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > (),yystack_[1].value.as < std::string > ()); }
+                                    { yylhs.value.as < std::pair<std::string,std::string> > () = cg.findid(yystack_[0].value.as < std::string > ()); }
 #line 1490 "src/parser.cc"
     break;
 
-  case 69: // expr: lvalue minusequal expr
+  case 69: // expr: this
 #line 168 "parser.yy"
-                                           { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexproperation(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > (),yystack_[1].value.as < std::string > ()); }
+                                    {}
 #line 1496 "src/parser.cc"
     break;
 
-  case 70: // expr: lvalue starequal expr
+  case 70: // expr: call
 #line 169 "parser.yy"
-                                          { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexproperation(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > (),yystack_[1].value.as < std::string > ()); }
+                                    {}
 #line 1502 "src/parser.cc"
     break;
 
-  case 71: // expr: lvalue slashequal expr
+  case 71: // expr: readinteger openparantheses closeparantheses
 #line 170 "parser.yy"
-                                           { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexproperation(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > (),yystack_[1].value.as < std::string > ()); }
+                                                                  {}
 #line 1508 "src/parser.cc"
     break;
 
-  case 72: // expr: constant
+  case 72: // expr: readline openparantheses closeparantheses
 #line 171 "parser.yy"
-                                    { yylhs.value.as < std::pair<std::string,std::string> > () = cg.addconstant(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
+                                                                   {}
 #line 1514 "src/parser.cc"
     break;
 
-  case 73: // expr: lvalue
+  case 73: // expr: new id
 #line 172 "parser.yy"
-                                    { yylhs.value.as < std::pair<std::string,std::string> > () = cg.findid(yystack_[0].value.as < std::string > ()); }
+                                 {}
 #line 1520 "src/parser.cc"
     break;
 
-  case 74: // expr: this
+  case 74: // expr: newarray openparantheses expr comma type closeparantheses
 #line 173 "parser.yy"
-                                    {}
+                                                                      {}
 #line 1526 "src/parser.cc"
     break;
 
-  case 75: // expr: call
+  case 75: // expr: itod openparantheses expr closeparantheses
 #line 174 "parser.yy"
-                                    {}
+                                                            {}
 #line 1532 "src/parser.cc"
     break;
 
-  case 76: // expr: openparantheses expr closeparantheses
+  case 76: // expr: dtoi openparantheses expr closeparantheses
 #line 175 "parser.yy"
-                                                                   { yylhs.value.as < std::pair<std::string,std::string> > () = yystack_[1].value.as < std::pair<std::string,std::string> > (); }
+                                                            {}
 #line 1538 "src/parser.cc"
     break;
 
-  case 77: // expr: expr plus expr
+  case 77: // expr: itob openparantheses expr closeparantheses
 #line 176 "parser.yy"
-                                       {}
+                                                            {}
 #line 1544 "src/parser.cc"
     break;
 
-  case 78: // expr: expr minus expr
+  case 78: // expr: btoi openparantheses expr closeparantheses
 #line 177 "parser.yy"
-                                        {}
+                                                            {}
 #line 1550 "src/parser.cc"
     break;
 
-  case 79: // expr: expr star expr
+  case 79: // expr: line
 #line 178 "parser.yy"
-                                       {}
+                                {}
 #line 1556 "src/parser.cc"
     break;
 
-  case 80: // expr: expr slash expr
+  case 80: // expr: func
 #line 179 "parser.yy"
-                                        {}
+                                {}
 #line 1562 "src/parser.cc"
     break;
 
-  case 81: // expr: expr percent expr
+  case 81: // expr: lvalue assign expr
 #line 180 "parser.yy"
-                                          {}
+                                         { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexpr(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
 #line 1568 "src/parser.cc"
     break;
 
-  case 82: // expr: minus expr
+  case 82: // expr: lvalue plusequal expr
 #line 181 "parser.yy"
-                                        {}
+                                          { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexproperation(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > (),yystack_[1].value.as < std::string > ()); }
 #line 1574 "src/parser.cc"
     break;
 
-  case 83: // expr: expr lessthan expr
+  case 83: // expr: lvalue minusequal expr
 #line 182 "parser.yy"
-                                           {}
+                                           { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexproperation(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > (),yystack_[1].value.as < std::string > ()); }
 #line 1580 "src/parser.cc"
     break;
 
-  case 84: // expr: expr lessthanequal expr
+  case 84: // expr: lvalue starequal expr
 #line 183 "parser.yy"
-                                               {}
+                                          { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexproperation(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > (),yystack_[1].value.as < std::string > ()); }
 #line 1586 "src/parser.cc"
     break;
 
-  case 85: // expr: expr greaterthan expr
+  case 85: // expr: lvalue slashequal expr
 #line 184 "parser.yy"
-                                              {}
+                                           { yylhs.value.as < std::pair<std::string,std::string> > () = cg.assignexproperation(yystack_[2].value.as < std::string > (),yystack_[0].value.as < std::pair<std::string,std::string> > (),yystack_[1].value.as < std::string > ()); }
 #line 1592 "src/parser.cc"
     break;
 
-  case 86: // expr: expr greaterthanequal expr
+  case 86: // expr: expr or expr
 #line 185 "parser.yy"
-                                                  {}
+                                    {}
 #line 1598 "src/parser.cc"
     break;
 
-  case 87: // expr: expr equal expr
+  case 87: // expr: expr and expr
 #line 186 "parser.yy"
-                                       {}
+                                     {}
 #line 1604 "src/parser.cc"
     break;
 
-  case 88: // expr: expr notequal expr
+  case 88: // expr: expr equal expr
 #line 187 "parser.yy"
-                                          {}
+                                       {}
 #line 1610 "src/parser.cc"
     break;
 
-  case 89: // expr: expr and expr
+  case 89: // expr: expr notequal expr
 #line 188 "parser.yy"
-                                     {}
+                                          {}
 #line 1616 "src/parser.cc"
     break;
 
-  case 90: // expr: expr or expr
+  case 90: // expr: expr lessthan expr
 #line 189 "parser.yy"
-                                    {}
+                                           {}
 #line 1622 "src/parser.cc"
     break;
 
-  case 91: // expr: not expr
+  case 91: // expr: expr lessthanequal expr
 #line 190 "parser.yy"
-                                      {}
+                                               {}
 #line 1628 "src/parser.cc"
     break;
 
-  case 92: // expr: readinteger openparantheses closeparantheses
+  case 92: // expr: expr greaterthan expr
 #line 191 "parser.yy"
-                                                                  {}
+                                              {}
 #line 1634 "src/parser.cc"
     break;
 
-  case 93: // expr: readline openparantheses closeparantheses
+  case 93: // expr: expr greaterthanequal expr
 #line 192 "parser.yy"
-                                                                   {}
+                                                  {}
 #line 1640 "src/parser.cc"
     break;
 
-  case 94: // expr: new id
+  case 94: // expr: expr plus expr
 #line 193 "parser.yy"
-                                 {}
+                                       {}
 #line 1646 "src/parser.cc"
     break;
 
-  case 95: // expr: newarray openparantheses expr comma type closeparantheses
+  case 95: // expr: expr minus expr
 #line 194 "parser.yy"
-                                                                      {}
+                                        {}
 #line 1652 "src/parser.cc"
     break;
 
-  case 96: // expr: itod openparantheses expr closeparantheses
+  case 96: // expr: expr star expr
 #line 195 "parser.yy"
-                                                            {}
+                                       {}
 #line 1658 "src/parser.cc"
     break;
 
-  case 97: // expr: dtoi openparantheses expr closeparantheses
+  case 97: // expr: expr slash expr
 #line 196 "parser.yy"
-                                                            {}
+                                        {}
 #line 1664 "src/parser.cc"
     break;
 
-  case 98: // expr: itob openparantheses expr closeparantheses
+  case 98: // expr: expr percent expr
 #line 197 "parser.yy"
-                                                            {}
+                                          {}
 #line 1670 "src/parser.cc"
     break;
 
-  case 99: // expr: btoi openparantheses expr closeparantheses
+  case 99: // expr: minus expr
 #line 198 "parser.yy"
-                                                            {}
+                                        {}
 #line 1676 "src/parser.cc"
     break;
 
-  case 100: // expr: line
+  case 100: // expr: not expr
 #line 199 "parser.yy"
-                                {}
+                                      {}
 #line 1682 "src/parser.cc"
     break;
 
-  case 101: // expr: func
+  case 101: // expr: openparantheses expr closeparantheses
 #line 200 "parser.yy"
-                                {}
+                                                                   { yylhs.value.as < std::pair<std::string,std::string> > () = yystack_[1].value.as < std::pair<std::string,std::string> > (); }
 #line 1688 "src/parser.cc"
     break;
 
@@ -2283,20 +2283,20 @@ namespace yy {
        0,    35,     0,     0,     0,    13,    22,    28,    29,    31,
       32,    20,    26,     0,     0,    36,    23,    21,    40,   102,
      114,    43,   111,     0,     0,     0,   113,   115,    62,     0,
-       0,    74,     0,     0,     0,     0,   100,   101,     0,     0,
+       0,    69,     0,     0,     0,     0,    79,    80,     0,     0,
        0,     0,     0,   112,     0,     0,     0,    40,    51,     0,
       39,    40,    44,    45,    46,    49,    47,    48,    50,     0,
-      73,    75,    72,   108,     0,     0,    62,   102,     0,    61,
-      60,    94,     0,     0,     0,     0,     0,    63,     0,     0,
-       0,    82,     0,    91,    38,    37,    41,    42,     0,     0,
+      68,    70,    67,   108,     0,     0,    62,   102,     0,    61,
+      60,    73,     0,     0,     0,     0,     0,    63,     0,     0,
+       0,    99,     0,   100,    38,    37,    41,    42,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,   110,     0,
-     107,     0,     0,     0,    59,     0,     0,    66,    92,    93,
-       0,     0,     0,     0,    76,     0,    80,    81,    77,    78,
-      79,    84,    86,    83,    85,    87,    88,    89,    90,   103,
-      67,    68,    69,    70,    71,     0,   105,    52,     0,     0,
-       0,     0,     0,    99,    97,    98,    96,   104,   108,   109,
-       0,    57,     0,     0,    64,    65,     0,    56,    62,    95,
+     107,     0,     0,     0,    59,     0,     0,    66,    71,    72,
+       0,     0,     0,     0,   101,     0,    97,    98,    94,    95,
+      96,    91,    93,    90,    92,    88,    89,    87,    86,   103,
+      81,    82,    83,    84,    85,     0,   105,    52,     0,     0,
+       0,     0,     0,    78,    76,    77,    75,   104,   108,   109,
+       0,    57,     0,     0,    64,    65,     0,    56,    62,    74,
      106,    54,    53,     0,     0,     0,    55,    58
   };
 
@@ -2523,11 +2523,11 @@ namespace yy {
        0,     2,     2,     1,     1,     0,     0,     4,     2,     1,
        0,     2,     2,     1,     1,     1,     1,     1,     1,     1,
        1,     1,     0,     7,     0,     3,     0,     5,     9,     3,
-       2,     1,     0,     2,     5,     3,     1,     3,     3,     3,
-       3,     3,     1,     1,     1,     1,     3,     3,     3,     3,
-       3,     3,     2,     3,     3,     3,     3,     3,     3,     3,
-       3,     2,     3,     3,     2,     6,     4,     4,     4,     4,
-       1,     1,     1,     3,     4,     4,     6,     1,     0,     3,
+       2,     1,     0,     2,     5,     3,     1,     1,     1,     1,
+       1,     3,     3,     2,     6,     4,     4,     4,     4,     1,
+       1,     3,     3,     3,     3,     3,     3,     3,     3,     3,
+       3,     3,     3,     3,     3,     3,     3,     3,     3,     2,
+       2,     3,     1,     3,     4,     4,     6,     1,     0,     3,
        1,     1,     1,     1,     1,     1
   };
 

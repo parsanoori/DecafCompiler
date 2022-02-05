@@ -163,31 +163,10 @@ printcontent: printcontent comma expr { cg.printexpr($3); }
 %right openparantheses openbracket openbrace;
 
 expr:
-        lvalue assign expr               { $$ = cg.assignexpr($1,$3); }
-    |   lvalue plusequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
-    |   lvalue minusequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
-    |   lvalue starequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
-    |   lvalue slashequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
-    |   constant                    { $$ = cg.addconstant($1); }
+        constant                    { $$ = cg.addconstant($1); }
     |   lvalue                      { $$ = cg.findid($1); }
     |   this                        {}
     |   call                        {}
-    |   openparantheses expr closeparantheses                      { $$ = $2; }
-    |   expr plus expr                 {}
-    |   expr minus expr                 {}
-    |   expr star expr                 {}
-    |   expr slash expr                 {}
-    |   expr percent expr                 {}
-    |   minus expr                      {}
-    |   expr lessthan expr                 {}
-    |   expr lessthanequal expr                {}
-    |   expr greaterthan expr                 {}
-    |   expr greaterthanequal expr                {}
-    |   expr equal expr                {}
-    |   expr notequal expr                {}
-    |   expr and expr                {}
-    |   expr or expr                {}
-    |   not expr                      {}
     |   readinteger openparantheses  closeparantheses             {}
     |   readline openparantheses  closeparantheses                 {}
     |   new id                   {}
@@ -198,7 +177,28 @@ expr:
     |   btoi openparantheses expr   closeparantheses        {}
     |   line                    {}
     |   func                    {}
-    
+    |   lvalue assign expr               { $$ = cg.assignexpr($1,$3); }
+    |   lvalue plusequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
+    |   lvalue minusequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
+    |   lvalue starequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
+    |   lvalue slashequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
+    |   expr or expr                {}
+    |   expr and expr                {}
+    |   expr equal expr                {}
+    |   expr notequal expr                {}
+    |   expr lessthan expr                 {}
+    |   expr lessthanequal expr                {}
+    |   expr greaterthan expr                 {}
+    |   expr greaterthanequal expr                {}
+    |   expr plus expr                 {}
+    |   expr minus expr                 {}
+    |   expr star expr                 {}
+    |   expr slash expr                 {}
+    |   expr percent expr                 {}
+    |   minus expr                      {}
+    |   not expr                      {}
+    |   openparantheses expr closeparantheses                      { $$ = $2; }
+
 lvalue:
         id                       { $$ = $1; }
     |   expr  dot  id                {}
