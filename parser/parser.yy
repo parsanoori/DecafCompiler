@@ -127,11 +127,12 @@ stmt: expr semicolon { }
          | printstmt { }
          | stmtblock { }
 
-%right else;
-ifstmt: if openparantheses expr closeparantheses stmt { }
-      | if openparantheses expr closeparantheses stmt elsestmt { }
+//%right  else closeparantheses;
+ifstmt:
+       if openparantheses expr closeparantheses { cg.ifstmt($3); } stmt elsestmt { }
 
-elsestmt: else stmt { }
+elsestmt: else { cg.elselabel(); } stmt { cg.endelse(); }
+        | %empty { cg.endiflabel(); }
 
 whilestmt: while openparantheses expr closeparantheses stmt { }
 

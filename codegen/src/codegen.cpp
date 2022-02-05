@@ -55,7 +55,7 @@ void codegen::addfunction(const string &name, const std::vector<std::pair<std::s
         types.push_back(dtypefromstr(p.first));
     ft->add_function(name, types);
 
-    st->pushscope(name,true);
+    st->pushscope(name, true);
 
     for (const auto &p: formals)
         st->addentry(p.second, p.first);
@@ -80,7 +80,7 @@ void codegen::endfunction() {
 
 }
 
-void codegen::printexpr(const pair<string, string> &expr) {
+void codegen::printexpr(const exprtype &expr) {
     //instance->printconstliteral(expr.first);
     if (expr.second == "string")
         w->appendText("    # print " + expr.first + "...\n"
@@ -94,7 +94,7 @@ void codegen::printexpr(const pair<string, string> &expr) {
                       + "    lw $a0, " + expr.first + "\n"
                       + "    syscall\n\n"
         );
-    else if (expr.second == "bool"){
+    else if (expr.second == "bool") {
         string label = idgen::nextlabel();
         w->appendText("    # print " + expr.first + "...\n"
                       + "    li $v0, 4\n"
@@ -108,7 +108,7 @@ void codegen::printexpr(const pair<string, string> &expr) {
     }
 }
 
-pair<string, string> codegen::addconstant(const pair<string, string> &constant) {
+exprtype codegen::addconstant(const pair<string, string> &constant) {
     string id = idgen::nextid();
     if (constant.second == "string")
         w->appendData("    " + id + ": .asciiz " + constant.first + "\n");
@@ -117,7 +117,7 @@ pair<string, string> codegen::addconstant(const pair<string, string> &constant) 
                       to_string(floatToInt(stof(constant.first))) + "\n");
     else if (constant.second == "bool") {
         if (constant.first == "true")
-            w->appendText("    " + id + ": .word 1\n");
+            w->appendData("    " + id + ": .word 1\n");
         else if (constant.first == "false")
             w->appendText("    " + id + ": .word 0\n");
         else
@@ -130,7 +130,7 @@ pair<string, string> codegen::addconstant(const pair<string, string> &constant) 
     return {id, constant.second};
 }
 
-pair<string, string> codegen::assignexpr(const string &lefside, const pair<string, string> &expr) {
+exprtype codegen::assignexpr(const string &lefside, const exprtype &expr) {
     auto d = st->getentry(lefside);
     if (d.getType() != dtypefromstr(expr.second))
         throw runtime_error("semantic error: invalid assignment");
@@ -158,7 +158,7 @@ pair<string, string> codegen::assignexpr(const string &lefside, const pair<strin
     return {d.getID(), expr.second};
 }
 
-pair<string, string> codegen::findid(const string &id) {
+exprtype codegen::findid(const string &id) {
     auto d = st->getentry(id);
     string type;
     switch (d.getType()) {
@@ -187,15 +187,15 @@ pair<string, string> codegen::findid(const string &id) {
     return {d.getID(), type};
 }
 
-pair<string, string>
-codegen::assignexproperation(const string &lefside, const pair<string, string> &expr, const string &operation) {
+exprtype
+codegen::assignexproperation(const string &lefside, const exprtype &expr, const string &operation) {
     auto d = st->getentry(lefside);
     w->appendText(
-            "    # doing the " + operation +"\n"
-            + "    lw $t0, " + expr.first +"\n"
+            "    # doing the " + operation + "\n"
+            + "    lw $t0, " + expr.first + "\n"
             + "    lw $t1, " + d.getID() + "\n"
     );
-    switch (operation[0]){
+    switch (operation[0]) {
         case '+':
             w->appendText("    add $t0, $t0, $t1\n");
             break;
@@ -212,7 +212,7 @@ codegen::assignexproperation(const string &lefside, const pair<string, string> &
             break;
     }
     w->appendText("    sw $t0, " + d.getID() + "\n\n");
-    return {d.getID(),expr.second};
+    return {d.getID(), expr.second};
 }
 
 void codegen::openstmtblock() {
@@ -224,5 +224,64 @@ void codegen::closestmtblock() {
     st->popscope();
 }
 
+void codegen::ifstmt(const exprtype &expr) {
+    w->appendText("    #begin ifsmtm\n");
+    if (expr.second != "bool")
+        throw runtime_error("invalid type for if statement");
+    string endlabel = "ENDIFLABEL_" + idgen::nextid();
+    w->appendText(
+            "    lw $t0, " + expr.first + "\n"
+            + "    beqz $t0, " + endlabel + "\n"
+    );
+    ss.push(endlabel);
+}
 
+void codegen::endiflabel() {
+    try {
+        w->appendText(
+                any_cast<string>(ss.top()) + ":\n"
+        );
+        ss.pop();
+    } catch (const std::bad_any_cast &e) {
+        std::cerr << "bad any cast on end if:\n\t" << e.what() << '\n';
+    }
+}
+
+void codegen::elseifstmt(const exprtype &expr) {
+    if (expr.second != "bool")
+        throw runtime_error("invalid type for if statement");
+    string elselabel = "ENDIFLABEL_" + idgen::nextid();
+    w->appendText(
+            "    lw $t0, " + expr.first + "\n"
+            + "    beqz $t0, " + elselabel + "\n"
+    );
+    ss.push(elselabel);
+}
+
+void codegen::elselabel() {
+    string endelselabel = "ENDELSELABEL" + idgen::nextid();
+    w->appendText(
+        "    j " + endelselabel + "\n"
+    );
+    try {
+        w->appendText(
+                any_cast<string>(ss.top()) + ":\n"
+        );
+        ss.pop();
+        ss.push(endelselabel);
+    } catch (const std::bad_any_cast &e) {
+        std::cerr << "bad any cast on else:\n\t" << e.what() << '\n';
+    }
+}
+
+void codegen::endelse() {
+    try {
+        w->appendText(
+                any_cast<string>(ss.top()) + ":\n"
+        );
+        ss.pop();
+    } catch (const std::bad_any_cast &e) {
+        std::cerr << "bad any cast on end else:\n\t" << e.what() << '\n';
+    }
+}
 
