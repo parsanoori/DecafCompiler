@@ -1467,7 +1467,7 @@ namespace yy {
 
   case 65: // breakstmt: break semicolon
 #line 143 "parser.yy"
-                           { }
+                           { cg.breakstmt(); }
 #line 1472 "src/parser.cc"
     break;
 
@@ -1485,7 +1485,7 @@ namespace yy {
 
   case 68: // continuestmt: continue semicolon
 #line 148 "parser.yy"
-                                 { }
+                                 {  }
 #line 1490 "src/parser.cc"
     break;
 

@@ -140,12 +140,12 @@ forstmt: for  openparantheses nexpr { cg.beginfor(); } semicolon expr { cg.forlo
 
 returnstmt: return nexpr semicolon { }
 
-breakstmt: break semicolon { }
+breakstmt: break semicolon { cg.breakstmt(); }
 
 nexpr: expr { }
     | %empty { }
 
-continuestmt: continue semicolon { }
+continuestmt: continue semicolon {  }
 
 
 printstmt:
