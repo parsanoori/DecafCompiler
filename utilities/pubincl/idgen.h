@@ -19,6 +19,21 @@ class idgen{
             current++;
         return r;
     }
+
+    static string nextlabel(){
+        static int current = 28; // first one is _label_aa
+        string r;
+        int tmp = current;
+        while(tmp > 0){
+            r = (char) ('a' + tmp % 27 - 1) + r;
+            tmp /= 27;
+        }
+        r = "_label_" + r;
+        current++;
+        if (current % 27 == 0)
+            current++;
+        return r;
+    }
 };
 
 #endif

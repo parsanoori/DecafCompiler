@@ -97,24 +97,35 @@ void codegen::printexpr(const pair<string, string> &expr) {
                       + "    lw $a0, " + expr.first + "\n"
                       + "    syscall\n\n"
         );
-
+    else if (expr.second == "bool"){
+        string label = idgen::nextlabel();
+        w->appendText("    # print " + expr.first + "...\n"
+                      + "    li $v0, 4\n"
+                      + "    la $a0, _false_str\n"
+                      + "    lw $t0, " + expr.first + "\n"
+                      + "    beq $t0, 0, " + label + "\n"
+                      + "    la $a0, _true_str\n"
+                      + label + ":\n"
+                      + "    syscall\n\n"
+        );
+    }
 }
 
 pair<string, string> codegen::addconstant(const pair<string, string> &constant) {
     string id = idgen::nextid();
     if (constant.second == "string")
         w->appendData("    " + id + ": .asciiz " + constant.first + "\n");
-    else if (constant.second == "double")
+    else if (constant.second == "float")
         w->appendData("    " + id + ": .word " +
                       to_string(floatToInt(stof(constant.first))) + "\n");
     else if (constant.second == "bool") {
         if (constant.first == "true")
-            w->appendText("    " + id + ": . word 1\n");
+            w->appendText("    " + id + ": .word 1\n");
         else if (constant.first == "false")
-            w->appendText("    " + id + ": . word 0\n");
+            w->appendText("    " + id + ": .word 0\n");
         else
             throw runtime_error("something went wrogn"); // shouldn't be reached
-    } else if (constant.first == "int")
+    } else if (constant.second == "int")
         w->appendData("    " + id + ": .word " + constant.first + "\n");
     else
         throw runtime_error("some thing went wrong"); // shouldn't be reached
@@ -133,8 +144,8 @@ pair<string, string> codegen::assignexpr(const string &lefside, const pair<strin
                 + "    la $t1, " + d.getID() + "\n"
                 + "    sw $t0, 0($t1) \n"
         );
-    else if (expr.second == "double")
-        w->appendText("    lw $a," + expr.first + "\n"
+    else if (expr.second == "float")
+        w->appendText("    lw $a0, " + expr.first + "\n"
                       + "    mtc1 $a0, $f0\n"
                       + "    la $a0, " + d.getID() + "\n"
                       + "    swc1 $f0, 0($a0)\n"
@@ -158,7 +169,7 @@ pair<string, string> codegen::findid(const string &id) {
             type = "int";
             break;
         case dtype::DOUBLE:
-            type = "double";
+            type = "float";
             break;
         case dtype::BOOL:
             type = "bool";

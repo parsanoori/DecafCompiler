@@ -11,7 +11,7 @@
 using namespace std;
 
 class writer {
-    string data = "    .data\n";
+    string data = "    .data\n    _false_str: .asciiz \"false\"\n    _true_str: .asciiz \"true\"\n";
     string text = "    .text\n    .globl main\n";
     static writer *instance;
     ofstream* of;

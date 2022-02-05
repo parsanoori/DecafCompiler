@@ -1731,7 +1731,7 @@ namespace yy {
 
   case 109: // constant: float
 #line 220 "parser.yy"
-                           { yylhs.value.as < std::pair<std::string,std::string> > () = {yystack_[0].value.as < std::string > (),"double"}; }
+                           { yylhs.value.as < std::pair<std::string,std::string> > () = {yystack_[0].value.as < std::string > (),"float"}; }
 #line 1736 "src/parser.cc"
     break;
 
