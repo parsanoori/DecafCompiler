@@ -2,6 +2,8 @@
 // Created by Parsa Noori on 2/3/2022 AD.
 //
 
+#include <iostream>
+#include <cstdarg>
 #include "codegen.h"
 #include "idgen.h"
 #include "floatutils.h"
@@ -267,7 +269,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
     if (lefside.second != expr.second)
         throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
     string temp_id = idgen::nextid();
-    string type = expr.second;
+    string type_of_output;
     w->appendData("    " + temp_id + ": .word 0\n");
     w->appendText(
             "    # doing the " + operation + "\n"
@@ -276,21 +278,56 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
     );
     if(operation == "+"){
         w->appendText("    add $t0, $t0, $t1\n");
+        type_of_output = expr.second;
     }
     else if (operation == "-"){
         w->appendText("    sub $t0, $t1, $t0\n");
+        type_of_output = expr.second;
     }
     else if (operation == "*"){
         w->appendText("    mult $t0, $t1\n");
         w->appendText("    mflo $t0\n");
+        type_of_output = expr.second;
     }
     else if (operation == "/"){
         w->appendText("    div $t1, $t0\n");
         w->appendText("    mflo $t0\n");
+        type_of_output = expr.second;
     }
     else if (operation == "%"){
         w->appendText("    div $t1, $t0\n");
         w->appendText("    mfhi $t0\n");
+        type_of_output = expr.second;
+    }
+    else if (operation == "<"){
+        w->appendText("    slt $t0, $t1 , $t0\n");
+        type_of_output = "bool";
+    }
+    else if (operation == ">"){
+        w->appendText("    slt $t0, $t0 , $t1\n");
+        type_of_output = "bool";
+    }
+    else if (operation == "<"){
+        w->appendText("    slt $t0, $t1 , $t0\n");
+        type_of_output = "bool";
+    }
+    else if (operation == "<="){
+        w->appendText("    slt $t7, $t1 , $t0\n");
+        string ltequallabel = idgen::nextid() + "_op_lteq";
+        w->appendText("    bne $t7, $zero , " + ltequallabel + "_ok\n");
+        w->appendText("    beq $t0, $zero , " + ltequallabel + "_ok\n");
+        w->appendText("    add $t0, $zero , $zero\n");
+        w->appendText(ltequallabel + "_ok:\n");
+        type_of_output = "bool";
+    }
+    else if (operation == ">="){
+        w->appendText("    slt $t7, $t0 , $t1\n");
+        string gtequallabel = idgen::nextid() + "_op_gteq";
+        w->appendText("    bne $t7, $zero , " + gtequallabel + "_ok\n");
+        w->appendText("    beq $t0, $zero , " + gtequallabel + "_ok\n");
+        w->appendText("    add $t0, $zero , $zero\n");
+        w->appendText(gtequallabel + "_ok:\n");
+        type_of_output = "bool";
     }
     else if (operation == "||"){
         if(lefside.second != "bool"){
@@ -318,7 +355,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
                       + "    li $t0, 0\n"
                       + label2 + ":\n"
         );
-        type = "bool";
+        type_of_output = "bool";
     }
     else if (operation == "!="){
         if(lefside.second != "int"){
@@ -334,7 +371,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
                 + "    li $t0, 0\n"
                 + label2 + ":\n"
         );
-        type = "bool";
+        type_of_output = "bool";
     }
     else if (operation == "<"){
         if(lefside.second != "int"){
@@ -350,7 +387,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
                 + "    li $t0, 0\n"
                 + label2 + ":\n"
         );
-        type = "bool";
+        type_of_output = "bool";
     }
     else if (operation == "<="){
         if(lefside.second != "int"){
@@ -366,7 +403,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
                 + "    li $t0, 0\n"
                 + label2 + ":\n"
         );
-        type = "bool";
+        type_of_output = "bool";
     }
     else if (operation == ">"){
         if(lefside.second != "int"){
@@ -382,7 +419,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
                 + "    li $t0, 0\n"
                 + label2 + ":\n"
         );
-        type = "bool";
+        type_of_output = "bool";
     }
     else if (operation == ">="){
         if(lefside.second != "int"){
@@ -398,13 +435,13 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
                 + "    li $t0, 0\n"
                 + label2 + ":\n"
         );
-        type = "bool";
+        type_of_output = "bool";
     }
     else{
         throw runtime_error("my error: the operation is not implemented yet: " + operation);
     }
     w->appendText("    sw $t0, " + temp_id + "\n\n");
-    return {temp_id, type};
+    return {temp_id, type_of_output};
 }
 
 exprtype codegen::unaryminus(const exprtype &expr) {
@@ -434,5 +471,29 @@ exprtype codegen::unarynot(const exprtype &expr) {
             + "    sw $t0, " + temp_id + "\n\n"
     );
     return {temp_id, expr.second};
+}
+void codegen::whilestmt1() {
+    cout << "I am here . where are Uuuuuuuuuuuuu ?" << endl;
+    string whilename = idgen::nextid() + "_while_loop";
+    st->pushscope(whilename);
+    w->appendText("    " + whilename + "_before:");
+}
+
+void codegen::whilestmt2(const pair<string, string> &expr) {
+    cout << "I am here . where are Uuuuuuuuuuuuu ?" << endl;
+    if (expr.second != "bool")
+        throw runtime_error("invalid type for while expression");
+    string laftername = st->currentscopename() + "_after";
+    w->appendText("    lw $t0, " + expr.first + "\n"
+                + "    beqz $t0, " + laftername + ":\n"
+    );
+}
+
+void codegen::whilestmt3() {
+    cout << "I am here . where are Uuuuuuuuuuuuu ?" << endl;
+    string whilename = st->currentscopename();
+    w->appendText("    j " + whilename + "_before\n"
+                + whilename + "_after:\n"
+    );
 }
 

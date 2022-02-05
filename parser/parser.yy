@@ -134,7 +134,7 @@ ifstmt:
 elsestmt: else { cg.elselabel(); } stmt { cg.endelse(); }
         | %empty { cg.endiflabel(); }
 
-whilestmt: while openparantheses expr closeparantheses stmt { }
+whilestmt: while openparantheses { cg.whilestmt1(); } expr closeparantheses { cg.whilestmt2($3); } stmt { cg.whilestmt3(); }
 
 forstmt: for openparantheses nexpr semicolon expr semicolon nexpr closeparantheses stmt { }
 

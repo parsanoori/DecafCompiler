@@ -73,6 +73,14 @@ public:
     void elselabel();
 
     void endelse();
+
+    void whilestmt1();
+
+    void whilestmt2(const exprtype &);
+
+    void whilestmt3();
+
+
 };
 
 
