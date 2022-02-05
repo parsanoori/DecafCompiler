@@ -190,6 +190,8 @@ pair<string, string> codegen::findid(const string &id) {
 pair<string, string>
 codegen::assignexproperation(const string &lefside, const pair<string, string> &expr, const string &operation) {
     auto d = st->getentry(lefside);
+    if (d.getType() != dtypefromstr(expr.second))
+        throw runtime_error("semantic error: invalid assignment");
     w->appendText(
             "    # doing the " + operation +"\n"
             + "    lw $t0, " + expr.first +"\n"

@@ -23,6 +23,15 @@ void symboltable::popscope() {
 }
 
 descriptor symboltable::addentry(const string &name, const string &type) {
+    try {
+        auto d = getentry(name);
+        throw runtime_error("redefining " + name);
+    }
+    catch (runtime_error &error) {
+        if(error.what()[0] == 'r'){ // redefining
+            throw error;
+        }
+    }
     descriptor d(type);
     st.back().table.emplace(name, d);
     st.back().count += sizeofdtype(dtypefromstr(type));
@@ -34,7 +43,7 @@ descriptor symboltable::getentry(const string &name/*, const string &type*/) {
         for (const auto &p: ri->table)
             if (p.first == name /*&& p.second.getType() == dtypefromstr(type)*/)
                 return p.second;
-    throw runtime_error("symbol not found");
+    throw runtime_error("symbol " + name + " not found");
 }
 
 string symboltable::currentscopename() {
