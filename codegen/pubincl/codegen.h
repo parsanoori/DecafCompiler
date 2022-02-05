@@ -16,9 +16,13 @@ using namespace std;
 
 class codegen {
     writer *w;
-    semanticstack ss;
+    stack<string> loopstack;
+    stack<string> condstack;
     symboltable *st;
     functiontable *ft;
+
+    string beginloopname;
+    string endloopname;
 
     codegen();
 
@@ -87,6 +91,9 @@ public:
     void whilestmt2(const exprtype &);
 
     void whilestmt3();
+
+    void breakstmt();
+
 
 };
 
