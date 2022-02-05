@@ -1,7 +1,0 @@
-int emptyFuncName;
-strin lineInGlobal;
-void line() {
-    Print(lineInGlobal + __line__);
-    Print(__func__ + emptyFuncName);
-    Print("I should have no errors!");
-}
