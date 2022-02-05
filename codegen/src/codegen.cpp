@@ -55,12 +55,10 @@ void codegen::addfunction(const string &name, const std::vector<std::pair<std::s
         types.push_back(dtypefromstr(p.first));
     ft->add_function(name, types);
 
-    st->pushscope(name);
+    st->pushscope(name,true);
 
     for (const auto &p: formals)
         st->addentry(p.second, p.first);
-
-    st->pushscope(name + "_stmtblock");
 
     w->appendText(name + ":\n");
 }
@@ -68,7 +66,7 @@ void codegen::addfunction(const string &name, const std::vector<std::pair<std::s
 void codegen::endfunction() {
     string scopename = st->currentscopename();
 
-    if (scopename == "main_stmtblock")
+    if (scopename == "main")
         w->appendText(string("    # exit\n")
                       + "    li $v0, 10\n"
                       + "    syscall\n"
@@ -78,7 +76,6 @@ void codegen::endfunction() {
                       + "    jr $ra\n"
         );
 
-    st->popscope(); // for stmtblock
     st->popscope(); // for formals
 
 }

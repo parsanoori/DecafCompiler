@@ -16,10 +16,12 @@ class symboltable {
 
     symboltable();
 
+    string funcName = "root";
+
 public:
     static symboltable *get();
 
-    void pushscope(const string& name);
+    void pushscope(const string& name,bool isFuncName = false);
 
     void popscope();
 

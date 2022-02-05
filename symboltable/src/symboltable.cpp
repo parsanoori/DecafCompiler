@@ -12,8 +12,10 @@ symboltable *symboltable::get() {
     return instance;
 }
 
-void symboltable::pushscope(const string &name) {
+void symboltable::pushscope(const string &name,bool isFuncName) {
     st.emplace_back(name);
+    if (isFuncName)
+        funcName = name;
 }
 
 void symboltable::popscope() {
@@ -36,8 +38,7 @@ descriptor symboltable::getentry(const string &name/*, const string &type*/) {
 }
 
 string symboltable::currentscopename() {
-    return st.back().name;
-
+    return funcName;
 }
 
 
