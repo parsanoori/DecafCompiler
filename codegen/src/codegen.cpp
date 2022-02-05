@@ -307,28 +307,77 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
     string temp_id = idgen::nextid();
     string type_of_output;
     w->appendData("    " + temp_id + ": .word 0\n");
-    w->appendText(
-            "    # doing the " + operation + "\n"
-            + "    lw $t0, " + expr.first + "\n"
-            + "    lw $t1, " + lefside.first + "\n"
-    );
+    if(expr.second == "int" || expr.second == "bool") {
+        w->appendText(
+                "    # doing the " + operation + "\n"
+                + "    lw $t0, " + expr.first + "\n"
+                + "    lw $t1, " + lefside.first + "\n"
+        );
+    }
+    else if(expr.second == "double"){
+        w->appendText(
+                "    # doing the " + operation + "\n"
+                + "    l.s $f0, " + expr.first + "\n"
+                + "    l.s $f1, " + lefside.first + "\n"
+        );
+    }
+    else{
+        throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
+    }
     if (operation == "+") {
-        w->appendText("    addu $t0, $t0, $t1\n");
+        if(expr.second == "int") {
+            w->appendText("    addu $t0, $t0, $t1\n");
+        }
+        else if(expr.second == "double"){
+            w->appendText("    add.s $f0, $f0, $f1\n");
+        }
+        else{
+            throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
+        }
         type_of_output = expr.second;
     } else if (operation == "-") {
-        w->appendText("    subu $t0, $t1, $t0\n");
+        if(expr.second == "int") {
+            w->appendText("    subu $t0, $t1, $t0\n");
+        }
+        else if(expr.second == "double"){
+            w->appendText("    sub.s $f0, $f1, $f0\n");
+        }
+        else{
+            throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
+        }
         type_of_output = expr.second;
     } else if (operation == "*") {
-        w->appendText("    mult $t0, $t1\n");
-        w->appendText("    mflo $t0\n");
+        if(expr.second == "int") {
+            w->appendText("    mult $t0, $t1\n");
+            w->appendText("    mflo $t0\n");
+        }
+        else if(expr.second == "double"){
+            w->appendText("    mul.s $f0, $f1, $f0\n");
+        }
+        else{
+            throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
+        }
         type_of_output = expr.second;
     } else if (operation == "/") {
-        w->appendText("    div $t1, $t0\n");
-        w->appendText("    mflo $t0\n");
+        if(expr.second == "int") {
+            w->appendText("    div $t1, $t0\n");
+            w->appendText("    mflo $t0\n");
+        }
+        else if(expr.second == "double"){
+            w->appendText("    div.s $f0, $f1, $f0\n");
+        }
+        else{
+            throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
+        }
         type_of_output = expr.second;
     } else if (operation == "%") {
-        w->appendText("    div $t1, $t0\n");
-        w->appendText("    mfhi $t0\n");
+        if(expr.second == "int") {
+            w->appendText("    div $t1, $t0\n");
+            w->appendText("    mfhi $t0\n");
+        }
+        else{
+            throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
+        }
         type_of_output = expr.second;
     } else if (operation == "||") {
         if (lefside.second != "bool") {
@@ -341,99 +390,197 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
         }
         w->appendText("    and $t0, $t0, $t1\n");
     } else if (operation == "==") {
-        if (lefside.second != "int") {
+        if(expr.second == "int") {
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText(
+                    "    bne $t0, $t1, " + label1 + "\n"
+                    + "    li $t0, 1\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 0\n"
+                    + label2 + ":\n"
+            );
+        }
+        else if(expr.second == "double"){
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText("    c.eq.s $f0, $f1\n");
+            w->appendText(
+                    "    bc1f " + label1 +"\n"
+                    + "    li $t0, 1\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 0\n"
+                    + label2 + ":\n"
+            );
+        }
+        else{
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
-        string label1 = idgen::nextlabel();
-        string label2 = idgen::nextlabel();
-        w->appendText(
-                "    bne $t0, $t1, " + label1 + "\n"
-                + "    li $t0, 1\n"
-                + "    b " + label2 + "\n"
-                + label1 + ":\n"
-                + "    li $t0, 0\n"
-                + label2 + ":\n"
-        );
         type_of_output = "bool";
     } else if (operation == "!=") {
-        if (lefside.second != "int") {
+        if(expr.second == "int") {
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText(
+                    "    beq $t0, $t1, " + label1 + "\n"
+                    + "    li $t0, 1\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 0\n"
+                    + label2 + ":\n"
+            );
+        }
+        else if(expr.second == "double"){
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText("    c.eq.s $f0, $f1\n");
+            w->appendText(
+                    "    bc1t " + label1 +"\n"
+                    + "    li $t0, 1\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 0\n"
+                    + label2 + ":\n"
+            );
+        }
+        else{
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
-        string label1 = idgen::nextlabel();
-        string label2 = idgen::nextlabel();
-        w->appendText(
-                "    beq $t0, $t1, " + label1 + "\n"
-                + "    li $t0, 1\n"
-                + "    b " + label2 + "\n"
-                + label1 + ":\n"
-                + "    li $t0, 0\n"
-                + label2 + ":\n"
-        );
         type_of_output = "bool";
     } else if (operation == "<") {
-        if (lefside.second != "int") {
+        if(expr.second == "int") {
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText(
+                    "    bge $t1, $t0, " + label1 + "\n"
+                    + "    li $t0, 1\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 0\n"
+                    + label2 + ":\n"
+            );
+        }
+        else if(expr.second == "double"){
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText("    c.le.s $f0, $f1\n");
+            w->appendText(
+                    "    bc1t " + label1 +"\n"
+                    + "    li $t0, 1\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 0\n"
+                    + label2 + ":\n"
+            );
+        }
+        else{
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
-        string label1 = idgen::nextlabel();
-        string label2 = idgen::nextlabel();
-        w->appendText(
-                "    bge $t1, $t0, " + label1 + "\n"
-                + "    li $t0, 1\n"
-                + "    b " + label2 + "\n"
-                + label1 + ":\n"
-                + "    li $t0, 0\n"
-                + label2 + ":\n"
-        );
         type_of_output = "bool";
     } else if (operation == "<=") {
-        if (lefside.second != "int") {
+        if(expr.second == "int") {
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText(
+                    "    bgt $t1, $t0, " + label1 + "\n"
+                    + "    li $t0, 1\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 0\n"
+                    + label2 + ":\n"
+            );
+        }
+        else if(expr.second == "double"){
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText("    c.lt.s $f0, $f1\n");
+            w->appendText(
+                    "    bc1t " + label1 +"\n"
+                    + "    li $t0, 1\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 0\n"
+                    + label2 + ":\n"
+            );
+        }
+        else{
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
-        string label1 = idgen::nextlabel();
-        string label2 = idgen::nextlabel();
-        w->appendText(
-                "    bgt $t1, $t0, " + label1 + "\n"
-                + "    li $t0, 1\n"
-                + "    b " + label2 + "\n"
-                + label1 + ":\n"
-                + "    li $t0, 0\n"
-                + label2 + ":\n"
-        );
         type_of_output = "bool";
     } else if (operation == ">") {
-        if (lefside.second != "int") {
+        if(expr.second == "int") {
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText(
+                    "    ble $t1, $t0, " + label1 + "\n"
+                    + "    li $t0, 1\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 0\n"
+                    + label2 + ":\n"
+            );
+        }
+        else if(expr.second == "double"){
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText("    c.le.s $f1, $f0\n");
+            w->appendText(
+                    "    bc1t " + label1 +"\n"
+                    + "    li $t0, 1\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 0\n"
+                    + label2 + ":\n"
+            );
+        }
+        else{
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
-        string label1 = idgen::nextlabel();
-        string label2 = idgen::nextlabel();
-        w->appendText(
-                "    ble $t1, $t0, " + label1 + "\n"
-                + "    li $t0, 1\n"
-                + "    b " + label2 + "\n"
-                + label1 + ":\n"
-                + "    li $t0, 0\n"
-                + label2 + ":\n"
-        );
         type_of_output = "bool";
     } else if (operation == ">=") {
-        if (lefside.second != "int") {
+        if(expr.second == "int") {
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText(
+                    "    blt $t1, $t0, " + label1 + "\n"
+                    + "    li $t0, 1\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 0\n"
+                    + label2 + ":\n"
+            );
+        }
+        else if(expr.second == "double"){
+            string label1 = idgen::nextlabel();
+            string label2 = idgen::nextlabel();
+            w->appendText("    c.lt.s $f1, $f0\n");
+            w->appendText(
+                    "    bc1t " + label1 +"\n"
+                    + "    li $t0, 1\n"
+                    + "    b " + label2 + "\n"
+                    + label1 + ":\n"
+                    + "    li $t0, 0\n"
+                    + label2 + ":\n"
+            );
+        }
+        else{
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
-        string label1 = idgen::nextlabel();
-        string label2 = idgen::nextlabel();
-        w->appendText(
-                "    blt $t1, $t0, " + label1 + "\n"
-                + "    li $t0, 1\n"
-                + "    b " + label2 + "\n"
-                + label1 + ":\n"
-                + "    li $t0, 0\n"
-                + label2 + ":\n"
-        );
         type_of_output = "bool";
     } else {
         throw runtime_error("my error: the operation is not implemented yet: " + operation);
     }
-    w->appendText("    sw $t0, " + temp_id + "\n\n");
+    if(type_of_output == "int" || type_of_output == "bool") {
+        w->appendText("    sw $t0, " + temp_id + "\n\n");
+    }
+    else if(type_of_output == "double"){
+        w->appendText("    s.s $f0, " + temp_id + "\n\n");
+    }
+    else{
+        throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
+    }
     return {temp_id, type_of_output};
 }
 
