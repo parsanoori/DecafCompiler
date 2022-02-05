@@ -432,9 +432,9 @@
         <lhs>forstmt</lhs>
         <rhs>
           <symbol>for</symbol>
-          <symbol>$@8</symbol>
           <symbol>openparantheses</symbol>
           <symbol>nexpr</symbol>
+          <symbol>$@8</symbol>
           <symbol>semicolon</symbol>
           <symbol>expr</symbol>
           <symbol>$@9</symbol>
@@ -2358,17 +2358,14 @@
 
     <state number="65">
       <itemset>
-        <item rule-number="59" dot="0"/>
         <item rule-number="62" dot="1"/>
       </itemset>
       <actions>
         <transitions>
-          <transition type="goto" symbol="$@8" state="106"/>
+          <transition type="shift" symbol="openparantheses" state="106"/>
         </transitions>
         <errors/>
-        <reductions>
-          <reduction symbol="$default" rule="59" enabled="true"/>
-        </reductions>
+        <reductions/>
       </actions>
       <solved-conflicts/>
     </state>
@@ -3676,13 +3673,90 @@
     <state number="106">
       <itemset>
         <item rule-number="62" dot="2"/>
+        <item rule-number="65" dot="0"/>
+        <item rule-number="66" dot="0">
+          <lookaheads>
+            <symbol>semicolon</symbol>
+          </lookaheads>
+        </item>
+        <item rule-number="71" dot="0"/>
+        <item rule-number="72" dot="0"/>
+        <item rule-number="73" dot="0"/>
+        <item rule-number="74" dot="0"/>
+        <item rule-number="75" dot="0"/>
+        <item rule-number="76" dot="0"/>
+        <item rule-number="77" dot="0"/>
+        <item rule-number="78" dot="0"/>
+        <item rule-number="79" dot="0"/>
+        <item rule-number="80" dot="0"/>
+        <item rule-number="81" dot="0"/>
+        <item rule-number="82" dot="0"/>
+        <item rule-number="83" dot="0"/>
+        <item rule-number="84" dot="0"/>
+        <item rule-number="85" dot="0"/>
+        <item rule-number="86" dot="0"/>
+        <item rule-number="87" dot="0"/>
+        <item rule-number="88" dot="0"/>
+        <item rule-number="89" dot="0"/>
+        <item rule-number="90" dot="0"/>
+        <item rule-number="91" dot="0"/>
+        <item rule-number="92" dot="0"/>
+        <item rule-number="93" dot="0"/>
+        <item rule-number="94" dot="0"/>
+        <item rule-number="95" dot="0"/>
+        <item rule-number="96" dot="0"/>
+        <item rule-number="97" dot="0"/>
+        <item rule-number="98" dot="0"/>
+        <item rule-number="99" dot="0"/>
+        <item rule-number="100" dot="0"/>
+        <item rule-number="101" dot="0"/>
+        <item rule-number="102" dot="0"/>
+        <item rule-number="103" dot="0"/>
+        <item rule-number="104" dot="0"/>
+        <item rule-number="105" dot="0"/>
+        <item rule-number="106" dot="0"/>
+        <item rule-number="107" dot="0"/>
+        <item rule-number="108" dot="0"/>
+        <item rule-number="109" dot="0"/>
+        <item rule-number="110" dot="0"/>
+        <item rule-number="115" dot="0"/>
+        <item rule-number="116" dot="0"/>
+        <item rule-number="117" dot="0"/>
+        <item rule-number="118" dot="0"/>
+        <item rule-number="119" dot="0"/>
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openparantheses" state="153"/>
+          <transition type="shift" symbol="id" state="107"/>
+          <transition type="shift" symbol="string" state="60"/>
+          <transition type="shift" symbol="integer" state="62"/>
+          <transition type="shift" symbol="boolean" state="66"/>
+          <transition type="shift" symbol="nullkw" state="67"/>
+          <transition type="shift" symbol="new" state="70"/>
+          <transition type="shift" symbol="this" state="71"/>
+          <transition type="shift" symbol="newarray" state="72"/>
+          <transition type="shift" symbol="readinteger" state="74"/>
+          <transition type="shift" symbol="readline" state="75"/>
+          <transition type="shift" symbol="line" state="76"/>
+          <transition type="shift" symbol="func" state="77"/>
+          <transition type="shift" symbol="btoi" state="78"/>
+          <transition type="shift" symbol="dtoi" state="80"/>
+          <transition type="shift" symbol="itob" state="81"/>
+          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="float" state="83"/>
+          <transition type="shift" symbol="minus" state="84"/>
+          <transition type="shift" symbol="openparantheses" state="85"/>
+          <transition type="shift" symbol="not" state="86"/>
+          <transition type="goto" symbol="nexpr" state="153"/>
+          <transition type="goto" symbol="expr" state="109"/>
+          <transition type="goto" symbol="lvalue" state="100"/>
+          <transition type="goto" symbol="call" state="101"/>
+          <transition type="goto" symbol="constant" state="102"/>
         </transitions>
         <errors/>
-        <reductions/>
+        <reductions>
+          <reduction symbol="$default" rule="66" enabled="true"/>
+        </reductions>
       </actions>
       <solved-conflicts/>
     </state>
@@ -6382,90 +6456,16 @@
 
     <state number="153">
       <itemset>
+        <item rule-number="59" dot="0"/>
         <item rule-number="62" dot="3"/>
-        <item rule-number="65" dot="0"/>
-        <item rule-number="66" dot="0">
-          <lookaheads>
-            <symbol>semicolon</symbol>
-          </lookaheads>
-        </item>
-        <item rule-number="71" dot="0"/>
-        <item rule-number="72" dot="0"/>
-        <item rule-number="73" dot="0"/>
-        <item rule-number="74" dot="0"/>
-        <item rule-number="75" dot="0"/>
-        <item rule-number="76" dot="0"/>
-        <item rule-number="77" dot="0"/>
-        <item rule-number="78" dot="0"/>
-        <item rule-number="79" dot="0"/>
-        <item rule-number="80" dot="0"/>
-        <item rule-number="81" dot="0"/>
-        <item rule-number="82" dot="0"/>
-        <item rule-number="83" dot="0"/>
-        <item rule-number="84" dot="0"/>
-        <item rule-number="85" dot="0"/>
-        <item rule-number="86" dot="0"/>
-        <item rule-number="87" dot="0"/>
-        <item rule-number="88" dot="0"/>
-        <item rule-number="89" dot="0"/>
-        <item rule-number="90" dot="0"/>
-        <item rule-number="91" dot="0"/>
-        <item rule-number="92" dot="0"/>
-        <item rule-number="93" dot="0"/>
-        <item rule-number="94" dot="0"/>
-        <item rule-number="95" dot="0"/>
-        <item rule-number="96" dot="0"/>
-        <item rule-number="97" dot="0"/>
-        <item rule-number="98" dot="0"/>
-        <item rule-number="99" dot="0"/>
-        <item rule-number="100" dot="0"/>
-        <item rule-number="101" dot="0"/>
-        <item rule-number="102" dot="0"/>
-        <item rule-number="103" dot="0"/>
-        <item rule-number="104" dot="0"/>
-        <item rule-number="105" dot="0"/>
-        <item rule-number="106" dot="0"/>
-        <item rule-number="107" dot="0"/>
-        <item rule-number="108" dot="0"/>
-        <item rule-number="109" dot="0"/>
-        <item rule-number="110" dot="0"/>
-        <item rule-number="115" dot="0"/>
-        <item rule-number="116" dot="0"/>
-        <item rule-number="117" dot="0"/>
-        <item rule-number="118" dot="0"/>
-        <item rule-number="119" dot="0"/>
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="id" state="107"/>
-          <transition type="shift" symbol="string" state="60"/>
-          <transition type="shift" symbol="integer" state="62"/>
-          <transition type="shift" symbol="boolean" state="66"/>
-          <transition type="shift" symbol="nullkw" state="67"/>
-          <transition type="shift" symbol="new" state="70"/>
-          <transition type="shift" symbol="this" state="71"/>
-          <transition type="shift" symbol="newarray" state="72"/>
-          <transition type="shift" symbol="readinteger" state="74"/>
-          <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
-          <transition type="shift" symbol="float" state="83"/>
-          <transition type="shift" symbol="minus" state="84"/>
-          <transition type="shift" symbol="openparantheses" state="85"/>
-          <transition type="shift" symbol="not" state="86"/>
-          <transition type="goto" symbol="nexpr" state="189"/>
-          <transition type="goto" symbol="expr" state="109"/>
-          <transition type="goto" symbol="lvalue" state="100"/>
-          <transition type="goto" symbol="call" state="101"/>
-          <transition type="goto" symbol="constant" state="102"/>
+          <transition type="goto" symbol="$@8" state="189"/>
         </transitions>
         <errors/>
         <reductions>
-          <reduction symbol="$default" rule="66" enabled="true"/>
+          <reduction symbol="$default" rule="59" enabled="true"/>
         </reductions>
       </actions>
       <solved-conflicts/>

@@ -159,7 +159,7 @@
 
   <a name="rule_61" id="rule_61"> 61</a> <span class="i">$@10</span> → %empty
 
-  <a name="rule_62" id="rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+  <a name="rule_62" id="rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
 
   <a name="rule_63" id="rule_63"> 63</a> <span class="i">returnstmt</span> → <b>return</b> <span class="i">nexpr</span> <b>semicolon</b>
 
@@ -1266,7 +1266,7 @@
   <a href="#rule_50"> 50</a>      | <span class="dot">•</span> <span class="i">stmtblock</span>
   <a href="#rule_52"> 52</a> <span class="i">ifstmt</span> → <span class="dot">•</span> <b>if</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@4</span> <span class="i">stmt</span> <span class="i">elsestmt</span>
   <a href="#rule_58"> 58</a> <span class="i">whilestmt</span> → <span class="dot">•</span> <b>while</b> <b>openparantheses</b> <span class="i">$@6</span> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@7</span> <span class="i">stmt</span>
-  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
   <a href="#rule_63"> 63</a> <span class="i">returnstmt</span> → <span class="dot">•</span> <b>return</b> <span class="i">nexpr</span> <b>semicolon</b>
   <a href="#rule_64"> 64</a> <span class="i">breakstmt</span> → <span class="dot">•</span> <b>break</b> <b>semicolon</b>
   <a href="#rule_67"> 67</a> <span class="i">continuestmt</span> → <span class="dot">•</span> <b>continue</b> <b>semicolon</b>
@@ -1423,12 +1423,9 @@
 
 <h3><a name="state_65" id="state_65"></a>State 65</h3>
 
-<p class="pre">  <a href="#rule_59"> 59</a> <span class="i">$@8</span> → <span class="dot">•</span> %empty
-  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <span class="dot">•</span> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <span class="dot">•</span> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
 
-    $default  <a href="#rule_59">reduce using rule 59</a> ($@8)
-
-    $@8  <a href="#state_106">go to state 106</a>
+    openparantheses  <a href="#state_106">shift, and go to state 106</a>
 </p>
 
 <h3><a name="state_66" id="state_66"></a>State 66</h3>
@@ -1887,7 +1884,7 @@
   <a href="#rule_50"> 50</a>      | <span class="dot">•</span> <span class="i">stmtblock</span>
   <a href="#rule_52"> 52</a> <span class="i">ifstmt</span> → <span class="dot">•</span> <b>if</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@4</span> <span class="i">stmt</span> <span class="i">elsestmt</span>
   <a href="#rule_58"> 58</a> <span class="i">whilestmt</span> → <span class="dot">•</span> <b>while</b> <b>openparantheses</b> <span class="i">$@6</span> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@7</span> <span class="i">stmt</span>
-  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
   <a href="#rule_63"> 63</a> <span class="i">returnstmt</span> → <span class="dot">•</span> <b>return</b> <span class="i">nexpr</span> <b>semicolon</b>
   <a href="#rule_64"> 64</a> <span class="i">breakstmt</span> → <span class="dot">•</span> <b>break</b> <b>semicolon</b>
   <a href="#rule_67"> 67</a> <span class="i">continuestmt</span> → <span class="dot">•</span> <b>continue</b> <b>semicolon</b>
@@ -2033,7 +2030,7 @@
   <a href="#rule_50"> 50</a>      | <span class="dot">•</span> <span class="i">stmtblock</span>
   <a href="#rule_52"> 52</a> <span class="i">ifstmt</span> → <span class="dot">•</span> <b>if</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@4</span> <span class="i">stmt</span> <span class="i">elsestmt</span>
   <a href="#rule_58"> 58</a> <span class="i">whilestmt</span> → <span class="dot">•</span> <b>while</b> <b>openparantheses</b> <span class="i">$@6</span> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@7</span> <span class="i">stmt</span>
-  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
   <a href="#rule_63"> 63</a> <span class="i">returnstmt</span> → <span class="dot">•</span> <b>return</b> <span class="i">nexpr</span> <b>semicolon</b>
   <a href="#rule_64"> 64</a> <span class="i">breakstmt</span> → <span class="dot">•</span> <b>break</b> <b>semicolon</b>
   <a href="#rule_67"> 67</a> <span class="i">continuestmt</span> → <span class="dot">•</span> <b>continue</b> <b>semicolon</b>
@@ -2423,9 +2420,83 @@
 
 <h3><a name="state_106" id="state_106"></a>State 106</h3>
 
-<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <span class="i">$@8</span> <span class="dot">•</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <b>openparantheses</b> <span class="dot">•</span> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+  <a href="#rule_65"> 65</a> <span class="i">nexpr</span> → <span class="dot">•</span> <span class="i">expr</span>
+  <a href="#rule_66"> 66</a>       | <span class="dot">•</span> %empty  [semicolon]
+  <a href="#rule_71"> 71</a> <span class="i">expr</span> → <span class="dot">•</span> <span class="i">constant</span>
+  <a href="#rule_72"> 72</a>      | <span class="dot">•</span> <span class="i">lvalue</span>
+  <a href="#rule_73"> 73</a>      | <span class="dot">•</span> <b>this</b>
+  <a href="#rule_74"> 74</a>      | <span class="dot">•</span> <span class="i">call</span>
+  <a href="#rule_75"> 75</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
+  <a href="#rule_76"> 76</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
+  <a href="#rule_77"> 77</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
+  <a href="#rule_78"> 78</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
+  <a href="#rule_79"> 79</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_80"> 80</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_81"> 81</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_82"> 82</a>      | <span class="dot">•</span> <b>btoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_83"> 83</a>      | <span class="dot">•</span> <b>line</b>
+  <a href="#rule_84"> 84</a>      | <span class="dot">•</span> <b>func</b>
+  <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>assign</b> <span class="i">expr</span>
+  <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>plusequal</b> <span class="i">expr</span>
+  <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>minusequal</b> <span class="i">expr</span>
+  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>starequal</b> <span class="i">expr</span>
+  <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>slashequal</b> <span class="i">expr</span>
+  <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>or</b> <span class="i">expr</span>
+  <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>and</b> <span class="i">expr</span>
+  <a href="#rule_92"> 92</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>equal</b> <span class="i">expr</span>
+  <a href="#rule_93"> 93</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>notequal</b> <span class="i">expr</span>
+  <a href="#rule_94"> 94</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>lessthan</b> <span class="i">expr</span>
+  <a href="#rule_95"> 95</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>lessthanequal</b> <span class="i">expr</span>
+  <a href="#rule_96"> 96</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>greaterthan</b> <span class="i">expr</span>
+  <a href="#rule_97"> 97</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>greaterthanequal</b> <span class="i">expr</span>
+  <a href="#rule_98"> 98</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>plus</b> <span class="i">expr</span>
+  <a href="#rule_99"> 99</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>minus</b> <span class="i">expr</span>
+  <a href="#rule_100">100</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>star</b> <span class="i">expr</span>
+  <a href="#rule_101">101</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>slash</b> <span class="i">expr</span>
+  <a href="#rule_102">102</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>percent</b> <span class="i">expr</span>
+  <a href="#rule_103">103</a>      | <span class="dot">•</span> <b>minus</b> <span class="i">expr</span>
+  <a href="#rule_104">104</a>      | <span class="dot">•</span> <b>not</b> <span class="i">expr</span>
+  <a href="#rule_105">105</a>      | <span class="dot">•</span> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
+  <a href="#rule_106">106</a> <span class="i">lvalue</span> → <span class="dot">•</span> <b>id</b>
+  <a href="#rule_107">107</a>        | <span class="dot">•</span> <span class="i">expr</span> <b>dot</b> <b>id</b>
+  <a href="#rule_108">108</a>        | <span class="dot">•</span> <span class="i">expr</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
+  <a href="#rule_109">109</a> <span class="i">call</span> → <span class="dot">•</span> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
+  <a href="#rule_110">110</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
+  <a href="#rule_115">115</a> <span class="i">constant</span> → <span class="dot">•</span> <b>integer</b>
+  <a href="#rule_116">116</a>          | <span class="dot">•</span> <b>float</b>
+  <a href="#rule_117">117</a>          | <span class="dot">•</span> <b>boolean</b>
+  <a href="#rule_118">118</a>          | <span class="dot">•</span> <b>string</b>
+  <a href="#rule_119">119</a>          | <span class="dot">•</span> <b>nullkw</b>
 
-    openparantheses  <a href="#state_153">shift, and go to state 153</a>
+    id               <a href="#state_107">shift, and go to state 107</a>
+    string           <a href="#state_60">shift, and go to state 60</a>
+    integer          <a href="#state_62">shift, and go to state 62</a>
+    boolean          <a href="#state_66">shift, and go to state 66</a>
+    nullkw           <a href="#state_67">shift, and go to state 67</a>
+    new              <a href="#state_70">shift, and go to state 70</a>
+    this             <a href="#state_71">shift, and go to state 71</a>
+    newarray         <a href="#state_72">shift, and go to state 72</a>
+    readinteger      <a href="#state_74">shift, and go to state 74</a>
+    readline         <a href="#state_75">shift, and go to state 75</a>
+    line             <a href="#state_76">shift, and go to state 76</a>
+    func             <a href="#state_77">shift, and go to state 77</a>
+    btoi             <a href="#state_78">shift, and go to state 78</a>
+    dtoi             <a href="#state_80">shift, and go to state 80</a>
+    itob             <a href="#state_81">shift, and go to state 81</a>
+    itod             <a href="#state_82">shift, and go to state 82</a>
+    float            <a href="#state_83">shift, and go to state 83</a>
+    minus            <a href="#state_84">shift, and go to state 84</a>
+    openparantheses  <a href="#state_85">shift, and go to state 85</a>
+    not              <a href="#state_86">shift, and go to state 86</a>
+
+    $default  <a href="#rule_66">reduce using rule 66</a> (nexpr)
+
+    nexpr     <a href="#state_153">go to state 153</a>
+    expr      <a href="#state_109">go to state 109</a>
+    lvalue    <a href="#state_100">go to state 100</a>
+    call      <a href="#state_101">go to state 101</a>
+    constant  <a href="#state_102">go to state 102</a>
 </p>
 
 <h3><a name="state_107" id="state_107"></a>State 107</h3>
@@ -4754,83 +4825,12 @@
 
 <h3><a name="state_153" id="state_153"></a>State 153</h3>
 
-<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="dot">•</span> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
-  <a href="#rule_65"> 65</a> <span class="i">nexpr</span> → <span class="dot">•</span> <span class="i">expr</span>
-  <a href="#rule_66"> 66</a>       | <span class="dot">•</span> %empty  [semicolon]
-  <a href="#rule_71"> 71</a> <span class="i">expr</span> → <span class="dot">•</span> <span class="i">constant</span>
-  <a href="#rule_72"> 72</a>      | <span class="dot">•</span> <span class="i">lvalue</span>
-  <a href="#rule_73"> 73</a>      | <span class="dot">•</span> <b>this</b>
-  <a href="#rule_74"> 74</a>      | <span class="dot">•</span> <span class="i">call</span>
-  <a href="#rule_75"> 75</a>      | <span class="dot">•</span> <b>readinteger</b> <b>openparantheses</b> <b>closeparantheses</b>
-  <a href="#rule_76"> 76</a>      | <span class="dot">•</span> <b>readline</b> <b>openparantheses</b> <b>closeparantheses</b>
-  <a href="#rule_77"> 77</a>      | <span class="dot">•</span> <b>new</b> <b>id</b>
-  <a href="#rule_78"> 78</a>      | <span class="dot">•</span> <b>newarray</b> <b>openparantheses</b> <span class="i">expr</span> <b>comma</b> <span class="i">type</span> <b>closeparantheses</b>
-  <a href="#rule_79"> 79</a>      | <span class="dot">•</span> <b>itod</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
-  <a href="#rule_80"> 80</a>      | <span class="dot">•</span> <b>dtoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
-  <a href="#rule_81"> 81</a>      | <span class="dot">•</span> <b>itob</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
-  <a href="#rule_82"> 82</a>      | <span class="dot">•</span> <b>btoi</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
-  <a href="#rule_83"> 83</a>      | <span class="dot">•</span> <b>line</b>
-  <a href="#rule_84"> 84</a>      | <span class="dot">•</span> <b>func</b>
-  <a href="#rule_85"> 85</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>assign</b> <span class="i">expr</span>
-  <a href="#rule_86"> 86</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>plusequal</b> <span class="i">expr</span>
-  <a href="#rule_87"> 87</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>minusequal</b> <span class="i">expr</span>
-  <a href="#rule_88"> 88</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>starequal</b> <span class="i">expr</span>
-  <a href="#rule_89"> 89</a>      | <span class="dot">•</span> <span class="i">lvalue</span> <b>slashequal</b> <span class="i">expr</span>
-  <a href="#rule_90"> 90</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>or</b> <span class="i">expr</span>
-  <a href="#rule_91"> 91</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>and</b> <span class="i">expr</span>
-  <a href="#rule_92"> 92</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>equal</b> <span class="i">expr</span>
-  <a href="#rule_93"> 93</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>notequal</b> <span class="i">expr</span>
-  <a href="#rule_94"> 94</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>lessthan</b> <span class="i">expr</span>
-  <a href="#rule_95"> 95</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>lessthanequal</b> <span class="i">expr</span>
-  <a href="#rule_96"> 96</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>greaterthan</b> <span class="i">expr</span>
-  <a href="#rule_97"> 97</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>greaterthanequal</b> <span class="i">expr</span>
-  <a href="#rule_98"> 98</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>plus</b> <span class="i">expr</span>
-  <a href="#rule_99"> 99</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>minus</b> <span class="i">expr</span>
-  <a href="#rule_100">100</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>star</b> <span class="i">expr</span>
-  <a href="#rule_101">101</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>slash</b> <span class="i">expr</span>
-  <a href="#rule_102">102</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>percent</b> <span class="i">expr</span>
-  <a href="#rule_103">103</a>      | <span class="dot">•</span> <b>minus</b> <span class="i">expr</span>
-  <a href="#rule_104">104</a>      | <span class="dot">•</span> <b>not</b> <span class="i">expr</span>
-  <a href="#rule_105">105</a>      | <span class="dot">•</span> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b>
-  <a href="#rule_106">106</a> <span class="i">lvalue</span> → <span class="dot">•</span> <b>id</b>
-  <a href="#rule_107">107</a>        | <span class="dot">•</span> <span class="i">expr</span> <b>dot</b> <b>id</b>
-  <a href="#rule_108">108</a>        | <span class="dot">•</span> <span class="i">expr</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
-  <a href="#rule_109">109</a> <span class="i">call</span> → <span class="dot">•</span> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
-  <a href="#rule_110">110</a>      | <span class="dot">•</span> <span class="i">expr</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
-  <a href="#rule_115">115</a> <span class="i">constant</span> → <span class="dot">•</span> <b>integer</b>
-  <a href="#rule_116">116</a>          | <span class="dot">•</span> <b>float</b>
-  <a href="#rule_117">117</a>          | <span class="dot">•</span> <b>boolean</b>
-  <a href="#rule_118">118</a>          | <span class="dot">•</span> <b>string</b>
-  <a href="#rule_119">119</a>          | <span class="dot">•</span> <b>nullkw</b>
+<p class="pre">  <a href="#rule_59"> 59</a> <span class="i">$@8</span> → <span class="dot">•</span> %empty
+  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="dot">•</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
 
-    id               <a href="#state_107">shift, and go to state 107</a>
-    string           <a href="#state_60">shift, and go to state 60</a>
-    integer          <a href="#state_62">shift, and go to state 62</a>
-    boolean          <a href="#state_66">shift, and go to state 66</a>
-    nullkw           <a href="#state_67">shift, and go to state 67</a>
-    new              <a href="#state_70">shift, and go to state 70</a>
-    this             <a href="#state_71">shift, and go to state 71</a>
-    newarray         <a href="#state_72">shift, and go to state 72</a>
-    readinteger      <a href="#state_74">shift, and go to state 74</a>
-    readline         <a href="#state_75">shift, and go to state 75</a>
-    line             <a href="#state_76">shift, and go to state 76</a>
-    func             <a href="#state_77">shift, and go to state 77</a>
-    btoi             <a href="#state_78">shift, and go to state 78</a>
-    dtoi             <a href="#state_80">shift, and go to state 80</a>
-    itob             <a href="#state_81">shift, and go to state 81</a>
-    itod             <a href="#state_82">shift, and go to state 82</a>
-    float            <a href="#state_83">shift, and go to state 83</a>
-    minus            <a href="#state_84">shift, and go to state 84</a>
-    openparantheses  <a href="#state_85">shift, and go to state 85</a>
-    not              <a href="#state_86">shift, and go to state 86</a>
+    $default  <a href="#rule_59">reduce using rule 59</a> ($@8)
 
-    $default  <a href="#rule_66">reduce using rule 66</a> (nexpr)
-
-    nexpr     <a href="#state_189">go to state 189</a>
-    expr      <a href="#state_109">go to state 109</a>
-    lvalue    <a href="#state_100">go to state 100</a>
-    call      <a href="#state_101">go to state 101</a>
-    constant  <a href="#state_102">go to state 102</a>
+    $@8  <a href="#state_189">go to state 189</a>
 </p>
 
 <h3><a name="state_154" id="state_154"></a>State 154</h3>
@@ -6171,7 +6171,7 @@
 
 <h3><a name="state_189" id="state_189"></a>State 189</h3>
 
-<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <span class="dot">•</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <span class="dot">•</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
 
     semicolon  <a href="#state_202">shift, and go to state 202</a>
 </p>
@@ -6420,7 +6420,7 @@
   <a href="#rule_52"> 52</a> <span class="i">ifstmt</span> → <span class="dot">•</span> <b>if</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@4</span> <span class="i">stmt</span> <span class="i">elsestmt</span>
   <a href="#rule_52"> 52</a>        | <b>if</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@4</span> <span class="dot">•</span> <span class="i">stmt</span> <span class="i">elsestmt</span>
   <a href="#rule_58"> 58</a> <span class="i">whilestmt</span> → <span class="dot">•</span> <b>while</b> <b>openparantheses</b> <span class="i">$@6</span> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@7</span> <span class="i">stmt</span>
-  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
   <a href="#rule_63"> 63</a> <span class="i">returnstmt</span> → <span class="dot">•</span> <b>return</b> <span class="i">nexpr</span> <b>semicolon</b>
   <a href="#rule_64"> 64</a> <span class="i">breakstmt</span> → <span class="dot">•</span> <b>break</b> <b>semicolon</b>
   <a href="#rule_67"> 67</a> <span class="i">continuestmt</span> → <span class="dot">•</span> <b>continue</b> <b>semicolon</b>
@@ -6528,7 +6528,7 @@
 
 <h3><a name="state_202" id="state_202"></a>State 202</h3>
 
-<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="dot">•</span> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="dot">•</span> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
   <a href="#rule_71"> 71</a> <span class="i">expr</span> → <span class="dot">•</span> <span class="i">constant</span>
   <a href="#rule_72"> 72</a>      | <span class="dot">•</span> <span class="i">lvalue</span>
   <a href="#rule_73"> 73</a>      | <span class="dot">•</span> <b>this</b>
@@ -6694,7 +6694,7 @@
   <a href="#rule_52"> 52</a> <span class="i">ifstmt</span> → <span class="dot">•</span> <b>if</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@4</span> <span class="i">stmt</span> <span class="i">elsestmt</span>
   <a href="#rule_58"> 58</a> <span class="i">whilestmt</span> → <span class="dot">•</span> <b>while</b> <b>openparantheses</b> <span class="i">$@6</span> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@7</span> <span class="i">stmt</span>
   <a href="#rule_58"> 58</a>           | <b>while</b> <b>openparantheses</b> <span class="i">$@6</span> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@7</span> <span class="dot">•</span> <span class="i">stmt</span>
-  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
   <a href="#rule_63"> 63</a> <span class="i">returnstmt</span> → <span class="dot">•</span> <b>return</b> <span class="i">nexpr</span> <b>semicolon</b>
   <a href="#rule_64"> 64</a> <span class="i">breakstmt</span> → <span class="dot">•</span> <b>break</b> <b>semicolon</b>
   <a href="#rule_67"> 67</a> <span class="i">continuestmt</span> → <span class="dot">•</span> <b>continue</b> <b>semicolon</b>
@@ -6793,7 +6793,7 @@
 <h3><a name="state_209" id="state_209"></a>State 209</h3>
 
 <p class="pre">  <a href="#rule_60"> 60</a> <span class="i">$@9</span> → <span class="dot">•</span> %empty  [semicolon]
-  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="dot">•</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="dot">•</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
   <a href="#rule_90"> 90</a> <span class="i">expr</span> → <span class="i">expr</span> <span class="dot">•</span> <b>or</b> <span class="i">expr</span>
   <a href="#rule_91"> 91</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>and</b> <span class="i">expr</span>
   <a href="#rule_92"> 92</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>equal</b> <span class="i">expr</span>
@@ -6872,7 +6872,7 @@
 
 <h3><a name="state_215" id="state_215"></a>State 215</h3>
 
-<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <span class="dot">•</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <span class="dot">•</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
 
     semicolon  <a href="#state_217">shift, and go to state 217</a>
 </p>
@@ -6893,7 +6893,7 @@
   <a href="#rule_52"> 52</a> <span class="i">ifstmt</span> → <span class="dot">•</span> <b>if</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@4</span> <span class="i">stmt</span> <span class="i">elsestmt</span>
   <a href="#rule_54"> 54</a> <span class="i">elsestmt</span> → <b>else</b> <span class="i">$@5</span> <span class="dot">•</span> <span class="i">stmt</span>
   <a href="#rule_58"> 58</a> <span class="i">whilestmt</span> → <span class="dot">•</span> <b>while</b> <b>openparantheses</b> <span class="i">$@6</span> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@7</span> <span class="i">stmt</span>
-  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
   <a href="#rule_63"> 63</a> <span class="i">returnstmt</span> → <span class="dot">•</span> <b>return</b> <span class="i">nexpr</span> <b>semicolon</b>
   <a href="#rule_64"> 64</a> <span class="i">breakstmt</span> → <span class="dot">•</span> <b>break</b> <b>semicolon</b>
   <a href="#rule_67"> 67</a> <span class="i">continuestmt</span> → <span class="dot">•</span> <b>continue</b> <b>semicolon</b>
@@ -6991,7 +6991,7 @@
 
 <h3><a name="state_217" id="state_217"></a>State 217</h3>
 
-<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="dot">•</span> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="dot">•</span> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
   <a href="#rule_65"> 65</a> <span class="i">nexpr</span> → <span class="dot">•</span> <span class="i">expr</span>
   <a href="#rule_66"> 66</a>       | <span class="dot">•</span> %empty  [closeparantheses]
   <a href="#rule_71"> 71</a> <span class="i">expr</span> → <span class="dot">•</span> <span class="i">constant</span>
@@ -7080,7 +7080,7 @@
 <h3><a name="state_219" id="state_219"></a>State 219</h3>
 
 <p class="pre">  <a href="#rule_61"> 61</a> <span class="i">$@10</span> → <span class="dot">•</span> %empty
-  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="dot">•</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="dot">•</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
 
     $default  <a href="#rule_61">reduce using rule 61</a> ($@10)
 
@@ -7089,7 +7089,7 @@
 
 <h3><a name="state_220" id="state_220"></a>State 220</h3>
 
-<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <span class="dot">•</span> <b>closeparantheses</b> <span class="i">stmt</span>
+<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <span class="dot">•</span> <b>closeparantheses</b> <span class="i">stmt</span>
 
     closeparantheses  <a href="#state_221">shift, and go to state 221</a>
 </p>
@@ -7109,8 +7109,8 @@
   <a href="#rule_50"> 50</a>      | <span class="dot">•</span> <span class="i">stmtblock</span>
   <a href="#rule_52"> 52</a> <span class="i">ifstmt</span> → <span class="dot">•</span> <b>if</b> <b>openparantheses</b> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@4</span> <span class="i">stmt</span> <span class="i">elsestmt</span>
   <a href="#rule_58"> 58</a> <span class="i">whilestmt</span> → <span class="dot">•</span> <b>while</b> <b>openparantheses</b> <span class="i">$@6</span> <span class="i">expr</span> <b>closeparantheses</b> <span class="i">$@7</span> <span class="i">stmt</span>
-  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
-  <a href="#rule_62"> 62</a>         | <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="dot">•</span> <span class="i">stmt</span>
+  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <span class="dot">•</span> <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span>
+  <a href="#rule_62"> 62</a>         | <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="dot">•</span> <span class="i">stmt</span>
   <a href="#rule_63"> 63</a> <span class="i">returnstmt</span> → <span class="dot">•</span> <b>return</b> <span class="i">nexpr</span> <b>semicolon</b>
   <a href="#rule_64"> 64</a> <span class="i">breakstmt</span> → <span class="dot">•</span> <b>break</b> <b>semicolon</b>
   <a href="#rule_67"> 67</a> <span class="i">continuestmt</span> → <span class="dot">•</span> <b>continue</b> <b>semicolon</b>
@@ -7208,7 +7208,7 @@
 
 <h3><a name="state_222" id="state_222"></a>State 222</h3>
 
-<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <span class="i">$@8</span> <b>openparantheses</b> <span class="i">nexpr</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span> <span class="dot">•</span>
+<p class="pre">  <a href="#rule_62"> 62</a> <span class="i">forstmt</span> → <b>for</b> <b>openparantheses</b> <span class="i">nexpr</span> <span class="i">$@8</span> <b>semicolon</b> <span class="i">expr</span> <span class="i">$@9</span> <b>semicolon</b> <span class="i">nexpr</span> <span class="i">$@10</span> <b>closeparantheses</b> <span class="i">stmt</span> <span class="dot">•</span>
 
     $default  <a href="#rule_62">reduce using rule 62</a> (forstmt)
 </p>
