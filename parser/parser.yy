@@ -155,17 +155,17 @@ printstmt:
 printcontent: printcontent comma expr { cg.printexpr($3); }
             | expr { cg.printexpr($1); }
 
-%right openparantheses openbracket openbrace;
-%left dot;
-%left not;
-%left star slash percent;
-%left plus minus;
-%left lessthan greaterthan lessthanequal greaterthanequal;
-%left equal notequal;
-%left and;
-%left or;
-%left assign plusequal slashequal minusequal starequal;
 %left comma;
+%left assign plusequal slashequal minusequal starequal;
+%left or;
+%left and;
+%left equal notequal;
+%left lessthan greaterthan lessthanequal greaterthanequal;
+%left plus minus;
+%left star slash percent;
+%left not;
+%left dot;
+%right openparantheses openbracket openbrace;
 
 expr:
         constant                    { $$ = cg.addconstant($1); }
