@@ -218,7 +218,14 @@ codegen::assignexproperation(const string &lefside, const pair<string, string> &
     return {d.getID(),expr.second};
 }
 
+void codegen::openstmtblock() {
+    string id = idgen::nextid() + "_simple_block_open";
+    st->pushscope(id);
+}
 
+void codegen::closestmtblock() {
+    st->popscope();
+}
 
 
 

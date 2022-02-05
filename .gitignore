@@ -10,4 +10,5 @@ tmp.txt
 cmake-build-debug/
 my_build.sh
 my_run.sh
+r1.sh
 input.in

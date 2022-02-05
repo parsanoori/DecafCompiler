@@ -108,7 +108,7 @@ accessmode: private { }
           | public { }
           | %empty { }
 
-stmtblock: openbrace stmtblockcontent closebrace { }
+stmtblock: openbrace { cg.openstmtblock(); }stmtblockcontent closebrace { cg.closestmtblock(); }
 
 stmtblockcontent: variabledecl stmtblockcontent { }
                 | statements { }

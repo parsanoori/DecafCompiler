@@ -53,6 +53,10 @@ public:
 
     pair<string,string> assignexproperation(const string &lefside,const pair<string,string> &expr,const string &operation);
 
+    void openstmtblock();
+
+    void closestmtblock();
+
 };
 
 
