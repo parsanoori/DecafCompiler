@@ -2,6 +2,8 @@
 // Created by Parsa Noori on 2/3/2022 AD.
 //
 
+#include <iostream>
+#include <cstdarg>
 #include "codegen.h"
 #include "idgen.h"
 #include "floatutils.h"
@@ -347,3 +349,26 @@ exprtype codegen::unaryminus(const exprtype &expr) {
     );
     return {temp_id, expr.second};
 }
+
+void codegen::whilestmt1() {
+        string whilename = idgen::nextid() + "_while_loop";
+        st->pushscope(whilename);
+        w->appendText("    " + whilename + "_before:");
+}
+
+void codegen::whilestmt2(const pair<string, string> &expr) {
+    if (expr.second != "bool")
+        throw runtime_error("invalid type for while expression");
+    string laftername = st->currentscopename() + "_after";
+    w->appendText("    lw $t0, " + expr.first + "\n"
+                + "    beqz $t0, " + laftername + ":\n"
+    );
+}
+
+void codegen::whilestmt3() {
+    string whilename = st->currentscopename();
+    w->appendText("    j " + whilename + "_before\n"
+                + whilename + "_after:\n"
+    );
+}
+
