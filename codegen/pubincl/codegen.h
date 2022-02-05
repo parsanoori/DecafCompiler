@@ -56,6 +56,10 @@ public:
 
     exprtype exproperation(const exprtype &lefside, const exprtype &expr, const string &operation);
 
+    exprtype unaryminus(const exprtype &expr);
+
+    exprtype unarynot(const exprtype &expr);
+
     void openstmtblock();
 
     void closestmtblock();
@@ -75,6 +79,13 @@ public:
     void endsecnexpr();
 
     void endforstmt();
+
+    void whilestmt1();
+
+    void whilestmt2(const exprtype &);
+
+    void whilestmt3();
+
 };
 
 

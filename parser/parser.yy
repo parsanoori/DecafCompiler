@@ -134,7 +134,7 @@ ifstmt:
 elsestmt: else { cg.elselabel(); } stmt { cg.endelse(); }
         | %empty { cg.endiflabel(); }
 
-whilestmt: while openparantheses expr closeparantheses stmt { }
+whilestmt: while openparantheses { cg.whilestmt1(); } expr closeparantheses { cg.whilestmt2($3); } stmt { cg.whilestmt3(); }
 
 forstmt: for openparantheses nexpr semicolon expr { cg.forloopcond($5); } semicolon nexpr { cg.endsecnexpr(); } closeparantheses stmt { cg.endforstmt(); }
 
@@ -200,8 +200,8 @@ expr:
     |   expr star expr                 { $$ = cg.exproperation($1,$3,$2); }
     |   expr slash expr                 { $$ = cg.exproperation($1,$3,$2); }
     |   expr percent expr                 { $$ = cg.exproperation($1,$3,$2); }
-    |   minus expr                      {}
-    |   not expr                      {}
+    |   minus expr                      { $$ = cg.unaryminus($2); }
+    |   not expr                      { $$ = cg.unarynot($2); }
     |   openparantheses expr closeparantheses                      { $$ = $2; }
 
 lvalue:

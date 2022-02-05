@@ -1683,14 +1683,24 @@ namespace yy {
 
   case 101: // expr: minus expr
 #line 203 "parser.yy"
+<<<<<<< HEAD
                                         {}
 #line 1688 "src/parser.cc"
+=======
+                                        { yylhs.value.as < std::pair<std::string,std::string> > () = cg.unaryminus(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
+#line 1676 "src/parser.cc"
+>>>>>>> e4547fa0dc378672081ea5de4cd496233d61543d
     break;
 
   case 102: // expr: not expr
 #line 204 "parser.yy"
+<<<<<<< HEAD
                                       {}
 #line 1694 "src/parser.cc"
+=======
+                                      { yylhs.value.as < std::pair<std::string,std::string> > () = cg.unarynot(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
+#line 1682 "src/parser.cc"
+>>>>>>> e4547fa0dc378672081ea5de4cd496233d61543d
     break;
 
   case 103: // expr: openparantheses expr closeparantheses
