@@ -38,7 +38,7 @@ string descriptor::getTypeString() const{
             type = "int";
             break;
         case dtype::DOUBLE:
-            type = "float";
+            type = "double";
             break;
         case dtype::BOOL:
             type = "bool";

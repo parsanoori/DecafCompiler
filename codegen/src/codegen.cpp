@@ -108,6 +108,12 @@ void codegen::printexpr(const exprtype &expr) {
                       + "    syscall\n\n"
         );
     }
+    else if (expr.second == "double")
+        w->appendText("    # print " + expr.first + "...\n"
+                      + "    li $v0, 2\n"
+                      + "    l.s $f12, " + expr.first + "\n"
+                      + "    syscall\n\n"
+        );
 }
 
 exprtype codegen::addconstant(const pair<string, string> &constant) {
@@ -173,28 +179,52 @@ codegen::assignexproperation(const string &lefside, const exprtype &expr, const 
     auto d = st->getentry(lefside);
     if (d.getType() != dtypefromstr(expr.second))
         throw runtime_error("semantic error: invalid assignment: " + d.getTypeString() + operation + expr.second);
-    w->appendText(
-            "    # doing the " + operation + "\n"
-            + "    lw $t0, " + expr.first + "\n"
-            + "    lw $t1, " + d.getID() + "\n"
-    );
-    switch (operation[0]) {
-        case '+':
-            w->appendText("    addu $t0, $t0, $t1\n");
-            break;
-        case '-':
-            w->appendText("    subu $t0, $t1, $t0\n");
-            break;
-        case '*':
-            w->appendText("    mult $t0, $t1\n");
-            w->appendText("    mflo $t0\n");
-            break;
-        case '/':
-            w->appendText("    div $t1, $t0\n");
-            w->appendText("    mflo $t0\n");
-            break;
+    if(expr.second == "int") {
+        w->appendText(
+                "    # doing the " + operation + "\n"
+                + "    lw $t0, " + expr.first + "\n"
+                + "    lw $t1, " + d.getID() + "\n"
+        );
+        switch (operation[0]) {
+            case '+':
+                w->appendText("    addu $t0, $t0, $t1\n");
+                break;
+            case '-':
+                w->appendText("    subu $t0, $t1, $t0\n");
+                break;
+            case '*':
+                w->appendText("    mult $t0, $t1\n");
+                w->appendText("    mflo $t0\n");
+                break;
+            case '/':
+                w->appendText("    div $t1, $t0\n");
+                w->appendText("    mflo $t0\n");
+                break;
+        }
+        w->appendText("    sw $t0, " + d.getID() + "\n\n");
     }
-    w->appendText("    sw $t0, " + d.getID() + "\n\n");
+    else if(expr.second == "double"){
+        w->appendText(
+                "    # doing the " + operation + "\n"
+                + "    l.s $f0, " + expr.first + "\n"
+                + "    l.s $f1, " + d.getID() + "\n"
+        );
+        switch (operation[0]) {
+            case '+':
+                w->appendText("    add.s $f0, $f0, $f1\n");
+                break;
+            case '-':
+                w->appendText("    sub.s $f0, $f1, $f0\n");
+                break;
+            case '*':
+                w->appendText("    mul.s $f0, $f0, $f1\n");
+                break;
+            case '/':
+                w->appendText("    div.s $f0, $f1, $f0\n");
+                break;
+        }
+        w->appendText("    s.s $f0, " + d.getID() + "\n\n");
+    }
     return {d.getID(), expr.second};
 }
 
