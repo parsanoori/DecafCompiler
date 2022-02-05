@@ -112,7 +112,7 @@ exprtype codegen::addconstant(const pair<string, string> &constant) {
     string id = idgen::nextid();
     if (constant.second == "string")
         w->appendData("    " + id + ": .asciiz " + constant.first + "\n");
-    else if (constant.second == "float")
+    else if (constant.second == "double")
         w->appendData("    " + id + ": .word " +
                       to_string(floatToInt(stof(constant.first))) + "\n");
     else if (constant.second == "bool") {
@@ -141,7 +141,7 @@ exprtype codegen::assignexpr(const string &lefside, const exprtype &expr) {
                 + "    la $t1, " + d.getID() + "\n"
                 + "    sw $t0, 0($t1) \n"
         );
-    else if (expr.second == "float")
+    else if (expr.second == "double")
         w->appendText("    lw $a0, " + expr.first + "\n"
                       + "    mtc1 $a0, $f0\n"
                       + "    la $a0, " + d.getID() + "\n"

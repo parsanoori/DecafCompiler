@@ -4,7 +4,7 @@ dtype dtypefromstr(const string& s){
     // handle type
     if (s == "int")
         return dtype::INT;
-    else if (s == "float")
+    else if (s == "double")
         return dtype::DOUBLE;
     else if (s == "bool")
         return dtype::BOOL;

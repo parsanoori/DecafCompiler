@@ -223,7 +223,7 @@ actualscontent:
 
 constant:
         integer                 { $$ = {$1,"int"}; }
-    |   float              { $$ = {$1,"float"}; }
+    |   float              { $$ = {$1,"double"}; }
     |   boolean                { $$ = {$1,"bool"}; }
     |   string              { $$ = {$1,"string"}; }
     |   nullkw                        {}
