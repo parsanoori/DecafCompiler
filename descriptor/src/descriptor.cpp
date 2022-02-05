@@ -31,6 +31,34 @@ dtype descriptor::getType() const{
     return t;
 }
 
+string descriptor::getTypeString() const{
+    string type;
+    switch (t) {
+        case dtype::INT:
+            type = "int";
+            break;
+        case dtype::DOUBLE:
+            type = "float";
+            break;
+        case dtype::BOOL:
+            type = "bool";
+            break;
+        case dtype::STRING:
+            type = "string";
+            break;
+        case dtype::VOID:
+            type = "void";
+            break;
+        case dtype::OBJECT:
+            type = "object";
+            break;
+        case dtype::DUMMY:
+            type = "dummy";
+            break;
+    }
+    return type;
+}
+
 string descriptor::getID() const{
     return id;
 }

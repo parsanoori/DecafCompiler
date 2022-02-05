@@ -133,7 +133,7 @@ exprtype codegen::addconstant(const pair<string, string> &constant) {
 exprtype codegen::assignexpr(const string &lefside, const exprtype &expr) {
     auto d = st->getentry(lefside);
     if (d.getType() != dtypefromstr(expr.second))
-        throw runtime_error("semantic error: invalid assignment");
+        throw runtime_error("semantic error: invalid assignment: " + d.getTypeString() + "=" + expr.second);
     w->appendText("    #assigning " + expr.first + " to " + d.getID() + "\n");
     if (expr.second == "int" || expr.second == "bool")
         w->appendText(
@@ -160,38 +160,14 @@ exprtype codegen::assignexpr(const string &lefside, const exprtype &expr) {
 
 exprtype codegen::findid(const string &id) {
     auto d = st->getentry(id);
-    string type;
-    switch (d.getType()) {
-        case dtype::INT:
-            type = "int";
-            break;
-        case dtype::DOUBLE:
-            type = "float";
-            break;
-        case dtype::BOOL:
-            type = "bool";
-            break;
-        case dtype::STRING:
-            type = "string";
-            break;
-        case dtype::VOID:
-            type = "void";
-            break;
-        case dtype::OBJECT:
-            type = "object";
-            break;
-        case dtype::DUMMY:
-            type = "dummy";
-            break;
-    }
-    return {d.getID(), type};
+    return {d.getID(), d.getTypeString()};
 }
 
 exprtype
 codegen::assignexproperation(const string &lefside, const exprtype &expr, const string &operation) {
     auto d = st->getentry(lefside);
     if (d.getType() != dtypefromstr(expr.second))
-        throw runtime_error("semantic error: invalid assignment");
+        throw runtime_error("semantic error: invalid assignment: " + d.getTypeString() + operation + expr.second);
     w->appendText(
             "    # doing the " + operation + "\n"
             + "    lw $t0, " + expr.first + "\n"
@@ -285,5 +261,40 @@ void codegen::endelse() {
     } catch (const std::bad_any_cast &e) {
         std::cerr << "bad any cast on end else:\n\t" << e.what() << '\n';
     }
+}
+
+exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, const string &operation) {
+    if (lefside.second != expr.second)
+        throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
+    string temp_id = idgen::nextid();
+    w->appendData("    " + temp_id + ": .word 0\n");
+    w->appendText(
+            "    # doing the " + operation + "\n"
+            + "    lw $t0, " + expr.first + "\n"
+            + "    lw $t1, " + lefside.first + "\n"
+    );
+    if(operation == "+"){
+        w->appendText("    add $t0, $t0, $t1\n");
+    }
+    else if (operation == "-"){
+        w->appendText("    sub $t0, $t1, $t0\n");
+    }
+    else if (operation == "*"){
+        w->appendText("    mult $t0, $t1\n");
+        w->appendText("    mflo $t0\n");
+    }
+    else if (operation == "/"){
+        w->appendText("    div $t1, $t0\n");
+        w->appendText("    mflo $t0\n");
+    }
+    else if (operation == "%"){
+        w->appendText("    div $t1, $t0\n");
+        w->appendText("    mfhi $t0\n");
+    }
+    else{
+        throw runtime_error("my error: the operation is not implemented yet: " + operation);
+    }
+    w->appendText("    sw $t0, " + temp_id + "\n\n");
+    return {temp_id, expr.second};
 }
 

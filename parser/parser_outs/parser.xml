@@ -853,7 +853,7 @@
       <terminal symbol-number="10" token-number="265" name="bool" type="std::string" usefulness="useful"/>
       <terminal symbol-number="11" token-number="266" name="string_kw" type="std::string" usefulness="useful"/>
       <terminal symbol-number="12" token-number="267" name="openclosebracket" type="std::string" usefulness="useful"/>
-      <terminal symbol-number="13" token-number="268" name="openbracket" type="std::string" usefulness="useful" prec="5" assoc="right"/>
+      <terminal symbol-number="13" token-number="268" name="openbracket" type="std::string" usefulness="useful" prec="1" assoc="right"/>
       <terminal symbol-number="14" token-number="269" name="closebracket" type="std::string" usefulness="useful"/>
       <terminal symbol-number="15" token-number="270" name="private" type="std::string" usefulness="useful"/>
       <terminal symbol-number="16" token-number="271" name="public" type="std::string" usefulness="useful"/>
@@ -866,8 +866,8 @@
       <terminal symbol-number="23" token-number="278" name="int" type="std::string" usefulness="useful"/>
       <terminal symbol-number="24" token-number="279" name="class" type="std::string" usefulness="useful"/>
       <terminal symbol-number="25" token-number="280" name="nullkw" type="std::string" usefulness="useful"/>
-      <terminal symbol-number="26" token-number="281" name="slash" type="std::string" usefulness="useful" prec="2" assoc="left"/>
-      <terminal symbol-number="27" token-number="282" name="percent" type="std::string" usefulness="useful" prec="2" assoc="left"/>
+      <terminal symbol-number="26" token-number="281" name="slash" type="std::string" usefulness="useful" prec="4" assoc="left"/>
+      <terminal symbol-number="27" token-number="282" name="percent" type="std::string" usefulness="useful" prec="4" assoc="left"/>
       <terminal symbol-number="28" token-number="283" name="return" type="std::string" usefulness="useful"/>
       <terminal symbol-number="29" token-number="284" name="break" type="std::string" usefulness="useful"/>
       <terminal symbol-number="30" token-number="285" name="new" type="std::string" usefulness="useful"/>
@@ -884,29 +884,29 @@
       <terminal symbol-number="41" token-number="296" name="itob" type="std::string" usefulness="useful"/>
       <terminal symbol-number="42" token-number="297" name="itod" type="std::string" usefulness="useful"/>
       <terminal symbol-number="43" token-number="298" name="float" type="std::string" usefulness="useful"/>
-      <terminal symbol-number="44" token-number="299" name="plus" type="std::string" usefulness="useful" prec="2" assoc="left"/>
-      <terminal symbol-number="45" token-number="300" name="minus" type="std::string" usefulness="useful" prec="2" assoc="left"/>
-      <terminal symbol-number="46" token-number="301" name="star" type="std::string" usefulness="useful" prec="2" assoc="left"/>
+      <terminal symbol-number="44" token-number="299" name="plus" type="std::string" usefulness="useful" prec="5" assoc="left"/>
+      <terminal symbol-number="45" token-number="300" name="minus" type="std::string" usefulness="useful" prec="5" assoc="left"/>
+      <terminal symbol-number="46" token-number="301" name="star" type="std::string" usefulness="useful" prec="4" assoc="left"/>
       <terminal symbol-number="47" token-number="302" name="div" type="std::string" usefulness="unused-in-grammar"/>
-      <terminal symbol-number="48" token-number="303" name="lessthanequal" type="std::string" usefulness="useful" prec="1" assoc="left"/>
-      <terminal symbol-number="49" token-number="304" name="greaterthanequal" type="std::string" usefulness="useful" prec="2" assoc="left"/>
-      <terminal symbol-number="50" token-number="305" name="lessthan" type="std::string" usefulness="useful" prec="1" assoc="left"/>
-      <terminal symbol-number="51" token-number="306" name="greaterthan" type="std::string" usefulness="useful" prec="1" assoc="left"/>
-      <terminal symbol-number="52" token-number="307" name="equal" type="std::string" usefulness="useful" prec="2" assoc="left"/>
-      <terminal symbol-number="53" token-number="308" name="notequal" type="std::string" usefulness="useful" prec="4" assoc="left"/>
-      <terminal symbol-number="54" token-number="309" name="and" type="std::string" usefulness="useful" prec="4" assoc="left"/>
-      <terminal symbol-number="55" token-number="310" name="or" type="std::string" usefulness="useful" prec="4" assoc="left"/>
+      <terminal symbol-number="48" token-number="303" name="lessthanequal" type="std::string" usefulness="useful" prec="6" assoc="left"/>
+      <terminal symbol-number="49" token-number="304" name="greaterthanequal" type="std::string" usefulness="useful" prec="6" assoc="left"/>
+      <terminal symbol-number="50" token-number="305" name="lessthan" type="std::string" usefulness="useful" prec="6" assoc="left"/>
+      <terminal symbol-number="51" token-number="306" name="greaterthan" type="std::string" usefulness="useful" prec="6" assoc="left"/>
+      <terminal symbol-number="52" token-number="307" name="equal" type="std::string" usefulness="useful" prec="7" assoc="left"/>
+      <terminal symbol-number="53" token-number="308" name="notequal" type="std::string" usefulness="useful" prec="7" assoc="left"/>
+      <terminal symbol-number="54" token-number="309" name="and" type="std::string" usefulness="useful" prec="8" assoc="left"/>
+      <terminal symbol-number="55" token-number="310" name="or" type="std::string" usefulness="useful" prec="9" assoc="left"/>
       <terminal symbol-number="56" token-number="311" name="closebrace" type="std::string" usefulness="useful"/>
-      <terminal symbol-number="57" token-number="312" name="openparantheses" type="std::string" usefulness="useful" prec="5" assoc="right"/>
+      <terminal symbol-number="57" token-number="312" name="openparantheses" type="std::string" usefulness="useful" prec="1" assoc="right"/>
       <terminal symbol-number="58" token-number="313" name="closeparantheses" type="std::string" usefulness="useful"/>
-      <terminal symbol-number="59" token-number="314" name="comma" type="std::string" usefulness="useful" prec="4" assoc="left"/>
-      <terminal symbol-number="60" token-number="315" name="assign" type="std::string" usefulness="useful" prec="1" assoc="left"/>
-      <terminal symbol-number="61" token-number="316" name="openbrace" type="std::string" usefulness="useful" prec="5" assoc="right"/>
-      <terminal symbol-number="62" token-number="317" name="plusequal" type="std::string" usefulness="useful" prec="1" assoc="left"/>
-      <terminal symbol-number="63" token-number="318" name="minusequal" type="std::string" usefulness="useful" prec="3" assoc="left"/>
-      <terminal symbol-number="64" token-number="319" name="starequal" type="std::string" usefulness="useful" prec="3" assoc="left"/>
-      <terminal symbol-number="65" token-number="320" name="slashequal" type="std::string" usefulness="useful" prec="1" assoc="left"/>
-      <terminal symbol-number="66" token-number="321" name="not" type="std::string" usefulness="useful" prec="2" assoc="left"/>
+      <terminal symbol-number="59" token-number="314" name="comma" type="std::string" usefulness="useful" prec="11" assoc="left"/>
+      <terminal symbol-number="60" token-number="315" name="assign" type="std::string" usefulness="useful" prec="10" assoc="left"/>
+      <terminal symbol-number="61" token-number="316" name="openbrace" type="std::string" usefulness="useful" prec="1" assoc="right"/>
+      <terminal symbol-number="62" token-number="317" name="plusequal" type="std::string" usefulness="useful" prec="10" assoc="left"/>
+      <terminal symbol-number="63" token-number="318" name="minusequal" type="std::string" usefulness="useful" prec="10" assoc="left"/>
+      <terminal symbol-number="64" token-number="319" name="starequal" type="std::string" usefulness="useful" prec="10" assoc="left"/>
+      <terminal symbol-number="65" token-number="320" name="slashequal" type="std::string" usefulness="useful" prec="10" assoc="left"/>
+      <terminal symbol-number="66" token-number="321" name="not" type="std::string" usefulness="useful" prec="3" assoc="left"/>
       <terminal symbol-number="67" token-number="322" name="dot" type="std::string" usefulness="useful" prec="2" assoc="left"/>
     </terminals>
     <nonterminals>
@@ -4478,17 +4478,13 @@
         <item rule-number="98" dot="2">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
             <symbol>slash</symbol>
             <symbol>percent</symbol>
             <symbol>plus</symbol>
             <symbol>minus</symbol>
             <symbol>star</symbol>
-            <symbol>lessthanequal</symbol>
-            <symbol>greaterthanequal</symbol>
-            <symbol>lessthan</symbol>
-            <symbol>greaterthan</symbol>
-            <symbol>equal</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
             <symbol>dot</symbol>
@@ -4500,7 +4496,11 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
+          <transition type="shift" symbol="lessthanequal" state="134"/>
+          <transition type="shift" symbol="greaterthanequal" state="135"/>
+          <transition type="shift" symbol="lessthan" state="136"/>
+          <transition type="shift" symbol="greaterthan" state="137"/>
+          <transition type="shift" symbol="equal" state="138"/>
           <transition type="shift" symbol="notequal" state="139"/>
           <transition type="shift" symbol="and" state="140"/>
           <transition type="shift" symbol="or" state="141"/>
@@ -4511,21 +4511,21 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="98" symbol="openbracket" type="shift">minus &lt; openbracket</resolution>
-        <resolution rule="98" symbol="slash" type="reduce">%left slash</resolution>
-        <resolution rule="98" symbol="percent" type="reduce">%left percent</resolution>
+        <resolution rule="98" symbol="openbracket" type="reduce">openbracket &lt; minus</resolution>
+        <resolution rule="98" symbol="slash" type="reduce">slash &lt; minus</resolution>
+        <resolution rule="98" symbol="percent" type="reduce">percent &lt; minus</resolution>
         <resolution rule="98" symbol="plus" type="reduce">%left plus</resolution>
         <resolution rule="98" symbol="minus" type="reduce">%left minus</resolution>
-        <resolution rule="98" symbol="star" type="reduce">%left star</resolution>
-        <resolution rule="98" symbol="lessthanequal" type="reduce">lessthanequal &lt; minus</resolution>
-        <resolution rule="98" symbol="greaterthanequal" type="reduce">%left greaterthanequal</resolution>
-        <resolution rule="98" symbol="lessthan" type="reduce">lessthan &lt; minus</resolution>
-        <resolution rule="98" symbol="greaterthan" type="reduce">greaterthan &lt; minus</resolution>
-        <resolution rule="98" symbol="equal" type="reduce">%left equal</resolution>
+        <resolution rule="98" symbol="star" type="reduce">star &lt; minus</resolution>
+        <resolution rule="98" symbol="lessthanequal" type="shift">minus &lt; lessthanequal</resolution>
+        <resolution rule="98" symbol="greaterthanequal" type="shift">minus &lt; greaterthanequal</resolution>
+        <resolution rule="98" symbol="lessthan" type="shift">minus &lt; lessthan</resolution>
+        <resolution rule="98" symbol="greaterthan" type="shift">minus &lt; greaterthan</resolution>
+        <resolution rule="98" symbol="equal" type="shift">minus &lt; equal</resolution>
         <resolution rule="98" symbol="notequal" type="shift">minus &lt; notequal</resolution>
         <resolution rule="98" symbol="and" type="shift">minus &lt; and</resolution>
         <resolution rule="98" symbol="or" type="shift">minus &lt; or</resolution>
-        <resolution rule="98" symbol="dot" type="reduce">%left dot</resolution>
+        <resolution rule="98" symbol="dot" type="reduce">dot &lt; minus</resolution>
       </solved-conflicts>
     </state>
 
@@ -4592,17 +4592,8 @@
         <item rule-number="99" dot="2">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
-            <symbol>slash</symbol>
-            <symbol>percent</symbol>
-            <symbol>plus</symbol>
-            <symbol>minus</symbol>
-            <symbol>star</symbol>
-            <symbol>lessthanequal</symbol>
-            <symbol>greaterthanequal</symbol>
-            <symbol>lessthan</symbol>
-            <symbol>greaterthan</symbol>
-            <symbol>equal</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
             <symbol>dot</symbol>
@@ -4614,7 +4605,16 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
+          <transition type="shift" symbol="slash" state="129"/>
+          <transition type="shift" symbol="percent" state="130"/>
+          <transition type="shift" symbol="plus" state="131"/>
+          <transition type="shift" symbol="minus" state="132"/>
+          <transition type="shift" symbol="star" state="133"/>
+          <transition type="shift" symbol="lessthanequal" state="134"/>
+          <transition type="shift" symbol="greaterthanequal" state="135"/>
+          <transition type="shift" symbol="lessthan" state="136"/>
+          <transition type="shift" symbol="greaterthan" state="137"/>
+          <transition type="shift" symbol="equal" state="138"/>
           <transition type="shift" symbol="notequal" state="139"/>
           <transition type="shift" symbol="and" state="140"/>
           <transition type="shift" symbol="or" state="141"/>
@@ -4625,21 +4625,21 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="99" symbol="openbracket" type="shift">not &lt; openbracket</resolution>
-        <resolution rule="99" symbol="slash" type="reduce">%left slash</resolution>
-        <resolution rule="99" symbol="percent" type="reduce">%left percent</resolution>
-        <resolution rule="99" symbol="plus" type="reduce">%left plus</resolution>
-        <resolution rule="99" symbol="minus" type="reduce">%left minus</resolution>
-        <resolution rule="99" symbol="star" type="reduce">%left star</resolution>
-        <resolution rule="99" symbol="lessthanequal" type="reduce">lessthanequal &lt; not</resolution>
-        <resolution rule="99" symbol="greaterthanequal" type="reduce">%left greaterthanequal</resolution>
-        <resolution rule="99" symbol="lessthan" type="reduce">lessthan &lt; not</resolution>
-        <resolution rule="99" symbol="greaterthan" type="reduce">greaterthan &lt; not</resolution>
-        <resolution rule="99" symbol="equal" type="reduce">%left equal</resolution>
+        <resolution rule="99" symbol="openbracket" type="reduce">openbracket &lt; not</resolution>
+        <resolution rule="99" symbol="slash" type="shift">not &lt; slash</resolution>
+        <resolution rule="99" symbol="percent" type="shift">not &lt; percent</resolution>
+        <resolution rule="99" symbol="plus" type="shift">not &lt; plus</resolution>
+        <resolution rule="99" symbol="minus" type="shift">not &lt; minus</resolution>
+        <resolution rule="99" symbol="star" type="shift">not &lt; star</resolution>
+        <resolution rule="99" symbol="lessthanequal" type="shift">not &lt; lessthanequal</resolution>
+        <resolution rule="99" symbol="greaterthanequal" type="shift">not &lt; greaterthanequal</resolution>
+        <resolution rule="99" symbol="lessthan" type="shift">not &lt; lessthan</resolution>
+        <resolution rule="99" symbol="greaterthan" type="shift">not &lt; greaterthan</resolution>
+        <resolution rule="99" symbol="equal" type="shift">not &lt; equal</resolution>
         <resolution rule="99" symbol="notequal" type="shift">not &lt; notequal</resolution>
         <resolution rule="99" symbol="and" type="shift">not &lt; and</resolution>
         <resolution rule="99" symbol="or" type="shift">not &lt; or</resolution>
-        <resolution rule="99" symbol="dot" type="reduce">%left dot</resolution>
+        <resolution rule="99" symbol="dot" type="reduce">dot &lt; not</resolution>
       </solved-conflicts>
     </state>
 
@@ -6866,17 +6866,11 @@
         <item rule-number="96" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
             <symbol>slash</symbol>
             <symbol>percent</symbol>
-            <symbol>plus</symbol>
-            <symbol>minus</symbol>
             <symbol>star</symbol>
-            <symbol>lessthanequal</symbol>
-            <symbol>greaterthanequal</symbol>
-            <symbol>lessthan</symbol>
-            <symbol>greaterthan</symbol>
-            <symbol>equal</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
             <symbol>dot</symbol>
@@ -6889,7 +6883,13 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
+          <transition type="shift" symbol="plus" state="131"/>
+          <transition type="shift" symbol="minus" state="132"/>
+          <transition type="shift" symbol="lessthanequal" state="134"/>
+          <transition type="shift" symbol="greaterthanequal" state="135"/>
+          <transition type="shift" symbol="lessthan" state="136"/>
+          <transition type="shift" symbol="greaterthan" state="137"/>
+          <transition type="shift" symbol="equal" state="138"/>
           <transition type="shift" symbol="notequal" state="139"/>
           <transition type="shift" symbol="and" state="140"/>
           <transition type="shift" symbol="or" state="141"/>
@@ -6900,21 +6900,21 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="96" symbol="openbracket" type="shift">slash &lt; openbracket</resolution>
+        <resolution rule="96" symbol="openbracket" type="reduce">openbracket &lt; slash</resolution>
         <resolution rule="96" symbol="slash" type="reduce">%left slash</resolution>
         <resolution rule="96" symbol="percent" type="reduce">%left percent</resolution>
-        <resolution rule="96" symbol="plus" type="reduce">%left plus</resolution>
-        <resolution rule="96" symbol="minus" type="reduce">%left minus</resolution>
+        <resolution rule="96" symbol="plus" type="shift">slash &lt; plus</resolution>
+        <resolution rule="96" symbol="minus" type="shift">slash &lt; minus</resolution>
         <resolution rule="96" symbol="star" type="reduce">%left star</resolution>
-        <resolution rule="96" symbol="lessthanequal" type="reduce">lessthanequal &lt; slash</resolution>
-        <resolution rule="96" symbol="greaterthanequal" type="reduce">%left greaterthanequal</resolution>
-        <resolution rule="96" symbol="lessthan" type="reduce">lessthan &lt; slash</resolution>
-        <resolution rule="96" symbol="greaterthan" type="reduce">greaterthan &lt; slash</resolution>
-        <resolution rule="96" symbol="equal" type="reduce">%left equal</resolution>
+        <resolution rule="96" symbol="lessthanequal" type="shift">slash &lt; lessthanequal</resolution>
+        <resolution rule="96" symbol="greaterthanequal" type="shift">slash &lt; greaterthanequal</resolution>
+        <resolution rule="96" symbol="lessthan" type="shift">slash &lt; lessthan</resolution>
+        <resolution rule="96" symbol="greaterthan" type="shift">slash &lt; greaterthan</resolution>
+        <resolution rule="96" symbol="equal" type="shift">slash &lt; equal</resolution>
         <resolution rule="96" symbol="notequal" type="shift">slash &lt; notequal</resolution>
         <resolution rule="96" symbol="and" type="shift">slash &lt; and</resolution>
         <resolution rule="96" symbol="or" type="shift">slash &lt; or</resolution>
-        <resolution rule="96" symbol="dot" type="reduce">%left dot</resolution>
+        <resolution rule="96" symbol="dot" type="reduce">dot &lt; slash</resolution>
       </solved-conflicts>
     </state>
 
@@ -6936,17 +6936,11 @@
         <item rule-number="97" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
             <symbol>slash</symbol>
             <symbol>percent</symbol>
-            <symbol>plus</symbol>
-            <symbol>minus</symbol>
             <symbol>star</symbol>
-            <symbol>lessthanequal</symbol>
-            <symbol>greaterthanequal</symbol>
-            <symbol>lessthan</symbol>
-            <symbol>greaterthan</symbol>
-            <symbol>equal</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
             <symbol>dot</symbol>
@@ -6958,7 +6952,13 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
+          <transition type="shift" symbol="plus" state="131"/>
+          <transition type="shift" symbol="minus" state="132"/>
+          <transition type="shift" symbol="lessthanequal" state="134"/>
+          <transition type="shift" symbol="greaterthanequal" state="135"/>
+          <transition type="shift" symbol="lessthan" state="136"/>
+          <transition type="shift" symbol="greaterthan" state="137"/>
+          <transition type="shift" symbol="equal" state="138"/>
           <transition type="shift" symbol="notequal" state="139"/>
           <transition type="shift" symbol="and" state="140"/>
           <transition type="shift" symbol="or" state="141"/>
@@ -6969,21 +6969,21 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="97" symbol="openbracket" type="shift">percent &lt; openbracket</resolution>
+        <resolution rule="97" symbol="openbracket" type="reduce">openbracket &lt; percent</resolution>
         <resolution rule="97" symbol="slash" type="reduce">%left slash</resolution>
         <resolution rule="97" symbol="percent" type="reduce">%left percent</resolution>
-        <resolution rule="97" symbol="plus" type="reduce">%left plus</resolution>
-        <resolution rule="97" symbol="minus" type="reduce">%left minus</resolution>
+        <resolution rule="97" symbol="plus" type="shift">percent &lt; plus</resolution>
+        <resolution rule="97" symbol="minus" type="shift">percent &lt; minus</resolution>
         <resolution rule="97" symbol="star" type="reduce">%left star</resolution>
-        <resolution rule="97" symbol="lessthanequal" type="reduce">lessthanequal &lt; percent</resolution>
-        <resolution rule="97" symbol="greaterthanequal" type="reduce">%left greaterthanequal</resolution>
-        <resolution rule="97" symbol="lessthan" type="reduce">lessthan &lt; percent</resolution>
-        <resolution rule="97" symbol="greaterthan" type="reduce">greaterthan &lt; percent</resolution>
-        <resolution rule="97" symbol="equal" type="reduce">%left equal</resolution>
+        <resolution rule="97" symbol="lessthanequal" type="shift">percent &lt; lessthanequal</resolution>
+        <resolution rule="97" symbol="greaterthanequal" type="shift">percent &lt; greaterthanequal</resolution>
+        <resolution rule="97" symbol="lessthan" type="shift">percent &lt; lessthan</resolution>
+        <resolution rule="97" symbol="greaterthan" type="shift">percent &lt; greaterthan</resolution>
+        <resolution rule="97" symbol="equal" type="shift">percent &lt; equal</resolution>
         <resolution rule="97" symbol="notequal" type="shift">percent &lt; notequal</resolution>
         <resolution rule="97" symbol="and" type="shift">percent &lt; and</resolution>
         <resolution rule="97" symbol="or" type="shift">percent &lt; or</resolution>
-        <resolution rule="97" symbol="dot" type="reduce">%left dot</resolution>
+        <resolution rule="97" symbol="dot" type="reduce">dot &lt; percent</resolution>
       </solved-conflicts>
     </state>
 
@@ -7001,17 +7001,13 @@
         <item rule-number="93" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
             <symbol>slash</symbol>
             <symbol>percent</symbol>
             <symbol>plus</symbol>
             <symbol>minus</symbol>
             <symbol>star</symbol>
-            <symbol>lessthanequal</symbol>
-            <symbol>greaterthanequal</symbol>
-            <symbol>lessthan</symbol>
-            <symbol>greaterthan</symbol>
-            <symbol>equal</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
             <symbol>dot</symbol>
@@ -7027,7 +7023,11 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
+          <transition type="shift" symbol="lessthanequal" state="134"/>
+          <transition type="shift" symbol="greaterthanequal" state="135"/>
+          <transition type="shift" symbol="lessthan" state="136"/>
+          <transition type="shift" symbol="greaterthan" state="137"/>
+          <transition type="shift" symbol="equal" state="138"/>
           <transition type="shift" symbol="notequal" state="139"/>
           <transition type="shift" symbol="and" state="140"/>
           <transition type="shift" symbol="or" state="141"/>
@@ -7038,21 +7038,21 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="93" symbol="openbracket" type="shift">plus &lt; openbracket</resolution>
-        <resolution rule="93" symbol="slash" type="reduce">%left slash</resolution>
-        <resolution rule="93" symbol="percent" type="reduce">%left percent</resolution>
+        <resolution rule="93" symbol="openbracket" type="reduce">openbracket &lt; plus</resolution>
+        <resolution rule="93" symbol="slash" type="reduce">slash &lt; plus</resolution>
+        <resolution rule="93" symbol="percent" type="reduce">percent &lt; plus</resolution>
         <resolution rule="93" symbol="plus" type="reduce">%left plus</resolution>
         <resolution rule="93" symbol="minus" type="reduce">%left minus</resolution>
-        <resolution rule="93" symbol="star" type="reduce">%left star</resolution>
-        <resolution rule="93" symbol="lessthanequal" type="reduce">lessthanequal &lt; plus</resolution>
-        <resolution rule="93" symbol="greaterthanequal" type="reduce">%left greaterthanequal</resolution>
-        <resolution rule="93" symbol="lessthan" type="reduce">lessthan &lt; plus</resolution>
-        <resolution rule="93" symbol="greaterthan" type="reduce">greaterthan &lt; plus</resolution>
-        <resolution rule="93" symbol="equal" type="reduce">%left equal</resolution>
+        <resolution rule="93" symbol="star" type="reduce">star &lt; plus</resolution>
+        <resolution rule="93" symbol="lessthanequal" type="shift">plus &lt; lessthanequal</resolution>
+        <resolution rule="93" symbol="greaterthanequal" type="shift">plus &lt; greaterthanequal</resolution>
+        <resolution rule="93" symbol="lessthan" type="shift">plus &lt; lessthan</resolution>
+        <resolution rule="93" symbol="greaterthan" type="shift">plus &lt; greaterthan</resolution>
+        <resolution rule="93" symbol="equal" type="shift">plus &lt; equal</resolution>
         <resolution rule="93" symbol="notequal" type="shift">plus &lt; notequal</resolution>
         <resolution rule="93" symbol="and" type="shift">plus &lt; and</resolution>
         <resolution rule="93" symbol="or" type="shift">plus &lt; or</resolution>
-        <resolution rule="93" symbol="dot" type="reduce">%left dot</resolution>
+        <resolution rule="93" symbol="dot" type="reduce">dot &lt; plus</resolution>
       </solved-conflicts>
     </state>
 
@@ -7071,17 +7071,13 @@
         <item rule-number="94" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
             <symbol>slash</symbol>
             <symbol>percent</symbol>
             <symbol>plus</symbol>
             <symbol>minus</symbol>
             <symbol>star</symbol>
-            <symbol>lessthanequal</symbol>
-            <symbol>greaterthanequal</symbol>
-            <symbol>lessthan</symbol>
-            <symbol>greaterthan</symbol>
-            <symbol>equal</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
             <symbol>dot</symbol>
@@ -7096,7 +7092,11 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
+          <transition type="shift" symbol="lessthanequal" state="134"/>
+          <transition type="shift" symbol="greaterthanequal" state="135"/>
+          <transition type="shift" symbol="lessthan" state="136"/>
+          <transition type="shift" symbol="greaterthan" state="137"/>
+          <transition type="shift" symbol="equal" state="138"/>
           <transition type="shift" symbol="notequal" state="139"/>
           <transition type="shift" symbol="and" state="140"/>
           <transition type="shift" symbol="or" state="141"/>
@@ -7107,21 +7107,21 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="94" symbol="openbracket" type="shift">minus &lt; openbracket</resolution>
-        <resolution rule="94" symbol="slash" type="reduce">%left slash</resolution>
-        <resolution rule="94" symbol="percent" type="reduce">%left percent</resolution>
+        <resolution rule="94" symbol="openbracket" type="reduce">openbracket &lt; minus</resolution>
+        <resolution rule="94" symbol="slash" type="reduce">slash &lt; minus</resolution>
+        <resolution rule="94" symbol="percent" type="reduce">percent &lt; minus</resolution>
         <resolution rule="94" symbol="plus" type="reduce">%left plus</resolution>
         <resolution rule="94" symbol="minus" type="reduce">%left minus</resolution>
-        <resolution rule="94" symbol="star" type="reduce">%left star</resolution>
-        <resolution rule="94" symbol="lessthanequal" type="reduce">lessthanequal &lt; minus</resolution>
-        <resolution rule="94" symbol="greaterthanequal" type="reduce">%left greaterthanequal</resolution>
-        <resolution rule="94" symbol="lessthan" type="reduce">lessthan &lt; minus</resolution>
-        <resolution rule="94" symbol="greaterthan" type="reduce">greaterthan &lt; minus</resolution>
-        <resolution rule="94" symbol="equal" type="reduce">%left equal</resolution>
+        <resolution rule="94" symbol="star" type="reduce">star &lt; minus</resolution>
+        <resolution rule="94" symbol="lessthanequal" type="shift">minus &lt; lessthanequal</resolution>
+        <resolution rule="94" symbol="greaterthanequal" type="shift">minus &lt; greaterthanequal</resolution>
+        <resolution rule="94" symbol="lessthan" type="shift">minus &lt; lessthan</resolution>
+        <resolution rule="94" symbol="greaterthan" type="shift">minus &lt; greaterthan</resolution>
+        <resolution rule="94" symbol="equal" type="shift">minus &lt; equal</resolution>
         <resolution rule="94" symbol="notequal" type="shift">minus &lt; notequal</resolution>
         <resolution rule="94" symbol="and" type="shift">minus &lt; and</resolution>
         <resolution rule="94" symbol="or" type="shift">minus &lt; or</resolution>
-        <resolution rule="94" symbol="dot" type="reduce">%left dot</resolution>
+        <resolution rule="94" symbol="dot" type="reduce">dot &lt; minus</resolution>
       </solved-conflicts>
     </state>
 
@@ -7141,17 +7141,11 @@
         <item rule-number="95" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
             <symbol>slash</symbol>
             <symbol>percent</symbol>
-            <symbol>plus</symbol>
-            <symbol>minus</symbol>
             <symbol>star</symbol>
-            <symbol>lessthanequal</symbol>
-            <symbol>greaterthanequal</symbol>
-            <symbol>lessthan</symbol>
-            <symbol>greaterthan</symbol>
-            <symbol>equal</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
             <symbol>dot</symbol>
@@ -7165,7 +7159,13 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
+          <transition type="shift" symbol="plus" state="131"/>
+          <transition type="shift" symbol="minus" state="132"/>
+          <transition type="shift" symbol="lessthanequal" state="134"/>
+          <transition type="shift" symbol="greaterthanequal" state="135"/>
+          <transition type="shift" symbol="lessthan" state="136"/>
+          <transition type="shift" symbol="greaterthan" state="137"/>
+          <transition type="shift" symbol="equal" state="138"/>
           <transition type="shift" symbol="notequal" state="139"/>
           <transition type="shift" symbol="and" state="140"/>
           <transition type="shift" symbol="or" state="141"/>
@@ -7176,21 +7176,21 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="95" symbol="openbracket" type="shift">star &lt; openbracket</resolution>
+        <resolution rule="95" symbol="openbracket" type="reduce">openbracket &lt; star</resolution>
         <resolution rule="95" symbol="slash" type="reduce">%left slash</resolution>
         <resolution rule="95" symbol="percent" type="reduce">%left percent</resolution>
-        <resolution rule="95" symbol="plus" type="reduce">%left plus</resolution>
-        <resolution rule="95" symbol="minus" type="reduce">%left minus</resolution>
+        <resolution rule="95" symbol="plus" type="shift">star &lt; plus</resolution>
+        <resolution rule="95" symbol="minus" type="shift">star &lt; minus</resolution>
         <resolution rule="95" symbol="star" type="reduce">%left star</resolution>
-        <resolution rule="95" symbol="lessthanequal" type="reduce">lessthanequal &lt; star</resolution>
-        <resolution rule="95" symbol="greaterthanequal" type="reduce">%left greaterthanequal</resolution>
-        <resolution rule="95" symbol="lessthan" type="reduce">lessthan &lt; star</resolution>
-        <resolution rule="95" symbol="greaterthan" type="reduce">greaterthan &lt; star</resolution>
-        <resolution rule="95" symbol="equal" type="reduce">%left equal</resolution>
+        <resolution rule="95" symbol="lessthanequal" type="shift">star &lt; lessthanequal</resolution>
+        <resolution rule="95" symbol="greaterthanequal" type="shift">star &lt; greaterthanequal</resolution>
+        <resolution rule="95" symbol="lessthan" type="shift">star &lt; lessthan</resolution>
+        <resolution rule="95" symbol="greaterthan" type="shift">star &lt; greaterthan</resolution>
+        <resolution rule="95" symbol="equal" type="shift">star &lt; equal</resolution>
         <resolution rule="95" symbol="notequal" type="shift">star &lt; notequal</resolution>
         <resolution rule="95" symbol="and" type="shift">star &lt; and</resolution>
         <resolution rule="95" symbol="or" type="shift">star &lt; or</resolution>
-        <resolution rule="95" symbol="dot" type="reduce">%left dot</resolution>
+        <resolution rule="95" symbol="dot" type="reduce">dot &lt; star</resolution>
       </solved-conflicts>
     </state>
 
@@ -7205,12 +7205,20 @@
         <item rule-number="90" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
+            <symbol>slash</symbol>
+            <symbol>percent</symbol>
+            <symbol>plus</symbol>
+            <symbol>minus</symbol>
+            <symbol>star</symbol>
             <symbol>lessthanequal</symbol>
+            <symbol>greaterthanequal</symbol>
             <symbol>lessthan</symbol>
             <symbol>greaterthan</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
+            <symbol>dot</symbol>
           </lookaheads>
         </item>
         <item rule-number="91" dot="1"/>
@@ -7226,18 +7234,10 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
-          <transition type="shift" symbol="slash" state="129"/>
-          <transition type="shift" symbol="percent" state="130"/>
-          <transition type="shift" symbol="plus" state="131"/>
-          <transition type="shift" symbol="minus" state="132"/>
-          <transition type="shift" symbol="star" state="133"/>
-          <transition type="shift" symbol="greaterthanequal" state="135"/>
           <transition type="shift" symbol="equal" state="138"/>
           <transition type="shift" symbol="notequal" state="139"/>
           <transition type="shift" symbol="and" state="140"/>
           <transition type="shift" symbol="or" state="141"/>
-          <transition type="shift" symbol="dot" state="142"/>
         </transitions>
         <errors/>
         <reductions>
@@ -7245,21 +7245,21 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="90" symbol="openbracket" type="shift">lessthanequal &lt; openbracket</resolution>
-        <resolution rule="90" symbol="slash" type="shift">lessthanequal &lt; slash</resolution>
-        <resolution rule="90" symbol="percent" type="shift">lessthanequal &lt; percent</resolution>
-        <resolution rule="90" symbol="plus" type="shift">lessthanequal &lt; plus</resolution>
-        <resolution rule="90" symbol="minus" type="shift">lessthanequal &lt; minus</resolution>
-        <resolution rule="90" symbol="star" type="shift">lessthanequal &lt; star</resolution>
+        <resolution rule="90" symbol="openbracket" type="reduce">openbracket &lt; lessthanequal</resolution>
+        <resolution rule="90" symbol="slash" type="reduce">slash &lt; lessthanequal</resolution>
+        <resolution rule="90" symbol="percent" type="reduce">percent &lt; lessthanequal</resolution>
+        <resolution rule="90" symbol="plus" type="reduce">plus &lt; lessthanequal</resolution>
+        <resolution rule="90" symbol="minus" type="reduce">minus &lt; lessthanequal</resolution>
+        <resolution rule="90" symbol="star" type="reduce">star &lt; lessthanequal</resolution>
         <resolution rule="90" symbol="lessthanequal" type="reduce">%left lessthanequal</resolution>
-        <resolution rule="90" symbol="greaterthanequal" type="shift">lessthanequal &lt; greaterthanequal</resolution>
+        <resolution rule="90" symbol="greaterthanequal" type="reduce">%left greaterthanequal</resolution>
         <resolution rule="90" symbol="lessthan" type="reduce">%left lessthan</resolution>
         <resolution rule="90" symbol="greaterthan" type="reduce">%left greaterthan</resolution>
         <resolution rule="90" symbol="equal" type="shift">lessthanequal &lt; equal</resolution>
         <resolution rule="90" symbol="notequal" type="shift">lessthanequal &lt; notequal</resolution>
         <resolution rule="90" symbol="and" type="shift">lessthanequal &lt; and</resolution>
         <resolution rule="90" symbol="or" type="shift">lessthanequal &lt; or</resolution>
-        <resolution rule="90" symbol="dot" type="shift">lessthanequal &lt; dot</resolution>
+        <resolution rule="90" symbol="dot" type="reduce">dot &lt; lessthanequal</resolution>
       </solved-conflicts>
     </state>
 
@@ -7276,6 +7276,7 @@
         <item rule-number="92" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
             <symbol>slash</symbol>
             <symbol>percent</symbol>
@@ -7286,7 +7287,6 @@
             <symbol>greaterthanequal</symbol>
             <symbol>lessthan</symbol>
             <symbol>greaterthan</symbol>
-            <symbol>equal</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
             <symbol>dot</symbol>
@@ -7303,7 +7303,7 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
+          <transition type="shift" symbol="equal" state="138"/>
           <transition type="shift" symbol="notequal" state="139"/>
           <transition type="shift" symbol="and" state="140"/>
           <transition type="shift" symbol="or" state="141"/>
@@ -7314,21 +7314,21 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="92" symbol="openbracket" type="shift">greaterthanequal &lt; openbracket</resolution>
-        <resolution rule="92" symbol="slash" type="reduce">%left slash</resolution>
-        <resolution rule="92" symbol="percent" type="reduce">%left percent</resolution>
-        <resolution rule="92" symbol="plus" type="reduce">%left plus</resolution>
-        <resolution rule="92" symbol="minus" type="reduce">%left minus</resolution>
-        <resolution rule="92" symbol="star" type="reduce">%left star</resolution>
-        <resolution rule="92" symbol="lessthanequal" type="reduce">lessthanequal &lt; greaterthanequal</resolution>
+        <resolution rule="92" symbol="openbracket" type="reduce">openbracket &lt; greaterthanequal</resolution>
+        <resolution rule="92" symbol="slash" type="reduce">slash &lt; greaterthanequal</resolution>
+        <resolution rule="92" symbol="percent" type="reduce">percent &lt; greaterthanequal</resolution>
+        <resolution rule="92" symbol="plus" type="reduce">plus &lt; greaterthanequal</resolution>
+        <resolution rule="92" symbol="minus" type="reduce">minus &lt; greaterthanequal</resolution>
+        <resolution rule="92" symbol="star" type="reduce">star &lt; greaterthanequal</resolution>
+        <resolution rule="92" symbol="lessthanequal" type="reduce">%left lessthanequal</resolution>
         <resolution rule="92" symbol="greaterthanequal" type="reduce">%left greaterthanequal</resolution>
-        <resolution rule="92" symbol="lessthan" type="reduce">lessthan &lt; greaterthanequal</resolution>
-        <resolution rule="92" symbol="greaterthan" type="reduce">greaterthan &lt; greaterthanequal</resolution>
-        <resolution rule="92" symbol="equal" type="reduce">%left equal</resolution>
+        <resolution rule="92" symbol="lessthan" type="reduce">%left lessthan</resolution>
+        <resolution rule="92" symbol="greaterthan" type="reduce">%left greaterthan</resolution>
+        <resolution rule="92" symbol="equal" type="shift">greaterthanequal &lt; equal</resolution>
         <resolution rule="92" symbol="notequal" type="shift">greaterthanequal &lt; notequal</resolution>
         <resolution rule="92" symbol="and" type="shift">greaterthanequal &lt; and</resolution>
         <resolution rule="92" symbol="or" type="shift">greaterthanequal &lt; or</resolution>
-        <resolution rule="92" symbol="dot" type="reduce">%left dot</resolution>
+        <resolution rule="92" symbol="dot" type="reduce">dot &lt; greaterthanequal</resolution>
       </solved-conflicts>
     </state>
 
@@ -7342,12 +7342,20 @@
         <item rule-number="89" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
+            <symbol>slash</symbol>
+            <symbol>percent</symbol>
+            <symbol>plus</symbol>
+            <symbol>minus</symbol>
+            <symbol>star</symbol>
             <symbol>lessthanequal</symbol>
+            <symbol>greaterthanequal</symbol>
             <symbol>lessthan</symbol>
             <symbol>greaterthan</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
+            <symbol>dot</symbol>
           </lookaheads>
         </item>
         <item rule-number="90" dot="1"/>
@@ -7364,18 +7372,10 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
-          <transition type="shift" symbol="slash" state="129"/>
-          <transition type="shift" symbol="percent" state="130"/>
-          <transition type="shift" symbol="plus" state="131"/>
-          <transition type="shift" symbol="minus" state="132"/>
-          <transition type="shift" symbol="star" state="133"/>
-          <transition type="shift" symbol="greaterthanequal" state="135"/>
           <transition type="shift" symbol="equal" state="138"/>
           <transition type="shift" symbol="notequal" state="139"/>
           <transition type="shift" symbol="and" state="140"/>
           <transition type="shift" symbol="or" state="141"/>
-          <transition type="shift" symbol="dot" state="142"/>
         </transitions>
         <errors/>
         <reductions>
@@ -7383,21 +7383,21 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="89" symbol="openbracket" type="shift">lessthan &lt; openbracket</resolution>
-        <resolution rule="89" symbol="slash" type="shift">lessthan &lt; slash</resolution>
-        <resolution rule="89" symbol="percent" type="shift">lessthan &lt; percent</resolution>
-        <resolution rule="89" symbol="plus" type="shift">lessthan &lt; plus</resolution>
-        <resolution rule="89" symbol="minus" type="shift">lessthan &lt; minus</resolution>
-        <resolution rule="89" symbol="star" type="shift">lessthan &lt; star</resolution>
+        <resolution rule="89" symbol="openbracket" type="reduce">openbracket &lt; lessthan</resolution>
+        <resolution rule="89" symbol="slash" type="reduce">slash &lt; lessthan</resolution>
+        <resolution rule="89" symbol="percent" type="reduce">percent &lt; lessthan</resolution>
+        <resolution rule="89" symbol="plus" type="reduce">plus &lt; lessthan</resolution>
+        <resolution rule="89" symbol="minus" type="reduce">minus &lt; lessthan</resolution>
+        <resolution rule="89" symbol="star" type="reduce">star &lt; lessthan</resolution>
         <resolution rule="89" symbol="lessthanequal" type="reduce">%left lessthanequal</resolution>
-        <resolution rule="89" symbol="greaterthanequal" type="shift">lessthan &lt; greaterthanequal</resolution>
+        <resolution rule="89" symbol="greaterthanequal" type="reduce">%left greaterthanequal</resolution>
         <resolution rule="89" symbol="lessthan" type="reduce">%left lessthan</resolution>
         <resolution rule="89" symbol="greaterthan" type="reduce">%left greaterthan</resolution>
         <resolution rule="89" symbol="equal" type="shift">lessthan &lt; equal</resolution>
         <resolution rule="89" symbol="notequal" type="shift">lessthan &lt; notequal</resolution>
         <resolution rule="89" symbol="and" type="shift">lessthan &lt; and</resolution>
         <resolution rule="89" symbol="or" type="shift">lessthan &lt; or</resolution>
-        <resolution rule="89" symbol="dot" type="shift">lessthan &lt; dot</resolution>
+        <resolution rule="89" symbol="dot" type="reduce">dot &lt; lessthan</resolution>
       </solved-conflicts>
     </state>
 
@@ -7413,12 +7413,20 @@
         <item rule-number="91" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
+            <symbol>slash</symbol>
+            <symbol>percent</symbol>
+            <symbol>plus</symbol>
+            <symbol>minus</symbol>
+            <symbol>star</symbol>
             <symbol>lessthanequal</symbol>
+            <symbol>greaterthanequal</symbol>
             <symbol>lessthan</symbol>
             <symbol>greaterthan</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
+            <symbol>dot</symbol>
           </lookaheads>
         </item>
         <item rule-number="92" dot="1"/>
@@ -7433,18 +7441,10 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
-          <transition type="shift" symbol="slash" state="129"/>
-          <transition type="shift" symbol="percent" state="130"/>
-          <transition type="shift" symbol="plus" state="131"/>
-          <transition type="shift" symbol="minus" state="132"/>
-          <transition type="shift" symbol="star" state="133"/>
-          <transition type="shift" symbol="greaterthanequal" state="135"/>
           <transition type="shift" symbol="equal" state="138"/>
           <transition type="shift" symbol="notequal" state="139"/>
           <transition type="shift" symbol="and" state="140"/>
           <transition type="shift" symbol="or" state="141"/>
-          <transition type="shift" symbol="dot" state="142"/>
         </transitions>
         <errors/>
         <reductions>
@@ -7452,21 +7452,21 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="91" symbol="openbracket" type="shift">greaterthan &lt; openbracket</resolution>
-        <resolution rule="91" symbol="slash" type="shift">greaterthan &lt; slash</resolution>
-        <resolution rule="91" symbol="percent" type="shift">greaterthan &lt; percent</resolution>
-        <resolution rule="91" symbol="plus" type="shift">greaterthan &lt; plus</resolution>
-        <resolution rule="91" symbol="minus" type="shift">greaterthan &lt; minus</resolution>
-        <resolution rule="91" symbol="star" type="shift">greaterthan &lt; star</resolution>
+        <resolution rule="91" symbol="openbracket" type="reduce">openbracket &lt; greaterthan</resolution>
+        <resolution rule="91" symbol="slash" type="reduce">slash &lt; greaterthan</resolution>
+        <resolution rule="91" symbol="percent" type="reduce">percent &lt; greaterthan</resolution>
+        <resolution rule="91" symbol="plus" type="reduce">plus &lt; greaterthan</resolution>
+        <resolution rule="91" symbol="minus" type="reduce">minus &lt; greaterthan</resolution>
+        <resolution rule="91" symbol="star" type="reduce">star &lt; greaterthan</resolution>
         <resolution rule="91" symbol="lessthanequal" type="reduce">%left lessthanequal</resolution>
-        <resolution rule="91" symbol="greaterthanequal" type="shift">greaterthan &lt; greaterthanequal</resolution>
+        <resolution rule="91" symbol="greaterthanequal" type="reduce">%left greaterthanequal</resolution>
         <resolution rule="91" symbol="lessthan" type="reduce">%left lessthan</resolution>
         <resolution rule="91" symbol="greaterthan" type="reduce">%left greaterthan</resolution>
         <resolution rule="91" symbol="equal" type="shift">greaterthan &lt; equal</resolution>
         <resolution rule="91" symbol="notequal" type="shift">greaterthan &lt; notequal</resolution>
         <resolution rule="91" symbol="and" type="shift">greaterthan &lt; and</resolution>
         <resolution rule="91" symbol="or" type="shift">greaterthan &lt; or</resolution>
-        <resolution rule="91" symbol="dot" type="shift">greaterthan &lt; dot</resolution>
+        <resolution rule="91" symbol="dot" type="reduce">dot &lt; greaterthan</resolution>
       </solved-conflicts>
     </state>
 
@@ -7478,6 +7478,7 @@
         <item rule-number="87" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
             <symbol>slash</symbol>
             <symbol>percent</symbol>
@@ -7489,6 +7490,7 @@
             <symbol>lessthan</symbol>
             <symbol>greaterthan</symbol>
             <symbol>equal</symbol>
+            <symbol>notequal</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
             <symbol>dot</symbol>
@@ -7510,8 +7512,6 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
-          <transition type="shift" symbol="notequal" state="139"/>
           <transition type="shift" symbol="and" state="140"/>
           <transition type="shift" symbol="or" state="141"/>
         </transitions>
@@ -7521,21 +7521,21 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="87" symbol="openbracket" type="shift">equal &lt; openbracket</resolution>
-        <resolution rule="87" symbol="slash" type="reduce">%left slash</resolution>
-        <resolution rule="87" symbol="percent" type="reduce">%left percent</resolution>
-        <resolution rule="87" symbol="plus" type="reduce">%left plus</resolution>
-        <resolution rule="87" symbol="minus" type="reduce">%left minus</resolution>
-        <resolution rule="87" symbol="star" type="reduce">%left star</resolution>
+        <resolution rule="87" symbol="openbracket" type="reduce">openbracket &lt; equal</resolution>
+        <resolution rule="87" symbol="slash" type="reduce">slash &lt; equal</resolution>
+        <resolution rule="87" symbol="percent" type="reduce">percent &lt; equal</resolution>
+        <resolution rule="87" symbol="plus" type="reduce">plus &lt; equal</resolution>
+        <resolution rule="87" symbol="minus" type="reduce">minus &lt; equal</resolution>
+        <resolution rule="87" symbol="star" type="reduce">star &lt; equal</resolution>
         <resolution rule="87" symbol="lessthanequal" type="reduce">lessthanequal &lt; equal</resolution>
-        <resolution rule="87" symbol="greaterthanequal" type="reduce">%left greaterthanequal</resolution>
+        <resolution rule="87" symbol="greaterthanequal" type="reduce">greaterthanequal &lt; equal</resolution>
         <resolution rule="87" symbol="lessthan" type="reduce">lessthan &lt; equal</resolution>
         <resolution rule="87" symbol="greaterthan" type="reduce">greaterthan &lt; equal</resolution>
         <resolution rule="87" symbol="equal" type="reduce">%left equal</resolution>
-        <resolution rule="87" symbol="notequal" type="shift">equal &lt; notequal</resolution>
+        <resolution rule="87" symbol="notequal" type="reduce">%left notequal</resolution>
         <resolution rule="87" symbol="and" type="shift">equal &lt; and</resolution>
         <resolution rule="87" symbol="or" type="shift">equal &lt; or</resolution>
-        <resolution rule="87" symbol="dot" type="reduce">%left dot</resolution>
+        <resolution rule="87" symbol="dot" type="reduce">dot &lt; equal</resolution>
       </solved-conflicts>
     </state>
 
@@ -7548,6 +7548,7 @@
         <item rule-number="88" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
             <symbol>slash</symbol>
             <symbol>percent</symbol>
@@ -7560,8 +7561,6 @@
             <symbol>greaterthan</symbol>
             <symbol>equal</symbol>
             <symbol>notequal</symbol>
-            <symbol>and</symbol>
-            <symbol>or</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
             <symbol>dot</symbol>
@@ -7582,7 +7581,8 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
+          <transition type="shift" symbol="and" state="140"/>
+          <transition type="shift" symbol="or" state="141"/>
         </transitions>
         <errors/>
         <reductions>
@@ -7590,7 +7590,7 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="88" symbol="openbracket" type="shift">notequal &lt; openbracket</resolution>
+        <resolution rule="88" symbol="openbracket" type="reduce">openbracket &lt; notequal</resolution>
         <resolution rule="88" symbol="slash" type="reduce">slash &lt; notequal</resolution>
         <resolution rule="88" symbol="percent" type="reduce">percent &lt; notequal</resolution>
         <resolution rule="88" symbol="plus" type="reduce">plus &lt; notequal</resolution>
@@ -7600,10 +7600,10 @@
         <resolution rule="88" symbol="greaterthanequal" type="reduce">greaterthanequal &lt; notequal</resolution>
         <resolution rule="88" symbol="lessthan" type="reduce">lessthan &lt; notequal</resolution>
         <resolution rule="88" symbol="greaterthan" type="reduce">greaterthan &lt; notequal</resolution>
-        <resolution rule="88" symbol="equal" type="reduce">equal &lt; notequal</resolution>
+        <resolution rule="88" symbol="equal" type="reduce">%left equal</resolution>
         <resolution rule="88" symbol="notequal" type="reduce">%left notequal</resolution>
-        <resolution rule="88" symbol="and" type="reduce">%left and</resolution>
-        <resolution rule="88" symbol="or" type="reduce">%left or</resolution>
+        <resolution rule="88" symbol="and" type="shift">notequal &lt; and</resolution>
+        <resolution rule="88" symbol="or" type="shift">notequal &lt; or</resolution>
         <resolution rule="88" symbol="dot" type="reduce">dot &lt; notequal</resolution>
       </solved-conflicts>
     </state>
@@ -7615,6 +7615,7 @@
         <item rule-number="86" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
             <symbol>slash</symbol>
             <symbol>percent</symbol>
@@ -7628,7 +7629,6 @@
             <symbol>equal</symbol>
             <symbol>notequal</symbol>
             <symbol>and</symbol>
-            <symbol>or</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
             <symbol>dot</symbol>
@@ -7651,7 +7651,7 @@
       </itemset>
       <actions>
         <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
+          <transition type="shift" symbol="or" state="141"/>
         </transitions>
         <errors/>
         <reductions>
@@ -7659,7 +7659,7 @@
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="86" symbol="openbracket" type="shift">and &lt; openbracket</resolution>
+        <resolution rule="86" symbol="openbracket" type="reduce">openbracket &lt; and</resolution>
         <resolution rule="86" symbol="slash" type="reduce">slash &lt; and</resolution>
         <resolution rule="86" symbol="percent" type="reduce">percent &lt; and</resolution>
         <resolution rule="86" symbol="plus" type="reduce">plus &lt; and</resolution>
@@ -7670,9 +7670,9 @@
         <resolution rule="86" symbol="lessthan" type="reduce">lessthan &lt; and</resolution>
         <resolution rule="86" symbol="greaterthan" type="reduce">greaterthan &lt; and</resolution>
         <resolution rule="86" symbol="equal" type="reduce">equal &lt; and</resolution>
-        <resolution rule="86" symbol="notequal" type="reduce">%left notequal</resolution>
+        <resolution rule="86" symbol="notequal" type="reduce">notequal &lt; and</resolution>
         <resolution rule="86" symbol="and" type="reduce">%left and</resolution>
-        <resolution rule="86" symbol="or" type="reduce">%left or</resolution>
+        <resolution rule="86" symbol="or" type="shift">and &lt; or</resolution>
         <resolution rule="86" symbol="dot" type="reduce">dot &lt; and</resolution>
       </solved-conflicts>
     </state>
@@ -7683,6 +7683,7 @@
         <item rule-number="85" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
             <symbol>slash</symbol>
             <symbol>percent</symbol>
@@ -7719,16 +7720,14 @@
         <item rule-number="105" dot="1"/>
       </itemset>
       <actions>
-        <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
-        </transitions>
+        <transitions/>
         <errors/>
         <reductions>
           <reduction symbol="$default" rule="85" enabled="true"/>
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="85" symbol="openbracket" type="shift">or &lt; openbracket</resolution>
+        <resolution rule="85" symbol="openbracket" type="reduce">openbracket &lt; or</resolution>
         <resolution rule="85" symbol="slash" type="reduce">slash &lt; or</resolution>
         <resolution rule="85" symbol="percent" type="reduce">percent &lt; or</resolution>
         <resolution rule="85" symbol="plus" type="reduce">plus &lt; or</resolution>
@@ -7739,8 +7738,8 @@
         <resolution rule="85" symbol="lessthan" type="reduce">lessthan &lt; or</resolution>
         <resolution rule="85" symbol="greaterthan" type="reduce">greaterthan &lt; or</resolution>
         <resolution rule="85" symbol="equal" type="reduce">equal &lt; or</resolution>
-        <resolution rule="85" symbol="notequal" type="reduce">%left notequal</resolution>
-        <resolution rule="85" symbol="and" type="reduce">%left and</resolution>
+        <resolution rule="85" symbol="notequal" type="reduce">notequal &lt; or</resolution>
+        <resolution rule="85" symbol="and" type="reduce">and &lt; or</resolution>
         <resolution rule="85" symbol="or" type="reduce">%left or</resolution>
         <resolution rule="85" symbol="dot" type="reduce">dot &lt; or</resolution>
       </solved-conflicts>
@@ -7795,144 +7794,7 @@
         <item rule-number="80" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
-            <symbol>closebracket</symbol>
-            <symbol>lessthanequal</symbol>
-            <symbol>lessthan</symbol>
-            <symbol>greaterthan</symbol>
-            <symbol>closeparantheses</symbol>
-            <symbol>comma</symbol>
-          </lookaheads>
-        </item>
-        <item rule-number="85" dot="1"/>
-        <item rule-number="86" dot="1"/>
-        <item rule-number="87" dot="1"/>
-        <item rule-number="88" dot="1"/>
-        <item rule-number="89" dot="1"/>
-        <item rule-number="90" dot="1"/>
-        <item rule-number="91" dot="1"/>
-        <item rule-number="92" dot="1"/>
-        <item rule-number="93" dot="1"/>
-        <item rule-number="94" dot="1"/>
-        <item rule-number="95" dot="1"/>
-        <item rule-number="96" dot="1"/>
-        <item rule-number="97" dot="1"/>
-        <item rule-number="102" dot="1"/>
-        <item rule-number="103" dot="1"/>
-        <item rule-number="105" dot="1"/>
-      </itemset>
-      <actions>
-        <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
-          <transition type="shift" symbol="slash" state="129"/>
-          <transition type="shift" symbol="percent" state="130"/>
-          <transition type="shift" symbol="plus" state="131"/>
-          <transition type="shift" symbol="minus" state="132"/>
-          <transition type="shift" symbol="star" state="133"/>
-          <transition type="shift" symbol="greaterthanequal" state="135"/>
-          <transition type="shift" symbol="equal" state="138"/>
-          <transition type="shift" symbol="notequal" state="139"/>
-          <transition type="shift" symbol="and" state="140"/>
-          <transition type="shift" symbol="or" state="141"/>
-          <transition type="shift" symbol="dot" state="142"/>
-        </transitions>
-        <errors/>
-        <reductions>
-          <reduction symbol="$default" rule="80" enabled="true"/>
-        </reductions>
-      </actions>
-      <solved-conflicts>
-        <resolution rule="80" symbol="openbracket" type="shift">assign &lt; openbracket</resolution>
-        <resolution rule="80" symbol="slash" type="shift">assign &lt; slash</resolution>
-        <resolution rule="80" symbol="percent" type="shift">assign &lt; percent</resolution>
-        <resolution rule="80" symbol="plus" type="shift">assign &lt; plus</resolution>
-        <resolution rule="80" symbol="minus" type="shift">assign &lt; minus</resolution>
-        <resolution rule="80" symbol="star" type="shift">assign &lt; star</resolution>
-        <resolution rule="80" symbol="lessthanequal" type="reduce">%left lessthanequal</resolution>
-        <resolution rule="80" symbol="greaterthanequal" type="shift">assign &lt; greaterthanequal</resolution>
-        <resolution rule="80" symbol="lessthan" type="reduce">%left lessthan</resolution>
-        <resolution rule="80" symbol="greaterthan" type="reduce">%left greaterthan</resolution>
-        <resolution rule="80" symbol="equal" type="shift">assign &lt; equal</resolution>
-        <resolution rule="80" symbol="notequal" type="shift">assign &lt; notequal</resolution>
-        <resolution rule="80" symbol="and" type="shift">assign &lt; and</resolution>
-        <resolution rule="80" symbol="or" type="shift">assign &lt; or</resolution>
-        <resolution rule="80" symbol="dot" type="shift">assign &lt; dot</resolution>
-      </solved-conflicts>
-    </state>
-
-    <state number="181">
-      <itemset>
-        <item rule-number="81" dot="3">
-          <lookaheads>
-            <symbol>semicolon</symbol>
-            <symbol>closebracket</symbol>
-            <symbol>lessthanequal</symbol>
-            <symbol>lessthan</symbol>
-            <symbol>greaterthan</symbol>
-            <symbol>closeparantheses</symbol>
-            <symbol>comma</symbol>
-          </lookaheads>
-        </item>
-        <item rule-number="85" dot="1"/>
-        <item rule-number="86" dot="1"/>
-        <item rule-number="87" dot="1"/>
-        <item rule-number="88" dot="1"/>
-        <item rule-number="89" dot="1"/>
-        <item rule-number="90" dot="1"/>
-        <item rule-number="91" dot="1"/>
-        <item rule-number="92" dot="1"/>
-        <item rule-number="93" dot="1"/>
-        <item rule-number="94" dot="1"/>
-        <item rule-number="95" dot="1"/>
-        <item rule-number="96" dot="1"/>
-        <item rule-number="97" dot="1"/>
-        <item rule-number="102" dot="1"/>
-        <item rule-number="103" dot="1"/>
-        <item rule-number="105" dot="1"/>
-      </itemset>
-      <actions>
-        <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
-          <transition type="shift" symbol="slash" state="129"/>
-          <transition type="shift" symbol="percent" state="130"/>
-          <transition type="shift" symbol="plus" state="131"/>
-          <transition type="shift" symbol="minus" state="132"/>
-          <transition type="shift" symbol="star" state="133"/>
-          <transition type="shift" symbol="greaterthanequal" state="135"/>
-          <transition type="shift" symbol="equal" state="138"/>
-          <transition type="shift" symbol="notequal" state="139"/>
-          <transition type="shift" symbol="and" state="140"/>
-          <transition type="shift" symbol="or" state="141"/>
-          <transition type="shift" symbol="dot" state="142"/>
-        </transitions>
-        <errors/>
-        <reductions>
-          <reduction symbol="$default" rule="81" enabled="true"/>
-        </reductions>
-      </actions>
-      <solved-conflicts>
-        <resolution rule="81" symbol="openbracket" type="shift">plusequal &lt; openbracket</resolution>
-        <resolution rule="81" symbol="slash" type="shift">plusequal &lt; slash</resolution>
-        <resolution rule="81" symbol="percent" type="shift">plusequal &lt; percent</resolution>
-        <resolution rule="81" symbol="plus" type="shift">plusequal &lt; plus</resolution>
-        <resolution rule="81" symbol="minus" type="shift">plusequal &lt; minus</resolution>
-        <resolution rule="81" symbol="star" type="shift">plusequal &lt; star</resolution>
-        <resolution rule="81" symbol="lessthanequal" type="reduce">%left lessthanequal</resolution>
-        <resolution rule="81" symbol="greaterthanequal" type="shift">plusequal &lt; greaterthanequal</resolution>
-        <resolution rule="81" symbol="lessthan" type="reduce">%left lessthan</resolution>
-        <resolution rule="81" symbol="greaterthan" type="reduce">%left greaterthan</resolution>
-        <resolution rule="81" symbol="equal" type="shift">plusequal &lt; equal</resolution>
-        <resolution rule="81" symbol="notequal" type="shift">plusequal &lt; notequal</resolution>
-        <resolution rule="81" symbol="and" type="shift">plusequal &lt; and</resolution>
-        <resolution rule="81" symbol="or" type="shift">plusequal &lt; or</resolution>
-        <resolution rule="81" symbol="dot" type="shift">plusequal &lt; dot</resolution>
-      </solved-conflicts>
-    </state>
-
-    <state number="182">
-      <itemset>
-        <item rule-number="82" dot="3">
-          <lookaheads>
-            <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
             <symbol>slash</symbol>
             <symbol>percent</symbol>
@@ -7944,6 +7806,9 @@
             <symbol>lessthan</symbol>
             <symbol>greaterthan</symbol>
             <symbol>equal</symbol>
+            <symbol>notequal</symbol>
+            <symbol>and</symbol>
+            <symbol>or</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
             <symbol>dot</symbol>
@@ -7967,19 +7832,150 @@
         <item rule-number="105" dot="1"/>
       </itemset>
       <actions>
-        <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
-          <transition type="shift" symbol="notequal" state="139"/>
-          <transition type="shift" symbol="and" state="140"/>
-          <transition type="shift" symbol="or" state="141"/>
-        </transitions>
+        <transitions/>
+        <errors/>
+        <reductions>
+          <reduction symbol="$default" rule="80" enabled="true"/>
+        </reductions>
+      </actions>
+      <solved-conflicts>
+        <resolution rule="80" symbol="openbracket" type="reduce">openbracket &lt; assign</resolution>
+        <resolution rule="80" symbol="slash" type="reduce">slash &lt; assign</resolution>
+        <resolution rule="80" symbol="percent" type="reduce">percent &lt; assign</resolution>
+        <resolution rule="80" symbol="plus" type="reduce">plus &lt; assign</resolution>
+        <resolution rule="80" symbol="minus" type="reduce">minus &lt; assign</resolution>
+        <resolution rule="80" symbol="star" type="reduce">star &lt; assign</resolution>
+        <resolution rule="80" symbol="lessthanequal" type="reduce">lessthanequal &lt; assign</resolution>
+        <resolution rule="80" symbol="greaterthanequal" type="reduce">greaterthanequal &lt; assign</resolution>
+        <resolution rule="80" symbol="lessthan" type="reduce">lessthan &lt; assign</resolution>
+        <resolution rule="80" symbol="greaterthan" type="reduce">greaterthan &lt; assign</resolution>
+        <resolution rule="80" symbol="equal" type="reduce">equal &lt; assign</resolution>
+        <resolution rule="80" symbol="notequal" type="reduce">notequal &lt; assign</resolution>
+        <resolution rule="80" symbol="and" type="reduce">and &lt; assign</resolution>
+        <resolution rule="80" symbol="or" type="reduce">or &lt; assign</resolution>
+        <resolution rule="80" symbol="dot" type="reduce">dot &lt; assign</resolution>
+      </solved-conflicts>
+    </state>
+
+    <state number="181">
+      <itemset>
+        <item rule-number="81" dot="3">
+          <lookaheads>
+            <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
+            <symbol>closebracket</symbol>
+            <symbol>slash</symbol>
+            <symbol>percent</symbol>
+            <symbol>plus</symbol>
+            <symbol>minus</symbol>
+            <symbol>star</symbol>
+            <symbol>lessthanequal</symbol>
+            <symbol>greaterthanequal</symbol>
+            <symbol>lessthan</symbol>
+            <symbol>greaterthan</symbol>
+            <symbol>equal</symbol>
+            <symbol>notequal</symbol>
+            <symbol>and</symbol>
+            <symbol>or</symbol>
+            <symbol>closeparantheses</symbol>
+            <symbol>comma</symbol>
+            <symbol>dot</symbol>
+          </lookaheads>
+        </item>
+        <item rule-number="85" dot="1"/>
+        <item rule-number="86" dot="1"/>
+        <item rule-number="87" dot="1"/>
+        <item rule-number="88" dot="1"/>
+        <item rule-number="89" dot="1"/>
+        <item rule-number="90" dot="1"/>
+        <item rule-number="91" dot="1"/>
+        <item rule-number="92" dot="1"/>
+        <item rule-number="93" dot="1"/>
+        <item rule-number="94" dot="1"/>
+        <item rule-number="95" dot="1"/>
+        <item rule-number="96" dot="1"/>
+        <item rule-number="97" dot="1"/>
+        <item rule-number="102" dot="1"/>
+        <item rule-number="103" dot="1"/>
+        <item rule-number="105" dot="1"/>
+      </itemset>
+      <actions>
+        <transitions/>
+        <errors/>
+        <reductions>
+          <reduction symbol="$default" rule="81" enabled="true"/>
+        </reductions>
+      </actions>
+      <solved-conflicts>
+        <resolution rule="81" symbol="openbracket" type="reduce">openbracket &lt; plusequal</resolution>
+        <resolution rule="81" symbol="slash" type="reduce">slash &lt; plusequal</resolution>
+        <resolution rule="81" symbol="percent" type="reduce">percent &lt; plusequal</resolution>
+        <resolution rule="81" symbol="plus" type="reduce">plus &lt; plusequal</resolution>
+        <resolution rule="81" symbol="minus" type="reduce">minus &lt; plusequal</resolution>
+        <resolution rule="81" symbol="star" type="reduce">star &lt; plusequal</resolution>
+        <resolution rule="81" symbol="lessthanequal" type="reduce">lessthanequal &lt; plusequal</resolution>
+        <resolution rule="81" symbol="greaterthanequal" type="reduce">greaterthanequal &lt; plusequal</resolution>
+        <resolution rule="81" symbol="lessthan" type="reduce">lessthan &lt; plusequal</resolution>
+        <resolution rule="81" symbol="greaterthan" type="reduce">greaterthan &lt; plusequal</resolution>
+        <resolution rule="81" symbol="equal" type="reduce">equal &lt; plusequal</resolution>
+        <resolution rule="81" symbol="notequal" type="reduce">notequal &lt; plusequal</resolution>
+        <resolution rule="81" symbol="and" type="reduce">and &lt; plusequal</resolution>
+        <resolution rule="81" symbol="or" type="reduce">or &lt; plusequal</resolution>
+        <resolution rule="81" symbol="dot" type="reduce">dot &lt; plusequal</resolution>
+      </solved-conflicts>
+    </state>
+
+    <state number="182">
+      <itemset>
+        <item rule-number="82" dot="3">
+          <lookaheads>
+            <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
+            <symbol>closebracket</symbol>
+            <symbol>slash</symbol>
+            <symbol>percent</symbol>
+            <symbol>plus</symbol>
+            <symbol>minus</symbol>
+            <symbol>star</symbol>
+            <symbol>lessthanequal</symbol>
+            <symbol>greaterthanequal</symbol>
+            <symbol>lessthan</symbol>
+            <symbol>greaterthan</symbol>
+            <symbol>equal</symbol>
+            <symbol>notequal</symbol>
+            <symbol>and</symbol>
+            <symbol>or</symbol>
+            <symbol>closeparantheses</symbol>
+            <symbol>comma</symbol>
+            <symbol>dot</symbol>
+          </lookaheads>
+        </item>
+        <item rule-number="85" dot="1"/>
+        <item rule-number="86" dot="1"/>
+        <item rule-number="87" dot="1"/>
+        <item rule-number="88" dot="1"/>
+        <item rule-number="89" dot="1"/>
+        <item rule-number="90" dot="1"/>
+        <item rule-number="91" dot="1"/>
+        <item rule-number="92" dot="1"/>
+        <item rule-number="93" dot="1"/>
+        <item rule-number="94" dot="1"/>
+        <item rule-number="95" dot="1"/>
+        <item rule-number="96" dot="1"/>
+        <item rule-number="97" dot="1"/>
+        <item rule-number="102" dot="1"/>
+        <item rule-number="103" dot="1"/>
+        <item rule-number="105" dot="1"/>
+      </itemset>
+      <actions>
+        <transitions/>
         <errors/>
         <reductions>
           <reduction symbol="$default" rule="82" enabled="true"/>
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="82" symbol="openbracket" type="shift">minusequal &lt; openbracket</resolution>
+        <resolution rule="82" symbol="openbracket" type="reduce">openbracket &lt; minusequal</resolution>
         <resolution rule="82" symbol="slash" type="reduce">slash &lt; minusequal</resolution>
         <resolution rule="82" symbol="percent" type="reduce">percent &lt; minusequal</resolution>
         <resolution rule="82" symbol="plus" type="reduce">plus &lt; minusequal</resolution>
@@ -7990,9 +7986,9 @@
         <resolution rule="82" symbol="lessthan" type="reduce">lessthan &lt; minusequal</resolution>
         <resolution rule="82" symbol="greaterthan" type="reduce">greaterthan &lt; minusequal</resolution>
         <resolution rule="82" symbol="equal" type="reduce">equal &lt; minusequal</resolution>
-        <resolution rule="82" symbol="notequal" type="shift">minusequal &lt; notequal</resolution>
-        <resolution rule="82" symbol="and" type="shift">minusequal &lt; and</resolution>
-        <resolution rule="82" symbol="or" type="shift">minusequal &lt; or</resolution>
+        <resolution rule="82" symbol="notequal" type="reduce">notequal &lt; minusequal</resolution>
+        <resolution rule="82" symbol="and" type="reduce">and &lt; minusequal</resolution>
+        <resolution rule="82" symbol="or" type="reduce">or &lt; minusequal</resolution>
         <resolution rule="82" symbol="dot" type="reduce">dot &lt; minusequal</resolution>
       </solved-conflicts>
     </state>
@@ -8002,6 +7998,7 @@
         <item rule-number="83" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
             <symbol>slash</symbol>
             <symbol>percent</symbol>
@@ -8013,6 +8010,9 @@
             <symbol>lessthan</symbol>
             <symbol>greaterthan</symbol>
             <symbol>equal</symbol>
+            <symbol>notequal</symbol>
+            <symbol>and</symbol>
+            <symbol>or</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
             <symbol>dot</symbol>
@@ -8036,19 +8036,14 @@
         <item rule-number="105" dot="1"/>
       </itemset>
       <actions>
-        <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
-          <transition type="shift" symbol="notequal" state="139"/>
-          <transition type="shift" symbol="and" state="140"/>
-          <transition type="shift" symbol="or" state="141"/>
-        </transitions>
+        <transitions/>
         <errors/>
         <reductions>
           <reduction symbol="$default" rule="83" enabled="true"/>
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="83" symbol="openbracket" type="shift">starequal &lt; openbracket</resolution>
+        <resolution rule="83" symbol="openbracket" type="reduce">openbracket &lt; starequal</resolution>
         <resolution rule="83" symbol="slash" type="reduce">slash &lt; starequal</resolution>
         <resolution rule="83" symbol="percent" type="reduce">percent &lt; starequal</resolution>
         <resolution rule="83" symbol="plus" type="reduce">plus &lt; starequal</resolution>
@@ -8059,9 +8054,9 @@
         <resolution rule="83" symbol="lessthan" type="reduce">lessthan &lt; starequal</resolution>
         <resolution rule="83" symbol="greaterthan" type="reduce">greaterthan &lt; starequal</resolution>
         <resolution rule="83" symbol="equal" type="reduce">equal &lt; starequal</resolution>
-        <resolution rule="83" symbol="notequal" type="shift">starequal &lt; notequal</resolution>
-        <resolution rule="83" symbol="and" type="shift">starequal &lt; and</resolution>
-        <resolution rule="83" symbol="or" type="shift">starequal &lt; or</resolution>
+        <resolution rule="83" symbol="notequal" type="reduce">notequal &lt; starequal</resolution>
+        <resolution rule="83" symbol="and" type="reduce">and &lt; starequal</resolution>
+        <resolution rule="83" symbol="or" type="reduce">or &lt; starequal</resolution>
         <resolution rule="83" symbol="dot" type="reduce">dot &lt; starequal</resolution>
       </solved-conflicts>
     </state>
@@ -8071,12 +8066,24 @@
         <item rule-number="84" dot="3">
           <lookaheads>
             <symbol>semicolon</symbol>
+            <symbol>openbracket</symbol>
             <symbol>closebracket</symbol>
+            <symbol>slash</symbol>
+            <symbol>percent</symbol>
+            <symbol>plus</symbol>
+            <symbol>minus</symbol>
+            <symbol>star</symbol>
             <symbol>lessthanequal</symbol>
+            <symbol>greaterthanequal</symbol>
             <symbol>lessthan</symbol>
             <symbol>greaterthan</symbol>
+            <symbol>equal</symbol>
+            <symbol>notequal</symbol>
+            <symbol>and</symbol>
+            <symbol>or</symbol>
             <symbol>closeparantheses</symbol>
             <symbol>comma</symbol>
+            <symbol>dot</symbol>
           </lookaheads>
         </item>
         <item rule-number="85" dot="1"/>
@@ -8097,41 +8104,28 @@
         <item rule-number="105" dot="1"/>
       </itemset>
       <actions>
-        <transitions>
-          <transition type="shift" symbol="openbracket" state="128"/>
-          <transition type="shift" symbol="slash" state="129"/>
-          <transition type="shift" symbol="percent" state="130"/>
-          <transition type="shift" symbol="plus" state="131"/>
-          <transition type="shift" symbol="minus" state="132"/>
-          <transition type="shift" symbol="star" state="133"/>
-          <transition type="shift" symbol="greaterthanequal" state="135"/>
-          <transition type="shift" symbol="equal" state="138"/>
-          <transition type="shift" symbol="notequal" state="139"/>
-          <transition type="shift" symbol="and" state="140"/>
-          <transition type="shift" symbol="or" state="141"/>
-          <transition type="shift" symbol="dot" state="142"/>
-        </transitions>
+        <transitions/>
         <errors/>
         <reductions>
           <reduction symbol="$default" rule="84" enabled="true"/>
         </reductions>
       </actions>
       <solved-conflicts>
-        <resolution rule="84" symbol="openbracket" type="shift">slashequal &lt; openbracket</resolution>
-        <resolution rule="84" symbol="slash" type="shift">slashequal &lt; slash</resolution>
-        <resolution rule="84" symbol="percent" type="shift">slashequal &lt; percent</resolution>
-        <resolution rule="84" symbol="plus" type="shift">slashequal &lt; plus</resolution>
-        <resolution rule="84" symbol="minus" type="shift">slashequal &lt; minus</resolution>
-        <resolution rule="84" symbol="star" type="shift">slashequal &lt; star</resolution>
-        <resolution rule="84" symbol="lessthanequal" type="reduce">%left lessthanequal</resolution>
-        <resolution rule="84" symbol="greaterthanequal" type="shift">slashequal &lt; greaterthanequal</resolution>
-        <resolution rule="84" symbol="lessthan" type="reduce">%left lessthan</resolution>
-        <resolution rule="84" symbol="greaterthan" type="reduce">%left greaterthan</resolution>
-        <resolution rule="84" symbol="equal" type="shift">slashequal &lt; equal</resolution>
-        <resolution rule="84" symbol="notequal" type="shift">slashequal &lt; notequal</resolution>
-        <resolution rule="84" symbol="and" type="shift">slashequal &lt; and</resolution>
-        <resolution rule="84" symbol="or" type="shift">slashequal &lt; or</resolution>
-        <resolution rule="84" symbol="dot" type="shift">slashequal &lt; dot</resolution>
+        <resolution rule="84" symbol="openbracket" type="reduce">openbracket &lt; slashequal</resolution>
+        <resolution rule="84" symbol="slash" type="reduce">slash &lt; slashequal</resolution>
+        <resolution rule="84" symbol="percent" type="reduce">percent &lt; slashequal</resolution>
+        <resolution rule="84" symbol="plus" type="reduce">plus &lt; slashequal</resolution>
+        <resolution rule="84" symbol="minus" type="reduce">minus &lt; slashequal</resolution>
+        <resolution rule="84" symbol="star" type="reduce">star &lt; slashequal</resolution>
+        <resolution rule="84" symbol="lessthanequal" type="reduce">lessthanequal &lt; slashequal</resolution>
+        <resolution rule="84" symbol="greaterthanequal" type="reduce">greaterthanequal &lt; slashequal</resolution>
+        <resolution rule="84" symbol="lessthan" type="reduce">lessthan &lt; slashequal</resolution>
+        <resolution rule="84" symbol="greaterthan" type="reduce">greaterthan &lt; slashequal</resolution>
+        <resolution rule="84" symbol="equal" type="reduce">equal &lt; slashequal</resolution>
+        <resolution rule="84" symbol="notequal" type="reduce">notequal &lt; slashequal</resolution>
+        <resolution rule="84" symbol="and" type="reduce">and &lt; slashequal</resolution>
+        <resolution rule="84" symbol="or" type="reduce">or &lt; slashequal</resolution>
+        <resolution rule="84" symbol="dot" type="reduce">dot &lt; slashequal</resolution>
       </solved-conflicts>
     </state>
 

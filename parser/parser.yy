@@ -155,12 +155,17 @@ printstmt:
 printcontent: printcontent comma expr { cg.printexpr($3); }
             | expr { cg.printexpr($1); }
 
-%left assign plusequal slashequal lessthan greaterthan lessthanequal;
-%left greaterthanequal equal slash percent plus minus star not dot ;
-%left minusequal starequal ;
-%left and or  comma  notequal;
-
 %right openparantheses openbracket openbrace;
+%left dot;
+%left not;
+%left star slash percent;
+%left plus minus;
+%left lessthan greaterthan lessthanequal greaterthanequal;
+%left equal notequal;
+%left and;
+%left or;
+%left assign plusequal slashequal minusequal starequal;
+%left comma;
 
 expr:
         constant                    { $$ = cg.addconstant($1); }
@@ -182,19 +187,19 @@ expr:
     |   lvalue minusequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
     |   lvalue starequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
     |   lvalue slashequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
-    |   expr or expr                {}
-    |   expr and expr                {}
-    |   expr equal expr                {}
-    |   expr notequal expr                {}
-    |   expr lessthan expr                 {}
-    |   expr lessthanequal expr                {}
-    |   expr greaterthan expr                 {}
-    |   expr greaterthanequal expr                {}
-    |   expr plus expr                 {}
-    |   expr minus expr                 {}
-    |   expr star expr                 {}
-    |   expr slash expr                 {}
-    |   expr percent expr                 {}
+    |   expr or expr                { $$ = cg.exproperation($1,$3,$2); }
+    |   expr and expr                { $$ = cg.exproperation($1,$3,$2); }
+    |   expr equal expr                { $$ = cg.exproperation($1,$3,$2); }
+    |   expr notequal expr                { $$ = cg.exproperation($1,$3,$2); }
+    |   expr lessthan expr                 { $$ = cg.exproperation($1,$3,$2); }
+    |   expr lessthanequal expr                { $$ = cg.exproperation($1,$3,$2); }
+    |   expr greaterthan expr                 { $$ = cg.exproperation($1,$3,$2); }
+    |   expr greaterthanequal expr                { $$ = cg.exproperation($1,$3,$2); }
+    |   expr plus expr                 { $$ = cg.exproperation($1,$3,$2); }
+    |   expr minus expr                 { $$ = cg.exproperation($1,$3,$2); }
+    |   expr star expr                 { $$ = cg.exproperation($1,$3,$2); }
+    |   expr slash expr                 { $$ = cg.exproperation($1,$3,$2); }
+    |   expr percent expr                 { $$ = cg.exproperation($1,$3,$2); }
     |   minus expr                      {}
     |   not expr                      {}
     |   openparantheses expr closeparantheses                      { $$ = $2; }

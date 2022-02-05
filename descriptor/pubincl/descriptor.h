@@ -19,6 +19,7 @@ public:
 
     [[nodiscard]] string getID() const;
 
+    [[nodiscard]] string getTypeString() const;
 };
 
 #endif

@@ -54,6 +54,8 @@ public:
 
     exprtype assignexproperation(const string &lefside, const exprtype &expr, const string &operation);
 
+    exprtype exproperation(const exprtype &lefside, const exprtype &expr, const string &operation);
+
     void openstmtblock();
 
     void closestmtblock();

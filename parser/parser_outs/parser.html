@@ -3090,33 +3090,37 @@
   <a href="#rule_95"> 95</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>star</b> <span class="i">expr</span>
   <a href="#rule_96"> 96</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>slash</b> <span class="i">expr</span>
   <a href="#rule_97"> 97</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>percent</b> <span class="i">expr</span>
-  <a href="#rule_98"> 98</a>      | <b>minus</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, closeparantheses, comma, dot]
+  <a href="#rule_98"> 98</a>      | <b>minus</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, closeparantheses, comma, dot]
   <a href="#rule_102">102</a> <span class="i">lvalue</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b>
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
-    notequal     <a href="#state_139">shift, and go to state 139</a>
-    and          <a href="#state_140">shift, and go to state 140</a>
-    or           <a href="#state_141">shift, and go to state 141</a>
+    lessthanequal     <a href="#state_134">shift, and go to state 134</a>
+    greaterthanequal  <a href="#state_135">shift, and go to state 135</a>
+    lessthan          <a href="#state_136">shift, and go to state 136</a>
+    greaterthan       <a href="#state_137">shift, and go to state 137</a>
+    equal             <a href="#state_138">shift, and go to state 138</a>
+    notequal          <a href="#state_139">shift, and go to state 139</a>
+    and               <a href="#state_140">shift, and go to state 140</a>
+    or                <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_98">reduce using rule 98</a> (expr)
 
-    Conflict between <a href="#rule_98">rule 98</a> and token openbracket resolved as shift (minus &lt; openbracket).
-    Conflict between <a href="#rule_98">rule 98</a> and token slash resolved as reduce (%left slash).
-    Conflict between <a href="#rule_98">rule 98</a> and token percent resolved as reduce (%left percent).
+    Conflict between <a href="#rule_98">rule 98</a> and token openbracket resolved as reduce (openbracket &lt; minus).
+    Conflict between <a href="#rule_98">rule 98</a> and token slash resolved as reduce (slash &lt; minus).
+    Conflict between <a href="#rule_98">rule 98</a> and token percent resolved as reduce (percent &lt; minus).
     Conflict between <a href="#rule_98">rule 98</a> and token plus resolved as reduce (%left plus).
     Conflict between <a href="#rule_98">rule 98</a> and token minus resolved as reduce (%left minus).
-    Conflict between <a href="#rule_98">rule 98</a> and token star resolved as reduce (%left star).
-    Conflict between <a href="#rule_98">rule 98</a> and token lessthanequal resolved as reduce (lessthanequal &lt; minus).
-    Conflict between <a href="#rule_98">rule 98</a> and token greaterthanequal resolved as reduce (%left greaterthanequal).
-    Conflict between <a href="#rule_98">rule 98</a> and token lessthan resolved as reduce (lessthan &lt; minus).
-    Conflict between <a href="#rule_98">rule 98</a> and token greaterthan resolved as reduce (greaterthan &lt; minus).
-    Conflict between <a href="#rule_98">rule 98</a> and token equal resolved as reduce (%left equal).
+    Conflict between <a href="#rule_98">rule 98</a> and token star resolved as reduce (star &lt; minus).
+    Conflict between <a href="#rule_98">rule 98</a> and token lessthanequal resolved as shift (minus &lt; lessthanequal).
+    Conflict between <a href="#rule_98">rule 98</a> and token greaterthanequal resolved as shift (minus &lt; greaterthanequal).
+    Conflict between <a href="#rule_98">rule 98</a> and token lessthan resolved as shift (minus &lt; lessthan).
+    Conflict between <a href="#rule_98">rule 98</a> and token greaterthan resolved as shift (minus &lt; greaterthan).
+    Conflict between <a href="#rule_98">rule 98</a> and token equal resolved as shift (minus &lt; equal).
     Conflict between <a href="#rule_98">rule 98</a> and token notequal resolved as shift (minus &lt; notequal).
     Conflict between <a href="#rule_98">rule 98</a> and token and resolved as shift (minus &lt; and).
     Conflict between <a href="#rule_98">rule 98</a> and token or resolved as shift (minus &lt; or).
-    Conflict between <a href="#rule_98">rule 98</a> and token dot resolved as reduce (%left dot).
+    Conflict between <a href="#rule_98">rule 98</a> and token dot resolved as reduce (dot &lt; minus).
 </p>
 
 <h3><a name="state_122" id="state_122"></a>State 122</h3>
@@ -3172,33 +3176,42 @@
   <a href="#rule_95"> 95</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>star</b> <span class="i">expr</span>
   <a href="#rule_96"> 96</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>slash</b> <span class="i">expr</span>
   <a href="#rule_97"> 97</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>percent</b> <span class="i">expr</span>
-  <a href="#rule_99"> 99</a>      | <b>not</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, closeparantheses, comma, dot]
+  <a href="#rule_99"> 99</a>      | <b>not</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, closeparantheses, comma, dot]
   <a href="#rule_102">102</a> <span class="i">lvalue</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b>
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
-    notequal     <a href="#state_139">shift, and go to state 139</a>
-    and          <a href="#state_140">shift, and go to state 140</a>
-    or           <a href="#state_141">shift, and go to state 141</a>
+    slash             <a href="#state_129">shift, and go to state 129</a>
+    percent           <a href="#state_130">shift, and go to state 130</a>
+    plus              <a href="#state_131">shift, and go to state 131</a>
+    minus             <a href="#state_132">shift, and go to state 132</a>
+    star              <a href="#state_133">shift, and go to state 133</a>
+    lessthanequal     <a href="#state_134">shift, and go to state 134</a>
+    greaterthanequal  <a href="#state_135">shift, and go to state 135</a>
+    lessthan          <a href="#state_136">shift, and go to state 136</a>
+    greaterthan       <a href="#state_137">shift, and go to state 137</a>
+    equal             <a href="#state_138">shift, and go to state 138</a>
+    notequal          <a href="#state_139">shift, and go to state 139</a>
+    and               <a href="#state_140">shift, and go to state 140</a>
+    or                <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_99">reduce using rule 99</a> (expr)
 
-    Conflict between <a href="#rule_99">rule 99</a> and token openbracket resolved as shift (not &lt; openbracket).
-    Conflict between <a href="#rule_99">rule 99</a> and token slash resolved as reduce (%left slash).
-    Conflict between <a href="#rule_99">rule 99</a> and token percent resolved as reduce (%left percent).
-    Conflict between <a href="#rule_99">rule 99</a> and token plus resolved as reduce (%left plus).
-    Conflict between <a href="#rule_99">rule 99</a> and token minus resolved as reduce (%left minus).
-    Conflict between <a href="#rule_99">rule 99</a> and token star resolved as reduce (%left star).
-    Conflict between <a href="#rule_99">rule 99</a> and token lessthanequal resolved as reduce (lessthanequal &lt; not).
-    Conflict between <a href="#rule_99">rule 99</a> and token greaterthanequal resolved as reduce (%left greaterthanequal).
-    Conflict between <a href="#rule_99">rule 99</a> and token lessthan resolved as reduce (lessthan &lt; not).
-    Conflict between <a href="#rule_99">rule 99</a> and token greaterthan resolved as reduce (greaterthan &lt; not).
-    Conflict between <a href="#rule_99">rule 99</a> and token equal resolved as reduce (%left equal).
+    Conflict between <a href="#rule_99">rule 99</a> and token openbracket resolved as reduce (openbracket &lt; not).
+    Conflict between <a href="#rule_99">rule 99</a> and token slash resolved as shift (not &lt; slash).
+    Conflict between <a href="#rule_99">rule 99</a> and token percent resolved as shift (not &lt; percent).
+    Conflict between <a href="#rule_99">rule 99</a> and token plus resolved as shift (not &lt; plus).
+    Conflict between <a href="#rule_99">rule 99</a> and token minus resolved as shift (not &lt; minus).
+    Conflict between <a href="#rule_99">rule 99</a> and token star resolved as shift (not &lt; star).
+    Conflict between <a href="#rule_99">rule 99</a> and token lessthanequal resolved as shift (not &lt; lessthanequal).
+    Conflict between <a href="#rule_99">rule 99</a> and token greaterthanequal resolved as shift (not &lt; greaterthanequal).
+    Conflict between <a href="#rule_99">rule 99</a> and token lessthan resolved as shift (not &lt; lessthan).
+    Conflict between <a href="#rule_99">rule 99</a> and token greaterthan resolved as shift (not &lt; greaterthan).
+    Conflict between <a href="#rule_99">rule 99</a> and token equal resolved as shift (not &lt; equal).
     Conflict between <a href="#rule_99">rule 99</a> and token notequal resolved as shift (not &lt; notequal).
     Conflict between <a href="#rule_99">rule 99</a> and token and resolved as shift (not &lt; and).
     Conflict between <a href="#rule_99">rule 99</a> and token or resolved as shift (not &lt; or).
-    Conflict between <a href="#rule_99">rule 99</a> and token dot resolved as reduce (%left dot).
+    Conflict between <a href="#rule_99">rule 99</a> and token dot resolved as reduce (dot &lt; not).
 </p>
 
 <h3><a name="state_124" id="state_124"></a>State 124</h3>
@@ -5137,34 +5150,40 @@
   <a href="#rule_94"> 94</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>minus</b> <span class="i">expr</span>
   <a href="#rule_95"> 95</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>star</b> <span class="i">expr</span>
   <a href="#rule_96"> 96</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>slash</b> <span class="i">expr</span>
-  <a href="#rule_96"> 96</a>      | <span class="i">expr</span> <b>slash</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, closeparantheses, comma, dot]
+  <a href="#rule_96"> 96</a>      | <span class="i">expr</span> <b>slash</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, star, closeparantheses, comma, dot]
   <a href="#rule_97"> 97</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>percent</b> <span class="i">expr</span>
   <a href="#rule_102">102</a> <span class="i">lvalue</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b>
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
-    notequal     <a href="#state_139">shift, and go to state 139</a>
-    and          <a href="#state_140">shift, and go to state 140</a>
-    or           <a href="#state_141">shift, and go to state 141</a>
+    plus              <a href="#state_131">shift, and go to state 131</a>
+    minus             <a href="#state_132">shift, and go to state 132</a>
+    lessthanequal     <a href="#state_134">shift, and go to state 134</a>
+    greaterthanequal  <a href="#state_135">shift, and go to state 135</a>
+    lessthan          <a href="#state_136">shift, and go to state 136</a>
+    greaterthan       <a href="#state_137">shift, and go to state 137</a>
+    equal             <a href="#state_138">shift, and go to state 138</a>
+    notequal          <a href="#state_139">shift, and go to state 139</a>
+    and               <a href="#state_140">shift, and go to state 140</a>
+    or                <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_96">reduce using rule 96</a> (expr)
 
-    Conflict between <a href="#rule_96">rule 96</a> and token openbracket resolved as shift (slash &lt; openbracket).
+    Conflict between <a href="#rule_96">rule 96</a> and token openbracket resolved as reduce (openbracket &lt; slash).
     Conflict between <a href="#rule_96">rule 96</a> and token slash resolved as reduce (%left slash).
     Conflict between <a href="#rule_96">rule 96</a> and token percent resolved as reduce (%left percent).
-    Conflict between <a href="#rule_96">rule 96</a> and token plus resolved as reduce (%left plus).
-    Conflict between <a href="#rule_96">rule 96</a> and token minus resolved as reduce (%left minus).
+    Conflict between <a href="#rule_96">rule 96</a> and token plus resolved as shift (slash &lt; plus).
+    Conflict between <a href="#rule_96">rule 96</a> and token minus resolved as shift (slash &lt; minus).
     Conflict between <a href="#rule_96">rule 96</a> and token star resolved as reduce (%left star).
-    Conflict between <a href="#rule_96">rule 96</a> and token lessthanequal resolved as reduce (lessthanequal &lt; slash).
-    Conflict between <a href="#rule_96">rule 96</a> and token greaterthanequal resolved as reduce (%left greaterthanequal).
-    Conflict between <a href="#rule_96">rule 96</a> and token lessthan resolved as reduce (lessthan &lt; slash).
-    Conflict between <a href="#rule_96">rule 96</a> and token greaterthan resolved as reduce (greaterthan &lt; slash).
-    Conflict between <a href="#rule_96">rule 96</a> and token equal resolved as reduce (%left equal).
+    Conflict between <a href="#rule_96">rule 96</a> and token lessthanequal resolved as shift (slash &lt; lessthanequal).
+    Conflict between <a href="#rule_96">rule 96</a> and token greaterthanequal resolved as shift (slash &lt; greaterthanequal).
+    Conflict between <a href="#rule_96">rule 96</a> and token lessthan resolved as shift (slash &lt; lessthan).
+    Conflict between <a href="#rule_96">rule 96</a> and token greaterthan resolved as shift (slash &lt; greaterthan).
+    Conflict between <a href="#rule_96">rule 96</a> and token equal resolved as shift (slash &lt; equal).
     Conflict between <a href="#rule_96">rule 96</a> and token notequal resolved as shift (slash &lt; notequal).
     Conflict between <a href="#rule_96">rule 96</a> and token and resolved as shift (slash &lt; and).
     Conflict between <a href="#rule_96">rule 96</a> and token or resolved as shift (slash &lt; or).
-    Conflict between <a href="#rule_96">rule 96</a> and token dot resolved as reduce (%left dot).
+    Conflict between <a href="#rule_96">rule 96</a> and token dot resolved as reduce (dot &lt; slash).
 </p>
 
 <h3><a name="state_167" id="state_167"></a>State 167</h3>
@@ -5182,33 +5201,39 @@
   <a href="#rule_95"> 95</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>star</b> <span class="i">expr</span>
   <a href="#rule_96"> 96</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>slash</b> <span class="i">expr</span>
   <a href="#rule_97"> 97</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>percent</b> <span class="i">expr</span>
-  <a href="#rule_97"> 97</a>      | <span class="i">expr</span> <b>percent</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, closeparantheses, comma, dot]
+  <a href="#rule_97"> 97</a>      | <span class="i">expr</span> <b>percent</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, star, closeparantheses, comma, dot]
   <a href="#rule_102">102</a> <span class="i">lvalue</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b>
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
-    notequal     <a href="#state_139">shift, and go to state 139</a>
-    and          <a href="#state_140">shift, and go to state 140</a>
-    or           <a href="#state_141">shift, and go to state 141</a>
+    plus              <a href="#state_131">shift, and go to state 131</a>
+    minus             <a href="#state_132">shift, and go to state 132</a>
+    lessthanequal     <a href="#state_134">shift, and go to state 134</a>
+    greaterthanequal  <a href="#state_135">shift, and go to state 135</a>
+    lessthan          <a href="#state_136">shift, and go to state 136</a>
+    greaterthan       <a href="#state_137">shift, and go to state 137</a>
+    equal             <a href="#state_138">shift, and go to state 138</a>
+    notequal          <a href="#state_139">shift, and go to state 139</a>
+    and               <a href="#state_140">shift, and go to state 140</a>
+    or                <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_97">reduce using rule 97</a> (expr)
 
-    Conflict between <a href="#rule_97">rule 97</a> and token openbracket resolved as shift (percent &lt; openbracket).
+    Conflict between <a href="#rule_97">rule 97</a> and token openbracket resolved as reduce (openbracket &lt; percent).
     Conflict between <a href="#rule_97">rule 97</a> and token slash resolved as reduce (%left slash).
     Conflict between <a href="#rule_97">rule 97</a> and token percent resolved as reduce (%left percent).
-    Conflict between <a href="#rule_97">rule 97</a> and token plus resolved as reduce (%left plus).
-    Conflict between <a href="#rule_97">rule 97</a> and token minus resolved as reduce (%left minus).
+    Conflict between <a href="#rule_97">rule 97</a> and token plus resolved as shift (percent &lt; plus).
+    Conflict between <a href="#rule_97">rule 97</a> and token minus resolved as shift (percent &lt; minus).
     Conflict between <a href="#rule_97">rule 97</a> and token star resolved as reduce (%left star).
-    Conflict between <a href="#rule_97">rule 97</a> and token lessthanequal resolved as reduce (lessthanequal &lt; percent).
-    Conflict between <a href="#rule_97">rule 97</a> and token greaterthanequal resolved as reduce (%left greaterthanequal).
-    Conflict between <a href="#rule_97">rule 97</a> and token lessthan resolved as reduce (lessthan &lt; percent).
-    Conflict between <a href="#rule_97">rule 97</a> and token greaterthan resolved as reduce (greaterthan &lt; percent).
-    Conflict between <a href="#rule_97">rule 97</a> and token equal resolved as reduce (%left equal).
+    Conflict between <a href="#rule_97">rule 97</a> and token lessthanequal resolved as shift (percent &lt; lessthanequal).
+    Conflict between <a href="#rule_97">rule 97</a> and token greaterthanequal resolved as shift (percent &lt; greaterthanequal).
+    Conflict between <a href="#rule_97">rule 97</a> and token lessthan resolved as shift (percent &lt; lessthan).
+    Conflict between <a href="#rule_97">rule 97</a> and token greaterthan resolved as shift (percent &lt; greaterthan).
+    Conflict between <a href="#rule_97">rule 97</a> and token equal resolved as shift (percent &lt; equal).
     Conflict between <a href="#rule_97">rule 97</a> and token notequal resolved as shift (percent &lt; notequal).
     Conflict between <a href="#rule_97">rule 97</a> and token and resolved as shift (percent &lt; and).
     Conflict between <a href="#rule_97">rule 97</a> and token or resolved as shift (percent &lt; or).
-    Conflict between <a href="#rule_97">rule 97</a> and token dot resolved as reduce (%left dot).
+    Conflict between <a href="#rule_97">rule 97</a> and token dot resolved as reduce (dot &lt; percent).
 </p>
 
 <h3><a name="state_168" id="state_168"></a>State 168</h3>
@@ -5222,7 +5247,7 @@
   <a href="#rule_91"> 91</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthan</b> <span class="i">expr</span>
   <a href="#rule_92"> 92</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthanequal</b> <span class="i">expr</span>
   <a href="#rule_93"> 93</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>plus</b> <span class="i">expr</span>
-  <a href="#rule_93"> 93</a>      | <span class="i">expr</span> <b>plus</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, closeparantheses, comma, dot]
+  <a href="#rule_93"> 93</a>      | <span class="i">expr</span> <b>plus</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, closeparantheses, comma, dot]
   <a href="#rule_94"> 94</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>minus</b> <span class="i">expr</span>
   <a href="#rule_95"> 95</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>star</b> <span class="i">expr</span>
   <a href="#rule_96"> 96</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>slash</b> <span class="i">expr</span>
@@ -5231,28 +5256,32 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
-    notequal     <a href="#state_139">shift, and go to state 139</a>
-    and          <a href="#state_140">shift, and go to state 140</a>
-    or           <a href="#state_141">shift, and go to state 141</a>
+    lessthanequal     <a href="#state_134">shift, and go to state 134</a>
+    greaterthanequal  <a href="#state_135">shift, and go to state 135</a>
+    lessthan          <a href="#state_136">shift, and go to state 136</a>
+    greaterthan       <a href="#state_137">shift, and go to state 137</a>
+    equal             <a href="#state_138">shift, and go to state 138</a>
+    notequal          <a href="#state_139">shift, and go to state 139</a>
+    and               <a href="#state_140">shift, and go to state 140</a>
+    or                <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_93">reduce using rule 93</a> (expr)
 
-    Conflict between <a href="#rule_93">rule 93</a> and token openbracket resolved as shift (plus &lt; openbracket).
-    Conflict between <a href="#rule_93">rule 93</a> and token slash resolved as reduce (%left slash).
-    Conflict between <a href="#rule_93">rule 93</a> and token percent resolved as reduce (%left percent).
+    Conflict between <a href="#rule_93">rule 93</a> and token openbracket resolved as reduce (openbracket &lt; plus).
+    Conflict between <a href="#rule_93">rule 93</a> and token slash resolved as reduce (slash &lt; plus).
+    Conflict between <a href="#rule_93">rule 93</a> and token percent resolved as reduce (percent &lt; plus).
     Conflict between <a href="#rule_93">rule 93</a> and token plus resolved as reduce (%left plus).
     Conflict between <a href="#rule_93">rule 93</a> and token minus resolved as reduce (%left minus).
-    Conflict between <a href="#rule_93">rule 93</a> and token star resolved as reduce (%left star).
-    Conflict between <a href="#rule_93">rule 93</a> and token lessthanequal resolved as reduce (lessthanequal &lt; plus).
-    Conflict between <a href="#rule_93">rule 93</a> and token greaterthanequal resolved as reduce (%left greaterthanequal).
-    Conflict between <a href="#rule_93">rule 93</a> and token lessthan resolved as reduce (lessthan &lt; plus).
-    Conflict between <a href="#rule_93">rule 93</a> and token greaterthan resolved as reduce (greaterthan &lt; plus).
-    Conflict between <a href="#rule_93">rule 93</a> and token equal resolved as reduce (%left equal).
+    Conflict between <a href="#rule_93">rule 93</a> and token star resolved as reduce (star &lt; plus).
+    Conflict between <a href="#rule_93">rule 93</a> and token lessthanequal resolved as shift (plus &lt; lessthanequal).
+    Conflict between <a href="#rule_93">rule 93</a> and token greaterthanequal resolved as shift (plus &lt; greaterthanequal).
+    Conflict between <a href="#rule_93">rule 93</a> and token lessthan resolved as shift (plus &lt; lessthan).
+    Conflict between <a href="#rule_93">rule 93</a> and token greaterthan resolved as shift (plus &lt; greaterthan).
+    Conflict between <a href="#rule_93">rule 93</a> and token equal resolved as shift (plus &lt; equal).
     Conflict between <a href="#rule_93">rule 93</a> and token notequal resolved as shift (plus &lt; notequal).
     Conflict between <a href="#rule_93">rule 93</a> and token and resolved as shift (plus &lt; and).
     Conflict between <a href="#rule_93">rule 93</a> and token or resolved as shift (plus &lt; or).
-    Conflict between <a href="#rule_93">rule 93</a> and token dot resolved as reduce (%left dot).
+    Conflict between <a href="#rule_93">rule 93</a> and token dot resolved as reduce (dot &lt; plus).
 </p>
 
 <h3><a name="state_169" id="state_169"></a>State 169</h3>
@@ -5267,7 +5296,7 @@
   <a href="#rule_92"> 92</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthanequal</b> <span class="i">expr</span>
   <a href="#rule_93"> 93</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>plus</b> <span class="i">expr</span>
   <a href="#rule_94"> 94</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>minus</b> <span class="i">expr</span>
-  <a href="#rule_94"> 94</a>      | <span class="i">expr</span> <b>minus</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, closeparantheses, comma, dot]
+  <a href="#rule_94"> 94</a>      | <span class="i">expr</span> <b>minus</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, closeparantheses, comma, dot]
   <a href="#rule_95"> 95</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>star</b> <span class="i">expr</span>
   <a href="#rule_96"> 96</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>slash</b> <span class="i">expr</span>
   <a href="#rule_97"> 97</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>percent</b> <span class="i">expr</span>
@@ -5275,28 +5304,32 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
-    notequal     <a href="#state_139">shift, and go to state 139</a>
-    and          <a href="#state_140">shift, and go to state 140</a>
-    or           <a href="#state_141">shift, and go to state 141</a>
+    lessthanequal     <a href="#state_134">shift, and go to state 134</a>
+    greaterthanequal  <a href="#state_135">shift, and go to state 135</a>
+    lessthan          <a href="#state_136">shift, and go to state 136</a>
+    greaterthan       <a href="#state_137">shift, and go to state 137</a>
+    equal             <a href="#state_138">shift, and go to state 138</a>
+    notequal          <a href="#state_139">shift, and go to state 139</a>
+    and               <a href="#state_140">shift, and go to state 140</a>
+    or                <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_94">reduce using rule 94</a> (expr)
 
-    Conflict between <a href="#rule_94">rule 94</a> and token openbracket resolved as shift (minus &lt; openbracket).
-    Conflict between <a href="#rule_94">rule 94</a> and token slash resolved as reduce (%left slash).
-    Conflict between <a href="#rule_94">rule 94</a> and token percent resolved as reduce (%left percent).
+    Conflict between <a href="#rule_94">rule 94</a> and token openbracket resolved as reduce (openbracket &lt; minus).
+    Conflict between <a href="#rule_94">rule 94</a> and token slash resolved as reduce (slash &lt; minus).
+    Conflict between <a href="#rule_94">rule 94</a> and token percent resolved as reduce (percent &lt; minus).
     Conflict between <a href="#rule_94">rule 94</a> and token plus resolved as reduce (%left plus).
     Conflict between <a href="#rule_94">rule 94</a> and token minus resolved as reduce (%left minus).
-    Conflict between <a href="#rule_94">rule 94</a> and token star resolved as reduce (%left star).
-    Conflict between <a href="#rule_94">rule 94</a> and token lessthanequal resolved as reduce (lessthanequal &lt; minus).
-    Conflict between <a href="#rule_94">rule 94</a> and token greaterthanequal resolved as reduce (%left greaterthanequal).
-    Conflict between <a href="#rule_94">rule 94</a> and token lessthan resolved as reduce (lessthan &lt; minus).
-    Conflict between <a href="#rule_94">rule 94</a> and token greaterthan resolved as reduce (greaterthan &lt; minus).
-    Conflict between <a href="#rule_94">rule 94</a> and token equal resolved as reduce (%left equal).
+    Conflict between <a href="#rule_94">rule 94</a> and token star resolved as reduce (star &lt; minus).
+    Conflict between <a href="#rule_94">rule 94</a> and token lessthanequal resolved as shift (minus &lt; lessthanequal).
+    Conflict between <a href="#rule_94">rule 94</a> and token greaterthanequal resolved as shift (minus &lt; greaterthanequal).
+    Conflict between <a href="#rule_94">rule 94</a> and token lessthan resolved as shift (minus &lt; lessthan).
+    Conflict between <a href="#rule_94">rule 94</a> and token greaterthan resolved as shift (minus &lt; greaterthan).
+    Conflict between <a href="#rule_94">rule 94</a> and token equal resolved as shift (minus &lt; equal).
     Conflict between <a href="#rule_94">rule 94</a> and token notequal resolved as shift (minus &lt; notequal).
     Conflict between <a href="#rule_94">rule 94</a> and token and resolved as shift (minus &lt; and).
     Conflict between <a href="#rule_94">rule 94</a> and token or resolved as shift (minus &lt; or).
-    Conflict between <a href="#rule_94">rule 94</a> and token dot resolved as reduce (%left dot).
+    Conflict between <a href="#rule_94">rule 94</a> and token dot resolved as reduce (dot &lt; minus).
 </p>
 
 <h3><a name="state_170" id="state_170"></a>State 170</h3>
@@ -5312,35 +5345,41 @@
   <a href="#rule_93"> 93</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>plus</b> <span class="i">expr</span>
   <a href="#rule_94"> 94</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>minus</b> <span class="i">expr</span>
   <a href="#rule_95"> 95</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>star</b> <span class="i">expr</span>
-  <a href="#rule_95"> 95</a>      | <span class="i">expr</span> <b>star</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, closeparantheses, comma, dot]
+  <a href="#rule_95"> 95</a>      | <span class="i">expr</span> <b>star</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, star, closeparantheses, comma, dot]
   <a href="#rule_96"> 96</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>slash</b> <span class="i">expr</span>
   <a href="#rule_97"> 97</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>percent</b> <span class="i">expr</span>
   <a href="#rule_102">102</a> <span class="i">lvalue</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b>
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
-    notequal     <a href="#state_139">shift, and go to state 139</a>
-    and          <a href="#state_140">shift, and go to state 140</a>
-    or           <a href="#state_141">shift, and go to state 141</a>
+    plus              <a href="#state_131">shift, and go to state 131</a>
+    minus             <a href="#state_132">shift, and go to state 132</a>
+    lessthanequal     <a href="#state_134">shift, and go to state 134</a>
+    greaterthanequal  <a href="#state_135">shift, and go to state 135</a>
+    lessthan          <a href="#state_136">shift, and go to state 136</a>
+    greaterthan       <a href="#state_137">shift, and go to state 137</a>
+    equal             <a href="#state_138">shift, and go to state 138</a>
+    notequal          <a href="#state_139">shift, and go to state 139</a>
+    and               <a href="#state_140">shift, and go to state 140</a>
+    or                <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_95">reduce using rule 95</a> (expr)
 
-    Conflict between <a href="#rule_95">rule 95</a> and token openbracket resolved as shift (star &lt; openbracket).
+    Conflict between <a href="#rule_95">rule 95</a> and token openbracket resolved as reduce (openbracket &lt; star).
     Conflict between <a href="#rule_95">rule 95</a> and token slash resolved as reduce (%left slash).
     Conflict between <a href="#rule_95">rule 95</a> and token percent resolved as reduce (%left percent).
-    Conflict between <a href="#rule_95">rule 95</a> and token plus resolved as reduce (%left plus).
-    Conflict between <a href="#rule_95">rule 95</a> and token minus resolved as reduce (%left minus).
+    Conflict between <a href="#rule_95">rule 95</a> and token plus resolved as shift (star &lt; plus).
+    Conflict between <a href="#rule_95">rule 95</a> and token minus resolved as shift (star &lt; minus).
     Conflict between <a href="#rule_95">rule 95</a> and token star resolved as reduce (%left star).
-    Conflict between <a href="#rule_95">rule 95</a> and token lessthanequal resolved as reduce (lessthanequal &lt; star).
-    Conflict between <a href="#rule_95">rule 95</a> and token greaterthanequal resolved as reduce (%left greaterthanequal).
-    Conflict between <a href="#rule_95">rule 95</a> and token lessthan resolved as reduce (lessthan &lt; star).
-    Conflict between <a href="#rule_95">rule 95</a> and token greaterthan resolved as reduce (greaterthan &lt; star).
-    Conflict between <a href="#rule_95">rule 95</a> and token equal resolved as reduce (%left equal).
+    Conflict between <a href="#rule_95">rule 95</a> and token lessthanequal resolved as shift (star &lt; lessthanequal).
+    Conflict between <a href="#rule_95">rule 95</a> and token greaterthanequal resolved as shift (star &lt; greaterthanequal).
+    Conflict between <a href="#rule_95">rule 95</a> and token lessthan resolved as shift (star &lt; lessthan).
+    Conflict between <a href="#rule_95">rule 95</a> and token greaterthan resolved as shift (star &lt; greaterthan).
+    Conflict between <a href="#rule_95">rule 95</a> and token equal resolved as shift (star &lt; equal).
     Conflict between <a href="#rule_95">rule 95</a> and token notequal resolved as shift (star &lt; notequal).
     Conflict between <a href="#rule_95">rule 95</a> and token and resolved as shift (star &lt; and).
     Conflict between <a href="#rule_95">rule 95</a> and token or resolved as shift (star &lt; or).
-    Conflict between <a href="#rule_95">rule 95</a> and token dot resolved as reduce (%left dot).
+    Conflict between <a href="#rule_95">rule 95</a> and token dot resolved as reduce (dot &lt; star).
 </p>
 
 <h3><a name="state_171" id="state_171"></a>State 171</h3>
@@ -5351,7 +5390,7 @@
   <a href="#rule_88"> 88</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>notequal</b> <span class="i">expr</span>
   <a href="#rule_89"> 89</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthan</b> <span class="i">expr</span>
   <a href="#rule_90"> 90</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthanequal</b> <span class="i">expr</span>
-  <a href="#rule_90"> 90</a>      | <span class="i">expr</span> <b>lessthanequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, lessthanequal, lessthan, greaterthan, closeparantheses, comma]
+  <a href="#rule_90"> 90</a>      | <span class="i">expr</span> <b>lessthanequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, closeparantheses, comma, dot]
   <a href="#rule_91"> 91</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthan</b> <span class="i">expr</span>
   <a href="#rule_92"> 92</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthanequal</b> <span class="i">expr</span>
   <a href="#rule_93"> 93</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>plus</b> <span class="i">expr</span>
@@ -5363,36 +5402,28 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket       <a href="#state_128">shift, and go to state 128</a>
-    slash             <a href="#state_129">shift, and go to state 129</a>
-    percent           <a href="#state_130">shift, and go to state 130</a>
-    plus              <a href="#state_131">shift, and go to state 131</a>
-    minus             <a href="#state_132">shift, and go to state 132</a>
-    star              <a href="#state_133">shift, and go to state 133</a>
-    greaterthanequal  <a href="#state_135">shift, and go to state 135</a>
-    equal             <a href="#state_138">shift, and go to state 138</a>
-    notequal          <a href="#state_139">shift, and go to state 139</a>
-    and               <a href="#state_140">shift, and go to state 140</a>
-    or                <a href="#state_141">shift, and go to state 141</a>
-    dot               <a href="#state_142">shift, and go to state 142</a>
+    equal     <a href="#state_138">shift, and go to state 138</a>
+    notequal  <a href="#state_139">shift, and go to state 139</a>
+    and       <a href="#state_140">shift, and go to state 140</a>
+    or        <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_90">reduce using rule 90</a> (expr)
 
-    Conflict between <a href="#rule_90">rule 90</a> and token openbracket resolved as shift (lessthanequal &lt; openbracket).
-    Conflict between <a href="#rule_90">rule 90</a> and token slash resolved as shift (lessthanequal &lt; slash).
-    Conflict between <a href="#rule_90">rule 90</a> and token percent resolved as shift (lessthanequal &lt; percent).
-    Conflict between <a href="#rule_90">rule 90</a> and token plus resolved as shift (lessthanequal &lt; plus).
-    Conflict between <a href="#rule_90">rule 90</a> and token minus resolved as shift (lessthanequal &lt; minus).
-    Conflict between <a href="#rule_90">rule 90</a> and token star resolved as shift (lessthanequal &lt; star).
+    Conflict between <a href="#rule_90">rule 90</a> and token openbracket resolved as reduce (openbracket &lt; lessthanequal).
+    Conflict between <a href="#rule_90">rule 90</a> and token slash resolved as reduce (slash &lt; lessthanequal).
+    Conflict between <a href="#rule_90">rule 90</a> and token percent resolved as reduce (percent &lt; lessthanequal).
+    Conflict between <a href="#rule_90">rule 90</a> and token plus resolved as reduce (plus &lt; lessthanequal).
+    Conflict between <a href="#rule_90">rule 90</a> and token minus resolved as reduce (minus &lt; lessthanequal).
+    Conflict between <a href="#rule_90">rule 90</a> and token star resolved as reduce (star &lt; lessthanequal).
     Conflict between <a href="#rule_90">rule 90</a> and token lessthanequal resolved as reduce (%left lessthanequal).
-    Conflict between <a href="#rule_90">rule 90</a> and token greaterthanequal resolved as shift (lessthanequal &lt; greaterthanequal).
+    Conflict between <a href="#rule_90">rule 90</a> and token greaterthanequal resolved as reduce (%left greaterthanequal).
     Conflict between <a href="#rule_90">rule 90</a> and token lessthan resolved as reduce (%left lessthan).
     Conflict between <a href="#rule_90">rule 90</a> and token greaterthan resolved as reduce (%left greaterthan).
     Conflict between <a href="#rule_90">rule 90</a> and token equal resolved as shift (lessthanequal &lt; equal).
     Conflict between <a href="#rule_90">rule 90</a> and token notequal resolved as shift (lessthanequal &lt; notequal).
     Conflict between <a href="#rule_90">rule 90</a> and token and resolved as shift (lessthanequal &lt; and).
     Conflict between <a href="#rule_90">rule 90</a> and token or resolved as shift (lessthanequal &lt; or).
-    Conflict between <a href="#rule_90">rule 90</a> and token dot resolved as shift (lessthanequal &lt; dot).
+    Conflict between <a href="#rule_90">rule 90</a> and token dot resolved as reduce (dot &lt; lessthanequal).
 </p>
 
 <h3><a name="state_172" id="state_172"></a>State 172</h3>
@@ -5405,7 +5436,7 @@
   <a href="#rule_90"> 90</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthanequal</b> <span class="i">expr</span>
   <a href="#rule_91"> 91</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthan</b> <span class="i">expr</span>
   <a href="#rule_92"> 92</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthanequal</b> <span class="i">expr</span>
-  <a href="#rule_92"> 92</a>      | <span class="i">expr</span> <b>greaterthanequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, closeparantheses, comma, dot]
+  <a href="#rule_92"> 92</a>      | <span class="i">expr</span> <b>greaterthanequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, closeparantheses, comma, dot]
   <a href="#rule_93"> 93</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>plus</b> <span class="i">expr</span>
   <a href="#rule_94"> 94</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>minus</b> <span class="i">expr</span>
   <a href="#rule_95"> 95</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>star</b> <span class="i">expr</span>
@@ -5415,28 +5446,28 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
-    notequal     <a href="#state_139">shift, and go to state 139</a>
-    and          <a href="#state_140">shift, and go to state 140</a>
-    or           <a href="#state_141">shift, and go to state 141</a>
+    equal     <a href="#state_138">shift, and go to state 138</a>
+    notequal  <a href="#state_139">shift, and go to state 139</a>
+    and       <a href="#state_140">shift, and go to state 140</a>
+    or        <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_92">reduce using rule 92</a> (expr)
 
-    Conflict between <a href="#rule_92">rule 92</a> and token openbracket resolved as shift (greaterthanequal &lt; openbracket).
-    Conflict between <a href="#rule_92">rule 92</a> and token slash resolved as reduce (%left slash).
-    Conflict between <a href="#rule_92">rule 92</a> and token percent resolved as reduce (%left percent).
-    Conflict between <a href="#rule_92">rule 92</a> and token plus resolved as reduce (%left plus).
-    Conflict between <a href="#rule_92">rule 92</a> and token minus resolved as reduce (%left minus).
-    Conflict between <a href="#rule_92">rule 92</a> and token star resolved as reduce (%left star).
-    Conflict between <a href="#rule_92">rule 92</a> and token lessthanequal resolved as reduce (lessthanequal &lt; greaterthanequal).
+    Conflict between <a href="#rule_92">rule 92</a> and token openbracket resolved as reduce (openbracket &lt; greaterthanequal).
+    Conflict between <a href="#rule_92">rule 92</a> and token slash resolved as reduce (slash &lt; greaterthanequal).
+    Conflict between <a href="#rule_92">rule 92</a> and token percent resolved as reduce (percent &lt; greaterthanequal).
+    Conflict between <a href="#rule_92">rule 92</a> and token plus resolved as reduce (plus &lt; greaterthanequal).
+    Conflict between <a href="#rule_92">rule 92</a> and token minus resolved as reduce (minus &lt; greaterthanequal).
+    Conflict between <a href="#rule_92">rule 92</a> and token star resolved as reduce (star &lt; greaterthanequal).
+    Conflict between <a href="#rule_92">rule 92</a> and token lessthanequal resolved as reduce (%left lessthanequal).
     Conflict between <a href="#rule_92">rule 92</a> and token greaterthanequal resolved as reduce (%left greaterthanequal).
-    Conflict between <a href="#rule_92">rule 92</a> and token lessthan resolved as reduce (lessthan &lt; greaterthanequal).
-    Conflict between <a href="#rule_92">rule 92</a> and token greaterthan resolved as reduce (greaterthan &lt; greaterthanequal).
-    Conflict between <a href="#rule_92">rule 92</a> and token equal resolved as reduce (%left equal).
+    Conflict between <a href="#rule_92">rule 92</a> and token lessthan resolved as reduce (%left lessthan).
+    Conflict between <a href="#rule_92">rule 92</a> and token greaterthan resolved as reduce (%left greaterthan).
+    Conflict between <a href="#rule_92">rule 92</a> and token equal resolved as shift (greaterthanequal &lt; equal).
     Conflict between <a href="#rule_92">rule 92</a> and token notequal resolved as shift (greaterthanequal &lt; notequal).
     Conflict between <a href="#rule_92">rule 92</a> and token and resolved as shift (greaterthanequal &lt; and).
     Conflict between <a href="#rule_92">rule 92</a> and token or resolved as shift (greaterthanequal &lt; or).
-    Conflict between <a href="#rule_92">rule 92</a> and token dot resolved as reduce (%left dot).
+    Conflict between <a href="#rule_92">rule 92</a> and token dot resolved as reduce (dot &lt; greaterthanequal).
 </p>
 
 <h3><a name="state_173" id="state_173"></a>State 173</h3>
@@ -5446,7 +5477,7 @@
   <a href="#rule_87"> 87</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>equal</b> <span class="i">expr</span>
   <a href="#rule_88"> 88</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>notequal</b> <span class="i">expr</span>
   <a href="#rule_89"> 89</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthan</b> <span class="i">expr</span>
-  <a href="#rule_89"> 89</a>      | <span class="i">expr</span> <b>lessthan</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, lessthanequal, lessthan, greaterthan, closeparantheses, comma]
+  <a href="#rule_89"> 89</a>      | <span class="i">expr</span> <b>lessthan</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, closeparantheses, comma, dot]
   <a href="#rule_90"> 90</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthanequal</b> <span class="i">expr</span>
   <a href="#rule_91"> 91</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthan</b> <span class="i">expr</span>
   <a href="#rule_92"> 92</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthanequal</b> <span class="i">expr</span>
@@ -5459,36 +5490,28 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket       <a href="#state_128">shift, and go to state 128</a>
-    slash             <a href="#state_129">shift, and go to state 129</a>
-    percent           <a href="#state_130">shift, and go to state 130</a>
-    plus              <a href="#state_131">shift, and go to state 131</a>
-    minus             <a href="#state_132">shift, and go to state 132</a>
-    star              <a href="#state_133">shift, and go to state 133</a>
-    greaterthanequal  <a href="#state_135">shift, and go to state 135</a>
-    equal             <a href="#state_138">shift, and go to state 138</a>
-    notequal          <a href="#state_139">shift, and go to state 139</a>
-    and               <a href="#state_140">shift, and go to state 140</a>
-    or                <a href="#state_141">shift, and go to state 141</a>
-    dot               <a href="#state_142">shift, and go to state 142</a>
+    equal     <a href="#state_138">shift, and go to state 138</a>
+    notequal  <a href="#state_139">shift, and go to state 139</a>
+    and       <a href="#state_140">shift, and go to state 140</a>
+    or        <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_89">reduce using rule 89</a> (expr)
 
-    Conflict between <a href="#rule_89">rule 89</a> and token openbracket resolved as shift (lessthan &lt; openbracket).
-    Conflict between <a href="#rule_89">rule 89</a> and token slash resolved as shift (lessthan &lt; slash).
-    Conflict between <a href="#rule_89">rule 89</a> and token percent resolved as shift (lessthan &lt; percent).
-    Conflict between <a href="#rule_89">rule 89</a> and token plus resolved as shift (lessthan &lt; plus).
-    Conflict between <a href="#rule_89">rule 89</a> and token minus resolved as shift (lessthan &lt; minus).
-    Conflict between <a href="#rule_89">rule 89</a> and token star resolved as shift (lessthan &lt; star).
+    Conflict between <a href="#rule_89">rule 89</a> and token openbracket resolved as reduce (openbracket &lt; lessthan).
+    Conflict between <a href="#rule_89">rule 89</a> and token slash resolved as reduce (slash &lt; lessthan).
+    Conflict between <a href="#rule_89">rule 89</a> and token percent resolved as reduce (percent &lt; lessthan).
+    Conflict between <a href="#rule_89">rule 89</a> and token plus resolved as reduce (plus &lt; lessthan).
+    Conflict between <a href="#rule_89">rule 89</a> and token minus resolved as reduce (minus &lt; lessthan).
+    Conflict between <a href="#rule_89">rule 89</a> and token star resolved as reduce (star &lt; lessthan).
     Conflict between <a href="#rule_89">rule 89</a> and token lessthanequal resolved as reduce (%left lessthanequal).
-    Conflict between <a href="#rule_89">rule 89</a> and token greaterthanequal resolved as shift (lessthan &lt; greaterthanequal).
+    Conflict between <a href="#rule_89">rule 89</a> and token greaterthanequal resolved as reduce (%left greaterthanequal).
     Conflict between <a href="#rule_89">rule 89</a> and token lessthan resolved as reduce (%left lessthan).
     Conflict between <a href="#rule_89">rule 89</a> and token greaterthan resolved as reduce (%left greaterthan).
     Conflict between <a href="#rule_89">rule 89</a> and token equal resolved as shift (lessthan &lt; equal).
     Conflict between <a href="#rule_89">rule 89</a> and token notequal resolved as shift (lessthan &lt; notequal).
     Conflict between <a href="#rule_89">rule 89</a> and token and resolved as shift (lessthan &lt; and).
     Conflict between <a href="#rule_89">rule 89</a> and token or resolved as shift (lessthan &lt; or).
-    Conflict between <a href="#rule_89">rule 89</a> and token dot resolved as shift (lessthan &lt; dot).
+    Conflict between <a href="#rule_89">rule 89</a> and token dot resolved as reduce (dot &lt; lessthan).
 </p>
 
 <h3><a name="state_174" id="state_174"></a>State 174</h3>
@@ -5500,7 +5523,7 @@
   <a href="#rule_89"> 89</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthan</b> <span class="i">expr</span>
   <a href="#rule_90"> 90</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthanequal</b> <span class="i">expr</span>
   <a href="#rule_91"> 91</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthan</b> <span class="i">expr</span>
-  <a href="#rule_91"> 91</a>      | <span class="i">expr</span> <b>greaterthan</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, lessthanequal, lessthan, greaterthan, closeparantheses, comma]
+  <a href="#rule_91"> 91</a>      | <span class="i">expr</span> <b>greaterthan</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, closeparantheses, comma, dot]
   <a href="#rule_92"> 92</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthanequal</b> <span class="i">expr</span>
   <a href="#rule_93"> 93</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>plus</b> <span class="i">expr</span>
   <a href="#rule_94"> 94</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>minus</b> <span class="i">expr</span>
@@ -5511,36 +5534,28 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket       <a href="#state_128">shift, and go to state 128</a>
-    slash             <a href="#state_129">shift, and go to state 129</a>
-    percent           <a href="#state_130">shift, and go to state 130</a>
-    plus              <a href="#state_131">shift, and go to state 131</a>
-    minus             <a href="#state_132">shift, and go to state 132</a>
-    star              <a href="#state_133">shift, and go to state 133</a>
-    greaterthanequal  <a href="#state_135">shift, and go to state 135</a>
-    equal             <a href="#state_138">shift, and go to state 138</a>
-    notequal          <a href="#state_139">shift, and go to state 139</a>
-    and               <a href="#state_140">shift, and go to state 140</a>
-    or                <a href="#state_141">shift, and go to state 141</a>
-    dot               <a href="#state_142">shift, and go to state 142</a>
+    equal     <a href="#state_138">shift, and go to state 138</a>
+    notequal  <a href="#state_139">shift, and go to state 139</a>
+    and       <a href="#state_140">shift, and go to state 140</a>
+    or        <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_91">reduce using rule 91</a> (expr)
 
-    Conflict between <a href="#rule_91">rule 91</a> and token openbracket resolved as shift (greaterthan &lt; openbracket).
-    Conflict between <a href="#rule_91">rule 91</a> and token slash resolved as shift (greaterthan &lt; slash).
-    Conflict between <a href="#rule_91">rule 91</a> and token percent resolved as shift (greaterthan &lt; percent).
-    Conflict between <a href="#rule_91">rule 91</a> and token plus resolved as shift (greaterthan &lt; plus).
-    Conflict between <a href="#rule_91">rule 91</a> and token minus resolved as shift (greaterthan &lt; minus).
-    Conflict between <a href="#rule_91">rule 91</a> and token star resolved as shift (greaterthan &lt; star).
+    Conflict between <a href="#rule_91">rule 91</a> and token openbracket resolved as reduce (openbracket &lt; greaterthan).
+    Conflict between <a href="#rule_91">rule 91</a> and token slash resolved as reduce (slash &lt; greaterthan).
+    Conflict between <a href="#rule_91">rule 91</a> and token percent resolved as reduce (percent &lt; greaterthan).
+    Conflict between <a href="#rule_91">rule 91</a> and token plus resolved as reduce (plus &lt; greaterthan).
+    Conflict between <a href="#rule_91">rule 91</a> and token minus resolved as reduce (minus &lt; greaterthan).
+    Conflict between <a href="#rule_91">rule 91</a> and token star resolved as reduce (star &lt; greaterthan).
     Conflict between <a href="#rule_91">rule 91</a> and token lessthanequal resolved as reduce (%left lessthanequal).
-    Conflict between <a href="#rule_91">rule 91</a> and token greaterthanequal resolved as shift (greaterthan &lt; greaterthanequal).
+    Conflict between <a href="#rule_91">rule 91</a> and token greaterthanequal resolved as reduce (%left greaterthanequal).
     Conflict between <a href="#rule_91">rule 91</a> and token lessthan resolved as reduce (%left lessthan).
     Conflict between <a href="#rule_91">rule 91</a> and token greaterthan resolved as reduce (%left greaterthan).
     Conflict between <a href="#rule_91">rule 91</a> and token equal resolved as shift (greaterthan &lt; equal).
     Conflict between <a href="#rule_91">rule 91</a> and token notequal resolved as shift (greaterthan &lt; notequal).
     Conflict between <a href="#rule_91">rule 91</a> and token and resolved as shift (greaterthan &lt; and).
     Conflict between <a href="#rule_91">rule 91</a> and token or resolved as shift (greaterthan &lt; or).
-    Conflict between <a href="#rule_91">rule 91</a> and token dot resolved as shift (greaterthan &lt; dot).
+    Conflict between <a href="#rule_91">rule 91</a> and token dot resolved as reduce (dot &lt; greaterthan).
 </p>
 
 <h3><a name="state_175" id="state_175"></a>State 175</h3>
@@ -5548,7 +5563,7 @@
 <p class="pre">  <a href="#rule_85"> 85</a> <span class="i">expr</span> → <span class="i">expr</span> <span class="dot">•</span> <b>or</b> <span class="i">expr</span>
   <a href="#rule_86"> 86</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>and</b> <span class="i">expr</span>
   <a href="#rule_87"> 87</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>equal</b> <span class="i">expr</span>
-  <a href="#rule_87"> 87</a>      | <span class="i">expr</span> <b>equal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, closeparantheses, comma, dot]
+  <a href="#rule_87"> 87</a>      | <span class="i">expr</span> <b>equal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, notequal, closeparantheses, comma, dot]
   <a href="#rule_88"> 88</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>notequal</b> <span class="i">expr</span>
   <a href="#rule_89"> 89</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthan</b> <span class="i">expr</span>
   <a href="#rule_90"> 90</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthanequal</b> <span class="i">expr</span>
@@ -5563,28 +5578,26 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
-    notequal     <a href="#state_139">shift, and go to state 139</a>
-    and          <a href="#state_140">shift, and go to state 140</a>
-    or           <a href="#state_141">shift, and go to state 141</a>
+    and  <a href="#state_140">shift, and go to state 140</a>
+    or   <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_87">reduce using rule 87</a> (expr)
 
-    Conflict between <a href="#rule_87">rule 87</a> and token openbracket resolved as shift (equal &lt; openbracket).
-    Conflict between <a href="#rule_87">rule 87</a> and token slash resolved as reduce (%left slash).
-    Conflict between <a href="#rule_87">rule 87</a> and token percent resolved as reduce (%left percent).
-    Conflict between <a href="#rule_87">rule 87</a> and token plus resolved as reduce (%left plus).
-    Conflict between <a href="#rule_87">rule 87</a> and token minus resolved as reduce (%left minus).
-    Conflict between <a href="#rule_87">rule 87</a> and token star resolved as reduce (%left star).
+    Conflict between <a href="#rule_87">rule 87</a> and token openbracket resolved as reduce (openbracket &lt; equal).
+    Conflict between <a href="#rule_87">rule 87</a> and token slash resolved as reduce (slash &lt; equal).
+    Conflict between <a href="#rule_87">rule 87</a> and token percent resolved as reduce (percent &lt; equal).
+    Conflict between <a href="#rule_87">rule 87</a> and token plus resolved as reduce (plus &lt; equal).
+    Conflict between <a href="#rule_87">rule 87</a> and token minus resolved as reduce (minus &lt; equal).
+    Conflict between <a href="#rule_87">rule 87</a> and token star resolved as reduce (star &lt; equal).
     Conflict between <a href="#rule_87">rule 87</a> and token lessthanequal resolved as reduce (lessthanequal &lt; equal).
-    Conflict between <a href="#rule_87">rule 87</a> and token greaterthanequal resolved as reduce (%left greaterthanequal).
+    Conflict between <a href="#rule_87">rule 87</a> and token greaterthanequal resolved as reduce (greaterthanequal &lt; equal).
     Conflict between <a href="#rule_87">rule 87</a> and token lessthan resolved as reduce (lessthan &lt; equal).
     Conflict between <a href="#rule_87">rule 87</a> and token greaterthan resolved as reduce (greaterthan &lt; equal).
     Conflict between <a href="#rule_87">rule 87</a> and token equal resolved as reduce (%left equal).
-    Conflict between <a href="#rule_87">rule 87</a> and token notequal resolved as shift (equal &lt; notequal).
+    Conflict between <a href="#rule_87">rule 87</a> and token notequal resolved as reduce (%left notequal).
     Conflict between <a href="#rule_87">rule 87</a> and token and resolved as shift (equal &lt; and).
     Conflict between <a href="#rule_87">rule 87</a> and token or resolved as shift (equal &lt; or).
-    Conflict between <a href="#rule_87">rule 87</a> and token dot resolved as reduce (%left dot).
+    Conflict between <a href="#rule_87">rule 87</a> and token dot resolved as reduce (dot &lt; equal).
 </p>
 
 <h3><a name="state_176" id="state_176"></a>State 176</h3>
@@ -5593,7 +5606,7 @@
   <a href="#rule_86"> 86</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>and</b> <span class="i">expr</span>
   <a href="#rule_87"> 87</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>equal</b> <span class="i">expr</span>
   <a href="#rule_88"> 88</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>notequal</b> <span class="i">expr</span>
-  <a href="#rule_88"> 88</a>      | <span class="i">expr</span> <b>notequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, notequal, and, or, closeparantheses, comma, dot]
+  <a href="#rule_88"> 88</a>      | <span class="i">expr</span> <b>notequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, notequal, closeparantheses, comma, dot]
   <a href="#rule_89"> 89</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthan</b> <span class="i">expr</span>
   <a href="#rule_90"> 90</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthanequal</b> <span class="i">expr</span>
   <a href="#rule_91"> 91</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>greaterthan</b> <span class="i">expr</span>
@@ -5607,11 +5620,12 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
+    and  <a href="#state_140">shift, and go to state 140</a>
+    or   <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_88">reduce using rule 88</a> (expr)
 
-    Conflict between <a href="#rule_88">rule 88</a> and token openbracket resolved as shift (notequal &lt; openbracket).
+    Conflict between <a href="#rule_88">rule 88</a> and token openbracket resolved as reduce (openbracket &lt; notequal).
     Conflict between <a href="#rule_88">rule 88</a> and token slash resolved as reduce (slash &lt; notequal).
     Conflict between <a href="#rule_88">rule 88</a> and token percent resolved as reduce (percent &lt; notequal).
     Conflict between <a href="#rule_88">rule 88</a> and token plus resolved as reduce (plus &lt; notequal).
@@ -5621,10 +5635,10 @@
     Conflict between <a href="#rule_88">rule 88</a> and token greaterthanequal resolved as reduce (greaterthanequal &lt; notequal).
     Conflict between <a href="#rule_88">rule 88</a> and token lessthan resolved as reduce (lessthan &lt; notequal).
     Conflict between <a href="#rule_88">rule 88</a> and token greaterthan resolved as reduce (greaterthan &lt; notequal).
-    Conflict between <a href="#rule_88">rule 88</a> and token equal resolved as reduce (equal &lt; notequal).
+    Conflict between <a href="#rule_88">rule 88</a> and token equal resolved as reduce (%left equal).
     Conflict between <a href="#rule_88">rule 88</a> and token notequal resolved as reduce (%left notequal).
-    Conflict between <a href="#rule_88">rule 88</a> and token and resolved as reduce (%left and).
-    Conflict between <a href="#rule_88">rule 88</a> and token or resolved as reduce (%left or).
+    Conflict between <a href="#rule_88">rule 88</a> and token and resolved as shift (notequal &lt; and).
+    Conflict between <a href="#rule_88">rule 88</a> and token or resolved as shift (notequal &lt; or).
     Conflict between <a href="#rule_88">rule 88</a> and token dot resolved as reduce (dot &lt; notequal).
 </p>
 
@@ -5632,7 +5646,7 @@
 
 <p class="pre">  <a href="#rule_85"> 85</a> <span class="i">expr</span> → <span class="i">expr</span> <span class="dot">•</span> <b>or</b> <span class="i">expr</span>
   <a href="#rule_86"> 86</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>and</b> <span class="i">expr</span>
-  <a href="#rule_86"> 86</a>      | <span class="i">expr</span> <b>and</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, notequal, and, or, closeparantheses, comma, dot]
+  <a href="#rule_86"> 86</a>      | <span class="i">expr</span> <b>and</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, notequal, and, closeparantheses, comma, dot]
   <a href="#rule_87"> 87</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>equal</b> <span class="i">expr</span>
   <a href="#rule_88"> 88</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>notequal</b> <span class="i">expr</span>
   <a href="#rule_89"> 89</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>lessthan</b> <span class="i">expr</span>
@@ -5648,11 +5662,11 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
+    or  <a href="#state_141">shift, and go to state 141</a>
 
     $default  <a href="#rule_86">reduce using rule 86</a> (expr)
 
-    Conflict between <a href="#rule_86">rule 86</a> and token openbracket resolved as shift (and &lt; openbracket).
+    Conflict between <a href="#rule_86">rule 86</a> and token openbracket resolved as reduce (openbracket &lt; and).
     Conflict between <a href="#rule_86">rule 86</a> and token slash resolved as reduce (slash &lt; and).
     Conflict between <a href="#rule_86">rule 86</a> and token percent resolved as reduce (percent &lt; and).
     Conflict between <a href="#rule_86">rule 86</a> and token plus resolved as reduce (plus &lt; and).
@@ -5663,16 +5677,16 @@
     Conflict between <a href="#rule_86">rule 86</a> and token lessthan resolved as reduce (lessthan &lt; and).
     Conflict between <a href="#rule_86">rule 86</a> and token greaterthan resolved as reduce (greaterthan &lt; and).
     Conflict between <a href="#rule_86">rule 86</a> and token equal resolved as reduce (equal &lt; and).
-    Conflict between <a href="#rule_86">rule 86</a> and token notequal resolved as reduce (%left notequal).
+    Conflict between <a href="#rule_86">rule 86</a> and token notequal resolved as reduce (notequal &lt; and).
     Conflict between <a href="#rule_86">rule 86</a> and token and resolved as reduce (%left and).
-    Conflict between <a href="#rule_86">rule 86</a> and token or resolved as reduce (%left or).
+    Conflict between <a href="#rule_86">rule 86</a> and token or resolved as shift (and &lt; or).
     Conflict between <a href="#rule_86">rule 86</a> and token dot resolved as reduce (dot &lt; and).
 </p>
 
 <h3><a name="state_178" id="state_178"></a>State 178</h3>
 
 <p class="pre">  <a href="#rule_85"> 85</a> <span class="i">expr</span> → <span class="i">expr</span> <span class="dot">•</span> <b>or</b> <span class="i">expr</span>
-  <a href="#rule_85"> 85</a>      | <span class="i">expr</span> <b>or</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, notequal, and, or, closeparantheses, comma, dot]
+  <a href="#rule_85"> 85</a>      | <span class="i">expr</span> <b>or</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, notequal, and, or, closeparantheses, comma, dot]
   <a href="#rule_86"> 86</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>and</b> <span class="i">expr</span>
   <a href="#rule_87"> 87</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>equal</b> <span class="i">expr</span>
   <a href="#rule_88"> 88</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>notequal</b> <span class="i">expr</span>
@@ -5689,11 +5703,9 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
-
     $default  <a href="#rule_85">reduce using rule 85</a> (expr)
 
-    Conflict between <a href="#rule_85">rule 85</a> and token openbracket resolved as shift (or &lt; openbracket).
+    Conflict between <a href="#rule_85">rule 85</a> and token openbracket resolved as reduce (openbracket &lt; or).
     Conflict between <a href="#rule_85">rule 85</a> and token slash resolved as reduce (slash &lt; or).
     Conflict between <a href="#rule_85">rule 85</a> and token percent resolved as reduce (percent &lt; or).
     Conflict between <a href="#rule_85">rule 85</a> and token plus resolved as reduce (plus &lt; or).
@@ -5704,8 +5716,8 @@
     Conflict between <a href="#rule_85">rule 85</a> and token lessthan resolved as reduce (lessthan &lt; or).
     Conflict between <a href="#rule_85">rule 85</a> and token greaterthan resolved as reduce (greaterthan &lt; or).
     Conflict between <a href="#rule_85">rule 85</a> and token equal resolved as reduce (equal &lt; or).
-    Conflict between <a href="#rule_85">rule 85</a> and token notequal resolved as reduce (%left notequal).
-    Conflict between <a href="#rule_85">rule 85</a> and token and resolved as reduce (%left and).
+    Conflict between <a href="#rule_85">rule 85</a> and token notequal resolved as reduce (notequal &lt; or).
+    Conflict between <a href="#rule_85">rule 85</a> and token and resolved as reduce (and &lt; or).
     Conflict between <a href="#rule_85">rule 85</a> and token or resolved as reduce (%left or).
     Conflict between <a href="#rule_85">rule 85</a> and token dot resolved as reduce (dot &lt; or).
 </p>
@@ -5722,7 +5734,7 @@
 
 <h3><a name="state_180" id="state_180"></a>State 180</h3>
 
-<p class="pre">  <a href="#rule_80"> 80</a> <span class="i">expr</span> → <span class="i">lvalue</span> <b>assign</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, lessthanequal, lessthan, greaterthan, closeparantheses, comma]
+<p class="pre">  <a href="#rule_80"> 80</a> <span class="i">expr</span> → <span class="i">lvalue</span> <b>assign</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, notequal, and, or, closeparantheses, comma, dot]
   <a href="#rule_85"> 85</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>or</b> <span class="i">expr</span>
   <a href="#rule_86"> 86</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>and</b> <span class="i">expr</span>
   <a href="#rule_87"> 87</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>equal</b> <span class="i">expr</span>
@@ -5740,41 +5752,28 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket       <a href="#state_128">shift, and go to state 128</a>
-    slash             <a href="#state_129">shift, and go to state 129</a>
-    percent           <a href="#state_130">shift, and go to state 130</a>
-    plus              <a href="#state_131">shift, and go to state 131</a>
-    minus             <a href="#state_132">shift, and go to state 132</a>
-    star              <a href="#state_133">shift, and go to state 133</a>
-    greaterthanequal  <a href="#state_135">shift, and go to state 135</a>
-    equal             <a href="#state_138">shift, and go to state 138</a>
-    notequal          <a href="#state_139">shift, and go to state 139</a>
-    and               <a href="#state_140">shift, and go to state 140</a>
-    or                <a href="#state_141">shift, and go to state 141</a>
-    dot               <a href="#state_142">shift, and go to state 142</a>
-
     $default  <a href="#rule_80">reduce using rule 80</a> (expr)
 
-    Conflict between <a href="#rule_80">rule 80</a> and token openbracket resolved as shift (assign &lt; openbracket).
-    Conflict between <a href="#rule_80">rule 80</a> and token slash resolved as shift (assign &lt; slash).
-    Conflict between <a href="#rule_80">rule 80</a> and token percent resolved as shift (assign &lt; percent).
-    Conflict between <a href="#rule_80">rule 80</a> and token plus resolved as shift (assign &lt; plus).
-    Conflict between <a href="#rule_80">rule 80</a> and token minus resolved as shift (assign &lt; minus).
-    Conflict between <a href="#rule_80">rule 80</a> and token star resolved as shift (assign &lt; star).
-    Conflict between <a href="#rule_80">rule 80</a> and token lessthanequal resolved as reduce (%left lessthanequal).
-    Conflict between <a href="#rule_80">rule 80</a> and token greaterthanequal resolved as shift (assign &lt; greaterthanequal).
-    Conflict between <a href="#rule_80">rule 80</a> and token lessthan resolved as reduce (%left lessthan).
-    Conflict between <a href="#rule_80">rule 80</a> and token greaterthan resolved as reduce (%left greaterthan).
-    Conflict between <a href="#rule_80">rule 80</a> and token equal resolved as shift (assign &lt; equal).
-    Conflict between <a href="#rule_80">rule 80</a> and token notequal resolved as shift (assign &lt; notequal).
-    Conflict between <a href="#rule_80">rule 80</a> and token and resolved as shift (assign &lt; and).
-    Conflict between <a href="#rule_80">rule 80</a> and token or resolved as shift (assign &lt; or).
-    Conflict between <a href="#rule_80">rule 80</a> and token dot resolved as shift (assign &lt; dot).
+    Conflict between <a href="#rule_80">rule 80</a> and token openbracket resolved as reduce (openbracket &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token slash resolved as reduce (slash &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token percent resolved as reduce (percent &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token plus resolved as reduce (plus &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token minus resolved as reduce (minus &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token star resolved as reduce (star &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token lessthanequal resolved as reduce (lessthanequal &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token greaterthanequal resolved as reduce (greaterthanequal &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token lessthan resolved as reduce (lessthan &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token greaterthan resolved as reduce (greaterthan &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token equal resolved as reduce (equal &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token notequal resolved as reduce (notequal &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token and resolved as reduce (and &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token or resolved as reduce (or &lt; assign).
+    Conflict between <a href="#rule_80">rule 80</a> and token dot resolved as reduce (dot &lt; assign).
 </p>
 
 <h3><a name="state_181" id="state_181"></a>State 181</h3>
 
-<p class="pre">  <a href="#rule_81"> 81</a> <span class="i">expr</span> → <span class="i">lvalue</span> <b>plusequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, lessthanequal, lessthan, greaterthan, closeparantheses, comma]
+<p class="pre">  <a href="#rule_81"> 81</a> <span class="i">expr</span> → <span class="i">lvalue</span> <b>plusequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, notequal, and, or, closeparantheses, comma, dot]
   <a href="#rule_85"> 85</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>or</b> <span class="i">expr</span>
   <a href="#rule_86"> 86</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>and</b> <span class="i">expr</span>
   <a href="#rule_87"> 87</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>equal</b> <span class="i">expr</span>
@@ -5792,41 +5791,28 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket       <a href="#state_128">shift, and go to state 128</a>
-    slash             <a href="#state_129">shift, and go to state 129</a>
-    percent           <a href="#state_130">shift, and go to state 130</a>
-    plus              <a href="#state_131">shift, and go to state 131</a>
-    minus             <a href="#state_132">shift, and go to state 132</a>
-    star              <a href="#state_133">shift, and go to state 133</a>
-    greaterthanequal  <a href="#state_135">shift, and go to state 135</a>
-    equal             <a href="#state_138">shift, and go to state 138</a>
-    notequal          <a href="#state_139">shift, and go to state 139</a>
-    and               <a href="#state_140">shift, and go to state 140</a>
-    or                <a href="#state_141">shift, and go to state 141</a>
-    dot               <a href="#state_142">shift, and go to state 142</a>
-
     $default  <a href="#rule_81">reduce using rule 81</a> (expr)
 
-    Conflict between <a href="#rule_81">rule 81</a> and token openbracket resolved as shift (plusequal &lt; openbracket).
-    Conflict between <a href="#rule_81">rule 81</a> and token slash resolved as shift (plusequal &lt; slash).
-    Conflict between <a href="#rule_81">rule 81</a> and token percent resolved as shift (plusequal &lt; percent).
-    Conflict between <a href="#rule_81">rule 81</a> and token plus resolved as shift (plusequal &lt; plus).
-    Conflict between <a href="#rule_81">rule 81</a> and token minus resolved as shift (plusequal &lt; minus).
-    Conflict between <a href="#rule_81">rule 81</a> and token star resolved as shift (plusequal &lt; star).
-    Conflict between <a href="#rule_81">rule 81</a> and token lessthanequal resolved as reduce (%left lessthanequal).
-    Conflict between <a href="#rule_81">rule 81</a> and token greaterthanequal resolved as shift (plusequal &lt; greaterthanequal).
-    Conflict between <a href="#rule_81">rule 81</a> and token lessthan resolved as reduce (%left lessthan).
-    Conflict between <a href="#rule_81">rule 81</a> and token greaterthan resolved as reduce (%left greaterthan).
-    Conflict between <a href="#rule_81">rule 81</a> and token equal resolved as shift (plusequal &lt; equal).
-    Conflict between <a href="#rule_81">rule 81</a> and token notequal resolved as shift (plusequal &lt; notequal).
-    Conflict between <a href="#rule_81">rule 81</a> and token and resolved as shift (plusequal &lt; and).
-    Conflict between <a href="#rule_81">rule 81</a> and token or resolved as shift (plusequal &lt; or).
-    Conflict between <a href="#rule_81">rule 81</a> and token dot resolved as shift (plusequal &lt; dot).
+    Conflict between <a href="#rule_81">rule 81</a> and token openbracket resolved as reduce (openbracket &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token slash resolved as reduce (slash &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token percent resolved as reduce (percent &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token plus resolved as reduce (plus &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token minus resolved as reduce (minus &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token star resolved as reduce (star &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token lessthanequal resolved as reduce (lessthanequal &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token greaterthanequal resolved as reduce (greaterthanequal &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token lessthan resolved as reduce (lessthan &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token greaterthan resolved as reduce (greaterthan &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token equal resolved as reduce (equal &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token notequal resolved as reduce (notequal &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token and resolved as reduce (and &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token or resolved as reduce (or &lt; plusequal).
+    Conflict between <a href="#rule_81">rule 81</a> and token dot resolved as reduce (dot &lt; plusequal).
 </p>
 
 <h3><a name="state_182" id="state_182"></a>State 182</h3>
 
-<p class="pre">  <a href="#rule_82"> 82</a> <span class="i">expr</span> → <span class="i">lvalue</span> <b>minusequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, closeparantheses, comma, dot]
+<p class="pre">  <a href="#rule_82"> 82</a> <span class="i">expr</span> → <span class="i">lvalue</span> <b>minusequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, notequal, and, or, closeparantheses, comma, dot]
   <a href="#rule_85"> 85</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>or</b> <span class="i">expr</span>
   <a href="#rule_86"> 86</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>and</b> <span class="i">expr</span>
   <a href="#rule_87"> 87</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>equal</b> <span class="i">expr</span>
@@ -5844,14 +5830,9 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
-    notequal     <a href="#state_139">shift, and go to state 139</a>
-    and          <a href="#state_140">shift, and go to state 140</a>
-    or           <a href="#state_141">shift, and go to state 141</a>
-
     $default  <a href="#rule_82">reduce using rule 82</a> (expr)
 
-    Conflict between <a href="#rule_82">rule 82</a> and token openbracket resolved as shift (minusequal &lt; openbracket).
+    Conflict between <a href="#rule_82">rule 82</a> and token openbracket resolved as reduce (openbracket &lt; minusequal).
     Conflict between <a href="#rule_82">rule 82</a> and token slash resolved as reduce (slash &lt; minusequal).
     Conflict between <a href="#rule_82">rule 82</a> and token percent resolved as reduce (percent &lt; minusequal).
     Conflict between <a href="#rule_82">rule 82</a> and token plus resolved as reduce (plus &lt; minusequal).
@@ -5862,15 +5843,15 @@
     Conflict between <a href="#rule_82">rule 82</a> and token lessthan resolved as reduce (lessthan &lt; minusequal).
     Conflict between <a href="#rule_82">rule 82</a> and token greaterthan resolved as reduce (greaterthan &lt; minusequal).
     Conflict between <a href="#rule_82">rule 82</a> and token equal resolved as reduce (equal &lt; minusequal).
-    Conflict between <a href="#rule_82">rule 82</a> and token notequal resolved as shift (minusequal &lt; notequal).
-    Conflict between <a href="#rule_82">rule 82</a> and token and resolved as shift (minusequal &lt; and).
-    Conflict between <a href="#rule_82">rule 82</a> and token or resolved as shift (minusequal &lt; or).
+    Conflict between <a href="#rule_82">rule 82</a> and token notequal resolved as reduce (notequal &lt; minusequal).
+    Conflict between <a href="#rule_82">rule 82</a> and token and resolved as reduce (and &lt; minusequal).
+    Conflict between <a href="#rule_82">rule 82</a> and token or resolved as reduce (or &lt; minusequal).
     Conflict between <a href="#rule_82">rule 82</a> and token dot resolved as reduce (dot &lt; minusequal).
 </p>
 
 <h3><a name="state_183" id="state_183"></a>State 183</h3>
 
-<p class="pre">  <a href="#rule_83"> 83</a> <span class="i">expr</span> → <span class="i">lvalue</span> <b>starequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, closeparantheses, comma, dot]
+<p class="pre">  <a href="#rule_83"> 83</a> <span class="i">expr</span> → <span class="i">lvalue</span> <b>starequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, notequal, and, or, closeparantheses, comma, dot]
   <a href="#rule_85"> 85</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>or</b> <span class="i">expr</span>
   <a href="#rule_86"> 86</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>and</b> <span class="i">expr</span>
   <a href="#rule_87"> 87</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>equal</b> <span class="i">expr</span>
@@ -5888,14 +5869,9 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket  <a href="#state_128">shift, and go to state 128</a>
-    notequal     <a href="#state_139">shift, and go to state 139</a>
-    and          <a href="#state_140">shift, and go to state 140</a>
-    or           <a href="#state_141">shift, and go to state 141</a>
-
     $default  <a href="#rule_83">reduce using rule 83</a> (expr)
 
-    Conflict between <a href="#rule_83">rule 83</a> and token openbracket resolved as shift (starequal &lt; openbracket).
+    Conflict between <a href="#rule_83">rule 83</a> and token openbracket resolved as reduce (openbracket &lt; starequal).
     Conflict between <a href="#rule_83">rule 83</a> and token slash resolved as reduce (slash &lt; starequal).
     Conflict between <a href="#rule_83">rule 83</a> and token percent resolved as reduce (percent &lt; starequal).
     Conflict between <a href="#rule_83">rule 83</a> and token plus resolved as reduce (plus &lt; starequal).
@@ -5906,15 +5882,15 @@
     Conflict between <a href="#rule_83">rule 83</a> and token lessthan resolved as reduce (lessthan &lt; starequal).
     Conflict between <a href="#rule_83">rule 83</a> and token greaterthan resolved as reduce (greaterthan &lt; starequal).
     Conflict between <a href="#rule_83">rule 83</a> and token equal resolved as reduce (equal &lt; starequal).
-    Conflict between <a href="#rule_83">rule 83</a> and token notequal resolved as shift (starequal &lt; notequal).
-    Conflict between <a href="#rule_83">rule 83</a> and token and resolved as shift (starequal &lt; and).
-    Conflict between <a href="#rule_83">rule 83</a> and token or resolved as shift (starequal &lt; or).
+    Conflict between <a href="#rule_83">rule 83</a> and token notequal resolved as reduce (notequal &lt; starequal).
+    Conflict between <a href="#rule_83">rule 83</a> and token and resolved as reduce (and &lt; starequal).
+    Conflict between <a href="#rule_83">rule 83</a> and token or resolved as reduce (or &lt; starequal).
     Conflict between <a href="#rule_83">rule 83</a> and token dot resolved as reduce (dot &lt; starequal).
 </p>
 
 <h3><a name="state_184" id="state_184"></a>State 184</h3>
 
-<p class="pre">  <a href="#rule_84"> 84</a> <span class="i">expr</span> → <span class="i">lvalue</span> <b>slashequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, closebracket, lessthanequal, lessthan, greaterthan, closeparantheses, comma]
+<p class="pre">  <a href="#rule_84"> 84</a> <span class="i">expr</span> → <span class="i">lvalue</span> <b>slashequal</b> <span class="i">expr</span> <span class="dot">•</span>  [semicolon, openbracket, closebracket, slash, percent, plus, minus, star, lessthanequal, greaterthanequal, lessthan, greaterthan, equal, notequal, and, or, closeparantheses, comma, dot]
   <a href="#rule_85"> 85</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>or</b> <span class="i">expr</span>
   <a href="#rule_86"> 86</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>and</b> <span class="i">expr</span>
   <a href="#rule_87"> 87</a>      | <span class="i">expr</span> <span class="dot">•</span> <b>equal</b> <span class="i">expr</span>
@@ -5932,36 +5908,23 @@
   <a href="#rule_103">103</a>        | <span class="i">expr</span> <span class="dot">•</span> <b>openbracket</b> <span class="i">expr</span> <b>closebracket</b>
   <a href="#rule_105">105</a> <span class="i">call</span> → <span class="i">expr</span> <span class="dot">•</span> <b>dot</b> <b>id</b> <b>openparantheses</b> <span class="i">actuals</span> <b>closeparantheses</b>
 
-    openbracket       <a href="#state_128">shift, and go to state 128</a>
-    slash             <a href="#state_129">shift, and go to state 129</a>
-    percent           <a href="#state_130">shift, and go to state 130</a>
-    plus              <a href="#state_131">shift, and go to state 131</a>
-    minus             <a href="#state_132">shift, and go to state 132</a>
-    star              <a href="#state_133">shift, and go to state 133</a>
-    greaterthanequal  <a href="#state_135">shift, and go to state 135</a>
-    equal             <a href="#state_138">shift, and go to state 138</a>
-    notequal          <a href="#state_139">shift, and go to state 139</a>
-    and               <a href="#state_140">shift, and go to state 140</a>
-    or                <a href="#state_141">shift, and go to state 141</a>
-    dot               <a href="#state_142">shift, and go to state 142</a>
-
     $default  <a href="#rule_84">reduce using rule 84</a> (expr)
 
-    Conflict between <a href="#rule_84">rule 84</a> and token openbracket resolved as shift (slashequal &lt; openbracket).
-    Conflict between <a href="#rule_84">rule 84</a> and token slash resolved as shift (slashequal &lt; slash).
-    Conflict between <a href="#rule_84">rule 84</a> and token percent resolved as shift (slashequal &lt; percent).
-    Conflict between <a href="#rule_84">rule 84</a> and token plus resolved as shift (slashequal &lt; plus).
-    Conflict between <a href="#rule_84">rule 84</a> and token minus resolved as shift (slashequal &lt; minus).
-    Conflict between <a href="#rule_84">rule 84</a> and token star resolved as shift (slashequal &lt; star).
-    Conflict between <a href="#rule_84">rule 84</a> and token lessthanequal resolved as reduce (%left lessthanequal).
-    Conflict between <a href="#rule_84">rule 84</a> and token greaterthanequal resolved as shift (slashequal &lt; greaterthanequal).
-    Conflict between <a href="#rule_84">rule 84</a> and token lessthan resolved as reduce (%left lessthan).
-    Conflict between <a href="#rule_84">rule 84</a> and token greaterthan resolved as reduce (%left greaterthan).
-    Conflict between <a href="#rule_84">rule 84</a> and token equal resolved as shift (slashequal &lt; equal).
-    Conflict between <a href="#rule_84">rule 84</a> and token notequal resolved as shift (slashequal &lt; notequal).
-    Conflict between <a href="#rule_84">rule 84</a> and token and resolved as shift (slashequal &lt; and).
-    Conflict between <a href="#rule_84">rule 84</a> and token or resolved as shift (slashequal &lt; or).
-    Conflict between <a href="#rule_84">rule 84</a> and token dot resolved as shift (slashequal &lt; dot).
+    Conflict between <a href="#rule_84">rule 84</a> and token openbracket resolved as reduce (openbracket &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token slash resolved as reduce (slash &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token percent resolved as reduce (percent &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token plus resolved as reduce (plus &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token minus resolved as reduce (minus &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token star resolved as reduce (star &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token lessthanequal resolved as reduce (lessthanequal &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token greaterthanequal resolved as reduce (greaterthanequal &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token lessthan resolved as reduce (lessthan &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token greaterthan resolved as reduce (greaterthan &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token equal resolved as reduce (equal &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token notequal resolved as reduce (notequal &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token and resolved as reduce (and &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token or resolved as reduce (or &lt; slashequal).
+    Conflict between <a href="#rule_84">rule 84</a> and token dot resolved as reduce (dot &lt; slashequal).
 </p>
 
 <h3><a name="state_185" id="state_185"></a>State 185</h3>
