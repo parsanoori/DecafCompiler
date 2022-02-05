@@ -467,27 +467,34 @@ exprtype codegen::unarynot(const exprtype &expr) {
 }
 
 void codegen::whilestmt1() {
-    cout << "I am here . where are Uuuuuuuuuuuuu ?" << endl;
-    string whilename = idgen::nextid() + "_while_loop";
-    st->pushscope(whilename);
-    w->appendText("    " + whilename + "_before:");
+    string whilename = "while_loop_" + idgen::nextid();
+    w->appendText(whilename + ":");
+    ss.push(whilename);
 }
 
 void codegen::whilestmt2(const pair<string, string> &expr) {
-    cout << "I am here . where are Uuuuuuuuuuuuu ?" << endl;
     if (expr.second != "bool")
         throw runtime_error("invalid type for while expression");
-    string laftername = st->currentscopename() + "_after";
+    string endwhile = "endwhile_" + idgen::nextid();
     w->appendText("    lw $t0, " + expr.first + "\n"
-                  + "    beqz $t0, " + laftername + ":\n"
+                  + "    beqz $t0, " + endwhile + "\n"
     );
+    ss.push(endwhile);
 }
 
 void codegen::whilestmt3() {
-    cout << "I am here . where are Uuuuuuuuuuuuu ?" << endl;
-    string whilename = st->currentscopename();
-    w->appendText("    j " + whilename + "_before\n"
-                  + whilename + "_after:\n"
+    string startname,endname;
+    try{
+        endname = any_cast<string>(ss.top());
+        ss.pop();
+        startname = any_cast<string>(ss.top());
+        ss.pop();
+    } catch (const bad_any_cast &e) {
+        cerr << "bad any cast in whilestmt3" << endl;
+        throw e;
+    }
+    w->appendText("    j " + startname + "\n"
+                  + endname + ":\n\n"
     );
 }
 
