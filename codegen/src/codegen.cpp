@@ -288,6 +288,35 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
         throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
     string temp_id = idgen::nextid();
     string type_of_output;
+    if(expr.second == "string"){
+        if(operation != "+"){
+            throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
+        }
+        w->appendData("    " + temp_id + ": .space 1024\n");
+        w->appendText(
+                "    # doing the " + operation + "\n"
+                + "    la $t2, " + expr.first + "\n"
+                + "    la $t1, " + lefside.first + "\n"
+                + "    la $t3, " + temp_id + "\n"
+                + "copyfirst" + temp_id + ":\n"
+                + "    lb $t0, ($t1)\n"
+                + "    beqz $t0, copysecond" + temp_id + "\n"
+                + "    sb $t0, ($t3)\n"
+                + "    addi $t1, $t1, 1\n"
+                + "    addi $t3, $t3, 1\n"
+                + "    j copyfirst" + temp_id + "\n"
+                + "copysecond" + temp_id + ":\n"
+                + "    lb $t0, ($t2)\n"
+                + "    beqz $t0, copyend" + temp_id + "\n"
+                + "    sb $t0, ($t3)\n"
+                + "    addi $t2, $t2, 1\n"
+                + "    addi $t3, $t3, 1\n"
+                + "    j copysecond" + temp_id + "\n"
+                + "copyend" + temp_id + ":\n"
+                + "    sb $t0, ($t3)\n\n"
+        );
+        return {temp_id, "string"};
+    }
     w->appendData("    " + temp_id + ": .word 0\n");
     if (expr.second == "int" || expr.second == "bool") {
         w->appendText(
