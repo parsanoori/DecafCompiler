@@ -200,7 +200,7 @@ expr:
     |   expr star expr                 { $$ = cg.exproperation($1,$3,$2); }
     |   expr slash expr                 { $$ = cg.exproperation($1,$3,$2); }
     |   expr percent expr                 { $$ = cg.exproperation($1,$3,$2); }
-    |   minus expr                      {}
+    |   minus expr                      { $$ = cg.unaryminus($2); }
     |   not expr                      {}
     |   openparantheses expr closeparantheses                      { $$ = $2; }
 

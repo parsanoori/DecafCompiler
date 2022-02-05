@@ -298,3 +298,17 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
     return {temp_id, expr.second};
 }
 
+exprtype codegen::unaryminus(const exprtype &expr) {
+    if (expr.second != "int")
+        throw runtime_error("semantic error: invalid operation: -" + expr.second);
+    string temp_id = idgen::nextid();
+    w->appendData("    " + temp_id + ": .word 0\n");
+    w->appendText("    # doing the u-\n");
+    w->appendText(
+            "    lw $t0, " + expr.first + "\n"
+            + "    sub $t0, $zero, $t0\n"
+            + "    sw $t0, " + temp_id + "\n\n"
+    );
+    return {temp_id, expr.second};
+}
+

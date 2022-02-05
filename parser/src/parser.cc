@@ -1671,7 +1671,7 @@ namespace yy {
 
   case 99: // expr: minus expr
 #line 203 "parser.yy"
-                                        {}
+                                        { yylhs.value.as < std::pair<std::string,std::string> > () = cg.unaryminus(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
 #line 1676 "src/parser.cc"
     break;
 
