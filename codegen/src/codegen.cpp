@@ -440,7 +440,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
         w->appendText("    and $t0, $t0, $t1\n");
-        type_of_output = expr.second;v
+        type_of_output = expr.second;
     } else if (operation == "==") {
         if (expr.second == "int" || expr.second == "bool") {
             string label1 = idgen::nextlabel();
@@ -623,17 +623,32 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
 }
 
 exprtype codegen::unaryminus(const exprtype &expr) {
-    if (expr.second != "int")
+    if (expr.second == "int") {
+        string temp_id = idgen::nextid();
+        w->appendData("    " + temp_id + ": .word 0\n");
+        w->appendText("    # doing the u-\n");
+        w->appendText(
+                "    lw $t0, " + expr.first + "\n"
+                + "    subu $t0, $zero, $t0\n"
+                + "    sw $t0, " + temp_id + "\n\n"
+        );
+        return {temp_id, expr.second};
+    }
+    else if (expr.second == "double"){
+        string temp_id = idgen::nextid();
+        w->appendData("    " + temp_id + ": .word 0\n");
+        w->appendText("    # doing the u-\n");
+        w->appendText(
+                "    l.s $f0, " + expr.first + "\n"
+                + "    sub.s $f1, $f0, $f0 #making zero\n"
+                + "    sub.s $f0, $f1, $f0\n"
+                + "    s.s $f0, " + temp_id + "\n\n"
+        );
+        return {temp_id, expr.second};
+    }
+    else{
         throw runtime_error("semantic error: invalid operation: -" + expr.second);
-    string temp_id = idgen::nextid();
-    w->appendData("    " + temp_id + ": .word 0\n");
-    w->appendText("    # doing the u-\n");
-    w->appendText(
-            "    lw $t0, " + expr.first + "\n"
-            + "    subu $t0, $zero, $t0\n"
-            + "    sw $t0, " + temp_id + "\n\n"
-    );
-    return {temp_id, expr.second};
+    }
 }
 
 exprtype codegen::unarynot(const exprtype &expr) {
