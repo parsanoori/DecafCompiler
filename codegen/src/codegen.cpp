@@ -313,8 +313,8 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
     }
     else if (operation == "<="){
         w->appendText("    slt $t7, $t1 , $t0\n");
-        string ltequallabel = idgen::nextid() + "_op_<=";
-        w->appendText("    bneq $t7, $zero , " + ltequallabel + "_ok\n");
+        string ltequallabel = idgen::nextid() + "_op_lteq";
+        w->appendText("    bne $t7, $zero , " + ltequallabel + "_ok\n");
         w->appendText("    beq $t0, $zero , " + ltequallabel + "_ok\n");
         w->appendText("    add $t0, $zero , $zero\n");
         w->appendText(ltequallabel + "_ok:\n");
@@ -322,8 +322,8 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
     }
     else if (operation == ">="){
         w->appendText("    slt $t7, $t0 , $t1\n");
-        string gtequallabel = idgen::nextid() + "_op_<=";
-        w->appendText("    bneq $t7, $zero , " + gtequallabel + "_ok\n");
+        string gtequallabel = idgen::nextid() + "_op_gteq";
+        w->appendText("    bne $t7, $zero , " + gtequallabel + "_ok\n");
         w->appendText("    beq $t0, $zero , " + gtequallabel + "_ok\n");
         w->appendText("    add $t0, $zero , $zero\n");
         w->appendText(gtequallabel + "_ok:\n");
@@ -351,12 +351,14 @@ exprtype codegen::unaryminus(const exprtype &expr) {
 }
 
 void codegen::whilestmt1() {
-        string whilename = idgen::nextid() + "_while_loop";
-        st->pushscope(whilename);
-        w->appendText("    " + whilename + "_before:");
+    cout << "I am here . where are Uuuuuuuuuuuuu ?" << endl;
+    string whilename = idgen::nextid() + "_while_loop";
+    st->pushscope(whilename);
+    w->appendText("    " + whilename + "_before:");
 }
 
 void codegen::whilestmt2(const pair<string, string> &expr) {
+    cout << "I am here . where are Uuuuuuuuuuuuu ?" << endl;
     if (expr.second != "bool")
         throw runtime_error("invalid type for while expression");
     string laftername = st->currentscopename() + "_after";
@@ -366,6 +368,7 @@ void codegen::whilestmt2(const pair<string, string> &expr) {
 }
 
 void codegen::whilestmt3() {
+    cout << "I am here . where are Uuuuuuuuuuuuu ?" << endl;
     string whilename = st->currentscopename();
     w->appendText("    j " + whilename + "_before\n"
                 + whilename + "_after:\n"
