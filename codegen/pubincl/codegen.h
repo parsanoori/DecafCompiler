@@ -11,6 +11,7 @@
 #include "symboltable.h"
 #include "functiontable.h"
 
+using exprtype = pair<string, string>;
 using namespace std;
 
 class codegen {
@@ -39,24 +40,33 @@ public:
 
     void variable(const string &type, const string &id);
 
-    void addfunction(const string &name, const std::vector<std::pair<std::string,std::string>> &t);
+    void addfunction(const string &name, const std::vector<std::pair<std::string, std::string>> &t);
 
     void endfunction();
 
-    void printexpr(const pair<string,string> &expr);
+    void printexpr(const exprtype &expr);
 
-    pair<string,string> addconstant(const pair<string,string> &constant);
+    exprtype addconstant(const pair<string, string> &constant);
 
-    pair<string,string> findid(const string &id);
+    exprtype findid(const string &id);
 
-    pair<string,string> assignexpr(const string &lefside,const pair<string,string> &expr);
+    exprtype assignexpr(const string &lefside, const exprtype &expr);
 
-    pair<string,string> assignexproperation(const string &lefside,const pair<string,string> &expr,const string &operation);
+    exprtype assignexproperation(const string &lefside, const exprtype &expr, const string &operation);
 
     void openstmtblock();
 
     void closestmtblock();
 
+    void ifstmt(const exprtype &);
+
+    void endiflabel();
+
+    void elseifstmt(const exprtype &);
+
+    void elselabel();
+
+    void endelse();
 };
 
 
