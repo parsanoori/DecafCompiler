@@ -47,7 +47,12 @@ void codegen::writestuff() {
 void codegen::variable(const string &type, const string &id) {
     auto d = st->addentry(id, type);
     w->appendData("    #" + id + "\n");
-    w->appendData("    " + d.getID() + ": .word " + "0\n\n");
+    if(d.getTypeString() == "string"){
+        w->appendData("    " + d.getID() + ": .space 1024\n\n");
+    }
+    else {
+        w->appendData("    " + d.getID() + ": .word 0\n\n");
+    }
 }
 
 void codegen::addfunction(const string &name, const std::vector<std::pair<std::string, std::string>> &formals) {
@@ -222,6 +227,37 @@ codegen::assignexproperation(const string &lefside, const exprtype &expr, const 
                 break;
         }
         w->appendText("    s.s $f0, " + d.getID() + "\n\n");
+    }
+    else if (expr.second == "string" && operation[0] == '+'){
+        string temp_id = idgen::nextid();
+        w->appendData("    " + temp_id + ": .space 1024\n");
+        w->appendText(
+                "    # doing the " + operation + "\n"
+                + "    la $t2, " + expr.first + "\n"
+                + "    la $t1, " + d.getID() + "\n"
+                + "    la $t3, " + temp_id + "\n"
+                + "copyfirst" + temp_id + ":\n"
+                + "    lb $t0, ($t1)\n"
+                + "    beqz $t0, copysecond" + temp_id + "\n"
+                + "    sb $t0, ($t3)\n"
+                + "    addi $t1, $t1, 1\n"
+                + "    addi $t3, $t3, 1\n"
+                + "    j copyfirst" + temp_id + "\n"
+                + "copysecond" + temp_id + ":\n"
+                + "    lb $t0, ($t2)\n"
+                + "    beqz $t0, copyend" + temp_id + "\n"
+                + "    sb $t0, ($t3)\n"
+                + "    addi $t2, $t2, 1\n"
+                + "    addi $t3, $t3, 1\n"
+                + "    j copysecond" + temp_id + "\n"
+                + "copyend" + temp_id + ":\n"
+                + "    sb $t0, ($t3)\n\n"
+        );
+        d.setID(temp_id);
+        return {temp_id, "string"};
+    }
+    else{
+        throw runtime_error("semantic error: invalid assignment: " + d.getTypeString() + operation + expr.second);
     }
     return {d.getID(), expr.second};
 }

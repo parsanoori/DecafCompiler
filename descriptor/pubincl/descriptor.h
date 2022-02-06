@@ -20,6 +20,8 @@ public:
     [[nodiscard]] string getID() const;
 
     [[nodiscard]] string getTypeString() const;
+
+    void setID(const string basicString);
 };
 
 #endif
