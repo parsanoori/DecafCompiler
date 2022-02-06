@@ -11,6 +11,20 @@ NUMBER_OF_PASSED=0
 NUMBER_OF_FAILED=0
 cd ../
 
+checkeq() {
+    python3 comp.py -a $1 -b $2 -o $3
+    if [[ $? = 0 ]]; then
+        ((NUMBER_OF_PASSED++))
+        echo "++++ test passed"
+    else
+        ((NUMBER_OF_FAILED++))
+        echo "---- test failed !"
+    fi
+    echo
+}
+
+
+
 #Build the project
 mkdir -p build
 cd build
@@ -41,32 +55,20 @@ do
  
     echo "Running Test $filename -------------------------------------"
     echo "$filelist"
-    ./build/compiler -i "$TEST_DIRECTORY$filelist" -o "$OUTPUT_DIRECTORY$output_asm"
+    ./build/compiler -i "$TEST_DIRECTORY$filelist" -o "$OUTPUT_DIRECTORY$output_asm" > "$OUTPUT_DIRECTORY$output_filename"
     if [ $? -eq 0 ]; then
         echo "Decaf compiled"
         spim -f "$OUTPUT_DIRECTORY$output_asm" < "$TEST_DIRECTORY$program_input" | tail -n +2  > "$OUTPUT_DIRECTORY$output_filename"
         if [ $? -eq 0 ]; then
             echo "Code Executed Successfuly!"
-            if command -v python3; then
-                python3 comp.py -a "$OUTPUT_DIRECTORY$output_filename" -b "$TEST_DIRECTORY$output_filename" -o "$REPORT_DIRECTORY$report_filename"
-            else
-                python comp.py -a "$OUTPUT_DIRECTORY$output_filename" -b "$TEST_DIRECTORY$output_filename" -o "$REPORT_DIRECTORY$report_filename"
-            fi
-            if [[ $? = 0 ]]; then
-                ((NUMBER_OF_PASSED++))
-                echo "++++ test passed"
-            else
-                ((NUMBER_OF_FAILED++))
-                echo "---- test failed !"
-            fi
-            echo 
+            checkeq "$OUTPUT_DIRECTORY$output_filename" "$TEST_DIRECTORY$output_filename" "$REPORT_DIRECTORY$report_filename"
         else
             echo "Code did not execute successfuly!"
             ((NUMBER_OF_FAILED++))
         fi
     else
         echo "Decaf didn't compile"
-        ((NUMBER_OF_FAILED++))
+        checkeq "$OUTPUT_DIRECTORY$output_filename" "$TEST_DIRECTORY$output_filename" "$REPORT_DIRECTORY$report_filename"
     fi
 done
 
