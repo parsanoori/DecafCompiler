@@ -176,10 +176,10 @@ expr:
     |   readline openparantheses  closeparantheses                 {}
     |   new id                   {}
     |   newarray openparantheses expr comma type  closeparantheses    {}
-    |   itod openparantheses expr   closeparantheses        {}
-    |   dtoi openparantheses expr   closeparantheses        {}
+    |   itod openparantheses expr   closeparantheses        { $$ = cg.itod($3); }
+    |   dtoi openparantheses expr   closeparantheses        { $$ = cg.dtoi($3); }
     |   itob openparantheses expr   closeparantheses        { $$ = cg.itob($3); }
-    |   btoi openparantheses expr   closeparantheses        {}
+    |   btoi openparantheses expr   closeparantheses        { $$ = cg.btoi($3); }
     |   line                    {}
     |   func                    {}
     |   lvalue assign expr               { $$ = cg.assignexpr($1,$3); }

@@ -802,3 +802,44 @@ exprtype codegen::itob(const exprtype &expr) {
     );
     return {id, "bool"};
 }
+
+exprtype codegen::btoi(const exprtype &expr) {
+    if (expr.second != "bool")
+        throw runtime_error("semantic error: btoi's input should be bool");
+    string id = idgen::nextid();
+    w->appendData("    " + id + ": .word " + "0\n");
+    w->appendText(
+            string("    #btoi" + id + "\n")
+            + "    lw $t0, " + expr.first + "\n"
+            + "    sw $t0, " + id + "\n\n"
+    );
+    return {id, "int"};
+}
+
+exprtype codegen::itod(const exprtype &expr) {
+    if (expr.second != "int")
+        throw runtime_error("semantic error: itod's input should be integer");
+    string id = idgen::nextid();
+    w->appendData("    " + id + ": .word " + "0\n");
+    w->appendText(
+            string("    #itod" + id + "\n")
+            + "    l.s $f0, " + expr.first + "\n"
+            + "    cvt.s.w $f1, $f0\n"
+            + "    s.s $f1, " + id + "\n\n"
+    );
+    return {id, "double"};
+}
+
+exprtype codegen::dtoi(const exprtype &expr) {
+    if (expr.second != "double")
+        throw runtime_error("semantic error: dtoi's input should be integer");
+    string id = idgen::nextid();
+    w->appendData("    " + id + ": .word " + "0\n");
+    w->appendText(
+            string("    #dtoi" + id + "\n")
+            + "    l.s $f0, " + expr.first + "\n"
+            + "    cvt.w.s $f1, $f0\n"
+            + "    s.s $f1, " + id + "\n\n"
+    );
+    return {id, "int"};
+}
