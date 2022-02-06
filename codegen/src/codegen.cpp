@@ -66,19 +66,22 @@ void codegen::addfunction(const string &name, const std::vector<std::pair<std::s
 
     st->pushscope(name, true);
 
-    for (const auto &p: formals)
-        variable(p.first,p.second);
+    int temp = 0;
+    for (const auto &p: formals) {
+        variable(p.first, p.second);
+        temp += 4;
+    }
         //st->addentry(p.second, p.first);
 
     w->appendText(name + ":\n");
 
-    int temp = 0;
+
     for (const auto &p: formals) {
+        temp -= 4;
         w->appendText(
                 "    lw $t0, " + to_string(temp) + "($sp)\n"
                 + "    sw $t0, " + st->getentry(p.second).getID() + "\n"
         );
-        temp += 4;
     }
 }
 
