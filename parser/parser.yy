@@ -87,8 +87,8 @@ type: int { $$ = $1; }
     | id {  $$ = $1; }
     | type openclosebracket {  $$ = $1; }
 
-functiondecl: type id openparantheses formals closeparantheses { cg.addfunction($2,$4); } stmtblock { cg.endfunction(); }
-            | void id openparantheses formals closeparantheses { cg.addfunction($2,$4); } stmtblock { cg.endfunction(); }
+functiondecl: type id openparantheses formals closeparantheses { cg.addfunction($2,$4,$1); } stmtblock { cg.endfunction(); }
+            | void id openparantheses formals closeparantheses { cg.addfunction($2,$4,$1); } stmtblock { cg.endfunction(); }
             
 formals: formalsp { $$ = $1; }
        | %empty {  }

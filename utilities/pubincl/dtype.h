@@ -12,6 +12,7 @@ int sizeofdtype(dtype);
 
 dtype dtypefromstr(const string&);
 
+string strfromdtype(dtype);
 
 
 #endif

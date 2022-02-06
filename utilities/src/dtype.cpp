@@ -15,6 +15,20 @@ dtype dtypefromstr(const string& s){
     else return dtype::OBJECT;
 }
 
+string strfromdtype(dtype s){
+    if (s == dtype::INT)
+        return "int";
+    else if (s == dtype::DOUBLE)
+        return "double";
+    else if (s == dtype::BOOL)
+        return "bool";
+    else if (s == dtype::STRING)
+        return "string";
+    else if (s == dtype::VOID)
+        return "void";
+    else return "object";
+}
+
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "bugprone-branch-clone"
 int sizeofdtype(dtype t) {
