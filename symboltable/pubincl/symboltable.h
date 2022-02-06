@@ -25,7 +25,7 @@ public:
 
     void popscope();
 
-    string currentscopename();
+    string currentFuncName();
 
     descriptor addentry(const string& name,const string& type);
 

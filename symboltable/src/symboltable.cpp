@@ -40,7 +40,7 @@ descriptor symboltable::getentry(const string &name/*, const string &type*/) {
     throw runtime_error("symbol " + name + " not found");
 }
 
-string symboltable::currentscopename() {
+string symboltable::currentFuncName() {
     return funcName;
 }
 

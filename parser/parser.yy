@@ -43,7 +43,7 @@ codegen &cg = *(codegen::get());
 %token <std::string> openbracket closebracket private public if else while for
 %token <std::string> boolean void int class nullkw slash percent
 %token <std::string> return break new this newarray print readinteger readline
-%token <std::string> line func btoi continue dtoi itob itod
+%token <std::string> func btoi continue dtoi itob itod line
 %token <std::string> float plus minus star div  lessthanequal greaterthanequal
 %token <std::string> lessthan greaterthan equal notequal and or  closebrace
 %token <std::string> openparantheses closeparantheses comma assign openbrace
@@ -180,8 +180,8 @@ expr:
     |   dtoi openparantheses expr   closeparantheses        { $$ = cg.dtoi($3); }
     |   itob openparantheses expr   closeparantheses        { $$ = cg.itob($3); }
     |   btoi openparantheses expr   closeparantheses        { $$ = cg.btoi($3); }
-    |   line                    {  }
-    |   func                    {}
+    |   line                    { $$ = cg.getline(@1.begin.line); }
+    |   func                    { $$ = cg.getfunc(); }
     |   lvalue assign expr               { $$ = cg.assignexpr($1,$3); }
     |   lvalue plusequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
     |   lvalue minusequal expr             { $$ = cg.assignexproperation($1,$3,$2); }
