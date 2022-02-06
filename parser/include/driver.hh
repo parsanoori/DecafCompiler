@@ -35,7 +35,6 @@ class driver
 public:
   driver ();
 
-
   std::istream* i = nullptr;
 
   int result;
