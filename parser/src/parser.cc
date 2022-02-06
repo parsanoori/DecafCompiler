@@ -1197,25 +1197,25 @@ namespace yy {
 
   case 20: // $@1: %empty
 #line 90 "parser.yy"
-                                                               { cg.addfunction(yystack_[3].value.as < std::string > (),yystack_[1].value.as < std::vector<std::pair<std::string,std::string>> > ()); }
+                                                               { cg.addfunction(yystack_[3].value.as < std::string > (),yystack_[1].value.as < std::vector<std::pair<std::string,std::string>> > (),yystack_[4].value.as < std::string > ()); }
 #line 1202 "src/parser.cc"
     break;
 
   case 21: // functiondecl: type id openparantheses formals closeparantheses $@1 stmtblock
 #line 90 "parser.yy"
-                                                                                                    { cg.endfunction(); }
+                                                                                                       { cg.endfunction(); }
 #line 1208 "src/parser.cc"
     break;
 
   case 22: // $@2: %empty
 #line 91 "parser.yy"
-                                                               { cg.addfunction(yystack_[3].value.as < std::string > (),yystack_[1].value.as < std::vector<std::pair<std::string,std::string>> > ()); }
+                                                               { cg.addfunction(yystack_[3].value.as < std::string > (),yystack_[1].value.as < std::vector<std::pair<std::string,std::string>> > (),yystack_[4].value.as < std::string > ()); }
 #line 1214 "src/parser.cc"
     break;
 
   case 23: // functiondecl: void id openparantheses formals closeparantheses $@2 stmtblock
 #line 91 "parser.yy"
-                                                                                                    { cg.endfunction(); }
+                                                                                                       { cg.endfunction(); }
 #line 1220 "src/parser.cc"
     break;
 

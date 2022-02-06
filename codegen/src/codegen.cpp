@@ -55,12 +55,12 @@ void codegen::variable(const string &type, const string &id) {
     }
 }
 
-void codegen::addfunction(const string &name, const std::vector<std::pair<std::string, std::string>> &formals) {
+void codegen::addfunction(const string &name, const std::vector<std::pair<std::string, std::string>> &formals,const string& rtype) {
     vector<dtype> types;
     types.reserve(formals.size());
     for (const auto &p: formals)
         types.push_back(dtypefromstr(p.first));
-    ft->add_function(name, types);
+    ft->add_function(name, types, dtypefromstr(rtype));
 
     st->pushscope(name, true);
 
@@ -102,7 +102,7 @@ exprtype codegen::functioncall(const string &name, const std::vector<std::pair<s
             "    jal " + name + "\n"
             + "    sw $v0, " + id + "\n\n"
     );
-    return {id, "int"};
+    return {id, strfromdtype(ft->get_return_type(name))};
 }
 
 void codegen::endfunction() {
