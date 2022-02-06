@@ -180,7 +180,7 @@ expr:
     |   dtoi openparantheses expr   closeparantheses        { $$ = cg.dtoi($3); }
     |   itob openparantheses expr   closeparantheses        { $$ = cg.itob($3); }
     |   btoi openparantheses expr   closeparantheses        { $$ = cg.btoi($3); }
-    |   line                    {}
+    |   line                    {  }
     |   func                    {}
     |   lvalue assign expr               { $$ = cg.assignexpr($1,$3); }
     |   lvalue plusequal expr             { $$ = cg.assignexproperation($1,$3,$2); }

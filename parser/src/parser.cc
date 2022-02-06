@@ -1581,7 +1581,7 @@ namespace yy {
 
   case 84: // expr: line
 #line 183 "parser.yy"
-                                {}
+                                {  }
 #line 1586 "src/parser.cc"
     break;
 
