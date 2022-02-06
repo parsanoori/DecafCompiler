@@ -449,13 +449,13 @@ namespace yy {
       // print
       // readinteger
       // readline
-      // line
       // func
       // btoi
       // continue
       // dtoi
       // itob
       // itod
+      // line
       // float
       // plus
       // minus
@@ -598,13 +598,13 @@ namespace yy {
     TOK_print = 33,                // print
     TOK_readinteger = 34,          // readinteger
     TOK_readline = 35,             // readline
-    TOK_line = 36,                 // line
-    TOK_func = 37,                 // func
-    TOK_btoi = 38,                 // btoi
-    TOK_continue = 39,             // continue
-    TOK_dtoi = 40,                 // dtoi
-    TOK_itob = 41,                 // itob
-    TOK_itod = 42,                 // itod
+    TOK_func = 36,                 // func
+    TOK_btoi = 37,                 // btoi
+    TOK_continue = 38,             // continue
+    TOK_dtoi = 39,                 // dtoi
+    TOK_itob = 40,                 // itob
+    TOK_itod = 41,                 // itod
+    TOK_line = 42,                 // line
     TOK_float = 43,                // float
     TOK_plus = 44,                 // plus
     TOK_minus = 45,                // minus
@@ -684,13 +684,13 @@ namespace yy {
         S_print = 33,                            // print
         S_readinteger = 34,                      // readinteger
         S_readline = 35,                         // readline
-        S_line = 36,                             // line
-        S_func = 37,                             // func
-        S_btoi = 38,                             // btoi
-        S_continue = 39,                         // continue
-        S_dtoi = 40,                             // dtoi
-        S_itob = 41,                             // itob
-        S_itod = 42,                             // itod
+        S_func = 36,                             // func
+        S_btoi = 37,                             // btoi
+        S_continue = 38,                         // continue
+        S_dtoi = 39,                             // dtoi
+        S_itob = 40,                             // itob
+        S_itod = 41,                             // itod
+        S_line = 42,                             // line
         S_float = 43,                            // float
         S_plus = 44,                             // plus
         S_minus = 45,                            // minus
@@ -839,13 +839,13 @@ namespace yy {
       case symbol_kind::S_print: // print
       case symbol_kind::S_readinteger: // readinteger
       case symbol_kind::S_readline: // readline
-      case symbol_kind::S_line: // line
       case symbol_kind::S_func: // func
       case symbol_kind::S_btoi: // btoi
       case symbol_kind::S_continue: // continue
       case symbol_kind::S_dtoi: // dtoi
       case symbol_kind::S_itob: // itob
       case symbol_kind::S_itod: // itod
+      case symbol_kind::S_line: // line
       case symbol_kind::S_float: // float
       case symbol_kind::S_plus: // plus
       case symbol_kind::S_minus: // minus
@@ -1036,13 +1036,13 @@ switch (yykind)
       case symbol_kind::S_print: // print
       case symbol_kind::S_readinteger: // readinteger
       case symbol_kind::S_readline: // readline
-      case symbol_kind::S_line: // line
       case symbol_kind::S_func: // func
       case symbol_kind::S_btoi: // btoi
       case symbol_kind::S_continue: // continue
       case symbol_kind::S_dtoi: // dtoi
       case symbol_kind::S_itob: // itob
       case symbol_kind::S_itod: // itod
+      case symbol_kind::S_line: // line
       case symbol_kind::S_float: // float
       case symbol_kind::S_plus: // plus
       case symbol_kind::S_minus: // minus
@@ -1807,21 +1807,6 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
-      make_line (std::string v, location_type l)
-      {
-        return symbol_type (token::TOK_line, std::move (v), std::move (l));
-      }
-#else
-      static
-      symbol_type
-      make_line (const std::string& v, const location_type& l)
-      {
-        return symbol_type (token::TOK_line, v, l);
-      }
-#endif
-#if 201103L <= YY_CPLUSPLUS
-      static
-      symbol_type
       make_func (std::string v, location_type l)
       {
         return symbol_type (token::TOK_func, std::move (v), std::move (l));
@@ -1907,6 +1892,21 @@ switch (yykind)
       make_itod (const std::string& v, const location_type& l)
       {
         return symbol_type (token::TOK_itod, v, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_line (std::string v, location_type l)
+      {
+        return symbol_type (token::TOK_line, std::move (v), std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_line (const std::string& v, const location_type& l)
+      {
+        return symbol_type (token::TOK_line, v, l);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -2628,7 +2628,7 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 715,     ///< Last index in yytable_.
+      yylast_ = 726,     ///< Last index in yytable_.
       yynnts_ = 46,  ///< Number of nonterminal symbols.
       yyfinal_ = 24 ///< Termination state number.
     };
@@ -2696,13 +2696,13 @@ switch (yykind)
       case symbol_kind::S_print: // print
       case symbol_kind::S_readinteger: // readinteger
       case symbol_kind::S_readline: // readline
-      case symbol_kind::S_line: // line
       case symbol_kind::S_func: // func
       case symbol_kind::S_btoi: // btoi
       case symbol_kind::S_continue: // continue
       case symbol_kind::S_dtoi: // dtoi
       case symbol_kind::S_itob: // itob
       case symbol_kind::S_itod: // itod
+      case symbol_kind::S_line: // line
       case symbol_kind::S_float: // float
       case symbol_kind::S_plus: // plus
       case symbol_kind::S_minus: // minus
@@ -2835,13 +2835,13 @@ switch (yykind)
       case symbol_kind::S_print: // print
       case symbol_kind::S_readinteger: // readinteger
       case symbol_kind::S_readline: // readline
-      case symbol_kind::S_line: // line
       case symbol_kind::S_func: // func
       case symbol_kind::S_btoi: // btoi
       case symbol_kind::S_continue: // continue
       case symbol_kind::S_dtoi: // dtoi
       case symbol_kind::S_itob: // itob
       case symbol_kind::S_itod: // itod
+      case symbol_kind::S_line: // line
       case symbol_kind::S_float: // float
       case symbol_kind::S_plus: // plus
       case symbol_kind::S_minus: // minus

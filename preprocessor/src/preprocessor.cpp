@@ -63,7 +63,6 @@ string preprocess(string i) {
         string r = m[1].str(), s = m[2].str(); // store before it messes up
         i.replace(m.position(), m[0].length(), "\n"); // erase the shit
         replace_if_it_should_be(i, r, s); // replace thos bastards
-        cout << i << endl;
     }
     return i;
 }

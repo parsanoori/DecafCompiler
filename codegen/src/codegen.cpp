@@ -57,7 +57,8 @@ void codegen::variable(const string &type, const string &id) {
     }
 }
 
-void codegen::addfunction(const string &name, const std::vector<std::pair<std::string, std::string>> &formals,const string& rtype) {
+void codegen::addfunction(const string &name, const std::vector<std::pair<std::string, std::string>> &formals,
+                          const string &rtype) {
     vector<dtype> types;
     types.reserve(formals.size());
     for (const auto &p: formals)
@@ -90,19 +91,18 @@ exprtype codegen::functioncall(const string &name, const std::vector<std::pair<s
     types.reserve(formals.size());
     for (const auto &p: formals)
         types.push_back(dtypefromstr(p.second));
-    if(!ft->function_matches(name,types)){
+    if (!ft->function_matches(name, types)) {
         throw runtime_error("function " + name + " not found");
     }
     w->appendText("    #calling " + name + "\n");
     for (const auto &p: formals) {
-        if(p.second == "string"){
+        if (p.second == "string") {
             w->appendText("    addi $sp, $sp, -4\n");
             w->appendText(
                     "    la $t0, " + p.first + "\n"
                     + "    sw $t0, 0($sp)\n"
-                    );
-        }
-        else{
+            );
+        } else {
             w->appendText("    addi $sp, $sp, -4\n");
             w->appendText(
                     "    lw $t0, " + p.first + "\n"
@@ -125,7 +125,7 @@ exprtype codegen::functioncall(const string &name, const std::vector<std::pair<s
 }
 
 void codegen::endfunction() {
-    string scopename = st->currentscopename();
+    string scopename = st->currentFuncName();
 
     if (scopename == "main")
         w->appendText(string("    # exit\n")
@@ -180,28 +180,23 @@ exprtype codegen::addconstant(const pair<string, string> &constant) {
     if (constant.second == "string") {
         w->appendData("    .align 2\n");
         w->appendData("    " + id + ": .asciiz " + constant.first + "\n");
-    }
-    else if (constant.second == "double") {
+    } else if (constant.second == "double") {
         w->appendData("    .align 2\n");
         w->appendData("    " + id + ": .word " +
                       to_string(floatToInt(stof(constant.first))) + "\n");
-    }
-    else if (constant.second == "bool") {
+    } else if (constant.second == "bool") {
         if (constant.first == "true") {
             w->appendData("    .align 2\n");
             w->appendData("    " + id + ": .word 1\n");
-        }
-        else if (constant.first == "false") {
+        } else if (constant.first == "false") {
             w->appendData("    .align 2\n");
             w->appendText("    " + id + ": .word 0\n");
-        }
-        else
+        } else
             throw runtime_error("something went wrogn"); // shouldn't be reached
     } else if (constant.second == "int") {
         w->appendData("    .align 2\n");
         w->appendData("    " + id + ": .word " + constant.first + "\n");
-    }
-    else
+    } else
         throw runtime_error("some thing went wrong"); // shouldn't be reached
 
     w->appendText("\n");
@@ -241,8 +236,7 @@ exprtype codegen::assignexpr(const string &lefside, const exprtype &expr) {
                 + "    addi $t1, $t1, 1\n"
                 + "    bne $t2, $zero, " + label + "\n\n"
         );
-    }
-    else
+    } else
         throw runtime_error("something went wrong internally");
 
     return {d.getID(), expr.second};
@@ -781,7 +775,7 @@ exprtype codegen::unarynot(const exprtype &expr) {
 void codegen::whilestmt1() {
     string beginwhile = "while_loop_" + idgen::nextid();
     w->appendText(beginwhile + ":\n");
-    loopstack.push({beginwhile,beginwhile, ""});
+    loopstack.push({beginwhile, beginwhile, ""});
 }
 
 void codegen::whilestmt2(const pair<string, string> &expr) {
@@ -947,5 +941,20 @@ void codegen::funcreturn(const exprtype &expr) {
     w->appendText(
             "    # return " + expr.first + "\n"
             + "    lw $v0, " + expr.first + "\n\n"
-            );
+    );
+}
+
+exprtype codegen::getline(size_t l) {
+    string id = idgen::nextid();
+    w->appendData(
+            string("    # for __line__\n") +
+            "    " + id + ": .word " + to_string(l) + "\n\n"
+    );
+    return {id, "int"};
+}
+
+exprtype codegen::getfunc() {
+    return addconstant(
+            {'"' + st->currentFuncName() + '"', "string"}
+    );
 }

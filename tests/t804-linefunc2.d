@@ -1,4 +1,4 @@
-void func__line__func() {
+void main() {
     int line;
     string func;
     int input;

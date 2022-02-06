@@ -911,13 +911,13 @@
       <terminal symbol-number="33" token-number="288" name="print" type="std::string" usefulness="useful"/>
       <terminal symbol-number="34" token-number="289" name="readinteger" type="std::string" usefulness="useful"/>
       <terminal symbol-number="35" token-number="290" name="readline" type="std::string" usefulness="useful"/>
-      <terminal symbol-number="36" token-number="291" name="line" type="std::string" usefulness="useful"/>
-      <terminal symbol-number="37" token-number="292" name="func" type="std::string" usefulness="useful"/>
-      <terminal symbol-number="38" token-number="293" name="btoi" type="std::string" usefulness="useful"/>
-      <terminal symbol-number="39" token-number="294" name="continue" type="std::string" usefulness="useful"/>
-      <terminal symbol-number="40" token-number="295" name="dtoi" type="std::string" usefulness="useful"/>
-      <terminal symbol-number="41" token-number="296" name="itob" type="std::string" usefulness="useful"/>
-      <terminal symbol-number="42" token-number="297" name="itod" type="std::string" usefulness="useful"/>
+      <terminal symbol-number="36" token-number="291" name="func" type="std::string" usefulness="useful"/>
+      <terminal symbol-number="37" token-number="292" name="btoi" type="std::string" usefulness="useful"/>
+      <terminal symbol-number="38" token-number="293" name="continue" type="std::string" usefulness="useful"/>
+      <terminal symbol-number="39" token-number="294" name="dtoi" type="std::string" usefulness="useful"/>
+      <terminal symbol-number="40" token-number="295" name="itob" type="std::string" usefulness="useful"/>
+      <terminal symbol-number="41" token-number="296" name="itod" type="std::string" usefulness="useful"/>
+      <terminal symbol-number="42" token-number="297" name="line" type="std::string" usefulness="useful"/>
       <terminal symbol-number="43" token-number="298" name="float" type="std::string" usefulness="useful"/>
       <terminal symbol-number="44" token-number="299" name="plus" type="std::string" usefulness="useful" prec="7" assoc="left"/>
       <terminal symbol-number="45" token-number="300" name="minus" type="std::string" usefulness="useful" prec="7" assoc="left"/>
@@ -2198,13 +2198,13 @@
           <transition type="shift" symbol="print" state="73"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="continue" state="79"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="continue" state="78"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -2465,12 +2465,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -2589,20 +2589,6 @@
 
     <state number="76">
       <itemset>
-        <item rule-number="83" dot="1"/>
-      </itemset>
-      <actions>
-        <transitions/>
-        <errors/>
-        <reductions>
-          <reduction symbol="$default" rule="83" enabled="true"/>
-        </reductions>
-      </actions>
-      <solved-conflicts/>
-    </state>
-
-    <state number="77">
-      <itemset>
         <item rule-number="84" dot="1"/>
       </itemset>
       <actions>
@@ -2615,7 +2601,7 @@
       <solved-conflicts/>
     </state>
 
-    <state number="78">
+    <state number="77">
       <itemset>
         <item rule-number="82" dot="1"/>
       </itemset>
@@ -2629,7 +2615,7 @@
       <solved-conflicts/>
     </state>
 
-    <state number="79">
+    <state number="78">
       <itemset>
         <item rule-number="67" dot="1"/>
       </itemset>
@@ -2643,7 +2629,7 @@
       <solved-conflicts/>
     </state>
 
-    <state number="80">
+    <state number="79">
       <itemset>
         <item rule-number="80" dot="1"/>
       </itemset>
@@ -2657,7 +2643,7 @@
       <solved-conflicts/>
     </state>
 
-    <state number="81">
+    <state number="80">
       <itemset>
         <item rule-number="81" dot="1"/>
       </itemset>
@@ -2671,7 +2657,7 @@
       <solved-conflicts/>
     </state>
 
-    <state number="82">
+    <state number="81">
       <itemset>
         <item rule-number="79" dot="1"/>
       </itemset>
@@ -2681,6 +2667,20 @@
         </transitions>
         <errors/>
         <reductions/>
+      </actions>
+      <solved-conflicts/>
+    </state>
+
+    <state number="82">
+      <itemset>
+        <item rule-number="83" dot="1"/>
+      </itemset>
+      <actions>
+        <transitions/>
+        <errors/>
+        <reductions>
+          <reduction symbol="$default" rule="83" enabled="true"/>
+        </reductions>
       </actions>
       <solved-conflicts/>
     </state>
@@ -2760,12 +2760,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -2842,12 +2842,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -2924,12 +2924,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -3051,13 +3051,13 @@
           <transition type="shift" symbol="print" state="73"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="continue" state="79"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="continue" state="78"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -3224,13 +3224,13 @@
           <transition type="shift" symbol="print" state="73"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="continue" state="79"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="continue" state="78"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -3546,12 +3546,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -3632,12 +3632,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -3737,12 +3737,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -3959,12 +3959,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -4043,12 +4043,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -4154,12 +4154,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -4250,12 +4250,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -4332,12 +4332,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -4414,12 +4414,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -4735,12 +4735,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -4817,12 +4817,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -4899,12 +4899,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -4981,12 +4981,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -5063,12 +5063,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -5145,12 +5145,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -5227,12 +5227,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -5309,12 +5309,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -5391,12 +5391,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -5473,12 +5473,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -5555,12 +5555,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -5637,12 +5637,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -5719,12 +5719,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -5801,12 +5801,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -5898,12 +5898,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -5980,12 +5980,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -6062,12 +6062,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -6144,12 +6144,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -6226,12 +6226,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -6433,12 +6433,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -8213,12 +8213,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -8425,12 +8425,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -8585,12 +8585,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -8710,13 +8710,13 @@
           <transition type="shift" symbol="print" state="73"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="continue" state="79"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="continue" state="78"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -8820,12 +8820,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -8960,13 +8960,13 @@
             <symbol>print</symbol>
             <symbol>readinteger</symbol>
             <symbol>readline</symbol>
-            <symbol>line</symbol>
             <symbol>func</symbol>
             <symbol>btoi</symbol>
             <symbol>continue</symbol>
             <symbol>dtoi</symbol>
             <symbol>itob</symbol>
             <symbol>itod</symbol>
+            <symbol>line</symbol>
             <symbol>float</symbol>
             <symbol>minus</symbol>
             <symbol>closebrace</symbol>
@@ -9076,13 +9076,13 @@
           <transition type="shift" symbol="print" state="73"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="continue" state="79"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="continue" state="78"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -9333,13 +9333,13 @@
           <transition type="shift" symbol="print" state="73"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="continue" state="79"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="continue" state="78"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -9432,12 +9432,12 @@
           <transition type="shift" symbol="newarray" state="72"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>
@@ -9587,13 +9587,13 @@
           <transition type="shift" symbol="print" state="73"/>
           <transition type="shift" symbol="readinteger" state="74"/>
           <transition type="shift" symbol="readline" state="75"/>
-          <transition type="shift" symbol="line" state="76"/>
-          <transition type="shift" symbol="func" state="77"/>
-          <transition type="shift" symbol="btoi" state="78"/>
-          <transition type="shift" symbol="continue" state="79"/>
-          <transition type="shift" symbol="dtoi" state="80"/>
-          <transition type="shift" symbol="itob" state="81"/>
-          <transition type="shift" symbol="itod" state="82"/>
+          <transition type="shift" symbol="func" state="76"/>
+          <transition type="shift" symbol="btoi" state="77"/>
+          <transition type="shift" symbol="continue" state="78"/>
+          <transition type="shift" symbol="dtoi" state="79"/>
+          <transition type="shift" symbol="itob" state="80"/>
+          <transition type="shift" symbol="itod" state="81"/>
+          <transition type="shift" symbol="line" state="82"/>
           <transition type="shift" symbol="float" state="83"/>
           <transition type="shift" symbol="minus" state="84"/>
           <transition type="shift" symbol="openparantheses" state="85"/>

@@ -116,6 +116,9 @@ public:
 
     exprtype dtoi(const exprtype&);
 
+    exprtype getline(size_t l);
+
+    exprtype getfunc();
 };
 
 
