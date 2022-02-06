@@ -8,12 +8,11 @@
 #include <string>
 #include <fstream>
 #include <stack>
-#include "floatutils.h"
 
 using namespace std;
 
 class writer {
-    string data = "    .data\n    _false_str: .asciiz \"false\"\n    _true_str: .asciiz \"true\"\n    _six_point_four: .word " + to_string(floatToInt(6.4)) + "\n    _six_point_zero: .word " + to_string(floatToInt(6.0)) + "\n";
+    string data = "    .data\n    _false_str: .asciiz \"false\"\n    _true_str: .asciiz \"true\"\n";
     string text = "    .text\n    .globl main\n";
     static writer *instance;
     ofstream* of;

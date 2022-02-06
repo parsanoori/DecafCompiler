@@ -925,9 +925,7 @@ exprtype codegen::dtoi(const exprtype &expr) {
     w->appendText(
             string("    #dtoi" + id + "\n")
             + "    l.s $f0, " + expr.first + "\n"
-            + "    l.s $f5, _six_point_four\n"
-            + "    l.s $f6, _six_point_zero\n"
-            + "    cvt.w.s $f1, $f0\n"
+            + "    round.w.s $f1, $f0\n"
             + "    s.s $f1, " + id + "\n\n"
     );
     return {id, "int"};
