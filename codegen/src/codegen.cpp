@@ -45,6 +45,7 @@ void codegen::writestuff() {
 }
 
 void codegen::variable(const string &type, const string &id) {
+
     auto d = st->addentry(id, type);
     w->appendData("    #" + id + "\n");
     if (d.getTypeString() == "string") {
@@ -67,9 +68,19 @@ void codegen::addfunction(const string &name, const std::vector<std::pair<std::s
     st->pushscope(name, true);
 
     for (const auto &p: formals)
-        st->addentry(p.second, p.first);
+        variable(p.first,p.second);
+        //st->addentry(p.second, p.first);
 
     w->appendText(name + ":\n");
+
+    int temp = 0;
+    for (const auto &p: formals) {
+        w->appendText(
+                "    lw $t0, " + to_string(temp) + "($sp)\n"
+                + "    sw $t0, " + st->getentry(p.second).getID() + "\n"
+        );
+        temp += 4;
+    }
 }
 
 exprtype codegen::functioncall(const string &name, const std::vector<std::pair<std::string, std::string>> &formals) {
