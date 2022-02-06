@@ -110,6 +110,8 @@ exprtype codegen::functioncall(const string &name, const std::vector<std::pair<s
             );
         }
     }
+    w->appendText("    addi $sp, $sp, -4\n");
+    w->appendText("    sw $ra, 0($sp)\n");
 
     string id = idgen::nextid();
     w->appendData("    .align 2\n");
@@ -118,6 +120,9 @@ exprtype codegen::functioncall(const string &name, const std::vector<std::pair<s
             "    jal " + name + "\n"
             + "    sw $v0, " + id + "\n\n"
     );
+
+    w->appendText("    lw $ra, 0($sp)\n");
+    w->appendText("    addi $sp, $sp, 4\n");
     for (const auto &p: formals) {
         w->appendText("    addi $sp, $sp, 4\n");
     }
