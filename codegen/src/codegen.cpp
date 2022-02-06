@@ -101,6 +101,9 @@ exprtype codegen::functioncall(const string &name, const std::vector<std::pair<s
             "    jal " + name + "\n"
             + "    sw $v0, " + id + "\n\n"
     );
+    for (const auto &p: formals) {
+        w->appendText("    addi $sp, $sp, 4\n");
+    }
     return {id, strfromdtype(ft->get_return_type(name))};
 }
 
@@ -196,11 +199,22 @@ exprtype codegen::assignexpr(const string &lefside, const exprtype &expr) {
                       + "    la $a0, " + d.getID() + "\n"
                       + "    swc1 $f0, 0($a0)\n"
         );
-    else if (expr.second == "string")
+    else if (expr.second == "string") {
         w->appendText("    la $a0, " + expr.first + "\n"
-                      + "    la $a1, " + d.getID() + "\n"
-                      + "    sw $a0, 0($a1)\n"
+                      + "    sw $a0, " + d.getID() + "\n"
         );
+        string label = idgen::nextlabel();
+        w->appendText(
+                "    la $t0, " + expr.first + "\n"
+                + "    la $t1, " + d.getID() + "\n"
+                + label + ":\n"
+                + "    lb $t2, ($t0)\n"
+                + "    sb $t3, ($t1)\n"
+                + "    addi $t0, $t0, 1\n"
+                + "    addi $t1, $t1, 1\n"
+                + "    bne $t2, $zero, " + label + "\n\n"
+        );
+    }
     else
         throw runtime_error("something went wrong internally");
 
