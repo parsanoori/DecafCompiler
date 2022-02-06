@@ -938,10 +938,12 @@ void codegen::continuestmt() {
 }
 
 void codegen::funcreturn(const exprtype &expr) {
-    w->appendText(
-            "    # return " + expr.first + "\n"
-            + "    lw $v0, " + expr.first + "\n\n"
-    );
+    if (ft->get_return_type(st->currentFuncName()) != dtype::VOID) {
+        w->appendText(
+                "    # return " + expr.first + "\n"
+                + "    lw $v0, " + expr.first + "\n\n"
+        );
+    }
 }
 
 exprtype codegen::getline(size_t l) {
