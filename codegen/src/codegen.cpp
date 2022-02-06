@@ -949,6 +949,9 @@ void codegen::funcreturn(const exprtype &expr) {
                 + "    lw $v0, " + expr.first + "\n\n"
         );
     }
+    w->appendText(string("    # return from " + st->currentFuncName() + "\n")
+                  + "    jr $ra\n"
+    );
 }
 
 exprtype codegen::getline(size_t l) {
