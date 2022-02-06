@@ -78,11 +78,11 @@ void codegen::addfunction(const string &name, const std::vector<std::pair<std::s
 
 
     for (const auto &p: formals) {
-        temp -= 4;
         w->appendText(
                 "    lw $t0, " + to_string(temp) + "($sp)\n"
                 + "    sw $t0, " + st->getentry(p.second).getID() + "\n"
         );
+        temp -= 4;
     }
 }
 
