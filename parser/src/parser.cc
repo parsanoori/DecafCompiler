@@ -1557,13 +1557,13 @@ namespace yy {
 
   case 80: // expr: itod openparantheses expr closeparantheses
 #line 179 "parser.yy"
-                                                            {}
+                                                            { yylhs.value.as < std::pair<std::string,std::string> > () = cg.itod(yystack_[1].value.as < std::pair<std::string,std::string> > ()); }
 #line 1562 "src/parser.cc"
     break;
 
   case 81: // expr: dtoi openparantheses expr closeparantheses
 #line 180 "parser.yy"
-                                                            {}
+                                                            { yylhs.value.as < std::pair<std::string,std::string> > () = cg.dtoi(yystack_[1].value.as < std::pair<std::string,std::string> > ()); }
 #line 1568 "src/parser.cc"
     break;
 
@@ -1575,7 +1575,7 @@ namespace yy {
 
   case 83: // expr: btoi openparantheses expr closeparantheses
 #line 182 "parser.yy"
-                                                            {}
+                                                            { yylhs.value.as < std::pair<std::string,std::string> > () = cg.btoi(yystack_[1].value.as < std::pair<std::string,std::string> > ()); }
 #line 1580 "src/parser.cc"
     break;
 

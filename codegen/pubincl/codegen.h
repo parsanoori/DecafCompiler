@@ -98,6 +98,12 @@ public:
 
     exprtype itob(const exprtype&);
 
+    exprtype btoi(const exprtype&);
+
+    exprtype itod(const exprtype&);
+
+    exprtype dtoi(const exprtype&);
+
 };
 
 
