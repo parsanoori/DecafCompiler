@@ -48,8 +48,10 @@ void codegen::variable(const string &type, const string &id) {
     auto d = st->addentry(id, type);
     w->appendData("    #" + id + "\n");
     if (d.getTypeString() == "string") {
+        w->appendData("    .align 2\n");
         w->appendData("    " + d.getID() + ": .space 1024\n\n");
     } else {
+        w->appendData("    .align 2\n");
         w->appendData("    " + d.getID() + ": .word 0\n\n");
     }
 }
@@ -96,6 +98,7 @@ exprtype codegen::functioncall(const string &name, const std::vector<std::pair<s
     }
 
     string id = idgen::nextid();
+    w->appendData("    .align 2\n");
     w->appendData("    " + id + ": .word 0\n");
     w->appendText(
             "    jal " + name + "\n"
@@ -160,20 +163,30 @@ void codegen::printexpr(const exprtype &expr) {
 exprtype codegen::addconstant(const pair<string, string> &constant) {
     w->appendData("    #" + constant.first + "\n");
     string id = idgen::nextid();
-    if (constant.second == "string")
+    if (constant.second == "string") {
+        w->appendData("    .align 2\n");
         w->appendData("    " + id + ": .asciiz " + constant.first + "\n");
-    else if (constant.second == "double")
+    }
+    else if (constant.second == "double") {
+        w->appendData("    .align 2\n");
         w->appendData("    " + id + ": .word " +
                       to_string(floatToInt(stof(constant.first))) + "\n");
+    }
     else if (constant.second == "bool") {
-        if (constant.first == "true")
+        if (constant.first == "true") {
+            w->appendData("    .align 2\n");
             w->appendData("    " + id + ": .word 1\n");
-        else if (constant.first == "false")
+        }
+        else if (constant.first == "false") {
+            w->appendData("    .align 2\n");
             w->appendText("    " + id + ": .word 0\n");
+        }
         else
             throw runtime_error("something went wrogn"); // shouldn't be reached
-    } else if (constant.second == "int")
+    } else if (constant.second == "int") {
+        w->appendData("    .align 2\n");
         w->appendData("    " + id + ": .word " + constant.first + "\n");
+    }
     else
         throw runtime_error("some thing went wrong"); // shouldn't be reached
 
@@ -209,7 +222,7 @@ exprtype codegen::assignexpr(const string &lefside, const exprtype &expr) {
                 + "    la $t1, " + d.getID() + "\n"
                 + label + ":\n"
                 + "    lb $t2, ($t0)\n"
-                + "    sb $t3, ($t1)\n"
+                + "    sb $t2, ($t1)\n"
                 + "    addi $t0, $t0, 1\n"
                 + "    addi $t1, $t1, 1\n"
                 + "    bne $t2, $zero, " + label + "\n\n"
@@ -277,6 +290,7 @@ codegen::assignexproperation(const string &lefside, const exprtype &expr, const 
         w->appendText("    s.s $f0, " + d.getID() + "\n\n");
     } else if (expr.second == "string" && operation[0] == '+') {
         string temp_id = idgen::nextid();
+        w->appendData("    .align 2\n");
         w->appendData("    " + temp_id + ": .space 1024\n");
         w->appendText(
                 "    # doing the " + operation + "\n"
@@ -372,6 +386,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
     string type_of_output;
     if (expr.second == "string") {
         if (operation == "+") {
+            w->appendData("    .align 2\n");
             w->appendData("    " + temp_id + ": .space 1024\n");
             w->appendText(
                     "    # doing the " + operation + "\n"
@@ -397,6 +412,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
             );
             return {temp_id, "string"};
         } else if (operation == "==") {
+            w->appendData("    .align 2\n");
             w->appendData("    " + temp_id + ": .word 0\n");
             string label1 = idgen::nextlabel();
             string label2 = idgen::nextlabel();
@@ -420,6 +436,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
             w->appendText("    sw $t0, " + temp_id + "\n\n");
             return {temp_id, "bool"};
         } else if (operation == "!=") {
+            w->appendData("    .align 2\n");
             w->appendData("    " + temp_id + ": .word 0\n");
             string label1 = idgen::nextlabel();
             string label2 = idgen::nextlabel();
@@ -446,6 +463,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
     }
+    w->appendData("    .align 2\n");
     w->appendData("    " + temp_id + ": .word 0\n");
     if (expr.second == "int" || expr.second == "bool") {
         w->appendText(
@@ -704,6 +722,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
 exprtype codegen::unaryminus(const exprtype &expr) {
     if (expr.second == "int") {
         string temp_id = idgen::nextid();
+        w->appendData("    .align 2\n");
         w->appendData("    " + temp_id + ": .word 0\n");
         w->appendText("    # doing the u-\n");
         w->appendText(
@@ -714,6 +733,7 @@ exprtype codegen::unaryminus(const exprtype &expr) {
         return {temp_id, expr.second};
     } else if (expr.second == "double") {
         string temp_id = idgen::nextid();
+        w->appendData("    .align 2\n");
         w->appendData("    " + temp_id + ": .word 0\n");
         w->appendText("    # doing the u-\n");
         w->appendText(
@@ -732,6 +752,7 @@ exprtype codegen::unarynot(const exprtype &expr) {
     if (expr.second != "bool")
         throw runtime_error("semantic error: invalid operation: !" + expr.second);
     string temp_id = idgen::nextid();
+    w->appendData("    .align 2\n");
     w->appendData("    " + temp_id + ": .word 0\n");
     w->appendText("    # doing the u!\n");
     w->appendText(
@@ -824,6 +845,7 @@ void codegen::breakstmt() {
 
 exprtype codegen::readinteger() {
     string id = idgen::nextid();
+    w->appendData("    .align 2\n");
     w->appendData("    " + id + ": .word " + "0\n");
     w->appendText(
             string("    li $v0, 5\n")
@@ -841,6 +863,7 @@ exprtype codegen::itob(const exprtype &expr) {
     string zero = itoblabel + "_z";
     string not_zero = itoblabel + "_nz";
     string end = itoblabel + "_e";
+    w->appendData("    .align 2\n");
     w->appendData("    " + id + ": .word " + "0\n");
     w->appendText(
             string("    #itob" + id + "\n")
@@ -860,6 +883,7 @@ exprtype codegen::btoi(const exprtype &expr) {
     if (expr.second != "bool")
         throw runtime_error("semantic error: btoi's input should be bool");
     string id = idgen::nextid();
+    w->appendData("    .align 2\n");
     w->appendData("    " + id + ": .word " + "0\n");
     w->appendText(
             string("    #btoi" + id + "\n")
@@ -873,6 +897,7 @@ exprtype codegen::itod(const exprtype &expr) {
     if (expr.second != "int")
         throw runtime_error("semantic error: itod's input should be integer");
     string id = idgen::nextid();
+    w->appendData("    .align 2\n");
     w->appendData("    " + id + ": .word " + "0\n");
     w->appendText(
             string("    #itod" + id + "\n")
@@ -887,6 +912,7 @@ exprtype codegen::dtoi(const exprtype &expr) {
     if (expr.second != "double")
         throw runtime_error("semantic error: dtoi's input should be integer");
     string id = idgen::nextid();
+    w->appendData("    .align 2\n");
     w->appendData("    " + id + ": .word " + "0\n");
     w->appendText(
             string("    #dtoi" + id + "\n")
