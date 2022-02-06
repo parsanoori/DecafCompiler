@@ -44,7 +44,7 @@ void codegen::writestuff() {
     w->writestuff();
 }
 
-void codegen::variable(const string &type, const string &id) {
+descriptor codegen::variable(const string &type, const string &id) {
 
     auto d = st->addentry(id, type);
     w->appendData("    #" + id + "\n");
@@ -55,6 +55,7 @@ void codegen::variable(const string &type, const string &id) {
         w->appendData("    .align 2\n");
         w->appendData("    " + d.getID() + ": .word 0\n\n");
     }
+    return d;
 }
 
 void codegen::addfunction(const string &name, const std::vector<std::pair<std::string, std::string>> &formals,
@@ -68,21 +69,24 @@ void codegen::addfunction(const string &name, const std::vector<std::pair<std::s
     st->pushscope(name, true);
 
     int temp = 0;
+    vector <pair <string, string>> formals_with_name;
     for (const auto &p: formals) {
-        variable(p.first, p.second);
+        auto d = variable(p.first, p.second);
+        formals_with_name.emplace_back(d.getID(),d.getTypeString());
         temp += 4;
     }
+    ft->set_formals_with_name(name,formals_with_name);
         //st->addentry(p.second, p.first);
 
     w->appendText(name + ":\n");
 
 
     for (const auto &p: formals) {
+        temp -= 4;
         w->appendText(
                 "    lw $t0, " + to_string(temp) + "($sp)\n"
                 + "    sw $t0, " + st->getentry(p.second).getID() + "\n"
         );
-        temp -= 4;
     }
 }
 
@@ -94,7 +98,23 @@ exprtype codegen::functioncall(const string &name, const std::vector<std::pair<s
     if (!ft->function_matches(name, types)) {
         throw runtime_error("function " + name + " not found");
     }
+
+    w->appendText("    #saving inputs\n");
+    string scopename = st->currentFuncName();
+
+    int temp = 0;
+    if (scopename != "main"){
+        for (const auto &p: ft->get_formals_with_name(scopename)){
+            w->appendText("    addi $sp, $sp, -4\n");
+            w->appendText("    lw $t0, " + p.first + "\n");
+            w->appendText("    sw $t0, 0($sp)\n");
+            temp += 4;
+        }
+    }
+
     w->appendText("    #calling " + name + "\n");
+    w->appendText("    addi $sp, $sp, -4\n");
+    w->appendText("    sw $ra, 0($sp)\n");
     for (const auto &p: formals) {
         if (p.second == "string") {
             w->appendText("    addi $sp, $sp, -4\n");
@@ -110,21 +130,35 @@ exprtype codegen::functioncall(const string &name, const std::vector<std::pair<s
             );
         }
     }
-    w->appendText("    addi $sp, $sp, -4\n");
-    w->appendText("    sw $ra, 0($sp)\n");
 
     string id = idgen::nextid();
-    w->appendData("    .align 2\n");
-    w->appendData("    " + id + ": .word 0\n");
-    w->appendText(
-            "    jal " + name + "\n"
-            + "    sw $v0, " + id + "\n\n"
-    );
+    if(ft->get_return_type(name) != dtype::VOID) {
+        w->appendData("    .align 2\n");
+        w->appendData("    " + id + ": .word 0\n");
+    }
+    w->appendText("    jal " + name + "\n");
 
-    w->appendText("    lw $ra, 0($sp)\n");
-    w->appendText("    addi $sp, $sp, 4\n");
+    if(ft->get_return_type(name) != dtype::VOID) {
+        w->appendText("    lw $v0, 0($sp)\n");
+        w->appendText("    sw $v0, " + id + "\n");
+        w->appendText("    addi $sp, $sp, 4\n");
+    }
     for (const auto &p: formals) {
         w->appendText("    addi $sp, $sp, 4\n");
+    }
+    w->appendText("    lw $ra, 0($sp)\n");
+    w->appendText("    addi $sp, $sp, 4\n");
+
+    if (scopename != "main"){
+        for (const auto &p: ft->get_formals_with_name(scopename)){
+            temp -= 4;
+            w->appendText("    sw $t0, " + to_string(temp) + "($sp)\n");
+            w->appendText("    lw $t0, " + p.first + "\n");
+
+        }
+        for(const auto &p: ft->get_formals_with_name(scopename)){
+            w->appendText("    addi $sp, $sp, 4\n");
+        }
     }
     return {id, strfromdtype(ft->get_return_type(name))};
 }
@@ -137,10 +171,11 @@ void codegen::endfunction() {
                       + "    li $v0, 10\n"
                       + "    syscall\n"
         );
-    else
+    else {
         w->appendText(string("    # return from " + scopename + "\n")
                       + "    jr $ra\n"
         );
+    }
 
     st->popscope(); // for formals
 
@@ -946,11 +981,13 @@ void codegen::funcreturn(const exprtype &expr) {
     if (ft->get_return_type(st->currentFuncName()) != dtype::VOID) {
         w->appendText(
                 "    # return " + expr.first + "\n"
-                + "    lw $v0, " + expr.first + "\n\n"
+                + "    lw $v0, " + expr.first + "\n"
+                + "    addi $sp, $sp, -4\n"
+                + "    sw $v0, 0($sp)\n"
         );
     }
     w->appendText(string("    # return from " + st->currentFuncName() + "\n")
-                  + "    jr $ra\n"
+                  + "    jr $ra\n\n"
     );
 }
 

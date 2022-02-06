@@ -48,7 +48,7 @@ public:
 
     void printconstliteral(const string &exp);
 
-    void variable(const string &type, const string &id);
+    descriptor variable(const string &type, const string &id);
 
     void addfunction(const string &name, const std::vector<std::pair<std::string, std::string>> &t,const string& rtype);
 
