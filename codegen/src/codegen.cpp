@@ -288,8 +288,8 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
         throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
     string temp_id = idgen::nextid();
     string type_of_output;
-    if(expr.second == "string"){
-        if(operation == "+") {
+    if (expr.second == "string") {
+        if (operation == "+") {
             w->appendData("    " + temp_id + ": .space 1024\n");
             w->appendText(
                     "    # doing the " + operation + "\n"
@@ -314,8 +314,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
                     + "    sb $t0, ($t3)\n\n"
             );
             return {temp_id, "string"};
-        }
-        else if (operation == "=="){
+        } else if (operation == "==") {
             w->appendData("    " + temp_id + ": .word 0\n");
             string label1 = idgen::nextlabel();
             string label2 = idgen::nextlabel();
@@ -338,8 +337,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
             );
             w->appendText("    sw $t0, " + temp_id + "\n\n");
             return {temp_id, "bool"};
-        }
-        else if (operation == "!="){
+        } else if (operation == "!=") {
             w->appendData("    " + temp_id + ": .word 0\n");
             string label1 = idgen::nextlabel();
             string label2 = idgen::nextlabel();
@@ -362,8 +360,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
             );
             w->appendText("    sw $t0, " + temp_id + "\n\n");
             return {temp_id, "bool"};
-        }
-        else{
+        } else {
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
     }
@@ -440,7 +437,7 @@ exprtype codegen::exproperation(const exprtype &lefside, const exprtype &expr, c
             throw runtime_error("semantic error: invalid operation: " + lefside.second + operation + expr.second);
         }
         w->appendText("    and $t0, $t0, $t1\n");
-        type_of_output = expr.second;v
+        type_of_output = expr.second;
     } else if (operation == "==") {
         if (expr.second == "int" || expr.second == "bool") {
             string label1 = idgen::nextlabel();
@@ -710,10 +707,42 @@ void codegen::endforstmt() {
 
 
 void codegen::breakstmt() {
-
     w->appendText(
             "    #break\n"
             "    j " + endloopname + "\n\n"
     );
+}
 
+exprtype codegen::readinteger() {
+    string id = idgen::nextid();
+    w->appendData("    " + id + ": .word " + "0\n");
+    w->appendText(
+            string("    li $v0, 5\n")
+            + "    syscall\n"
+            + "    sw $v0, " + id + "\n"
+    );
+    return {id, "int"};
+}
+
+exprtype codegen::itob(const exprtype &expr) {
+    if (expr.second != "int")
+        throw runtime_error("semantic error: itob's input should be integer");
+    string id = idgen::nextid();
+    string itoblabel = "ITOB_" + idgen::nextid();
+    string zero = itoblabel + "_z";
+    string not_zero = itoblabel + "_nz";
+    string end = itoblabel + "_e";
+    w->appendData("    " + id + ": .word " + "0\n");
+    w->appendText(
+            string("    #itob" + id + "\n")
+            + "    lw $t0, " + expr.first + "\n"
+            + "    beqz $t0, " + zero + "\n"
+            + "    li $t0, 1\n"
+            + "    sw $t0, " + id + "\n"
+            + "    j " + end + "\n"
+            + "    " + zero + ":\n"
+            + "    sw $zero, " + id + "\n"
+            + "    " + end + ":\n\n"
+    );
+    return {id, "bool"};
 }

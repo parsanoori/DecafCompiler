@@ -172,13 +172,13 @@ expr:
     |   lvalue                      { $$ = cg.findid($1); }
     |   this                        {}
     |   call                        {}
-    |   readinteger openparantheses  closeparantheses             {}
+    |   readinteger openparantheses  closeparantheses             { $$ = cg.readinteger(); }
     |   readline openparantheses  closeparantheses                 {}
     |   new id                   {}
     |   newarray openparantheses expr comma type  closeparantheses    {}
     |   itod openparantheses expr   closeparantheses        {}
     |   dtoi openparantheses expr   closeparantheses        {}
-    |   itob openparantheses expr   closeparantheses        {}
+    |   itob openparantheses expr   closeparantheses        { $$ = cg.itob($3); }
     |   btoi openparantheses expr   closeparantheses        {}
     |   line                    {}
     |   func                    {}

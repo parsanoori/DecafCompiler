@@ -1533,7 +1533,7 @@ namespace yy {
 
   case 76: // expr: readinteger openparantheses closeparantheses
 #line 175 "parser.yy"
-                                                                  {}
+                                                                  { yylhs.value.as < std::pair<std::string,std::string> > () = cg.readinteger(); }
 #line 1538 "src/parser.cc"
     break;
 
@@ -1569,7 +1569,7 @@ namespace yy {
 
   case 82: // expr: itob openparantheses expr closeparantheses
 #line 181 "parser.yy"
-                                                            {}
+                                                            { yylhs.value.as < std::pair<std::string,std::string> > () = cg.itob(yystack_[1].value.as < std::pair<std::string,std::string> > ()); }
 #line 1574 "src/parser.cc"
     break;
 

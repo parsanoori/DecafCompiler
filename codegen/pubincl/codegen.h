@@ -94,6 +94,9 @@ public:
 
     void breakstmt();
 
+    exprtype readinteger();
+
+    exprtype itob(const exprtype&);
 
 };
 
