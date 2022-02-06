@@ -75,7 +75,7 @@ exprtype codegen::functioncall(const string &name, const std::vector<std::pair<s
     vector<dtype> types;
     types.reserve(formals.size());
     for (const auto &p: formals)
-        types.push_back(dtypefromstr(p.first));
+        types.push_back(dtypefromstr(p.second));
     if(!ft->function_matches(name,types)){
         throw runtime_error("function " + name + " not found");
     }
