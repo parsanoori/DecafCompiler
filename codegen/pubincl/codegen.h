@@ -46,6 +46,10 @@ public:
 
     void addfunction(const string &name, const std::vector<std::pair<std::string, std::string>> &t);
 
+    exprtype functioncall(const string &name, const std::vector<std::pair<std::string, std::string>> &t);
+
+    void funcreturn(const exprtype &expr);
+
     void endfunction();
 
     void printexpr(const exprtype &expr);

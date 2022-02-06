@@ -410,7 +410,9 @@ namespace yy {
     union union_type
     {
       // variable
+      // nexpr
       // expr
+      // call
       // constant
       char dummy1[sizeof (std::pair<std::string,std::string>)];
 
@@ -500,18 +502,16 @@ namespace yy {
       // forstmt
       // returnstmt
       // breakstmt
-      // nexpr
       // continuestmt
       // printstmt
       // printcontent
       // lvalue
-      // call
-      // actuals
-      // actualscontent
       char dummy2[sizeof (std::string)];
 
       // formals
       // formalsp
+      // actuals
+      // actualscontent
       char dummy3[sizeof (std::vector<std::pair<std::string,std::string>>)];
     };
 
@@ -799,7 +799,9 @@ namespace yy {
         switch (this->kind ())
     {
       case symbol_kind::S_variable: // variable
+      case symbol_kind::S_nexpr: // nexpr
       case symbol_kind::S_expr: // expr
+      case symbol_kind::S_call: // call
       case symbol_kind::S_constant: // constant
         value.move< std::pair<std::string,std::string> > (std::move (that.value));
         break;
@@ -890,19 +892,17 @@ namespace yy {
       case symbol_kind::S_forstmt: // forstmt
       case symbol_kind::S_returnstmt: // returnstmt
       case symbol_kind::S_breakstmt: // breakstmt
-      case symbol_kind::S_nexpr: // nexpr
       case symbol_kind::S_continuestmt: // continuestmt
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
-      case symbol_kind::S_call: // call
-      case symbol_kind::S_actuals: // actuals
-      case symbol_kind::S_actualscontent: // actualscontent
         value.move< std::string > (std::move (that.value));
         break;
 
       case symbol_kind::S_formals: // formals
       case symbol_kind::S_formalsp: // formalsp
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
         value.move< std::vector<std::pair<std::string,std::string>> > (std::move (that.value));
         break;
 
@@ -996,7 +996,9 @@ namespace yy {
 switch (yykind)
     {
       case symbol_kind::S_variable: // variable
+      case symbol_kind::S_nexpr: // nexpr
       case symbol_kind::S_expr: // expr
+      case symbol_kind::S_call: // call
       case symbol_kind::S_constant: // constant
         value.template destroy< std::pair<std::string,std::string> > ();
         break;
@@ -1087,19 +1089,17 @@ switch (yykind)
       case symbol_kind::S_forstmt: // forstmt
       case symbol_kind::S_returnstmt: // returnstmt
       case symbol_kind::S_breakstmt: // breakstmt
-      case symbol_kind::S_nexpr: // nexpr
       case symbol_kind::S_continuestmt: // continuestmt
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
-      case symbol_kind::S_call: // call
-      case symbol_kind::S_actuals: // actuals
-      case symbol_kind::S_actualscontent: // actualscontent
         value.template destroy< std::string > ();
         break;
 
       case symbol_kind::S_formals: // formals
       case symbol_kind::S_formalsp: // formalsp
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
         value.template destroy< std::vector<std::pair<std::string,std::string>> > ();
         break;
 
@@ -2656,7 +2656,9 @@ switch (yykind)
     switch (this->kind ())
     {
       case symbol_kind::S_variable: // variable
+      case symbol_kind::S_nexpr: // nexpr
       case symbol_kind::S_expr: // expr
+      case symbol_kind::S_call: // call
       case symbol_kind::S_constant: // constant
         value.copy< std::pair<std::string,std::string> > (YY_MOVE (that.value));
         break;
@@ -2747,19 +2749,17 @@ switch (yykind)
       case symbol_kind::S_forstmt: // forstmt
       case symbol_kind::S_returnstmt: // returnstmt
       case symbol_kind::S_breakstmt: // breakstmt
-      case symbol_kind::S_nexpr: // nexpr
       case symbol_kind::S_continuestmt: // continuestmt
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
-      case symbol_kind::S_call: // call
-      case symbol_kind::S_actuals: // actuals
-      case symbol_kind::S_actualscontent: // actualscontent
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
       case symbol_kind::S_formals: // formals
       case symbol_kind::S_formalsp: // formalsp
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
         value.copy< std::vector<std::pair<std::string,std::string>> > (YY_MOVE (that.value));
         break;
 
@@ -2795,7 +2795,9 @@ switch (yykind)
     switch (this->kind ())
     {
       case symbol_kind::S_variable: // variable
+      case symbol_kind::S_nexpr: // nexpr
       case symbol_kind::S_expr: // expr
+      case symbol_kind::S_call: // call
       case symbol_kind::S_constant: // constant
         value.move< std::pair<std::string,std::string> > (YY_MOVE (s.value));
         break;
@@ -2886,19 +2888,17 @@ switch (yykind)
       case symbol_kind::S_forstmt: // forstmt
       case symbol_kind::S_returnstmt: // returnstmt
       case symbol_kind::S_breakstmt: // breakstmt
-      case symbol_kind::S_nexpr: // nexpr
       case symbol_kind::S_continuestmt: // continuestmt
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
-      case symbol_kind::S_call: // call
-      case symbol_kind::S_actuals: // actuals
-      case symbol_kind::S_actualscontent: // actualscontent
         value.move< std::string > (YY_MOVE (s.value));
         break;
 
       case symbol_kind::S_formals: // formals
       case symbol_kind::S_formalsp: // formalsp
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
         value.move< std::vector<std::pair<std::string,std::string>> > (YY_MOVE (s.value));
         break;
 
