@@ -14,9 +14,15 @@
 using exprtype = pair<string, string>;
 using namespace std;
 
+struct lse{
+    string begin;
+    string snlabel;
+    string end;
+};
+
 class codegen {
     writer *w;
-    stack<string> loopstack;
+    stack<lse> loopstack;
     stack<string> condstack;
     symboltable *st;
     functiontable *ft;
@@ -97,6 +103,8 @@ public:
     void whilestmt3();
 
     void breakstmt();
+
+    void continuestmt();
 
     exprtype readinteger();
 

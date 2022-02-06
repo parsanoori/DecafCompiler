@@ -506,6 +506,10 @@ namespace yy {
       // printstmt
       // printcontent
       // lvalue
+<<<<<<< HEAD
+      // call
+=======
+>>>>>>> 2ea2dd32976b68939aaf0061a991d66a7cdb20b5
       char dummy2[sizeof (std::string)];
 
       // formals
@@ -896,6 +900,10 @@ namespace yy {
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
+<<<<<<< HEAD
+      case symbol_kind::S_call: // call
+=======
+>>>>>>> 2ea2dd32976b68939aaf0061a991d66a7cdb20b5
         value.move< std::string > (std::move (that.value));
         break;
 
@@ -1093,6 +1101,10 @@ switch (yykind)
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
+<<<<<<< HEAD
+      case symbol_kind::S_call: // call
+=======
+>>>>>>> 2ea2dd32976b68939aaf0061a991d66a7cdb20b5
         value.template destroy< std::string > ();
         break;
 
@@ -2753,6 +2765,10 @@ switch (yykind)
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
+<<<<<<< HEAD
+      case symbol_kind::S_call: // call
+=======
+>>>>>>> 2ea2dd32976b68939aaf0061a991d66a7cdb20b5
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
@@ -2892,6 +2908,10 @@ switch (yykind)
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
+<<<<<<< HEAD
+      case symbol_kind::S_call: // call
+=======
+>>>>>>> 2ea2dd32976b68939aaf0061a991d66a7cdb20b5
         value.move< std::string > (YY_MOVE (s.value));
         break;
 
