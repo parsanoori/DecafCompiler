@@ -62,3 +62,7 @@ string descriptor::getTypeString() const{
 string descriptor::getID() const{
     return id;
 }
+
+void descriptor::setID(const string basicString){
+    id = basicString;
+}
