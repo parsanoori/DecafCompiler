@@ -981,13 +981,17 @@
       <nonterminal symbol-number="101" name="$@10" type="" usefulness="useful"/>
       <nonterminal symbol-number="102" name="returnstmt" type="std::string" usefulness="useful"/>
       <nonterminal symbol-number="103" name="breakstmt" type="std::string" usefulness="useful"/>
-      <nonterminal symbol-number="104" name="nexpr" type="std::string" usefulness="useful"/>
+      <nonterminal symbol-number="104" name="nexpr" type="std::pair&lt;std::string,std::string&gt;" usefulness="useful"/>
       <nonterminal symbol-number="105" name="continuestmt" type="std::string" usefulness="useful"/>
       <nonterminal symbol-number="106" name="printstmt" type="std::string" usefulness="useful"/>
       <nonterminal symbol-number="107" name="printcontent" type="std::string" usefulness="useful"/>
       <nonterminal symbol-number="108" name="expr" type="std::pair&lt;std::string,std::string&gt;" usefulness="useful"/>
       <nonterminal symbol-number="109" name="lvalue" type="std::string" usefulness="useful"/>
+<<<<<<< HEAD
       <nonterminal symbol-number="110" name="call" type="std::string" usefulness="useful"/>
+=======
+      <nonterminal symbol-number="110" name="call" type="std::pair&lt;std::string,std::string&gt;" usefulness="useful"/>
+>>>>>>> 2ea2dd32976b68939aaf0061a991d66a7cdb20b5
       <nonterminal symbol-number="111" name="actuals" type="std::vector&lt;std::pair&lt;std::string,std::string&gt;&gt;" usefulness="useful"/>
       <nonterminal symbol-number="112" name="actualscontent" type="std::vector&lt;std::pair&lt;std::string,std::string&gt;&gt;" usefulness="useful"/>
       <nonterminal symbol-number="113" name="constant" type="std::pair&lt;std::string,std::string&gt;" usefulness="useful"/>

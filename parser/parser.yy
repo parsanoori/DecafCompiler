@@ -51,10 +51,10 @@ codegen &cg = *(codegen::get());
 
 %nterm <std::string> program macro declaration declarations variabledecl type functiondecl
 %nterm <std::string> classdecl fields field accessmode stmtblock stmt stmtblockcontent statements ifstmt elsestmt
-%nterm <std::string> forstmt returnstmt breakstmt nexpr continuestmt printstmt printcontent lvalue call whilestmt
+%nterm <std::string> forstmt returnstmt breakstmt continuestmt printstmt printcontent lvalue whilestmt
 
 
-%nterm <std::pair<std::string,std::string>> variable constant expr
+%nterm <std::pair<std::string,std::string>> variable constant expr nexpr call
 %nterm <std::vector<std::pair<std::string,std::string>>> formals formalsp actuals actualscontent
 
 
@@ -138,11 +138,11 @@ whilestmt: while openparantheses { cg.whilestmt1(); } expr closeparantheses { cg
 
 forstmt: for openparantheses nexpr { cg.beginfor(); } semicolon expr { cg.forloopcond($6); } semicolon nexpr { cg.endsecnexpr(); } closeparantheses stmt { cg.endforstmt(); }
 
-returnstmt: return nexpr semicolon { }
+returnstmt: return nexpr semicolon { cg.funcreturn($2); }
 
 breakstmt: break semicolon { cg.breakstmt(); }
 
-nexpr: expr { }
+nexpr: expr { $$ = $1; }
     | %empty { }
 
 continuestmt: continue semicolon { cg.continuestmt(); }
@@ -171,7 +171,7 @@ expr:
         constant                    { $$ = cg.addconstant($1); }
     |   lvalue                      { $$ = cg.findid($1); }
     |   this                        {}
-    |   call                        {}
+    |   call                        { $$ = $1; }
     |   readinteger openparantheses  closeparantheses             { $$ = cg.readinteger(); }
     |   readline openparantheses  closeparantheses                 {}
     |   new id                   {}
@@ -210,16 +210,16 @@ lvalue:
     |   expr openbracket expr closebracket               {}
     
 call:
-        id openparantheses actuals  closeparantheses           {}
+        id openparantheses actuals  closeparantheses           { $$ = cg.functioncall($1,$3); }
     |   expr  dot  id openparantheses actuals  closeparantheses    {}
     
 actuals:
-        actualscontent                    {}
+        actualscontent                    { $$  = $1; }
     |   %empty                      {}
     
 actualscontent:
-        expr comma actualscontent {}
-        | expr { }
+        expr comma actualscontent { $3.push_back($1); $$ = $3; }
+        | expr { $$ = {$1}; }
 
 constant:
         integer                 { $$ = {$1,"int"}; }

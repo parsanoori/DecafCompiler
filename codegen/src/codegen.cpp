@@ -69,6 +69,41 @@ void codegen::addfunction(const string &name, const std::vector<std::pair<std::s
     w->appendText(name + ":\n");
 }
 
+exprtype codegen::functioncall(const string &name, const std::vector<std::pair<std::string, std::string>> &formals) {
+    vector<dtype> types;
+    types.reserve(formals.size());
+    for (const auto &p: formals)
+        types.push_back(dtypefromstr(p.first));
+    if(!ft->function_matches(name,types)){
+        throw runtime_error("function " + name + " not found");
+    }
+    w->appendText("    #calling " + name + "\n");
+    for (const auto &p: formals) {
+        if(p.second == "string"){
+            w->appendText("    addi $sp, $sp, -4\n");
+            w->appendText(
+                    "    la $t0, " + p.first + "\n"
+                    + "    sw $t0, 0($sp)\n"
+                    );
+        }
+        else{
+            w->appendText("    addi $sp, $sp, -4\n");
+            w->appendText(
+                    "    lw $t0, " + p.first + "\n"
+                    + "    sw $t0, 0($sp)\n"
+            );
+        }
+    }
+
+    string id = idgen::nextid();
+    w->appendData("    " + id + ": .word 0\n");
+    w->appendText(
+            "    jal " + name + "\n"
+            + "    sw $v0, " + id + "\n\n"
+    );
+    return {id, "int"};
+}
+
 void codegen::endfunction() {
     string scopename = st->currentscopename();
 
@@ -852,4 +887,11 @@ void codegen::continuestmt() {
     w->appendText(
             "    j " + loopstack.top().snlabel + "\n"
     );
+}
+
+void codegen::funcreturn(const exprtype &expr) {
+    w->appendText(
+            "    # return " + expr.first + "\n"
+            + "    lw $v0, " + expr.first + "\n\n"
+            );
 }
