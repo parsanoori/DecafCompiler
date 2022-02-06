@@ -312,10 +312,6 @@ namespace yy {
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
-<<<<<<< HEAD
-      case symbol_kind::S_call: // call
-=======
->>>>>>> 2ea2dd32976b68939aaf0061a991d66a7cdb20b5
         value.YY_MOVE_OR_COPY< std::string > (YY_MOVE (that.value));
         break;
 
@@ -439,10 +435,6 @@ namespace yy {
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
-<<<<<<< HEAD
-      case symbol_kind::S_call: // call
-=======
->>>>>>> 2ea2dd32976b68939aaf0061a991d66a7cdb20b5
         value.move< std::string > (YY_MOVE (that.value));
         break;
 
@@ -566,10 +558,6 @@ namespace yy {
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
-<<<<<<< HEAD
-      case symbol_kind::S_call: // call
-=======
->>>>>>> 2ea2dd32976b68939aaf0061a991d66a7cdb20b5
         value.copy< std::string > (that.value);
         break;
 
@@ -692,10 +680,6 @@ namespace yy {
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
-<<<<<<< HEAD
-      case symbol_kind::S_call: // call
-=======
->>>>>>> 2ea2dd32976b68939aaf0061a991d66a7cdb20b5
         value.move< std::string > (that.value);
         break;
 
@@ -1073,10 +1057,6 @@ namespace yy {
       case symbol_kind::S_printstmt: // printstmt
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
-<<<<<<< HEAD
-      case symbol_kind::S_call: // call
-=======
->>>>>>> 2ea2dd32976b68939aaf0061a991d66a7cdb20b5
         yylhs.value.emplace< std::string > ();
         break;
 
