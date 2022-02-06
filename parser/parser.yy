@@ -50,12 +50,12 @@ codegen &cg = *(codegen::get());
 %token <std::string> plusequal minusequal starequal slashequal not dot
 
 %nterm <std::string> program macro declaration declarations variabledecl type functiondecl
-%nterm <std::string> classdecl fields field accessmode stmtblock stmt stmtblockcontent statements ifstmt elsestmt whilestmt
-%nterm <std::string> forstmt returnstmt breakstmt nexpr continuestmt printstmt printcontent lvalue call actuals
-%nterm <std::string> actualscontent
+%nterm <std::string> classdecl fields field accessmode stmtblock stmt stmtblockcontent statements ifstmt elsestmt
+%nterm <std::string> forstmt returnstmt breakstmt nexpr continuestmt printstmt printcontent lvalue call whilestmt
+
 
 %nterm <std::pair<std::string,std::string>> variable constant expr
-%nterm <std::vector<std::pair<std::string,std::string>>> formals formalsp
+%nterm <std::vector<std::pair<std::string,std::string>>> formals formalsp actuals actualscontent
 
 
 %%
@@ -90,7 +90,7 @@ type: int { $$ = $1; }
 functiondecl: type id openparantheses formals closeparantheses { cg.addfunction($2,$4); } stmtblock { cg.endfunction(); }
             | void id openparantheses formals closeparantheses { cg.addfunction($2,$4); } stmtblock { cg.endfunction(); }
             
-formals: formalsp {  $$ = $1; }
+formals: formalsp { $$ = $1; }
        | %empty {  }
 
 formalsp: variable comma formalsp { $3.push_back($1); $$ = $3; }
@@ -136,7 +136,7 @@ elsestmt: else { cg.elselabel(); } stmt { cg.endelse(); }
 
 whilestmt: while openparantheses { cg.whilestmt1(); } expr closeparantheses { cg.whilestmt2($4); } stmt { cg.whilestmt3(); }
 
-forstmt: for  openparantheses nexpr { cg.beginfor(); } semicolon expr { cg.forloopcond($6); } semicolon nexpr { cg.endsecnexpr(); } closeparantheses stmt { cg.endforstmt(); }
+forstmt: for openparantheses nexpr { cg.beginfor(); } semicolon expr { cg.forloopcond($6); } semicolon nexpr { cg.endsecnexpr(); } closeparantheses stmt { cg.endforstmt(); }
 
 returnstmt: return nexpr semicolon { }
 

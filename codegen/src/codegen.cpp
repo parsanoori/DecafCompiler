@@ -721,6 +721,17 @@ void codegen::whilestmt3() {
     );
 }
 
+
+
+void codegen::beginfor() {
+    string beginforlabel = "BEGINFOR_" + idgen::nextid();
+    w->appendText(
+            "    # begin for loop of " + beginforlabel + "\n"
+            + beginforlabel + ":\n"
+    );
+    loopstack.push(beginforlabel);
+}
+
 void codegen::forloopcond(const exprtype &expr) {
     if (!(expr.second == "bool"))
         throw runtime_error("value for condition of loop must be bool");
@@ -730,16 +741,7 @@ void codegen::forloopcond(const exprtype &expr) {
             + "    beqz $t0, " + endforlabel + "\n"
     );
     w->to_buffer = true;
-    endloopname = endforlabel;
-}
-
-void codegen::beginfor() {
-    string beginforlabel = "BEGINFOR_" + idgen::nextid();
-    w->appendText(
-            "    # begin for loop of " + beginforlabel + "\n"
-            + beginforlabel + ":\n"
-    );
-    beginloopname = beginforlabel;
+    loopstack.push(endforlabel);
 }
 
 void codegen::endsecnexpr() {
@@ -750,9 +752,12 @@ void codegen::endforstmt() {
     // for second nexpr
     w->flushbuffers();
 
+    string end = loopstack.top(); loopstack.pop();
+    string begin = loopstack.top(); loopstack.pop();
+
     w->appendText(
-            "    j " + beginloopname + "\n"
-            + endloopname + ":\n\n"
+            "    j " + begin + "\n"
+            + end + ":\n\n"
     );
 }
 
@@ -760,7 +765,7 @@ void codegen::endforstmt() {
 void codegen::breakstmt() {
     w->appendText(
             "    #break\n"
-            "    j " + endloopname + "\n\n"
+            "    j " + loopstack.top() + "\n\n"
     );
 }
 
