@@ -7,3 +7,7 @@ add_library(writer
 target_include_directories(writer
         PUBLIC pubincl
 )
+
+target_link_libraries(writer
+        PUBLIC utilities
+)
