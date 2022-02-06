@@ -312,13 +312,13 @@ namespace yy {
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
       case symbol_kind::S_call: // call
-      case symbol_kind::S_actuals: // actuals
-      case symbol_kind::S_actualscontent: // actualscontent
         value.YY_MOVE_OR_COPY< std::string > (YY_MOVE (that.value));
         break;
 
       case symbol_kind::S_formals: // formals
       case symbol_kind::S_formalsp: // formalsp
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
         value.YY_MOVE_OR_COPY< std::vector<std::pair<std::string,std::string>> > (YY_MOVE (that.value));
         break;
 
@@ -435,13 +435,13 @@ namespace yy {
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
       case symbol_kind::S_call: // call
-      case symbol_kind::S_actuals: // actuals
-      case symbol_kind::S_actualscontent: // actualscontent
         value.move< std::string > (YY_MOVE (that.value));
         break;
 
       case symbol_kind::S_formals: // formals
       case symbol_kind::S_formalsp: // formalsp
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
         value.move< std::vector<std::pair<std::string,std::string>> > (YY_MOVE (that.value));
         break;
 
@@ -558,13 +558,13 @@ namespace yy {
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
       case symbol_kind::S_call: // call
-      case symbol_kind::S_actuals: // actuals
-      case symbol_kind::S_actualscontent: // actualscontent
         value.copy< std::string > (that.value);
         break;
 
       case symbol_kind::S_formals: // formals
       case symbol_kind::S_formalsp: // formalsp
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
         value.copy< std::vector<std::pair<std::string,std::string>> > (that.value);
         break;
 
@@ -680,13 +680,13 @@ namespace yy {
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
       case symbol_kind::S_call: // call
-      case symbol_kind::S_actuals: // actuals
-      case symbol_kind::S_actualscontent: // actualscontent
         value.move< std::string > (that.value);
         break;
 
       case symbol_kind::S_formals: // formals
       case symbol_kind::S_formalsp: // formalsp
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
         value.move< std::vector<std::pair<std::string,std::string>> > (that.value);
         break;
 
@@ -1057,13 +1057,13 @@ namespace yy {
       case symbol_kind::S_printcontent: // printcontent
       case symbol_kind::S_lvalue: // lvalue
       case symbol_kind::S_call: // call
-      case symbol_kind::S_actuals: // actuals
-      case symbol_kind::S_actualscontent: // actualscontent
         yylhs.value.emplace< std::string > ();
         break;
 
       case symbol_kind::S_formals: // formals
       case symbol_kind::S_formalsp: // formalsp
+      case symbol_kind::S_actuals: // actuals
+      case symbol_kind::S_actualscontent: // actualscontent
         yylhs.value.emplace< std::vector<std::pair<std::string,std::string>> > ();
         break;
 
@@ -1221,7 +1221,7 @@ namespace yy {
 
   case 24: // formals: formalsp
 #line 93 "parser.yy"
-                  {  yylhs.value.as < std::vector<std::pair<std::string,std::string>> > () = yystack_[0].value.as < std::vector<std::pair<std::string,std::string>> > (); }
+                  { yylhs.value.as < std::vector<std::pair<std::string,std::string>> > () = yystack_[0].value.as < std::vector<std::pair<std::string,std::string>> > (); }
 #line 1226 "src/parser.cc"
     break;
 
@@ -1437,25 +1437,25 @@ namespace yy {
 
   case 60: // $@8: %empty
 #line 139 "parser.yy"
-                                    { cg.beginfor(); }
+                                   { cg.beginfor(); }
 #line 1442 "src/parser.cc"
     break;
 
   case 61: // $@9: %empty
 #line 139 "parser.yy"
-                                                                      { cg.forloopcond(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
+                                                                     { cg.forloopcond(yystack_[0].value.as < std::pair<std::string,std::string> > ()); }
 #line 1448 "src/parser.cc"
     break;
 
   case 62: // $@10: %empty
 #line 139 "parser.yy"
-                                                                                                              { cg.endsecnexpr(); }
+                                                                                                             { cg.endsecnexpr(); }
 #line 1454 "src/parser.cc"
     break;
 
   case 63: // forstmt: for openparantheses nexpr $@8 semicolon expr $@9 semicolon nexpr $@10 closeparantheses stmt
 #line 139 "parser.yy"
-                                                                                                                                                          { cg.endforstmt(); }
+                                                                                                                                                         { cg.endforstmt(); }
 #line 1460 "src/parser.cc"
     break;
 
@@ -1485,7 +1485,7 @@ namespace yy {
 
   case 68: // continuestmt: continue semicolon
 #line 148 "parser.yy"
-                                 {  }
+                                 { cg.continuestmt(); }
 #line 1490 "src/parser.cc"
     break;
 

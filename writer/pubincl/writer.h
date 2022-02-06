@@ -17,10 +17,13 @@ class writer {
     ofstream* of;
     writer() = default;
 
-    string databuffer = "";
-    string textbuffer = "";
+    stack<string> datastack;
+    stack<string> textstack;
+
+
 public:
-    bool to_buffer = false;
+
+    bool to_stack = false;
 
     static void set(ofstream*);
 
@@ -36,7 +39,9 @@ public:
 
     void writestuff();
 
-    void flushbuffers();
+    void new_tops();
+
+    void appendFromStacks();
 
 };
 

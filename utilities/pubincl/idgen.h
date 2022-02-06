@@ -8,15 +8,19 @@ class idgen{
     public:
     static string nextid(){
         static int current = 28; // first one is aa
+        SAM:
         string r = "_";
         int tmp = current;
         while(tmp > 0){
-            r = (char) ('a' + tmp % 27 - 1) + r; 
+            char c = (char) ('a' + tmp % 27 - 1);
+            if (c == '`') {
+                current++;
+                goto SAM;
+            }
+            r = c + r;
             tmp /= 27;
         }
         current++;
-        if (current % 27 == 0)
-            current++;
         return r;
     }
 

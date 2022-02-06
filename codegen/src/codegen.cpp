@@ -47,10 +47,9 @@ void codegen::writestuff() {
 void codegen::variable(const string &type, const string &id) {
     auto d = st->addentry(id, type);
     w->appendData("    #" + id + "\n");
-    if(d.getTypeString() == "string"){
+    if (d.getTypeString() == "string") {
         w->appendData("    " + d.getID() + ": .space 1024\n\n");
-    }
-    else {
+    } else {
         w->appendData("    " + d.getID() + ": .word 0\n\n");
     }
 }
@@ -227,8 +226,7 @@ codegen::assignexproperation(const string &lefside, const exprtype &expr, const 
                 break;
         }
         w->appendText("    s.s $f0, " + d.getID() + "\n\n");
-    }
-    else if (expr.second == "string" && operation[0] == '+'){
+    } else if (expr.second == "string" && operation[0] == '+') {
         string temp_id = idgen::nextid();
         w->appendData("    " + temp_id + ": .space 1024\n");
         w->appendText(
@@ -255,8 +253,7 @@ codegen::assignexproperation(const string &lefside, const exprtype &expr, const 
         );
         d.setID(temp_id);
         return {temp_id, "string"};
-    }
-    else{
+    } else {
         throw runtime_error("semantic error: invalid assignment: " + d.getTypeString() + operation + expr.second);
     }
     return {d.getID(), expr.second};
@@ -666,8 +663,7 @@ exprtype codegen::unaryminus(const exprtype &expr) {
                 + "    sw $t0, " + temp_id + "\n\n"
         );
         return {temp_id, expr.second};
-    }
-    else if (expr.second == "double"){
+    } else if (expr.second == "double") {
         string temp_id = idgen::nextid();
         w->appendData("    " + temp_id + ": .word 0\n");
         w->appendText("    # doing the u-\n");
@@ -678,8 +674,7 @@ exprtype codegen::unaryminus(const exprtype &expr) {
                 + "    s.s $f0, " + temp_id + "\n\n"
         );
         return {temp_id, expr.second};
-    }
-    else{
+    } else {
         throw runtime_error("semantic error: invalid operation: -" + expr.second);
     }
 }
@@ -702,7 +697,7 @@ exprtype codegen::unarynot(const exprtype &expr) {
 void codegen::whilestmt1() {
     string beginwhile = "while_loop_" + idgen::nextid();
     w->appendText(beginwhile + ":\n");
-    beginloopname = beginwhile;
+    loopstack.push({beginwhile,beginwhile, ""});
 }
 
 void codegen::whilestmt2(const pair<string, string> &expr) {
@@ -712,15 +707,18 @@ void codegen::whilestmt2(const pair<string, string> &expr) {
     w->appendText("    lw $t0, " + expr.first + "\n"
                   + "    beqz $t0, " + endwhile + "\n"
     );
-    endloopname = endwhile;
+    loopstack.top().end = endwhile;
 }
 
 void codegen::whilestmt3() {
-    w->appendText("    j " + beginloopname + "\n"
-                  + endloopname + ":\n\n"
-    );
-}
 
+    w->appendText(
+            "    j " + loopstack.top().begin + "\n"
+            + loopstack.top().end + ":\n\n"
+    );
+
+    loopstack.pop();
+}
 
 
 void codegen::beginfor() {
@@ -729,7 +727,7 @@ void codegen::beginfor() {
             "    # begin for loop of " + beginforlabel + "\n"
             + beginforlabel + ":\n"
     );
-    loopstack.push(beginforlabel);
+    loopstack.push({beginforlabel, "", ""});
 }
 
 void codegen::forloopcond(const exprtype &expr) {
@@ -740,32 +738,38 @@ void codegen::forloopcond(const exprtype &expr) {
             +"    lw $t0, " + expr.first + "\n"
             + "    beqz $t0, " + endforlabel + "\n"
     );
-    w->to_buffer = true;
-    loopstack.push(endforlabel);
+    w->to_stack = true;
+    w->new_tops();
+    string snlabel = "SN_LABEL_" + idgen::nextid();
+    w->appendText(snlabel + ":\n");
+    loopstack.top().end = endforlabel;
+    loopstack.top().snlabel = snlabel;
 }
 
 void codegen::endsecnexpr() {
-    w->to_buffer = false;
+    w->to_stack = false;
 }
 
 void codegen::endforstmt() {
     // for second nexpr
-    w->flushbuffers();
+    w->appendFromStacks();
 
-    string end = loopstack.top(); loopstack.pop();
-    string begin = loopstack.top(); loopstack.pop();
+    string end = loopstack.top().end;
+    string begin = loopstack.top().begin;
 
     w->appendText(
             "    j " + begin + "\n"
             + end + ":\n\n"
     );
+
+    loopstack.pop();
 }
 
 
 void codegen::breakstmt() {
     w->appendText(
             "    #break\n"
-            "    j " + loopstack.top() + "\n\n"
+            "    j " + loopstack.top().end + "\n\n"
     );
 }
 
@@ -842,4 +846,10 @@ exprtype codegen::dtoi(const exprtype &expr) {
             + "    s.s $f1, " + id + "\n\n"
     );
     return {id, "int"};
+}
+
+void codegen::continuestmt() {
+    w->appendText(
+            "    j " + loopstack.top().snlabel + "\n"
+    );
 }

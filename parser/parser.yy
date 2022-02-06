@@ -145,7 +145,7 @@ breakstmt: break semicolon { cg.breakstmt(); }
 nexpr: expr { }
     | %empty { }
 
-continuestmt: continue semicolon {  }
+continuestmt: continue semicolon { cg.continuestmt(); }
 
 
 printstmt:
