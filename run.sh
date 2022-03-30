@@ -30,7 +30,7 @@ mkdir -p build
 cd build
 
 cmake ..
-if [ $? -ne 0 ]; then
+if [[ $? -ne 0 ]]; then
     echo "CMake Failed"
     return 1
 fi
@@ -74,3 +74,5 @@ done
 
 echo "Passed : $NUMBER_OF_PASSED"
 echo "Failed : $NUMBER_OF_FAILED"
+score=$(echo "scale=4 ; $NUMBER_OF_PASSED / $(($NUMBER_OF_PASSED + $NUMBER_OF_FAILED))" | bc)
+echo "Score : $score"
